@@ -46,42 +46,6 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    
-    <table class="egt">
-    <tr>
-        <th>#</th>
-        <th>RUC</th>
-        <th>RAZON SOCIAL</th>
-        <th>RAZON COMERCIAL</th>
-        <th>DIRECCION</th>
-        <th>EMAIL</th>
-        <th>TELEFONO</th>
-        <th>ETIQUETA</th>
-        <TH></TH>
-    </tr>
-
-   
-    @foreach ($proveedor as $proveedores)
-    @php
-    $contacto=proveedor_contacto::where('PROVE_id','=',$proveedores->PROVE_id)->get();
-    $cuenta=proveedor_cuenta::where('PROVE_id','=',$proveedores->PROVE_id)->get();
-    @endphp
-        <tr>
-                <td>{{$loop->index+1}}</td>
-                <td>{{$proveedores->PROVE_ruc}}</td>
-                <td>{{$proveedores->PROVE_razon_social}}</td>
-                <td>{{$contacto[0]->PROVECONT_descripcion}}</td>
-                <td>{{$proveedores->PROVE_direccion}}</td>
-                <td>{{$proveedores->PROVE_email}}</td>
-                <td>{{$proveedores->PROVE_telefono}}</td>
-                <td>{{$proveedores->PROVE_etiqueta}}</td>
-                <td></td>
-        </tr>
-     @endforeach
-</table>
-
-
-
         <!-- Content Header (Page header) -->
         <div class="content-header">
           <div class="container-fluid">
@@ -115,38 +79,40 @@
                   <table id="example2" class="table table-bordered table-hover">
                     <thead>
                     <tr>
-                      <th>#</th>
-                      <th>RUC</th>
-                      <th>Razon social</th>
-                      <th>Tipo</th>
-                      <th>Procedencia</th>
-                      <th>Estado</th>
-                      <th>Opciones</th>
+                        <th>#</th>
+                        <th>RUC</th>
+                        <th>RAZON SOCIAL</th>
+                        <th>RAZON COMERCIAL</th>
+                        <th>DIRECCION</th>
+                        <th>EMAIL</th>
+                        <th>TELEFONO</th>
+                        <th>ETIQUETA</th>
+                        <TH></TH>
                     </tr>
                     </thead>
                     <tbody>
 
 
-                    <tr>
-
-                      <td>u</td>
-                      <td>hhh</td>
-                      <td>hhh</td>
-                      <td>ii</td>
-                      <td>uuuuu</td>
 
 
-                      <td width="10px">
-                        <a href=""
-                        class="btn btn-sm btn-default">
-                            ver
-                        </a>
-                      </td>
+                        @foreach ($proveedor as $proveedores)
+                        @php
+                        $contacto=proveedor_contacto::where('PROVE_id','=',$proveedores->PROVE_id)->get();
+                        $cuenta=proveedor_cuenta::where('PROVE_id','=',$proveedores->PROVE_id)->get();
+                        @endphp
+                            <tr>
+                                    <td>{{$loop->index+1}}</td>
+                                    <td>{{$proveedores->PROVE_ruc}}</td>
+                                    <td>{{$proveedores->PROVE_razon_social}}</td>
+                                    <td>{{$contacto[0]->PROVECONT_descripcion}}</td>
+                                    <td>{{$proveedores->PROVE_direccion}}</td>
+                                    <td>{{$proveedores->PROVE_email}}</td>
+                                    <td>{{$proveedores->PROVE_telefono}}</td>
+                                    <td>{{$proveedores->PROVE_etiqueta}}</td>
+                                    <td></td>
+                            </tr>
+                         @endforeach
 
-
-                      <td>ddgd</td>
-
-                    </tr>
 
                     </tbody>
                     </tfoot>
@@ -191,7 +157,7 @@
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
-   
+
 
   </aside>
   <!-- /.control-sidebar -->
