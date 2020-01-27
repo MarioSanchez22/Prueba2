@@ -17,8 +17,9 @@ Route::get('/','pruebaController@index')->name('home');
 //LOGISTICA
 //POVEEDOR
 Route::get('/proveedor', 'proveedorController@index')->name('proveedorIndex');
+
+
 //PRODUCTO
 Route::POST('/producto', 'productoController@index')->name('productoBuscar');
-Route::POST('/producto', 'productoController@buscar')->name('productoBuscar');
-Route::POST('/producto/{id}/ajuste', 'productoController@ajuste')->name('productoAjuste');
+
 Route::POST('/producto/{id}/ajuste', 'productoController@ajuste')->name('productoAjuste');
