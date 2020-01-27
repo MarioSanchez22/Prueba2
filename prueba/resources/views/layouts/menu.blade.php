@@ -84,7 +84,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview" class="nav-link {{ ! Route::is('proveedorIndex')?:'active'}}">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -93,9 +93,9 @@
                 <span class="badge badge-info right">6</span>
               </p>
             </a>
-            <ul class="nav nav-treeview">
+            <ul class="nav nav-treeview" style="{{ ! Route::is('proveedorIndex')?:'display:block'}}">
               <li class="nav-item">
-                <a href="{{route('proveedorIndex')}}" class="nav-link">
+                <a href="{{route('proveedorIndex')}}" class="nav-link {{ ! Route::is('proveedorIndex')?:'active'}} ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Proveedor</p>
                 </a>
