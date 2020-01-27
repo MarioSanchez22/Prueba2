@@ -40,12 +40,12 @@
                 <a href="#" class="nav-link {{ ! Route::is('usuarios.index')?:'active'}}">
                   <i class="nav-icon fas fa-tree"></i>
                   <p>
-                    Admin Usuarios
+                   pruebaaaa
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview" style="{{ ! Route::is('usuarios.index')?:'display:block'}}">
-                    
+
                     <li class="nav-item ">
                       <a href="usuarios" class="nav-link {{ ! Route::is('usuarios.index')?:'active'}} ">
                         <i class="far fa-user nav-icon"></i>
