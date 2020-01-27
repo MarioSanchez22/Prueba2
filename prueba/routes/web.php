@@ -30,7 +30,3 @@ Route::get('/proveedor', 'proveedorController@index')->name('proveedorIndex');
 Route::POST('/producto', 'productoController@index')->name('productoBuscar');
 
 Route::POST('/producto/{id}/ajuste', 'productoController@ajuste')->name('productoAjuste');
-<<<<<<< HEAD
-=======
-Route::POST('/producto/{id}/ajuste', 'productoController@ajuste')->name('productoAjuste');
->>>>>>> b5357c981121969ea26b1534cda82d9b19df329f
