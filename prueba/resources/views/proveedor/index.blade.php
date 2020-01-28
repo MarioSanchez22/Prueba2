@@ -120,11 +120,12 @@
                 </div>
                 <!-- /.card-body -->
               </div>
+              
               <!-- /.card -->
-                <div class="modal fade " id="modal-default" aria-hidden="true" style="display: none;">
-                   <div class="modal-dialog modal-lg" style="width: 60%" >
+                <div class="modal fade" id="modal-default" aria-hidden="true" style="display: none;">
+                  <div class="modal-dialog  modal-lg" >
                       <div class="modal-content">
-                        <div class="modal-header" style=" padding-top: 5px; padding-bottom: 5px; ">
+                        <div class="modal-header" style=" padding-top: 5px; padding-bottom: 5px; background-color: #143d63; color:aliceblue ">
                           <h5 class="modal-title">Registrar proveedor</h5>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
@@ -132,14 +133,27 @@
                         </div>
                         <div class="modal-body">
                         <form action="" method="POST" enctype="multipart/form-data">
-                        <label for="">Datos de Expediente</label>
+                          <blockquote class="quote-secondary">
+                        <label for="">Datos de Expediente</label> <br>
                         <div class="form-group row">
-                            <h5  class="col-sm-3 col-form-label">Descripcion:</h5>
-                            <div class="col-sm-10">
+                           <div  class="col-md-2" style=" display: inline-block;">
+                              Descripcion:</div>
+                            <div class="col-md-10">
                               <input type="text" class="form-control form-control-sm" id="" placeholder="Descripcion">
-                            </div>
-                            <h5  class="col-sm-3 col-form-label">Subir archivo:</h5>
-                            <form action=""></form>
+                            </div> <br><br>
+                            <div  class="col-md-3" style=" display: inline-block;">
+                              Subir archivo:</div>
+                              <div class="input-group">
+                                <div class="custom-file">
+                                  <input type="file" class="custom-file-input form-control-sm" id="exampleInputFile">
+                                  <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                </div>
+                                
+                              </div>
+                              <br><br><div  class="col-md-2" style=" display: inline-block;">
+                                Observacion:</div>
+                                <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                          </blockquote> 
                           </div>
 
 
@@ -315,7 +329,7 @@
 <script src="{{asset('plugins/moment/moment.min.js')}}"></script>
 <script src="{{asset('plugins/daterangepicker/daterangepicker.js')}}"></script>
 
-
+<script src="{{asset('plugins/dropzone.js')}}"></script>
 <!-- overlayScrollbars -->
 <script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 <!-- AdminLTE App -->
