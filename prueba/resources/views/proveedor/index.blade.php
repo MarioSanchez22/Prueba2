@@ -81,13 +81,13 @@
                     <tr>
                         <th>#</th>
                         <th>RUC</th>
-                        <th>RAZON SOCIAL</th>
-                        <th>RAZON COMERCIAL</th>
-                        <th>DIRECCION</th>
-                        <th>EMAIL</th>
-                        <th>TELEFONO</th>
-                        <th>ETIQUETA</th>
-                        <TH></TH>
+                        <th>Razon social</th>
+                        <th>Razon comercial</th>
+                        <th>Estado</th>
+                        <th>Email</th>
+                        <th>Telefono</th>
+                        <th>Etiqueta</th>
+                        <TH>       Opciones</TH>
                     </tr>
                     </thead>
                     <tbody>
@@ -105,11 +105,11 @@
                                     <td>{{$proveedores->PROVE_ruc}}</td>
                                     <td>{{$proveedores->PROVE_razon_social}}</td>
                                     <td>{{$contacto[0]->PROVECONT_descripcion}}</td>
-                                    <td>{{$proveedores->PROVE_direccion}}</td>
+                                    <td>{{$proveedores->PROVE_est}}</td>
                                     <td>{{$proveedores->PROVE_email}}</td>
                                     <td>{{$proveedores->PROVE_telefono}}</td>
                                     <td>{{$proveedores->PROVE_etiqueta}}</td>
-                                    <td></td>
+                                    <td><button title="Ver" data-toggle="modal" data-target="#verAl" class="btn btn-success btn-minier btn-sm" ><span class="fa fa-eye"></span></button> <button title="Ver" data-toggle="modal" data-target="#verAl" class="btn btn-danger btn-minier btn-sm" ><span class="fa fa-trash"></span></button>   <button title="Ver" data-toggle="modal" data-target="#verAl" class="btn btn-default btn-minier btn-sm" ><span class="fa fa-edit"></span></button> </td>
                             </tr>
                          @endforeach
 
@@ -125,7 +125,7 @@
                    <div class="modal-dialog" style="width: 50%" >
                       <div class="modal-content">
                         <div class="modal-header" style=" padding-top: 5px; padding-bottom: 5px; ">
-                          <h4 class="modal-title">Registrar proveedor</h4>
+                          <h5 class="modal-title">Registrar proveedor</h5>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                           </button>
