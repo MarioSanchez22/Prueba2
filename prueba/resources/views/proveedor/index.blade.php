@@ -134,7 +134,7 @@
                         <form action="" method="POST" enctype="multipart/form-data">
                         <label for="">Datos de Expediente</label>
                         <div class="form-group row">
-                            <h5  class="col-sm-2 col-form-label">Descripcion:</h5>
+                            <h5  class="col-sm-3 col-form-label">Descripcion:</h5>
                             <div class="col-sm-10">
                               <input type="text" class="form-control form-control-sm" id="" placeholder="Descripcion">
                             </div>
