@@ -138,6 +138,8 @@
                             <div class="col-sm-10">
                               <input type="text" class="form-control form-control-sm" id="" placeholder="Descripcion">
                             </div>
+                            <h5  class="col-sm-3 col-form-label">Subir archivo:</h5>
+                            <form action=""></form>
                           </div>
 
 
