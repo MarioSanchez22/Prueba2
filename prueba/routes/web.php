@@ -24,6 +24,8 @@ Route::get('/','pruebaController@index')->name('home');
 //LOGISTICA
 //POVEEDOR
 Route::get('/proveedor', 'proveedorController@index')->name('proveedorIndex');
+Route::get('/proveedor/create', 'proveedorController@store')->name('proveedorStore');
+
 
 
 //PRODUCTO
