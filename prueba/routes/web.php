@@ -32,3 +32,4 @@ Route::get('/proveedor/create', 'proveedorController@store')->name('proveedorSto
 Route::POST('/producto', 'productoController@index')->name('productoBuscar');
 
 Route::POST('/producto/{id}/ajuste', 'productoController@ajuste')->name('productoAjuste');
+Route::GET('/datos/{id}', 'proveedorController@datos')->name('datosP');

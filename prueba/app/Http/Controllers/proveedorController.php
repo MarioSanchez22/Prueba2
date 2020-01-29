@@ -16,4 +16,10 @@ class proveedorController extends Controller
         //dd($proveedor);
            return view('proveedor.index',['proveedor'=>$proveedor]);
         }
+        public function datos($id){
+           // $proveedor=proveedor::all();
+            //dd($id);
+
+            return view('proveedor.datosProv',['prove'=>$id]);
+            }
 }

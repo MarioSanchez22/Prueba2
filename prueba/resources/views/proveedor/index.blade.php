@@ -32,6 +32,50 @@
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.css')}}">
   <!-- Google Font: Source Sans Pro -->
+
+  <style>
+    .color-palette {
+      height: 35px;
+      line-height: 35px;
+      text-align: right;
+      padding-right: .75rem;
+    }
+
+    .color-palette.disabled {
+      text-align: center;
+      padding-right: 0;
+      display: block;
+    }
+
+    .color-palette-set {
+      margin-bottom: 15px;
+    }
+
+    .color-palette span {
+      display: none;
+      font-size: 12px;
+    }
+
+    .color-palette:hover span {
+      display: block;
+    }
+
+    .color-palette.disabled span {
+      display: block;
+      text-align: left;
+      padding-left: .75rem;
+    }
+
+    .color-palette-box h4 {
+      position: absolute;
+      left: 1.25rem;
+      margin-top: .75rem;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 12px;
+      display: block;
+      z-index: 7;
+    }
+  </style>
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -120,174 +164,100 @@
                 </div>
                 <!-- /.card-body -->
               </div>
-              
+
               <!-- /.card -->
-                <div class="modal fade" id="modal-default" aria-hidden="true" style="display: none;">
-                  <div class="modal-dialog  modal-lg" >
+              <div class="modal fade" id="modal-default">
+                <div class="modal-dialog modal-xl">
                       <div class="modal-content">
                         <div class="modal-header" style=" padding-top: 5px; padding-bottom: 5px; background-color: #143d63; color:aliceblue ">
-                          <h5 class="modal-title">Registrar proveedor</h5>
+                          <h5 class="modal-title">Registrar Proveedor</h5>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                           </button>
                         </div>
                         <div class="modal-body">
                         <form action="" method="POST" enctype="multipart/form-data">
-                          <blockquote class="quote-secondary">
-                        <label for="">Datos de Expediente</label> <br>
-                        <div class="form-group row">
-                           <div  class="col-md-2" style=" display: inline-block;">
-                              Descripcion:</div>
-                            <div class="col-md-10">
-                              <input type="text" class="form-control form-control-sm" id="" placeholder="Descripcion">
-                            </div> <br><br>
-                            <div  class="col-md-3" style=" display: inline-block;">
-                              Subir archivo:</div>
-                              <div class="input-group">
-                                <div class="custom-file">
-                                  <input type="file" class="custom-file-input form-control-sm" id="exampleInputFile">
-                                  <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                </div>
-                                
-                              </div>
-                              <br><br><div  class="col-md-2" style=" display: inline-block;">
-                                Observacion:</div>
-                                <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                          </blockquote> 
-                          </div>
-
-
-                            <input type="hidden" name="_token" value="ITir8SUwIRvHYe6XefXJrkbbnRNpfp2blz33yfTw">
-                            <div class="row">
-                            <div class="col s12 m6">
-                                <span style="color:#E6B31E;"> RUC: </span>
-                                <input type="text" class="form-control" name="razon_social" required="">
-                              </div>
-                              <div class="col s12 m6">
-                                <span style="color:#E6B31E;"> Razón Social: </span>
-                                <input type="text" class="form-control" name="razon_social" required="">
-                              </div>
-                              <div class="col s12 m6">
-                                <span style="color:#E6B31E;"> Razón Comercial: </span>
-                                <input type="text" class="form-control" name="razon_social" required="">
-                              </div>
-                            </div> <br>
-                            <div class="row">
-                              <div class="col s12 m6">
-                                <span style="color:#E6B31E;"> Responsable de la Empresa: </span>
-                                <input type="text" class="form-control" name="responsable" required="">
-                              </div>
-                              <div class="col s12 m6">
-                                <span style="color:#E6B31E;"> Correo Electrónico: </span>
-                                <input type="email" class="form-control" name="correo" required="">
-                              </div>
-                            </div> <br>
-                            <div class="row">
-                                <div class="col s12 m6">
-                                  <span style="color:#E6B31E;"> Usuario: </span>
-                                  <input type="text" class="form-control" name="usuario" required="">
-                                </div>
-                                <div class="col s12 m6">
-                                  <span style="color:#E6B31E;"> Contraseña: </span>
-                                  <input type="password" class="form-control" name="password" required="">
-                                </div>
-                            </div><br>
-                            <div>
-                            <div class="row">
-                                <div class="col s12 m5">
-                                    <span style="color:#E6B31E;"> Regimen: </span>
-                                    <div class="select-wrapper"><select class="select-dropdown dropdown-trigger" type="text" readonly="true" data-target="select-options-716a253e-eca1-32ef-6446-390672b11e79"><ul id="select-options-716a253e-eca1-32ef-6446-390672b11e79" class="dropdown-content select-dropdown" tabindex="0"><li id="select-options-716a253e-eca1-32ef-6446-390672b11e790" tabindex="0" class="selected"><span>Seleccione</span></li><li id="select-options-716a253e-eca1-32ef-6446-390672b11e791" tabindex="0"><span>R. GENERAL</span></li><li id="select-options-716a253e-eca1-32ef-6446-390672b11e792" tabindex="0"><span>R. ESPECIAL</span></li><li id="select-options-716a253e-eca1-32ef-6446-390672b11e793" tabindex="0"><span>R. 4º CATEGORIA</span></li><li id="select-options-716a253e-eca1-32ef-6446-390672b11e794" tabindex="0"><span>NUEVO RUS</span></li><li id="select-options-716a253e-eca1-32ef-6446-390672b11e795" tabindex="0"><span>PLAME</span></li><li id="select-options-716a253e-eca1-32ef-6446-390672b11e796" tabindex="0"><span>MYPE TRIBUTARIO</span></li><li id="select-options-716a253e-eca1-32ef-6446-390672b11e797" tabindex="0"><span>OSCE</span></li><li id="select-options-716a253e-eca1-32ef-6446-390672b11e798" tabindex="0"><span>SENCICO</span></li></ul><svg class="caret" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg><select name="regimen_tipo" required="" tabindex="-1">
-                                      <option value="">Seleccione</option>
-
-                                      </select></div>
-                                  </div>
-                                  <div class="col s12 m7">
-                                      <span style="color:#E6B31E;"> Personal: </span>
-                                      <div class="select-wrapper">
-                                      <select class="select-dropdown dropdown-trigger" type="text" readonly="true" data-target="select-options-e6deeaf3-c1a2-b9b8-b8a5-9b6f17d7d9df"><ul id="select-options-e6deeaf3-c1a2-b9b8-b8a5-9b6f17d7d9df" class="dropdown-content select-dropdown" tabindex="0"><li id="select-options-e6deeaf3-c1a2-b9b8-b8a5-9b6f17d7d9df0" tabindex="0" class="selected"><span>Seleccione</span></li><li id="select-options-e6deeaf3-c1a2-b9b8-b8a5-9b6f17d7d9df1" tabindex="0"><span>Daniel Alexander Asencio Ortiz</span></li><li id="select-options-e6deeaf3-c1a2-b9b8-b8a5-9b6f17d7d9df2" tabindex="0"><span>Hugo Gracia</span></li><li id="select-options-e6deeaf3-c1a2-b9b8-b8a5-9b6f17d7d9df3" tabindex="0"><span>Hugo Gracia</span></li><li id="select-options-e6deeaf3-c1a2-b9b8-b8a5-9b6f17d7d9df4" tabindex="0"><span>VILLACORTA RAZON, JIMMY PAUL</span></li><li id="select-options-e6deeaf3-c1a2-b9b8-b8a5-9b6f17d7d9df5" tabindex="0"><span>MIO VASQUEZ, PAMELA KATHERIN</span></li><li id="select-options-e6deeaf3-c1a2-b9b8-b8a5-9b6f17d7d9df6" tabindex="0"><span>ROJAS CHINCHAY, TANIA</span></li><li id="select-options-e6deeaf3-c1a2-b9b8-b8a5-9b6f17d7d9df7" tabindex="0"><span>CHUQUILIN BAZAN, YLCIAS JESUS</span></li><li id="select-options-e6deeaf3-c1a2-b9b8-b8a5-9b6f17d7d9df8" tabindex="0"><span>VILLANUEVA GARCIA, CINDY DAYANA</span></li><li id="select-options-e6deeaf3-c1a2-b9b8-b8a5-9b6f17d7d9df9" tabindex="0"><span>BOLAÑOS CACERES, HECTOR</span></li><li id="select-options-e6deeaf3-c1a2-b9b8-b8a5-9b6f17d7d9df10" tabindex="0"><span>BOLAÑOS CACERES, HECTOR</span></li><li id="select-options-e6deeaf3-c1a2-b9b8-b8a5-9b6f17d7d9df11" tabindex="0"><span>VILLACORTA MOZO, HAROLD ANTHONY</span></li><li id="select-options-e6deeaf3-c1a2-b9b8-b8a5-9b6f17d7d9df12" tabindex="0"><span>MUDARRA ZEVALLOS, LUIGI ANTONNY</span></li><li id="select-options-e6deeaf3-c1a2-b9b8-b8a5-9b6f17d7d9df13" tabindex="0"><span>ANGULO DEZA, PEDRO DEIVY</span></li><li id="select-options-e6deeaf3-c1a2-b9b8-b8a5-9b6f17d7d9df14" tabindex="0"><span>NIETO MARQUINA, ANGIE ANAIS</span></li><li id="select-options-e6deeaf3-c1a2-b9b8-b8a5-9b6f17d7d9df15" tabindex="0"><span>CRUZ ZAVALA, LESLY ESTEFANY</span></li><li id="select-options-e6deeaf3-c1a2-b9b8-b8a5-9b6f17d7d9df16" tabindex="0"><span>PEREDA MENDEZ, HEINNER CARLOS</span></li><li id="select-options-e6deeaf3-c1a2-b9b8-b8a5-9b6f17d7d9df17" tabindex="0"><span>MENDEZ CHAVEZ, JEFERSON</span></li><li id="select-options-e6deeaf3-c1a2-b9b8-b8a5-9b6f17d7d9df18" tabindex="0"><span>DE LA CRUZ RAZON, MARVIN PAULO HERNESTO</span></li><li id="select-options-e6deeaf3-c1a2-b9b8-b8a5-9b6f17d7d9df19" tabindex="0"><span>VELARDE JUAREZ, KELVER GLODER</span></li><li id="select-options-e6deeaf3-c1a2-b9b8-b8a5-9b6f17d7d9df20" tabindex="0"><span>BOLAÑOS CACERES, HECTOR</span></li><li id="select-options-e6deeaf3-c1a2-b9b8-b8a5-9b6f17d7d9df21" tabindex="0"><span>administrador general</span></li></ul><svg class="caret" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg><select name="personal_id" required="" class="select2" tabindex="-1">
-                                        <option value="">Seleccione</option>
-                                      </select></div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <blockquote class="quote-secondary">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label for="">Tipo de proveedor</label>
+                                        <select class="form-control  form-control-sm" id="TipoP" name="TipoP">
+                                            <option value="0">Empresa</option>
+                                            <option value="1">Persona natural</option>
+                                            <!--<option selected type="" value="" disabled selected >[Seleccionar modo de pago]</option>-->
+                                          </select>
                                     </div>
-                              </div> </div><br>
-                              <div class="row">
-                                  <div class="col s12 m4">
-                                    <span style="color:#E6B31E;"> RUC: </span>
-                                    <input type="text" class="form-control" name="ruc" maxlength="11" required="">
-                                  </div>
-                                  <div class="col s12 m4">
-                                    <span style="color:#E6B31E;"> Usuario SUNAT: </span>
-                                    <input type="text" class="form-control" name="usuario_sunat" required="">
-                                  </div>
-                                  <div class="col s12 m4">
-                                      <span style="color: #E6B31E;"> Contraseña SUNAT: </span>
-                                      <input type="text" class="form-control" name="password_sunat" required="">
-                                  </div>
-                                </div> <br>
-                            <div class="row">
-                              <div class="col s12 m5">
-                                <div class="file-field input-field">
-                                  <div class="btn">
-                                      <span><i class="material-icons">
-                                        cloud_upload
-                                        </i></span>
-                                      <input type="file" class="form-control" name="dni_empresa[]" multiple="">
-                                  </div>
-                                  <div class="file-path-wrapper">
-                                      <input class="file-path validate" type="text" placeholder="Upload one or more files">
-                                  </div>
-                              </div>
-                              </div>
-                              <div class="col s12 m7">
+                                    <div class="col-md-12" id="verD" style="top:7px">
 
-                                <div id="div_100">
-                                  <span style="color:#E6B31E;"> Teléfono(s): </span><br>
-                                  <label style="color:#E6B31E;">Compañía: </label>
-                                      <input type="text" name="compania_cliente[]" id="compania_cliente" style="width:120px;" required=""> <label style="color:#E6B31E;">
-                                          Número: </label> <input type="number" name="telefono_cliente[]" style="width:110px;margin-right: 2%;">
-                                  <input class=" btn btn-danger bt_plus2" id="100" type="button" value="+">
-                                  <div class="error_form"></div>
-                              </div>
-                              </div>
-                            </div> <br>
-                            <div class="row">
-
-                              <div class="col s12 m4">
-                                  <span style="color:#E6B31E;"> N°Cuenta: </span>
-                              </div>
-                              <div class="col s12 m4">
-                                  <span style="color:#E6B31E;"> DNI/Usuario: </span>
-                              </div>
-                              <div class="col s12 m4">
-                                  <span style="color:#E6B31E;"> Clave: </span>
-                              </div>
+                                    </div>
 
 
-                              <div class="col s12 m12" id="div_200">
 
-                                  <input type="text" name="cuenta_cliente2[]" id="cuenta_cliente2" style="width:25%;margin-right: 9%; " required="">
-                                  <input type="number" name="dni_cliente2[]" id="dni_cliente2" style="width:25%; margin-right: 9%;" required="">
-                                  <input type="number" name="clave_cliente2[]" id="clave_cliente2" style="width:20%; margin-right: 1%" required="">
-                                  <input class=" btn btn-danger bt_plus3" id="200" type="button" value="+">
 
-                                  <div class="error_form">
-                                  </div>
-                              </div>
-                          </div> <br>
-                            <div class="row">
-                                <div class="col s12 m12">
-                                  <span style="color: #E6B31E;"> Observaciones: </span><br>
-                                  <textarea name="detalle" id="" cols="90" rows="12" class="form-control"></textarea>
-                                </div>
-                              </div> <br>
-                            <div align="center">
-                            <button type="submit" class="btn btn-danger">Guardar Cliente</button>
                             </div>
-                        </form>
+                        </blockquote>
+                            </div>
+                        <div class="col-md-6">
+                            <div id="accordion">
+                            <div class="card card-danger">
+                                <div class="card-header">
+                                  <h4 class="card-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                      Collapsible Group Danger
+                                    </a>
+                                  </h4>
+                                </div>
+                                <div id="collapseTwo" class="panel-collapse collapse">
+                                  <div class="card-body">
+                                    <blockquote class="quote-secondary">
+                                        <label for="">Datos de Expediente</label> <br>
+                                        <div class="row ">
+                                           <div  class="col-md-3" >
+                                            <label class="control-label" style="display: inline-block;
+                                           ">Descripcion: </label></div>
+                                            <div class="col-md-9">
+                                              <input type="text" class="form-control form-control-sm" id="" placeholder="Descripcion">
+                                            </div> <br><br>
+                                            <div  class="col-md-3" style=" display: inline-block;">
+                                              Subir archivo:</div>
+                                              <div class="input-group">
+                                                <div class="custom-file">
+                                                  <input type="file" class="custom-file-input form-control-sm" id="exampleInputFile">
+                                                  <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                                </div>
+
+                                              </div>
+                                              <br><br><div  class="col-md-2" style=" display: inline-block;">
+                                                Observacion:</div>
+                                                <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                                <div id="div_1">
+                                                    <span> Teléfono(s): </span><br>
+                                                    <label>Compañía: </label>
+                                                        <input type="text" name="compania[]" id="compania" style="width:120px;" required=""> <label>
+                                                            Número: </label> <input type="number" name="telefono[]" style="width:110px;">
+                                                    <input class=" btn btn-danger bt_plus" id="1" type="button" value="+">
+                                                    <div class="error_form"></div>
+                                                 </div>
+                                          </blockquote>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+
+                         </div>
+
+
+
+
+
                         </div>
                         <div class="modal-footer justify-content-between">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
+                          <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div></form>
                       </div>
                       <!-- /.modal-content -->
                     </div>
@@ -317,7 +287,44 @@
 
 <!-- jQuery -->
 <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
-
+<script>
+    $(document).ready(function() {
+  //ACA le asigno el evento click a cada boton de la clase bt_plus y llamo a la funcion addField
+  $(".bt_plus").each(function (el){
+  $(this).bind("click",addField);
+  });
+  });
+  function addField(){
+  // ID del elemento div quitandole la palabra "div_" de delante. Pasi asi poder aumentar el número.
+  // Esta parte no es necesaria pero yo la utilizaba ya que cada campo de mi formulario tenia un autosuggest,
+  // así que dejo como seria por si a alguien le hace falta.
+  var clickID = parseInt($(this).parent('div').attr('id').replace('div_',''));
+  // Genero el nuevo numero id
+  var newID = (clickID+1);
+  // Creo un clon del elemento div que contiene los campos de texto
+  $newClone = $('#div_'+clickID).clone(true);
+  //Le asigno el nuevo numero id
+  $newClone.attr("id",'div_'+newID);
+  //Asigno nuevo id al primer campo input dentro del div y le borro cualquier valor
+  // que tenga asi no copia lo ultimo que hayas escrito.(igual que antes no es necesario tener un id)
+  $newClone.children("input").eq(0).attr("id",'compania'+newID).val('');
+  //Borro el valor del segundo campo input(este caso es el campo de cantidad)
+  $newClone.children("input").eq(1).val('');
+  //Asigno nuevo id al boton
+  $newClone.children("input").eq(2).attr("id",newID)
+  //Inserto el div clonado y modificado despues del div original
+  $newClone.insertAfter($('#div_'+clickID));
+  //Cambio el signo "+" por el signo "-" y le quito el evento addfield
+  //$("#"+clickID-1).remove();
+  $("#"+clickID).val('-').unbind("click",addField);
+  //Ahora le asigno el evento delRow para que borre la fial en caso de hacer click
+  $("#"+clickID).bind("click",delRow);
+  }
+  function delRow() {
+  // Funcion que destruye el elemento actual una vez echo el click
+  $(this).parent('div').remove();
+  }
+  </script>
 
 <!-- Bootstrap 4 -->
 <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -338,7 +345,7 @@
 <script src="{{asset('dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('dist/js/demo.js')}}"></script>
-
+<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
 <!-- DataTables -->
 <script src="{{asset('plugins/datatables/jquery.dataTables.js')}}"></script>
 <script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>
@@ -357,6 +364,23 @@
       "autoWidth": false,
     });
   });
+</script>
+<script>
+    $(document).ready(function() {
+
+$('#TipoP').change(function(){
+      var tipoPr= $(this).val();
+
+      $.ajax({
+           url:"datos/"+tipoPr,
+           method:"GET",
+           success:function(data){
+              ;
+                $('#verD').html(data);
+           }
+      });
+ });
+});
 </script>
 
 </body>
