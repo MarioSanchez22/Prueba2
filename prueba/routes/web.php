@@ -15,6 +15,9 @@ Route::get('/dashboard', function () {
 })->name('dashboard');
 
 
+
+
+
 Route::get('/compras', function () {
     return view('compras');
 })->name('compras');
@@ -23,8 +26,11 @@ Route::get('/','pruebaController@index')->name('home');
 
 //LOGISTICA
 //POVEEDOR
-Route::get('/proveedor', 'proveedorController@index')->name('proveedorIndex');
-Route::get('/proveedor/create', 'proveedorController@store')->name('proveedorStore');
+Route::get('proveedor', 'proveedorController@index')->name('proveedorIndex');
+Route::get('proveedor/registrar','proveedorController@create')->name('proveedorCreate');
+Route::get('proveedor/create', 'proveedorController@store')->name('proveedorStore');
+
+Route::get('proveedor/datos/{id}', 'proveedorController@datos')->name('datosP');
 
 
 
@@ -32,4 +38,4 @@ Route::get('/proveedor/create', 'proveedorController@store')->name('proveedorSto
 Route::POST('/producto', 'productoController@index')->name('productoBuscar');
 
 Route::POST('/producto/{id}/ajuste', 'productoController@ajuste')->name('productoAjuste');
-Route::GET('/datos/{id}', 'proveedorController@datos')->name('datosP');
+

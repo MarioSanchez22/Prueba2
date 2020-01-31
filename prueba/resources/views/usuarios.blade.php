@@ -86,14 +86,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                
+
                  @foreach($usuarios as $user)
                 <tr>
-                 
+
                   <td>{{ $user->id }}</td>
                   <td>{{ $user->name }}</td>
                   <td>{{ $user->id }}</td>
-                  <td>{{ $user->name }}</td>         
+                  <td>{{ $user->name }}</td>
                   <td>{{ $user->name }}</td>
                   <td>fhgfhfh</td>
                   @can('users.show')
@@ -104,9 +104,9 @@
                     </a>
                   </td>
                   @endcan
-                  
+
                   <td>ddgd</td>
-                 
+
                 </tr>
                  @endforeach
                 </tbody>
@@ -185,18 +185,6 @@
 
 
 <!-- page script -->
-<script>
-  $(function () {
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-    });
-  });
-</script>
+
 </body>
 </html>
