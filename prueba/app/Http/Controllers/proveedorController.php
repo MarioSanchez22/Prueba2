@@ -25,6 +25,6 @@ class proveedorController extends Controller
            // $proveedor=proveedor::all();
             //dd($id);
 
-            return view('proveedor.datosProv',['prove'=>$id]);
+            return view('proveedor.datosProv',['tipoPr'=>$id]);
             }
 }

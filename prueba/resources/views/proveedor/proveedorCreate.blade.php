@@ -91,13 +91,13 @@
                                             <div class="tab-content ">
                                                 <div class="tab-pane show active " id="home">
                                                     <div class="row">
-                                                        <div class="form-inline col-md-12">
-                                                        <div class=" form-group col-md-12">
-                                                           <div class="col-md-3" style="width: 100%; "><label for="" style="width: 100%; font-size:15px">Tipo de proveedor:</label></div>
+                                                        <div class="form-inline ">
+                                                        <div class=" form-group ">
+                                                           <div class="col-md-6"  style="padding-left: 6px;"><label for="" style=" font-size:15px">Tipo de proveedor:</label></div>
 
 
-                                                           <div class="col-md-9">
-                                                            <select class="form-control  form-control-sm" id="TipoP" name="TipoP" style="width: 50%">
+                                                           <div class="col-md-6">
+                                                            <select class="form-control  form-control-sm" id="TipoP" name="TipoP" style="width: 150%">
                                                                 <option value="0">Empresa</option>
                                                                 <option value="1">Persona natural</option>
                                                                 <!--<option selected type="" value="" disabled selected >[Seleccionar modo de pago]</option>-->
@@ -105,9 +105,12 @@
                                                             </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-12" id="verD" style="top:7px">
+                                                        
+                                                        <div class=" row col-md-12" id="verD" style="top:18px">
+                                                         
+                                                        </div>
 
-                                                     </div>
+                                                    
 
 
 
@@ -115,7 +118,35 @@
                                                 </div>
                                                 </div>
                                                 <div class="tab-pane " id="profile">
+                                                <div class="row">
+                                                    <div class=" col-md-12 form-inline ">
+                                                        <div class=" form-group ">
+                                                           <div class="col-md-6"  style="padding-left: 5px;"><label for="" style=" ">Descripcion:</label></div>
 
+
+                                                           <div class="col-md-6">
+                                                            <input type="text" class="form-control form-control-sm" required  placeholder="RUC de empresa" name="PROVE_rr">
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                                     <br>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">  
+                                                        <label class="control-label">Subir archivo: </label>
+                                                            <div class="input-group">
+                                                              <div class="custom-file">
+                                                                <input type="file" class="custom-file-input form-control-sm" id="exampleInputFile">
+                                                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                                              </div>
+  
+                                                            </div>
+                                                    </div>   </div>
+                                                    <div class="col-md-10">
+                                                        <div class="form-group">
+                                                          <label class="control-label">Observacion: </label>
+                                                          <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea> </div>
+                                                    </div>
+                                                </div>    
                                                 </div>
                                                 <div class="tab-pane " id="messages">
 
@@ -173,102 +204,6 @@
         </div>
         <!-- END wrapper -->
 
-        <!-- Right Sidebar -->
-        <div class="right-bar">
-            <div class="rightbar-title">
-                <a href="javascript:void(0);" class="right-bar-toggle float-right">
-                    <i class="dripicons-cross noti-icon"></i>
-                </a>
-                <h5 class="m-0 text-white">Settings</h5>
-            </div>
-            <div class="slimscroll-menu">
-                <!-- User box -->
-                <div class="user-box">
-                    <div class="user-img">
-                        <img src="assets/images/users/user-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
-                        <a href="javascript:void(0);" class="user-edit"><i class="mdi mdi-pencil"></i></a>
-                    </div>
-
-                    <h5><a href="javascript: void(0);">Geneva Kennedy</a> </h5>
-                    <p class="text-muted mb-0"><small>Admin Head</small></p>
-                </div>
-
-                <!-- Settings -->
-                <hr class="mt-0" />
-                <h5 class="pl-3">Basic Settings</h5>
-                <hr class="mb-0" />
-
-                <div class="p-3">
-                    <div class="checkbox checkbox-primary mb-2">
-                        <input id="Rcheckbox1" type="checkbox" checked>
-                        <label for="Rcheckbox1">
-                            Notifications
-                        </label>
-                    </div>
-                    <div class="checkbox checkbox-primary mb-2">
-                        <input id="Rcheckbox2" type="checkbox" checked>
-                        <label for="Rcheckbox2">
-                            API Access
-                        </label>
-                    </div>
-                    <div class="checkbox checkbox-primary mb-2">
-                        <input id="Rcheckbox3" type="checkbox">
-                        <label for="Rcheckbox3">
-                            Auto Updates
-                        </label>
-                    </div>
-                    <div class="checkbox checkbox-primary mb-2">
-                        <input id="Rcheckbox4" type="checkbox" checked>
-                        <label for="Rcheckbox4">
-                            Online Status
-                        </label>
-                    </div>
-                    <div class="checkbox checkbox-primary mb-0">
-                        <input id="Rcheckbox5" type="checkbox" checked>
-                        <label for="Rcheckbox5">
-                            Auto Payout
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Timeline -->
-                <hr class="mt-0" />
-                <h5 class="px-3">Messages <span class="float-right badge badge-pill badge-danger">25</span></h5>
-                <hr class="mb-0" />
-                <div class="p-3">
-                    <div class="inbox-widget">
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/user-2.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Tomaslau</a></p>
-                            <p class="inbox-item-text">I've finished it! See you so...</p>
-                        </div>
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/user-3.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Stillnotdavid</a></p>
-                            <p class="inbox-item-text">This theme is awesome!</p>
-                        </div>
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/user-4.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Kurafire</a></p>
-                            <p class="inbox-item-text">Nice to meet you</p>
-                        </div>
-
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/user-5.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Shahedk</a></p>
-                            <p class="inbox-item-text">Hey! there I'm available...</p>
-                        </div>
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/user-6.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Adhamdannaway</a></p>
-                            <p class="inbox-item-text">This theme is awesome!</p>
-                        </div>
-                    </div> <!-- end inbox-widget -->
-                </div> <!-- end .p-3-->
-
-            </div> <!-- end slimscroll-menu-->
-        </div>
-        <!-- /Right-bar -->
 
         <!-- Right bar overlay-->
         <div class="rightbar-overlay"></div>
@@ -277,7 +212,14 @@
         @include('layouts.scripts')
         <script>
             $(document).ready(function() {
+                $.ajax({
+                   url:"/proveedor/datos/"+0,
+                   method:"GET",
+                   success:function(data){
 
+                        $('#verD').html(data);
+                   }
+              });
         $('#TipoP').change(function(){
               var tipoPr= $(this).val();
 
