@@ -30,9 +30,11 @@ Route::get('proveedor', 'proveedorController@index')->name('proveedorIndex');
 Route::get('proveedor/registrar','proveedorController@create')->name('proveedorCreate');
 Route::get('proveedor/create', 'proveedorController@store')->name('proveedorStore');
 
-Route::get('proveedor/datos/{id}', 'proveedorController@datos')->name('datosP');
+Route::get('proveedor/datos/{id}', 'proveedorController@datos')->name('datos');
 
+Route::get('proveedor/origen/{id}', 'proveedorController@origen')->name('origen');
 
+Route::get('proveedor/pais/{id}', 'proveedorController@pais')->name('pais');
 
 //PRODUCTO
 Route::POST('/producto', 'productoController@index')->name('productoBuscar');

@@ -91,26 +91,50 @@
                                             <div class="tab-content ">
                                                 <div class="tab-pane show active " id="home">
                                                     <div class="row">
-                                                        <div class="form-inline ">
-                                                        <div class=" form-group ">
-                                                           <div class="col-md-6"  style="padding-left: 6px;"><label for="" style=" font-size:15px">Tipo de proveedor:</label></div>
 
 
-                                                           <div class="col-md-6">
-                                                            <select class="form-control  form-control-sm" id="TipoP" name="TipoP" style="width: 150%">
-                                                                <option value="0">Empresa</option>
-                                                                <option value="1">Persona natural</option>
+                                                        <div class=" col-md-6 ">
+                                                          <label for="" >Tipo de proveedor:</label>
+                                                            <select class="form-control  form-control-sm" id="TipoP" name="TipoP" >
+                                                                @foreach ($tipo as $tipos)
+                                                              <option value="{{$tipos->TIPPROVE_id}}">{{$tipos->TIPPROVE_descripcion}}</option>
+                                                                @endforeach
                                                                 <!--<option selected type="" value="" disabled selected >[Seleccionar modo de pago]</option>-->
                                                               </select>
-                                                            </div>
-                                                            </div>
-                                                        </div>
-                                                        
-                                                        <div class=" row col-md-12" id="verD" style="top:18px">
-                                                         
+
+                                                          </div>
+                                                          <div class="col-md-6">
+                                                            <div class="form-group">
+                                                              <label class="control-label">RUC: </label>
+                                                              <input type="text" class="form-control form-control-sm" required  placeholder="RUC de empresa" name="PROVE_ruc"> </div>
+                                                           </div>
+
+                                                        <div class=" row col-md-12" id="verD"  style=" padding: 0;  margin: 0;  ">
+
                                                         </div>
 
-                                                    
+                                                        <div class="col-md-12" style=" padding-bottom: 18px;">
+                                                            <div class="row">
+                                                        <div class="col-md-4">
+                                                            <label for="">Origen de proveedor</label>
+                                                              <select class="form-control  form-control-sm" id="PROVE_origen" name="PROVE_origen">
+                                                                @foreach ($origen as $origenes)
+                                                              <option value="{{$origenes->ORIPROVE_id}}">{{$origenes->ORIPROVE_descripcion}}</option>
+                                                                @endforeach
+                                                              </select>
+                                                          </div>
+                                                          <div class="col-md-4">
+                                                            <label for="">País</label>
+                                                            <div id="select2lista"></div>
+                                                          </div>
+                                                          <div class="col-md-4">
+                                                            <label for="">Región</label>
+                                                            <div id="select3lista"></div>
+                                                        </div>
+
+                                                        </div></div>
+
+
 
 
 
@@ -131,14 +155,14 @@
                                                         </div>
                                                      <br>
                                                     <div class="col-md-6">
-                                                        <div class="form-group">  
+                                                        <div class="form-group">
                                                         <label class="control-label">Subir archivo: </label>
                                                             <div class="input-group">
                                                               <div class="custom-file">
                                                                 <input type="file" class="custom-file-input form-control-sm" id="exampleInputFile">
                                                                 <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                                               </div>
-  
+
                                                             </div>
                                                     </div>   </div>
                                                     <div class="col-md-10">
@@ -146,7 +170,7 @@
                                                           <label class="control-label">Observacion: </label>
                                                           <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea> </div>
                                                     </div>
-                                                </div>    
+                                                </div>
                                                 </div>
                                                 <div class="tab-pane " id="messages">
 
@@ -210,29 +234,65 @@
 
         <!-- Vendor js -->
         @include('layouts.scripts')
-        <script>
-            $(document).ready(function() {
+    <script>
+        $(document).ready(function() {
+//Llenar div de datos al inicio
+            $.ajax({
+                url:"/proveedor/datos/1",
+                method:"GET",
+                success:function(data){
+                    $('#verD').html(data);
+                    }
+            });
+//Llenar div de origen al inicio
+            $.ajax({
+                url:"/proveedor/origen/"+0,
+                method:"GET",
+                success:function(data){
+                    $('#select2lista').html(data);
+                    }
+            });
+
+//Llenar div de datos al cambiar
+            $('#TipoP').change(function(){
+                var tipoPr= $(this).val();
                 $.ajax({
-                   url:"/proveedor/datos/"+0,
-                   method:"GET",
-                   success:function(data){
-
+                    url:"/proveedor/datos/"+tipoPr,
+                    method:"GET",
+                    success:function(data){
                         $('#verD').html(data);
-                   }
-              });
-        $('#TipoP').change(function(){
-              var tipoPr= $(this).val();
+                        }
+                    });
+            });
+//Llenar div de origem al cambiar
+            $('#PROVE_origen').change(function(){
+                var origen= $(this).val();
+                $.ajax({
+                    url:"/proveedor/origen/"+origen,
+                    method:"GET",
+                    success:function(data){
+                        $('#select2lista').html(data);
+                    }
+                });
+	        });
+//Llenar div de pais al cambiar
 
-              $.ajax({
-                   url:"/proveedor/datos/"+tipoPr,
-                   method:"GET",
-                   success:function(data){
-
-                        $('#verD').html(data);
-                   }
-              });
-         });
         });
-        </script>
+
+</script>
+
+<script type="text/javascript">
+ function recargarLista(){
+		$.ajax({
+            url:"/proveedor/origen"
+             method:"POST",
+			data:"origen=" + $('#PROVE_origen').val(),
+			success:function(r){
+				$('#select2lista').html(r);
+			}
+		});
+	}
+</script>
+
     </body>
 </html>
