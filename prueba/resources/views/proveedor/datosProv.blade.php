@@ -1,25 +1,46 @@
 
-    <div class="col-md-5">
+
+
+@if($tipoPr==1)
+
+<div class="col-md-5">
     <div class="form-group">
     <label class="control-label" for="PROVE_razon_social">
-        @if($tipoPr==1)
        Razon social
-       @else
-       Nombre
-        @endif
     </label>
     <input type="text" class="form-control form-control-sm" required  placeholder="Razon social" name="PROVE_razon_social"> </div>
 </div>
-@if($tipoPr==1)
-
 
    <div class="col-md-5">
     <div class="form-group">
       <label class="control-label">Razon comercial: </label>
       <input type="text" class="form-control form-control-sm" placeholder="Razon comercial" name="PROVE_razon_comercial"> </div>
    </div>
-
-
+@endif
+@if($tipoPr==2)
+<div class="col-md-3">
+    <div class="form-group">
+      <label class="control-label">Tipo de documento: </label>
+      <select  class="form-control  form-control-sm" name="" id="">
+          <option value="0">DNI</option>
+          <option value="1">Carnet de Extranjeria</option>
+          <option value="2">Pasaporte</option>
+      </select>
+   </div>
+</div>
+<div class="col-md-3">
+    <label class="control-label" for="PROVE_razon_social">
+       Documento
+     </label>
+    <input type="text" class="form-control form-control-sm" required  placeholder="Documento" name="PROVE_razon_social">
+</div>
+<div class="col-md-4">
+    <div class="form-group">
+    <label class="control-label" for="PROVE_razon_social">
+       Nombre
+    </label>
+    <input type="text" class="form-control form-control-sm" required  placeholder="Razon social" name="PROVE_razon_social"> </div>
+</div>
 @endif
 <div class="col-md-2">
     <div class="form-group">
@@ -28,20 +49,5 @@
    </div>
 
 
-   <div class="col-md-6">
-    <div class="form-group">
-      <label class="control-label">Web: </label>
-      <input type="text" class="form-control form-control-sm"  placeholder="direccion web" name="PROVE_email"> </div>
-   </div>
-   <div class="col-md-6">
-    <div class="form-group">
-      <label class="control-label">Etiquetas: </label>
-      <input type="text" class="form-control form-control-sm" required  placeholder="Etiquetas" name="PROVE_etiqueta"> </div>
-   </div>
 
-  <div class="col-md-6">
-    <div class="form-group">
-      <label class="control-label">Telefono: </label>
-      <input type="text" class="form-control form-control-sm" required placeholder="Telefono" name="PROVE_telefono"> </div>
-   </div>
 

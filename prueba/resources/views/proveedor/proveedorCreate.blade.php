@@ -133,6 +133,32 @@
                                                         </div>
 
                                                         </div></div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                              <label class="control-label">Direccion: </label>
+                                                              <input type="text" class="form-control form-control-sm" required placeholder="direccion" name="direccion"> </div>
+                                                           </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                              <label class="control-label">Telefono: </label>
+                                                              <input type="text" class="form-control form-control-sm" required placeholder="Telefono" name="PROVE_telefono"> </div>
+                                                           </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                              <label class="control-label">Web: </label>
+                                                              <input type="text" class="form-control form-control-sm"  placeholder="direccion web" name="PROVE_email"> </div>
+                                                           </div>
+                                                           <div class="col-md-6">
+                                                            <div class="form-group">
+                                                              <label class="control-label">Email: </label>
+                                                              <input type="text" class="form-control form-control-sm" required  placeholder="Email" name="Email"> </div>
+                                                           </div>
+                                                           <div class="col-md-12">
+                                                            <div class="form-group">
+                                                              <label class="control-label">Etiquetas: </label>
+                                                              <textarea class="form-control" id="example-textarea" rows="3"></textarea></div>
+                                                           </div>
+
 
 
 
