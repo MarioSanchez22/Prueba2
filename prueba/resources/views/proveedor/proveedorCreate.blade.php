@@ -68,9 +68,8 @@
                             <div class="card-body col-md-12" style="padding-left: 0px; padding-right: 0px;">
                                 <div class="row" >
                                     <form action=" {{route('proveedorStore')}} " method="POST" enctype="multipart/form-data" class="col-md-12">
+                                    {{ csrf_field()}}
                                         <div class="card-box " style=" padding-top: 0px; margin-bottom: 0px;padding-bottom: 5px;">
-
-
                                             <ul class="nav nav-tabs" style="background:#f5f5f5">
                                                 <li class="nav-item">
                                                     <a href="#home" data-toggle="tab" aria-expanded="false" class="nav-link active">
@@ -96,7 +95,7 @@
                                                         <div class=" col-md-6 ">
 
                                                           <label for="" >Tipo de proveedor:</label>
-                                                            <select class="selectpicker form-control  form-control-sm" data-style="btn-light" id="TipoP" name="TipoP"  style="background:#f5f5f5">
+                                                            <select class="selectpicker form-control  form-control-sm" data-style="btn-light" id="TipoP" name="TIPPROVE_id"  style="background:#f5f5f5">
                                                                 @foreach ($tipo as $tipos)
                                                               <option value="{{$tipos->TIPPROVE_id}}">{{$tipos->TIPPROVE_descripcion}}</option>
                                                                 @endforeach
@@ -147,23 +146,23 @@
                                                            </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                              <label class="control-label">Telefono: </label>
+                                                              <label class="control-label" for="PROVE_telefono">Telefono: </label>
                                                               <input type="text" class="form-control form-control-sm" required placeholder="Telefono" name="PROVE_telefono"> </div>
                                                            </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                              <label class="control-label">Web: </label>
-                                                              <input type="text" class="form-control form-control-sm"  placeholder="direccion web" name="PROVE_email"> </div>
+                                                              <label class="control-label" for="PROVE_web">Web: </label>
+                                                              <input type="text" class="form-control form-control-sm"  placeholder="Direccion web" name="PROVE_web"> </div>
                                                            </div>
                                                            <div class="col-md-6">
                                                             <div class="form-group">
-                                                              <label class="control-label">Email: </label>
-                                                              <input type="text" class="form-control form-control-sm" required  placeholder="Email" name="Email"> </div>
+                                                              <label class="control-label" for="PROVE_email" >Email: </label>
+                                                              <input type="text" class="form-control form-control-sm" required  placeholder="Email" name="PROVE_email"> </div>
                                                            </div>
                                                            <div class="col-md-12">
                                                             <div class="form-group">
                                                               <label class="control-label">Etiquetas: </label>
-                                                              <textarea class="form-control" id="example-textarea" rows="3"></textarea></div>
+                                                              <textarea class="form-control" id="example-textarea" rows="3" name="PROVE_etiqueta"></textarea></div>
                                                            </div>
 
 
@@ -182,7 +181,7 @@
 
 
                                                            <div class="col-md-6">
-                                                            <input type="text" class="form-control form-control-sm"   placeholder="RUC de empresa" name="PROVE_rr">
+                                                            <input type="text" class="form-control form-control-sm"   placeholder="RUC de empresa" name="PROEXP_descripcion">
                                                             </div>
                                                             </div>
                                                         </div>
