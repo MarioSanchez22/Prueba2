@@ -20,7 +20,7 @@ $.ajax({
                 });
    $('#pais').change(function(){
                 var pais= $(this).val();
-                alert(pais);
+
                 $.ajax({
                     url:"/proveedor/pais/"+pais,
                     method:"GET",
