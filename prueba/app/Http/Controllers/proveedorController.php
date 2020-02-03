@@ -24,7 +24,7 @@ class proveedorController extends Controller
     }
     public function store(Request $request){
     $proveedor=new proveedor();
-    
+
       $proveedor->fill($request->only('PROVE_ruc','PROVE_razon_social',
       'PROVE_razon_comercial','PROVE_direccion','PROVE_email',
       'PROVE_telefono','PROVE_etiqueta','PROVE_dni','PROVE_dias_credito',
@@ -53,16 +53,43 @@ class proveedorController extends Controller
 $proveedor2=proveedor::all();
            return view('proveedor.index',['proveedor'=>$proveedor2]);
         }
+        public function sunat(Request $request){
+            if ($request->ajax()) {
+                $ruc=$request->get('ruc');
+                $ruta = file_get_contents("https://api.sunat.cloud/ruc/".$ruc);
 
+                 $info = json_decode($ruta, true);
 
-    public function sunat($id){
-            // $proveedor=proveedor::all();      
-        return view('sunat.consulta',['nruc'=>$id]);
+    if($ruta==='[]' || $info['fecha_inscripcion']==='--'){
+        $datos = array(0 => 'nada');
+        echo json_encode($datos);
     }
+                    $datos = array(
+                        0 => $info['ruc'],
+                        1 => $info['razon_social'],
+                        2 => date("d/m/Y", strtotime($info['fecha_actividad'])),
+                        3 => $info['contribuyente_condicion'],
+                        4 => $info['contribuyente_tipo'],
+                        5 => $info['contribuyente_estado'],
+                        6 => date("d/m/Y", strtotime($info['fecha_inscripcion'])),
+                        7 => $info['domicilio_fiscal'],
+                        8 => date("d/m/Y", strtotime($info['emision_electronica']))
+                    );
+                        echo json_encode($datos);
+
+            }
+
+             }
+
+           // $proveedor=proveedor::all();
+            //dd($id);
+
+
+
     public function datos($id){
-        
+
         $documento=proveedor_documento::all();
-    
+
         return view('proveedor.datosProv',['tipoPr'=>$id,'documento'=>$documento]);
     }
         public function origen($id){
@@ -75,4 +102,5 @@ $proveedor2=proveedor::all();
 
             return view('proveedor.pais',['region'=>$region]);
         }
-}
+
+    }

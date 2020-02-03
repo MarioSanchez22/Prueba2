@@ -93,7 +93,7 @@
 
 
                                                         <div class=" col-md-6 ">
-                                                            
+
                                                           <label for="" >Tipo de proveedor:</label>
                                                             <select class="selectpicker form-control  form-control-sm" data-style="btn-light" id="TipoP" name="TIPPROVE_id"  style="background:#f5f5f5">
                                                                 @foreach ($tipo as $tipos)
@@ -108,8 +108,9 @@
                                                               <label class="control-label">RUC: </label>
                                                               <div class="input-group">
                                                               <input type="text" class="form-control form-control-sm" required  placeholder="RUC de empresa" name="PROVE_ruc" id="PROVE_ruc">
-                                                              <div class="input-group-append">
-                                                                <button class="btn btn-dark btn-sm waves-effect waves-light"  type="submit" onclick="busqueda(); return false"   >Buscar</button></div>
+
+                                                                <img src="{{asset('ajax.gif')}}" class="ajaxgif hide">
+
                                                             </div>
                                                             </div>
                                                            </div>
@@ -140,8 +141,8 @@
                                                         </div></div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                              <label class="control-label" for="PROVE_direccion">Direccion: </label>
-                                                              <input type="text" class="form-control form-control-sm"  placeholder="direccion" name="PROVE_direccion"> </div>
+                                                              <label class="control-label">Direccion: </label>
+                                                              <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion"> </div>
                                                            </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
@@ -324,54 +325,51 @@
 		});
 	}
 </script>
+
 <script>
-function busqueda(){
-               //$this.button('loading');
-               var nruc= $('#PROVE_ruc').val();
-               $.ajax({
-               
-                  type: "GET",
-                  dataType: "json",
-                  url: "/sunat/consulta/"+nruc,
-               }).done(function( data, textStatus, jqXHR ){
-                  if(data['success']!="false" && data['success']!=false)
-                  {
-                     $("#json_code").text(JSON.stringify(data, null, '\t'));
+    $(document).ready(function(){
+        $('.ajaxgif').hide();
 
-                     var res = JSON.stringify(data['result']['RUC']);
-                    // alert(data['result']['RUC']);
-                              //console.log(JSON.stringify(respuesta));
-                     $('#direccion').val(data['result']['Direccion']);
-                     $('#nombre1').val(data['result']['RazonSocial']);
-                     $('#tipo').val(data['result']['Tipo']);
-                     if(typeof(data['result'])!='undefined')
-                     {
+        $("#PROVE_ruc").keyup(function(){
+	var numruc = $("#PROVE_ruc").val();
+	if(numruc.length == 11){
+	consultadatosSUNAT(numruc);
 
-                        //$("#tbody").html("");
-                        $.each(data['result'], function(i, v)
-                        {
-                           //$("#tbody").append('<tr><td>'+i+'<\/td><td>'+v+'<\/td><\/tr>');
-                           
-                        });
-                     }
+	}
+ });
 
-                   
-                  }else{
-                     if(typeof(data['msg'])!='undefined')
-                     {
-                        alert(data['msg']);
-                        $('#direccion').val('');
-                        $('#tipo').val('');
-                        $('#nombre1').val('');
-                     }
-                     //$this.button('reset');
-                    
-                  }
-               }).fail(function( jqXHR, textStatus, errorThrown ){
-                  alert( "Solicitud fallida:" + textStatus );
-                 
-               });
-   }
+
+  function consultadatosSUNAT(PROVE_ruc){
+    $('.ajaxgif').show();
+    var ruc=$('#PROVE_ruc').val();
+
+        $.ajax({
+
+            method:'GET',
+           url: "http://siempreaqui.com/json-sunat/consulta.php",
+			data:'nruc='+ruc,
+
+            success:function(data){
+                $('.ajaxgif').hide();
+                var dataObject = jQuery.parseJSON(data);
+
+                         if (dataObject.success == true) {
+						  $("#PROVE_razon_social").val(dataObject.result.RazonSocial);
+                           $("#PROVE_razon_comercial").val(dataObject.result.RazonComercial);
+                           $("#PROVE_direccion").val(dataObject.result.Direccion);
+
+
+                         // $("#rs_dni").val(dataObject.result.DNI); No devuelve DNI
+                         }
+
+
+
+            }
+        });
+
+
+    }
+});
 </script>
     </body>
 </html>
