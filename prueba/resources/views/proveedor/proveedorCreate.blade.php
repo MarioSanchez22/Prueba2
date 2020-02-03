@@ -109,9 +109,8 @@
                                                               <label class="control-label">RUC: </label>
                                                               <div class="input-group">
                                                               <input type="text" class="form-control form-control-sm" required  placeholder="RUC de empresa" name="PROVE_ruc" id="PROVE_ruc">
-                                                              <div class="input-group-append">
-                                                                <button id="btnbuscar" type="button" class="btn btn-dark btn-sm waves-effect waves-light"   >Buscar</button>
-                                                                <img src="{{asset('ajax.gif')}}" class="ajaxgif hide"></div>
+
+                                                                <img src="{{asset('ajax.gif')}}" class="ajaxgif hide">
 
                                                             </div>
                                                             </div>
@@ -331,32 +330,46 @@
 <script>
     $(document).ready(function(){
         $('.ajaxgif').hide();
-$('#btnbuscar').click(function(){
-    var ruc=$('#PROVE_ruc').val();
+
+        $("#PROVE_ruc").keyup(function(){
+	var numruc = $("#PROVE_ruc").val();
+	if(numruc.length == 11){
+	consultadatosSUNAT(numruc);
+
+	}
+ });
+
+
+  function consultadatosSUNAT(PROVE_ruc){
     $('.ajaxgif').show();
+    var ruc=$('#PROVE_ruc').val();
+
         $.ajax({
-            url:"{{ route('sunat') }}",
+
             method:'GET',
-            data:{ruc:ruc},
-            dataType:'json',
-            success:function(datos_dni){
+           url: "http://siempreaqui.com/json-sunat/consulta.php",
+			data:'nruc='+ruc,
+
+            success:function(data){
                 $('.ajaxgif').hide();
-                var datos = eval(datos_dni);
-        var nada ='nada';
-        if(datos[0]==nada){
-            alert('DNI o RUC no válido o no registrado');
-        }else{
+                var dataObject = jQuery.parseJSON(data);
 
-            $('#PROVE_razon_social').val(datos[1]);
-            $('#PROVE_direccion').val(datos[7]);
+                         if (dataObject.success == true) {
+						  $("#PROVE_razon_social").val(dataObject.result.RazonSocial);
+                           $("#PROVE_razon_comercial").val(dataObject.result.RazonComercial);
+                           $("#PROVE_direccion").val(dataObject.result.Direccion);
 
-        }
+
+                         // $("#rs_dni").val(dataObject.result.DNI); No devuelve DNI
+                         }
+
+
+
             }
         });
-        return false;
 
 
-    });
+    }
 });
 </script>
     </body>
