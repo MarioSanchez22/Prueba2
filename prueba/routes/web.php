@@ -28,7 +28,7 @@ Route::get('/','pruebaController@index')->name('home');
 //POVEEDOR
 Route::get('proveedor', 'proveedorController@index')->name('proveedorIndex');
 Route::get('proveedor/registrar','proveedorController@create')->name('proveedorCreate');
-Route::get('proveedor/create', 'proveedorController@store')->name('proveedorStore');
+Route::POST('proveedor/create', 'proveedorController@store')->name('proveedorStore');
 
 Route::get('proveedor/datos/{id}', 'proveedorController@datos')->name('datos');
 

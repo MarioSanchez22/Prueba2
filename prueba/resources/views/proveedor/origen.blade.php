@@ -1,4 +1,4 @@
-<select class="form-control  form-control-sm" id="pais" name="pais" >
+<select class="form-control  form-control-sm" id="pais" name="PROVE_pais" >
     @if($origen==2)
             @foreach ($pais as $paises)
             <option value="{{$paises->id}}" selected >{{$paises->paisnombre}}</option>
@@ -20,7 +20,7 @@ $.ajax({
                 });
    $('#pais').change(function(){
                 var pais= $(this).val();
-                alert(pais);
+                
                 $.ajax({
                     url:"/proveedor/pais/"+pais,
                     method:"GET",

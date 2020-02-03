@@ -21,23 +21,31 @@ class proveedorController extends Controller
         $origen=origen_proveedor::all();
        return view('proveedor.proveedorCreate',['tipo'=>$tipo,'origen'=>$origen]);
     }
-    public function store(){
-        $proveedor=proveedor::all();
+    public function store(Request $request){
+    $proveedor=new proveedor();
+      $proveedor->fill($request->only('PROVE_ruc','PROVE_razon_social',
+      'PROVE_razon_comercial','PROVE_direccion','PROVE_email',
+      'PROVE_telefono','PROVE_etiqueta','PROVE_dni','PROVE_dias_credito',
+      'PROVE_etiqueta','PROVE_web'));
+dd($request);
+      /*dd($proveedor->fill($request->only('PROVE_ruc','PROVE_web','PROVE_razon_social',
+      'PROVE_razon_comercial','PROVE_direccion','PROVE_email',
+      'PROVE_telefono','PROVE_etiqueta','PROVE_dni','PROVE_dias_credito')));*/
+      $proveedor->PROVE_estado=1;
+      $proveedor->updated_at=null;
+      $proveedor->save();
         //dd($proveedor);
            return view('proveedor.index',['proveedor'=>$proveedor]);
         }
-        public function sunat($id){
-            // $proveedor=proveedor::all();
-             
- 
-             return view('sunat.consulta',['nruc'=>$id]);
-             }
-        public function datos($id){
-           // $proveedor=proveedor::all();
-            //dd($id);
 
-            return view('proveedor.datosProv',['tipoPr'=>$id]);
-            }
+
+    public function sunat($id){
+            // $proveedor=proveedor::all();      
+        return view('sunat.consulta',['nruc'=>$id]);
+    }
+    public function datos($id){
+        return view('proveedor.datosProv',['tipoPr'=>$id]);
+    }
         public function origen($id){
             $pais=pais::all();
             return view('proveedor.origen',['origen'=>$id,'pais'=>$pais]);
