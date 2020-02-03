@@ -27,7 +27,7 @@ class proveedorController extends Controller
       'PROVE_razon_comercial','PROVE_direccion','PROVE_email',
       'PROVE_telefono','PROVE_etiqueta','PROVE_dni','PROVE_dias_credito',
       'PROVE_etiqueta','PROVE_web'));
-      asdasdasdsda
+      
 dd($request);
       /*dd($proveedor->fill($request->only('PROVE_ruc','PROVE_web','PROVE_razon_social',
       'PROVE_razon_comercial','PROVE_direccion','PROVE_email',
