@@ -29,10 +29,10 @@
    </div>
 </div>
 <div class="col-md-3">
-    <label class="control-label" for="PROVE_razon_social">
+    <label class="control-label" for="PROVE_dni">
        Documento
      </label>
-    <input type="text" class="form-control form-control-sm" required  placeholder="Documento" name="PROVE_razon_social">
+    <input type="text" class="form-control form-control-sm" required  placeholder="Documento" name="PROVE_dni">
 </div>
 <div class="col-md-4">
     <div class="form-group">
