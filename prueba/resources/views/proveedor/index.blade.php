@@ -53,7 +53,11 @@
                                         <li class="breadcrumb-item active">Calendar</li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">PROVEEDORES</h4>
+                                <div class="row">
+                                 <div class="col-md-8"><h4 class="page-title">PROVEEDORES</h4></div>
+                                
+                                
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -61,14 +65,45 @@
                     <div class="row">
                         <div class="col-12">
                           <div class="card">
-                            <div class="card-header">
-                              <div class="col-md-2">
-
-                                <button type="button" class="btn btn-block btn-primary btn-sm" onclick="location.href='{{route('proveedorCreate')}}'"><span class=" fa fa-user-plus"> </span>  Proveedor</button>
-                              </div>
-                            </div>
+                           
                             <!-- /.card-header -->
                             <div class="card-body">
+                                <div class="card">
+                                    <div class="card-header" style="background:#f1f5f7">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                         <label for="">RUC:</label>
+                                     </div>  
+                                     <div class="col-md-3">
+                                        <label for="">RAZON SOCIAL:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="">ETIQUETAS:</label>
+                                    </div> 
+                                    <div class="col-md-3">
+                                        <button type="button" class="btn  btn-primary btn-sm" onclick="location.href='{{route('proveedorCreate')}}'"><span class=" fa fa-user-plus"> </span>  Proveedor</button>
+                                    </div>
+                                 </div>
+                                            
+                                    </div>
+                                    <div class="card-body" style="background:#f7fafb">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                            <input type="text" class="form-control form-control-sm">
+                                         </div>  
+                                         <div class="col-md-3">
+                                            <input type="text" class="form-control form-control-sm">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control form-control-sm">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <button type="button" class="btn  btn-blue btn-sm" ><span class=" fa fa-search-plus"> </span>  Buscar</button>
+                                        </div>
+                                    </div>
+                                                
+                                        </div>    
+                                </div>
                                 <table data-toggle="table"
                                 data-page-size="5"
                                 data-buttons-class="xs btn-light"

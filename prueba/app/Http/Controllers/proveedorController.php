@@ -26,6 +26,12 @@ class proveedorController extends Controller
         //dd($proveedor);
            return view('proveedor.index',['proveedor'=>$proveedor]);
         }
+        public function sunat($id){
+            // $proveedor=proveedor::all();
+             
+ 
+             return view('sunat.consulta',['nruc'=>$id]);
+             }
         public function datos($id){
            // $proveedor=proveedor::all();
             //dd($id);
