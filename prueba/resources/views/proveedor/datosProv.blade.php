@@ -21,10 +21,10 @@
 <div class="col-md-3">
     <div class="form-group">
       <label class="control-label">Tipo de documento: </label>
-      <select  class="form-control  form-control-sm" name="" id="">
-          <option value="0">DNI</option>
-          <option value="1">Carnet de Extranjeria</option>
-          <option value="2">Pasaporte</option>
+      <select  class="form-control  form-control-sm" name="PROVEDOC_descripcion" id="">
+      @foreach($documento as $documentos)
+      <option value="{{$documentos->PROVEDOC_id}}">{{$documentos->PROVEDOC_descripcion}}</option>
+      @endforeach
       </select>
    </div>
 </div>
