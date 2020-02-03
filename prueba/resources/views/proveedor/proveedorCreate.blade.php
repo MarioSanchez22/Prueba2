@@ -94,7 +94,7 @@
 
 
                                                         <div class=" col-md-6 ">
-                                                            
+
                                                           <label for="" >Tipo de proveedor:</label>
                                                             <select class="selectpicker form-control  form-control-sm" data-style="btn-light" id="TipoP" name="TipoP"  style="background:#f5f5f5">
                                                                 @foreach ($tipo as $tipos)
@@ -110,7 +110,9 @@
                                                               <div class="input-group">
                                                               <input type="text" class="form-control form-control-sm" required  placeholder="RUC de empresa" name="PROVE_ruc" id="PROVE_ruc">
                                                               <div class="input-group-append">
-                                                                <button class="btn btn-dark btn-sm waves-effect waves-light"  type="submit" onclick="busqueda(); return false"   >Buscar</button></div>
+                                                                <button id="btnbuscar" type="button" class="btn btn-dark btn-sm waves-effect waves-light"   >Buscar</button>
+                                                                <img src="{{asset('ajax.gif')}}" class="ajaxgif hide"></div>
+
                                                             </div>
                                                             </div>
                                                            </div>
@@ -142,7 +144,7 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                               <label class="control-label">Direccion: </label>
-                                                              <input type="text" class="form-control form-control-sm"  placeholder="direccion" name="direccion"> </div>
+                                                              <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion"> </div>
                                                            </div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
@@ -325,54 +327,37 @@
 		});
 	}
 </script>
+
 <script>
-function busqueda(){
-               //$this.button('loading');
-               var nruc= $('#PROVE_ruc').val();
-               $.ajax({
-               
-                  type: "GET",
-                  dataType: "json",
-                  url: "/sunat/consulta/"+nruc,
-               }).done(function( data, textStatus, jqXHR ){
-                  if(data['success']!="false" && data['success']!=false)
-                  {
-                     $("#json_code").text(JSON.stringify(data, null, '\t'));
+    $(document).ready(function(){
+        $('.ajaxgif').hide();
+$('#btnbuscar').click(function(){
+    var ruc=$('#PROVE_ruc').val();
+    $('.ajaxgif').show();
+        $.ajax({
+            url:"{{ route('sunat') }}",
+            method:'GET',
+            data:{ruc:ruc},
+            dataType:'json',
+            success:function(datos_dni){
+                $('.ajaxgif').hide();
+                var datos = eval(datos_dni);
+        var nada ='nada';
+        if(datos[0]==nada){
+            alert('DNI o RUC no válido o no registrado');
+        }else{
 
-                     var res = JSON.stringify(data['result']['RUC']);
-                    // alert(data['result']['RUC']);
-                              //console.log(JSON.stringify(respuesta));
-                     $('#direccion').val(data['result']['Direccion']);
-                     $('#nombre1').val(data['result']['RazonSocial']);
-                     $('#tipo').val(data['result']['Tipo']);
-                     if(typeof(data['result'])!='undefined')
-                     {
+            $('#PROVE_razon_social').val(datos[1]);
+            $('#PROVE_direccion').val(datos[7]);
 
-                        //$("#tbody").html("");
-                        $.each(data['result'], function(i, v)
-                        {
-                           //$("#tbody").append('<tr><td>'+i+'<\/td><td>'+v+'<\/td><\/tr>');
-                           
-                        });
-                     }
+        }
+            }
+        });
+        return false;
 
-                   
-                  }else{
-                     if(typeof(data['msg'])!='undefined')
-                     {
-                        alert(data['msg']);
-                        $('#direccion').val('');
-                        $('#tipo').val('');
-                        $('#nombre1').val('');
-                     }
-                     //$this.button('reset');
-                    
-                  }
-               }).fail(function( jqXHR, textStatus, errorThrown ){
-                  alert( "Solicitud fallida:" + textStatus );
-                 
-               });
-   }
+
+    });
+});
 </script>
     </body>
 </html>

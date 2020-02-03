@@ -32,7 +32,7 @@ Route::get('proveedor/create', 'proveedorController@store')->name('proveedorStor
 
 Route::get('proveedor/datos/{id}', 'proveedorController@datos')->name('datos');
 
-Route::get('sunat/consulta/{id}', 'proveedorController@sunat')->name('sunat');
+Route::get('sunat/consulta', 'proveedorController@sunat')->name('sunat');
 Route::get('proveedor/origen/{id}', 'proveedorController@origen')->name('origen');
 
 Route::get('proveedor/pais/{id}', 'proveedorController@pais')->name('pais');

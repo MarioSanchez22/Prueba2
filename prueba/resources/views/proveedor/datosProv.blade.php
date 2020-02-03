@@ -8,7 +8,7 @@
     <label class="control-label" for="PROVE_razon_social">
        Razon social
     </label>
-    <input type="text" class="form-control form-control-sm" required  placeholder="Razon social" name="PROVE_razon_social"> </div>
+    <input type="text" class="form-control form-control-sm" required  placeholder="Razon social" id="PROVE_razon_social" name="PROVE_razon_social"> </div>
 </div>
 
    <div class="col-md-5">
