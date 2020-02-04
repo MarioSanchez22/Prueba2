@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Storage;
 use App\proveedor;
 use App\origen_proveedor;
 use App\proveedor_documento;
+use App\proveedorExpediente;
 use App\tipo_proveedor;
 use App\pais;
 use App\region;
@@ -49,7 +52,28 @@ class proveedorController extends Controller
         $proveedor->PROVE_estado=1;
         $proveedor->updated_at=null;
         $proveedor->save();
+        
+        
+        if ($request->hasFile('file')) {
+            
+            $expediente=new proveedorExpediente();
+            $expedienteFile= $request->file('file');
+            $expedienteFile_route=time().'_'.$expedienteFile->getClientOriginalName();
+            
+            $expedienteFile_extension=$expedienteFile->getClientOriginalExtension();
+           
+            Storage::disk('imgExpedientes')->put($expedienteFile_route, file_get_contents($expedienteFile->getRealPath()));
+            
+            $expediente->PROEXP_descripcion=$request->get('PROEXP_descripcion');
+            $expediente->PROEXP_ruta=$expedienteFile_route;
+            $expediente->PROEXP_extension=$expedienteFile_extension;
+            $expediente->PROVE_id=$proveedor->PROVE_id;
+            $expediente->USER_id=1;
+            $expediente->updated_at=null;
+            $expediente->save();
+        }
 //dd($proveedor);
+
 $proveedor2=proveedor::all();
            return view('proveedor.index',['proveedor'=>$proveedor2]);
         }
