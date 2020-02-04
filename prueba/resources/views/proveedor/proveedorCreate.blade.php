@@ -396,9 +396,9 @@
 
                          if (dataObject.success == true) {
 						  $("#PROVE_razon_social").val(dataObject.result.RazonSocial);
-                           $("#PROVE_razon_comercial").val(dataObject.result.RazonComercial);
+                           $("#PROVE_razon_comercial").val(dataObject.result.NombreComercial);
                            $("#PROVE_direccion").val(dataObject.result.Direccion);
-
+                           $("#PROVE_dni").val(ruc.substr(2,8));
 
                          // $("#rs_dni").val(dataObject.result.DNI); No devuelve DNI
                          }
@@ -411,11 +411,6 @@
 
     }
 });
-</script>
-<script>
-  $(document).ready(function() {
-//ACA le asigno el evento click a cada boton de la clase bt_plus y llamo a la funcion addField
-}
 </script>
     </body>
 </html>
