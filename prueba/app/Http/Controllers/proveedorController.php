@@ -8,6 +8,7 @@ use Storage;
 use App\proveedor;
 use App\origen_proveedor;
 use App\proveedor_documento;
+use App\proveedor_contacto;
 use App\proveedorExpediente;
 use App\tipo_proveedor;
 use App\pais;
@@ -26,6 +27,7 @@ class proveedorController extends Controller
        return view('proveedor.proveedorCreate',['tipo'=>$tipo,'origen'=>$origen]);
     }
     public function store(Request $request){
+        //dd($request);
     $proveedor=new proveedor();
 
       $proveedor->fill($request->only('PROVE_ruc','PROVE_razon_social',
@@ -36,7 +38,6 @@ class proveedorController extends Controller
       'PROVE_razon_comercial','PROVE_direccion','PROVE_email',
       'PROVE_telefono','PROVE_etiqueta','PROVE_dni','PROVE_dias_credito',
       'PROVE_web','TIPPROVE_id','PROVEDOC_descripcion')));*/
-      
       if($request->get('PROVEDOC_descripcion')!=null){
           $documento=proveedor_documento::where('PROVEDOC_id','=',$request->get('PROVEDOC_descripcion'))->get();
          
@@ -52,18 +53,12 @@ class proveedorController extends Controller
         $proveedor->PROVE_estado=1;
         $proveedor->updated_at=null;
         $proveedor->save();
-        
-        
-        if ($request->hasFile('file')) {
-            
+        if ($request->hasFile('file')) {    
             $expediente=new proveedorExpediente();
             $expedienteFile= $request->file('file');
-            $expedienteFile_route=time().'_'.$expedienteFile->getClientOriginalName();
-            
-            $expedienteFile_extension=$expedienteFile->getClientOriginalExtension();
-           
-            Storage::disk('imgExpedientes')->put($expedienteFile_route, file_get_contents($expedienteFile->getRealPath()));
-            
+            $expedienteFile_route=time().'_'.$expedienteFile->getClientOriginalName();    
+            $expedienteFile_extension=$expedienteFile->getClientOriginalExtension();  
+            Storage::disk('imgExpedientes')->put($expedienteFile_route, file_get_contents($expedienteFile->getRealPath()));   
             $expediente->PROEXP_descripcion=$request->get('PROEXP_descripcion');
             $expediente->PROEXP_ruta=$expedienteFile_route;
             $expediente->PROEXP_extension=$expedienteFile_extension;
@@ -72,8 +67,24 @@ class proveedorController extends Controller
             $expediente->updated_at=null;
             $expediente->save();
         }
-//dd($proveedor);
+        $telefono=$request->get('PROVECONT_telefono');
+        $cargo=$request->get('PROVECONT_descripcion');
+        $nombre=$request->get('PROVECONT_nombre');
+        $email=$request->get('PROVECONT_email');
 
+        //dd($cargo[0]);
+        if($request->get('PROVECONT_telefono')!=null){
+            for ($i=0; $i < sizeof($telefono) ; $i++) { 
+                $contacto=new proveedor_contacto();
+                $contacto->PROVECONT_descripcion=$cargo[$i];
+                $contacto->PROVECONT_nombre=$nombre[$i];
+                $contacto->PROVECONT_telefono=$telefono[$i];
+                $contacto->PROVECONT_email=$email[$i];
+                $contacto->PROVE_id=$proveedor->PROVE_id;
+                $contacto->save();
+            }
+        }
+//dd($proveedor);
 $proveedor2=proveedor::all();
            return view('proveedor.index',['proveedor'=>$proveedor2]);
         }
