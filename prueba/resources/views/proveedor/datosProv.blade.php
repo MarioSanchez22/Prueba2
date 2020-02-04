@@ -33,7 +33,7 @@
        Documento
      </label>
     <input type="text" class="form-control form-control-sm" required  placeholder="Documento" id="PROVE_dni" name="PROVE_dni">
-    <img src="{{asset('ajax.gif')}}" class="ajaxgif1 hide">
+
 </div>
 <div class="col-md-4">
     <div class="form-group">
@@ -51,46 +51,100 @@
 
    <script>
       $(document).ready(function(){
-          $('.ajaxgif1').hide();
-  
+
+
           $("#PROVE_dni").keyup(function(){
      var numdni= $("#PROVE_dni").val();
      if(numdni.length == 8){
      consultadatosSUNAT2(numdni);
-  
+
+
      }
    });
-  
-  
+
+
     function consultadatosSUNAT2(PROVE_dni){
-      $('.ajaxgif1').show();
+
       var dni=$('#PROVE_dni').val();
-  
+
           $.ajax({
-  
+
               method:'GET',
              url: "http://siempreaqui.com/json-sunat/consulta.php",
            data:'nruc='+dni,
-  
+           
               success:function(data){
                   $('.ajaxgif1').hide();
                   var dataObject = jQuery.parseJSON(data);
-  
+
                            if (dataObject.success == true) {
                       $("#PROVE_razon_social").val(dataObject.result.RazonSocial);
                              $("#PROVE_ruc").val(dataObject.result.RUC);
                              $("#PROVE_direccion").val(dataObject.result.Direccion);
-  
-  
+
+
                            // $("#rs_dni").val(dataObject.result.DNI); No devuelve DNI
                            }
-  
-  
-  
+                           else{
+
+      var token='?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFsaWNpYXJvZHJpZ3VlejEzMUBnbWFpbC5jb20ifQ.a3lvPXVhSwXBw-I8VQ9gS7WS-HZMAzMTMCcFLW3V1eE';
+
+          $.ajax({
+
+              method:'GET',
+             url: "https://dniruc.apisperu.com/api/v1/dni/"+dni +token,
+
+
+             success:function(data){
+                        var resultados=data;
+
+
+                            $('#PROVE_razon_social').val(data.apellidoPaterno+" "+data.apellidoMaterno+" "+ data.nombres);
+
+
+                    }
+          });
+
+                           }
+
+
+
               }
           });
-  
-  
+
+
+      }
+      function consultadatosRENIEC(PROVE_dni){
+
+      var dni=$('#PROVE_dni').val();
+      var token='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFsaWNpYXJvZHJpZ3VlejEzMUBnbWFpbC5jb20ifQ.a3lvPXVhSwXBw-I8VQ9gS7WS-HZMAzMTMCcFLW3V1eE';
+
+          $.ajax({
+
+              method:'GET',
+             url: "https://dniruc.apisperu.com/api/v1/dni",
+           data:'nruc='+dni +token,
+
+              success:function(data){
+
+                  var dataObject = jQuery.parseJSON(data);
+
+                           if (dataObject.success == true) {
+                      $("#PROVE_razon_social").val(dataObject.result.nombres);
+                             $("#PROVE_ruc").val(dataObject.result.RUC);
+                             $("#PROVE_direccion").val(dataObject.result.Direccion);
+
+
+                           // $("#rs_dni").val(dataObject.result.DNI); No devuelve DNI
+                           }
+
+
+
+
+              }
+          });
+
+
       }
   });
   </script>

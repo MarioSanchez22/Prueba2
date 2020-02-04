@@ -349,7 +349,7 @@
 						  $("#PROVE_razon_social").val(dataObject.result.RazonSocial);
                            $("#PROVE_razon_comercial").val(dataObject.result.NombreComercial);
                            $("#PROVE_direccion").val(dataObject.result.Direccion);
-
+                           $("#PROVE_dni").val(ruc.substr(2,8));
 
                          // $("#rs_dni").val(dataObject.result.DNI); No devuelve DNI
                          }
