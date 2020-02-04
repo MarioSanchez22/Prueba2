@@ -14,7 +14,7 @@
    <div class="col-md-5">
     <div class="form-group">
       <label class="control-label">Razon comercial: </label>
-      <input type="text" class="form-control form-control-sm" placeholder="Razon comercial" name="PROVE_razon_comercial"> </div>
+      <input type="text" class="form-control form-control-sm" placeholder="Razon comercial" name="PROVE_razon_comercial" id="PROVE_razon_comercial"> </div>
    </div>
 @endif
 @if($tipoPr==2)

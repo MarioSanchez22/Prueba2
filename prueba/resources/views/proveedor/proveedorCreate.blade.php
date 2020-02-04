@@ -347,7 +347,7 @@
 
                          if (dataObject.success == true) {
 						  $("#PROVE_razon_social").val(dataObject.result.RazonSocial);
-                           $("#PROVE_razon_comercial").val(dataObject.result.RazonComercial);
+                           $("#PROVE_razon_comercial").val(dataObject.result.NombreComercial);
                            $("#PROVE_direccion").val(dataObject.result.Direccion);
 
 
