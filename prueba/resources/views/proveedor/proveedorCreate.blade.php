@@ -107,7 +107,7 @@
                                                             <div class="form-group">
                                                               <label class="control-label">RUC: </label>
                                                               <div class="input-group">
-                                                              <input type="text" class="form-control form-control-sm" required  placeholder="RUC de empresa" name="PROVE_ruc" id="PROVE_ruc">
+                                                              <input type="text" class="form-control form-control-sm"   placeholder="RUC de empresa" name="PROVE_ruc" id="PROVE_ruc">
 
                                                                 <img src="{{asset('ajax.gif')}}" class="ajaxgif hide">
 
@@ -164,20 +164,13 @@
                                                               <label class="control-label">Etiquetas: </label>
                                                               <textarea class="form-control" id="example-textarea" rows="3" name="PROVE_etiqueta"></textarea></div>
                                                            </div>
-
-
-
-
-
-
-
                                                 </div>
                                                 </div>
                                                 <div class="tab-pane " id="profile">
                                                 <div class="row">
                                                     <div class=" col-md-12 form-inline ">
                                                         <div class=" form-group ">
-                                                           <div class="col-md-6"  style="padding-left: 5px;"><label for="" style=" ">Descripcion:</label></div>
+                                                           <div class="col-md-6"  style="padding-left: 5px;"><label for="PROEXP_descripcion" style=" ">Descripcion:</label></div>
 
 
                                                            <div class="col-md-6">
@@ -188,13 +181,12 @@
                                                      <br>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                        <label class="control-label">Subir archivo: </label>
+                                                        <label class="control-label" for="file">Subir archivo: </label>
                                                             <div class="input-group">
                                                               <div class="custom-file">
-                                                                <input type="file" class="custom-file-input form-control-sm" id="exampleInputFile">
+                                                                <input type="file" class="custom-file-input form-control-sm" id="exampleInputFile" name="file">
                                                                 <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                                               </div>
-
                                                             </div>
                                                     </div>   </div>
                                                     <div class="col-md-10">

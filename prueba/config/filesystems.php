@@ -43,6 +43,10 @@ return [
 
     'disks' => [
 
+        'imgExpedientes' => [
+            'driver' => 'local',
+            'root' => public_path('imgExpedientes'),
+        ],
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
