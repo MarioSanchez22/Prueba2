@@ -354,18 +354,7 @@
 
 </script>
 
-<script type="text/javascript">
- function recargarLista(){
-		$.ajax({
-            url:"/proveedor/origen"
-             method:"POST",
-			data:"origen=" + $('#PROVE_origen').val(),
-			success:function(r){
-				$('#select2lista').html(r);
-			}
-		});
-	}
-</script>
+
 
 <script>
     $(document).ready(function(){
@@ -402,13 +391,8 @@
 
                          // $("#rs_dni").val(dataObject.result.DNI); No devuelve DNI
                          }
-
-
-
             }
         });
-
-
     }
 });
 </script>
