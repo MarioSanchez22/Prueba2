@@ -1,6 +1,4 @@
 
-   @php
-   echo'
    <table data-toggle="table"
      data-page-size="5"
     data-buttons-class="xs btn-light"
@@ -35,6 +33,6 @@
         </tr>
     @endforeach
     </tbody>
-    </table>';
+    </table>
 
-@endphp
+
