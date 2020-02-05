@@ -331,7 +331,10 @@
           $(this).parent('div').remove();
           }
 
-          function buscarProvedor() {
+      
+          </script>
+<script>
+    function buscarProvedor() {
 
 var Bruc =$("#buscar_ruc").val();
 var Brazon =$("#buscar_razon").val();
@@ -351,8 +354,7 @@ var token=$("#token").val();
            });
 
 }
-          </script>
-
+</script>
 
 @include('layouts.scripts')
 
