@@ -23,7 +23,14 @@ class proveedorController extends Controller
     }
     public function buscar(Request $request){
         //dd(1);
-     dd($request);
+        $ruc=$request->get('PROVE_ruc');
+        $razon=$request->get('PROVE_razon_social');
+        $etiqueta=$request->get('PROVE_etiqueta');
+        $proveedor=proveedor::where('PROVE_ruc','LIKE','%'.$ruc.'%')
+                ->where('PROVE_razon_social','LIKE','%'.$razon.'%')
+                ->where('PROVE_etiqueta','LIKE','%'.$etiqueta.'%')->get();
+
+                return view('proveedor.buscarProv',['proveedor'=>$proveedor]);
     }
 
 

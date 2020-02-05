@@ -86,68 +86,31 @@
                                  </div>
 
                                     </div>
+                                    <form action="" method="POST">
                                     <div class="card-body" style="background:#f7fafb">
                                         <div class="row">
                                             <input type="hidden" name="_token" value="{{ csrf_token()}}" id="token">
                                             <div class="col-md-3">
-                                            <input type="text"  id="buscar_ruc" name="buscar_ruc" class="form-control form-control-sm">
+                                            <input type="text"  id="buscar_ruc" name="PROVE_ruc" class="form-control form-control-sm">
                                          </div>
                                          <div class="col-md-3">
-                                            <input type="text" id="buscar_razon" name="buscar_razon" class="form-control form-control-sm">
+                                            <input type="text" id="buscar_razon" name="PROVE_razon_social" class="form-control form-control-sm">
                                         </div>
                                         <div class="col-md-3">
-                                            <input type="text" id="buscar_etiqueta" name="buscar_etiqueta" class="form-control form-control-sm">
+                                            <input type="text" id="buscar_etiqueta" name="PROVE_etiqueta" class="form-control form-control-sm">
                                         </div>
                                         <div class="col-md-3">
-                                            <button type="button" class="btn  btn-blue btn-sm"  onclick="buscarProvedor()"><span class=" fa fa-search-plus"> </span>  Buscar</button>
+                                            <button type="button" class="btn  btn-blue btn-sm"  id="buscar" name="buscar"><span class=" fa fa-search-plus"> </span>  Buscar</button>
                                         </div>
                                     </div>
+                                </form>
+
 
                                         </div>
                                 </div>
-                                <div id="actualizarTabla">
-                                <table data-toggle="table"
-                                data-page-size="5"
-                                data-buttons-class="xs btn-light"
-                                data-pagination="true" class="table-bordered ">
-                             <thead class="thead-light">
-                             <tr>
-                                 <th data-field="state" >#</th>
-                                 <th data-field="id" data-switchable="false">RUC</th>
-                                 <th data-field="name">Razon social</th>
 
+                        <div id="tablabusqueda" name="tablabusqueda"   >
 
-                                 <th data-field="amount">Email</th>
-                                 <th data-field="amRount">Telefono</th>
-                                 <th data-field="amTount">Etiqueta</th>
-                                 <th data-field="user-status">Estado</th>
-                                 <th data-field="amouWnt">Opciones</th>
-                             </tr>
-                             </thead>
-
-
-                             <tbody>
-                                @foreach ($proveedor as $proveedores)
-                                @php
-                                $contacto=proveedor_contacto::where('PROVE_id','=',$proveedores->PROVE_id)->get();
-                                $cuenta=proveedor_cuenta::where('PROVE_id','=',$proveedores->PROVE_id)->get();
-                                @endphp
-                                    <tr>
-                                            <td>{{$loop->index+1}}</td>
-                                            <td>{{$proveedores->PROVE_ruc}}</td>
-                                            <td>{{$proveedores->PROVE_razon_social}}</td>
-                                            <td>{{$proveedores->PROVE_email}}</td>
-                                            <td>{{$proveedores->PROVE_telefono}}</td>
-                                            <td>{{$proveedores->PROVE_etiqueta}}</td>
-                                            <td>{{$proveedores->PROVE_estado}}</td>
-                                            <td> </td>
-                                    </tr>
-                                 @endforeach
-
-
-
-                             </tbody>
-                         </table>
                         </div>
                             </div>
                             <!-- /.card-body -->
@@ -331,34 +294,35 @@
           $(this).parent('div').remove();
           }
 
-      
-          </script>
-<script>
-    function buscarProvedor() {
 
+          </script>
+
+
+@include('layouts.scripts')
+
+<script>
+$('#buscar').click(function(){
 var Bruc =$("#buscar_ruc").val();
 var Brazon =$("#buscar_razon").val();
 var Betiqueta =$("#buscar_etiqueta").val();
 var token=$("#token").val();
+
+
 
  $.ajax({
                 url:"{{route('proveedorBuscar')}}" ,
                 headers:{'X-CSRF-TOKEN':token},
                 type:"POST",
                 dataType:'JSON',
-                data:{ruc:Bruc,razon:Brazon,etiqueta:Betiqueta},
+                data:{PROVE_ruc:Bruc,PROVE_razon_social:Brazon,PROVE_etiqueta:Betiqueta},
                 success:function(data){
-                   ;
-                     $('#actualizarTabla').html(data);
+                    $('#tablabusqueda').html(data);
+
                 }
            });
 
-}
+});
 </script>
-
-@include('layouts.scripts')
-
-
 
 
 
