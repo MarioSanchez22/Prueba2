@@ -168,14 +168,14 @@
                                                 </div>
                                                 <div class="tab-pane " id="profile">
                                                 <div class="row">
-                                                    <div class=" col-md-12 form-inline ">
-                                                        <div class=" form-group ">
-                                                           <div class="col-md-6"  style="padding-left: 5px;"><label for="PROEXP_descripcion" style=" ">Descripcion:</label></div>
-                                                           <div class="col-md-6">
-                                                            <input type="text" class="form-control form-control-sm"   placeholder="Describa el archivo" name="PROEXP_descripcion">
+
+                                                        <div class="col-md-6">
+                                                           <label for="PROEXP_descripcion" style=" ">Descripcion:</label>
+
+                                                            <input type="text" class="form-control "   placeholder="Describa el archivo" name="PROEXP_descripcion">
+
                                                             </div>
-                                                            </div>
-                                                        </div>
+
                                                      <br>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
@@ -183,46 +183,46 @@
                                                             <div class="input-group">
                                                               <div class="custom-file">
                                                                 <input type="file" class="custom-file-input form-control-sm" id="exampleInputFile" name="file">
-                                                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                                                <label class="custom-file-label form-control-sm" for="exampleInputFile">Choose file</label>
                                                               </div>
                                                             </div>
                                                     </div>   </div>
-                                                    <div class="col-md-10">
+                                                    <div class="col-md-12">
                                                         <div class="form-group">
                                                           <label class="control-label">Observacion: </label>
                                                           <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea> </div>
                                                     </div>
                                                 </div>
                                                 </div>
-                                                <div class="tab-pane " id="messages"> 
+                                                <div class="tab-pane " id="messages">
                                                         <div class="row">
-                                                        <div class="col-sm-12"> 
-                                                        <label for="" class="control-label">Contacto(s):</label>   </div>  
+                                                        <div class="col-sm-12">
+                                                        <label for="" class="control-label">Contacto(s):</label>   </div>
                                                         </div>
                                                         <div class="row">
-                                                        
+
                                                         <div class="col-sm-2"><label >Cargo: </label></div>
-                                                        <span class="col-sm-1"></span> 
+                                                        <span class="col-sm-1"></span>
                                                         <div class="col-sm-2"><label >Nombre: </label></div>
-                                                        <span class="col-sm-1"></span> 
+                                                        <span class="col-sm-1"></span>
                                                         <div class="col-sm-2"><label >Número: </label></div>
-                                                        <span class="col-sm-1"></span>    
-                                                        <div class="col-sm-2"><label >Email: </label></div>   
+                                                        <span class="col-sm-1"></span>
+                                                        <div class="col-sm-2"><label >Email: </label></div>
                                                         </div>
-                                                        <div id="div_100" class="row" style="margin-bottom: 2%;">   
+                                                        <div id="div_100" class="row" style="margin-bottom: 2%;">
                                                             <input type="text" name="PROVECONT_descripcion[]" id="PROVECONT_descripcion"  class="form-control form-control-sm col-sm-2" style="margin-left: 2%;">
-                                                            <span class="col-sm-1"></span>                                                           
+                                                            <span class="col-sm-1"></span>
                                                             <input type="text" name="PROVECONT_nombre[]" id="PROVECONT_nombre"  class="form-control form-control-sm col-sm-2">
-                                                            <span class="col-sm-1"></span> 
+                                                            <span class="col-sm-1"></span>
                                                             <input type="number" name="PROVECONT_telefono[]" id="PROVECONT_telefono"  class="form-control form-control-sm col-sm-2">
                                                             <span class="col-sm-1"></span>
                                                             <input type="email" name="PROVECONT_email[]"  id="PROVECONT_email" class=" form-control form-control-sm col-sm-2" style="margin-right: 2%;">
-                                                            
+
                                                             <!--<input class="btn btn-primary bt_plus" id="100" type="button" value="+">-->
                                                             <button class="btn btn-primary bt_plus" id="100" type="button"  style="padding: 4px 8px; background-color: #446e8c; border-Color:#04233a;"><i class="fe-phone-forwarded" style="width:20px; height:20px;" ></i></button>
                                                             <div class="error_form"></div>
                                                         </div>
-                                                </div> <br> 
+                                                </div> <br>
                                         <div class="modal-footer d-flex" style="background:#f5f5f5">
                                         <button type="submit" class="btn btn-primary" style="background-color: #446e8c;">Save changes</button>
                                       </div>
@@ -342,7 +342,7 @@
         //$("#"+clickID-1).remove();
         $("#"+clickID).css("backgroundColor","#c54040");
         $("#"+clickID).css("border-Color"," #4e0303");
-       
+
         $("#"+clickID).html('<i class="fe-phone-off" style="width:20px; height:20px;"></i>').unbind("click",addField);
         //Ahora le asigno el evento delRow para que borre la fial en caso de hacer click
         $("#"+clickID).bind("click",delRow);

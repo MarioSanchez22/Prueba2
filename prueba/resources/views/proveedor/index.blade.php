@@ -55,8 +55,8 @@
                                 </div>
                                 <div class="row">
                                  <div class="col-md-8"><h4 class="page-title">PROVEEDORES</h4></div>
-                                
-                                
+
+
                             </div>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                     <div class="row">
                         <div class="col-12">
                           <div class="card">
-                           
+
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <div class="card">
@@ -73,37 +73,38 @@
                                     <div class="row">
                                         <div class="col-md-3">
                                          <label for="">RUC:</label>
-                                     </div>  
+                                     </div>
                                      <div class="col-md-3">
                                         <label for="">RAZON SOCIAL:</label>
                                     </div>
                                     <div class="col-md-3">
                                         <label for="">ETIQUETAS:</label>
-                                    </div> 
+                                    </div>
                                     <div class="col-md-3">
                                         <button type="button" class="btn  btn-primary btn-sm" onclick="location.href='{{route('proveedorCreate')}}'"><span class=" fa fa-user-plus"> </span>  Proveedor</button>
                                     </div>
                                  </div>
-                                            
+
                                     </div>
                                     <div class="card-body" style="background:#f7fafb">
                                         <div class="row">
                                             <div class="col-md-3">
-                                            <input type="text" class="form-control form-control-sm">
-                                         </div>  
+                                            <input type="text"  id="buscar_ruc" name="buscar_ruc" class="form-control form-control-sm">
+                                         </div>
                                          <div class="col-md-3">
-                                            <input type="text" class="form-control form-control-sm">
+                                            <input type="text" id="buscar_razon" name="buscar_razon" class="form-control form-control-sm">
                                         </div>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control form-control-sm">
+                                            <input type="text" id="buscar_etiqueta" name="buscar_etiqueta" class="form-control form-control-sm">
                                         </div>
                                         <div class="col-md-3">
-                                            <button type="button" class="btn  btn-blue btn-sm" ><span class=" fa fa-search-plus"> </span>  Buscar</button>
+                                            <button type="button" class="btn  btn-blue btn-sm"  onclick="buscarProvedor()"><span class=" fa fa-search-plus"> </span>  Buscar</button>
                                         </div>
                                     </div>
-                                                
-                                        </div>    
+
+                                        </div>
                                 </div>
+                                <div id="actualizarTabla">
                                 <table data-toggle="table"
                                 data-page-size="5"
                                 data-buttons-class="xs btn-light"
@@ -114,7 +115,7 @@
                                  <th data-field="id" data-switchable="false">RUC</th>
                                  <th data-field="name">Razon social</th>
 
-                                 
+
                                  <th data-field="amount">Email</th>
                                  <th data-field="amRount">Telefono</th>
                                  <th data-field="amTount">Etiqueta</th>
@@ -133,7 +134,7 @@
                                     <tr>
                                             <td>{{$loop->index+1}}</td>
                                             <td>{{$proveedores->PROVE_ruc}}</td>
-                                            <td>{{$proveedores->PROVE_razon_social}}</td>                       
+                                            <td>{{$proveedores->PROVE_razon_social}}</td>
                                             <td>{{$proveedores->PROVE_email}}</td>
                                             <td>{{$proveedores->PROVE_telefono}}</td>
                                             <td>{{$proveedores->PROVE_etiqueta}}</td>
@@ -146,157 +147,13 @@
 
                              </tbody>
                          </table>
-
+                        </div>
                             </div>
                             <!-- /.card-body -->
                           </div>
 
                           <!-- /.card -->
-                          <div class="modal fade" id="modal-default">
-                            <div class="modal-dialog modal-xl">
-                                  <div class="modal-content">
-                                    <div class="modal-header" style=" padding-top: 5px; padding-bottom: 5px; background-color: #517596;color:floralwhite; ">
-                                      <h5 class="modal-title" style="color:floralwhite;">Registrar Proveedor</h5>
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                      </button>
-                                    </div>
-                                    <div class="modal-body">
-                                    <form action="" method="POST" enctype="multipart/form-data">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <blockquote class="quote-secondary">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <label for="">Tipo de proveedor</label>
-                                                    <select class="form-control  form-control-sm" id="TipoP" name="TipoP">
-                                                        <option value="0">Empresa</option>
-                                                        <option value="1">Persona natural</option>
-                                                        <!--<option selected type="" value="" disabled selected >[Seleccionar modo de pago]</option>-->
-                                                      </select>
-                                                </div>
-                                                <div class="col-md-12" id="verD" style="top:7px">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                              <label class="control-label"> Razon social</label>
-                                                              <input type="text" class="form-control form-control-sm" required  name="PROVE_razon_social" placeholder="Razon social"> </div>
-                                                           </div>
-                                                        <div class="col-md-6">
-                                                          <div class="form-group">
-                                                            <label class="control-label">RUC: </label>
-                                                            <input type="text" class="form-control form-control-sm" required name="PROVE_ruc" placeholder="RUC de empresa"> </div>
-                                                         </div>
 
-                                                         <div class="col-md-6">
-                                                          <div class="form-group">
-                                                            <label class="control-label">Razon comercial: </label>
-                                                            <input type="text" class="form-control form-control-sm"  name="PROVE_razon_comercial" placeholder="Razon comercial"> </div>
-                                                         </div>
-                                                         <div class="col-md-12">
-                                                          <div class="form-group">
-                                                            <label class="control-label">Web: </label>
-                                                            <input type="text" class="form-control form-control-sm" name="PROVE_web" placeholder="direccion web"> </div>
-                                                         </div>
-
-                                                            <div class="col-md-6">
-                                                              <div class="form-group">
-                                                                <label class="control-label">Dias de crédito: </label>
-                                                                <input type="number" class="form-control form-control-sm" required min="1" name="PROVE_dias_credito" placeholder="Dias de crédito"> </div>
-                                                             </div>
-                                                             <div class="col-md-6">
-                                                              <div class="form-group">
-                                                                <label class="control-label">Etiquetas: </label>
-                                                                <input type="text" class="form-control form-control-sm" required name="PROVE_etiqueta" placeholder="Etiquetas"> </div>
-                                                             </div>
-                                                             <div class="col-md-6">
-                                                                <label for="">Origen de proveedor</label>
-                                                                <select class="form-control  form-control-sm" id="TipoP" name="TipoP">
-                                                                    <option value="0">Importado</option>
-                                                                    <option value="1">Local</option>
-
-                                                                    </select>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                              <div class="form-group">
-                                                                <label class="control-label">Telefono: </label>
-                                                                <input type="text" class="form-control form-control-sm" required name="" placeholder="Telefono"> </div>
-                                                             </div>
-
-
-                                                      </div>
-                                                </div>
-
-
-
-
-                                        </div>
-                                    </blockquote>
-                                        </div>
-                                    <div class="col-md-6">
-                                        <div id="accordion">
-                                        <div class="card card-danger">
-                                            <div class="card-header">
-                                              <h4 class="card-title">
-                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                                  Collapsible Group Danger
-                                                </a>
-                                              </h4>
-                                            </div>
-                                            <div id="collapseTwo" class="panel-collapse collapse">
-                                              <div class="card-body">
-                                                <blockquote class="quote-secondary">
-                                                    <label for="">Datos de Expediente</label> <br>
-                                                    <div class="row ">
-                                                       <div  class="col-md-3" >
-                                                        <label class="control-label" style="display: inline-block;
-                                                       ">Descripcion: </label></div>
-                                                        <div class="col-md-9">
-                                                          <input type="text" class="form-control form-control-sm" id="" placeholder="Descripcion">
-                                                        </div> <br><br>
-                                                        <div  class="col-md-3" style=" display: inline-block;">
-                                                          Subir archivo:</div>
-                                                          <div class="input-group">
-                                                            <div class="custom-file">
-                                                              <input type="file" class="custom-file-input form-control-sm" id="exampleInputFile">
-                                                              <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                                            </div>
-
-                                                          </div>
-                                                          <br><br><div  class="col-md-2" style=" display: inline-block;">
-                                                            Observacion:</div>
-                                                            <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                                                            <div id="div_1">
-                                                                <span> Teléfono(s): </span><br>
-                                                                <label>Compañía: </label>
-                                                                    <input type="text" name="compania[]" id="compania" style="width:120px;" required=""> <label>
-                                                                        Número: </label> <input type="number" name="telefono[]" style="width:110px;">
-                                                                <input class=" btn btn-danger bt_plus" id="1" type="button" value="+">
-                                                                <div class="error_form"></div>
-                                                             </div>
-                                                      </blockquote>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                    </div>
-
-                                     </div>
-
-
-
-
-
-                                    </div>
-                                    <div class="modal-footer justify-content-between">
-                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                      <button type="submit" class="btn btn-primary">Save changes</button>
-                                    </div></form>
-                                  </div>
-                                  <!-- /.modal-content -->
-                                </div>
-                                <!-- /.modal-dialog -->
-                              </div>
                         </div>
                         <!-- /.col -->
                       </div>
@@ -477,7 +334,28 @@
 
 @include('layouts.scripts')
 
+<script>
+function buscarProvedor() {
 
+var Bruc =$("buscar_ruc").val();
+var Brazon =$("buscar_razon").val();
+var Betiqueta =$("buscar_etiqueta").val();
+
+
+ $.ajax({
+                url:"procedimientos/buscarAlu.php" ,
+                method:"POST",
+                data:{ruc:Bruc,razon:Brazon,etiqueta:Betiqueta},
+                success:function(data){
+                   ;
+                     $('#actualizarTabla').html(data);
+                }
+           });
+
+}
+
+
+</script>
 
 
 
