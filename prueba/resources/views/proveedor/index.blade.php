@@ -88,6 +88,7 @@
                                     </div>
                                     <div class="card-body" style="background:#f7fafb">
                                         <div class="row">
+                                            <input type="hidden" name="_token" value="{{ csrf_token()}}" id="token">
                                             <div class="col-md-3">
                                             <input type="text"  id="buscar_ruc" name="buscar_ruc" class="form-control form-control-sm">
                                          </div>
@@ -329,22 +330,19 @@
           // Funcion que destruye el elemento actual una vez echo el click
           $(this).parent('div').remove();
           }
-          </script>
 
+          function buscarProvedor() {
 
-@include('layouts.scripts')
-
-<script>
-function buscarProvedor() {
-
-var Bruc =$("buscar_ruc").val();
-var Brazon =$("buscar_razon").val();
-var Betiqueta =$("buscar_etiqueta").val();
-
+var Bruc =$("#buscar_ruc").val();
+var Brazon =$("#buscar_razon").val();
+var Betiqueta =$("#buscar_etiqueta").val();
+var token=$("#token").val();
 
  $.ajax({
-                url:"procedimientos/buscarAlu.php" ,
-                method:"POST",
+                url:"{{route('proveedorBuscar')}}" ,
+                headers:{'X-CSRF-TOKEN':token},
+                type:"POST",
+                dataType:'JSON',
                 data:{ruc:Bruc,razon:Brazon,etiqueta:Betiqueta},
                 success:function(data){
                    ;
@@ -353,9 +351,12 @@ var Betiqueta =$("buscar_etiqueta").val();
            });
 
 }
+          </script>
 
 
-</script>
+@include('layouts.scripts')
+
+
 
 
 
