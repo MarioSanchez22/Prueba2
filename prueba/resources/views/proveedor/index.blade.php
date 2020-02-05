@@ -55,8 +55,8 @@
                                 </div>
                                 <div class="row">
                                  <div class="col-md-8"><h4 class="page-title">PROVEEDORES</h4></div>
-                                
-                                
+
+
                             </div>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                     <div class="row">
                         <div class="col-12">
                           <div class="card">
-                           
+
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <div class="card">
@@ -73,230 +73,54 @@
                                     <div class="row">
                                         <div class="col-md-3">
                                          <label for="">RUC:</label>
-                                     </div>  
+                                     </div>
                                      <div class="col-md-3">
                                         <label for="">RAZON SOCIAL:</label>
                                     </div>
                                     <div class="col-md-3">
                                         <label for="">ETIQUETAS:</label>
-                                    </div> 
+                                    </div>
                                     <div class="col-md-3">
                                         <button type="button" class="btn  btn-primary btn-sm" onclick="location.href='{{route('proveedorCreate')}}'"><span class=" fa fa-user-plus"> </span>  Proveedor</button>
                                     </div>
                                  </div>
-                                            
+
                                     </div>
+
                                     <div class="card-body" style="background:#f7fafb">
                                         <div class="row">
+                                            <input type="hidden" name="_token" value="{{ csrf_token()}}" id="token">
                                             <div class="col-md-3">
-                                            <input type="text" class="form-control form-control-sm">
-                                         </div>  
+                                            <input type="text"  id="buscar_ruc" name="PROVE_ruc" class="form-control form-control-sm">
+                                         </div>
                                          <div class="col-md-3">
-                                            <input type="text" class="form-control form-control-sm">
+                                            <input type="text" id="buscar_razon" name="PROVE_razon_social" class="form-control form-control-sm">
                                         </div>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control form-control-sm">
+                                            <input type="text" id="buscar_etiqueta" name="PROVE_etiqueta" class="form-control form-control-sm">
                                         </div>
                                         <div class="col-md-3">
-                                            <button type="button" class="btn  btn-blue btn-sm" ><span class=" fa fa-search-plus"> </span>  Buscar</button>
+                                            <button class="btn  btn-blue btn-sm"  id="buscar" name="buscar"><span class=" fa fa-search-plus"> </span>  Buscar</button>
+                                        </div>
+                                        <div id="tablabusqueda" name="tablabusqueda"   >
                                         </div>
                                     </div>
-                                                
-                                        </div>    
+
+
+
+                                        </div>
+
                                 </div>
-                                <table data-toggle="table"
-                                data-page-size="5"
-                                data-buttons-class="xs btn-light"
-                                data-pagination="true" class="table-bordered ">
-                             <thead class="thead-light">
-                             <tr>
-                                 <th data-field="state" >#</th>
-                                 <th data-field="id" data-switchable="false">RUC</th>
-                                 <th data-field="name">Razon social</th>
-
-                                 
-                                 <th data-field="amount">Email</th>
-                                 <th data-field="amRount">Telefono</th>
-                                 <th data-field="amTount">Etiqueta</th>
-                                 <th data-field="user-status">Estado</th>
-                                 <th data-field="amouWnt">Opciones</th>
-                             </tr>
-                             </thead>
-
-
-                             <tbody>
-                                @foreach ($proveedor as $proveedores)
-                                @php
-                                $contacto=proveedor_contacto::where('PROVE_id','=',$proveedores->PROVE_id)->get();
-                                $cuenta=proveedor_cuenta::where('PROVE_id','=',$proveedores->PROVE_id)->get();
-                                @endphp
-                                    <tr>
-                                            <td>{{$loop->index+1}}</td>
-                                            <td>{{$proveedores->PROVE_ruc}}</td>
-                                            <td>{{$proveedores->PROVE_razon_social}}</td>                       
-                                            <td>{{$proveedores->PROVE_email}}</td>
-                                            <td>{{$proveedores->PROVE_telefono}}</td>
-                                            <td>{{$proveedores->PROVE_etiqueta}}</td>
-                                            <td>{{$proveedores->PROVE_estado}}</td>
-                                            <td> </td>
-                                    </tr>
-                                 @endforeach
 
 
 
-                             </tbody>
-                         </table>
+                        </div>
 
-                            </div>
                             <!-- /.card-body -->
                           </div>
 
                           <!-- /.card -->
-                          <div class="modal fade" id="modal-default">
-                            <div class="modal-dialog modal-xl">
-                                  <div class="modal-content">
-                                    <div class="modal-header" style=" padding-top: 5px; padding-bottom: 5px; background-color: #517596;color:floralwhite; ">
-                                      <h5 class="modal-title" style="color:floralwhite;">Registrar Proveedor</h5>
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                      </button>
-                                    </div>
-                                    <div class="modal-body">
-                                    <form action="" method="POST" enctype="multipart/form-data">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <blockquote class="quote-secondary">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <label for="">Tipo de proveedor</label>
-                                                    <select class="form-control  form-control-sm" id="TipoP" name="TipoP">
-                                                        <option value="0">Empresa</option>
-                                                        <option value="1">Persona natural</option>
-                                                        <!--<option selected type="" value="" disabled selected >[Seleccionar modo de pago]</option>-->
-                                                      </select>
-                                                </div>
-                                                <div class="col-md-12" id="verD" style="top:7px">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                              <label class="control-label"> Razon social</label>
-                                                              <input type="text" class="form-control form-control-sm" required  name="PROVE_razon_social" placeholder="Razon social"> </div>
-                                                           </div>
-                                                        <div class="col-md-6">
-                                                          <div class="form-group">
-                                                            <label class="control-label">RUC: </label>
-                                                            <input type="text" class="form-control form-control-sm" required name="PROVE_ruc" placeholder="RUC de empresa"> </div>
-                                                         </div>
 
-                                                         <div class="col-md-6">
-                                                          <div class="form-group">
-                                                            <label class="control-label">Razon comercial: </label>
-                                                            <input type="text" class="form-control form-control-sm"  name="PROVE_razon_comercial" placeholder="Razon comercial"> </div>
-                                                         </div>
-                                                         <div class="col-md-12">
-                                                          <div class="form-group">
-                                                            <label class="control-label">Web: </label>
-                                                            <input type="text" class="form-control form-control-sm" name="PROVE_web" placeholder="direccion web"> </div>
-                                                         </div>
-
-                                                            <div class="col-md-6">
-                                                              <div class="form-group">
-                                                                <label class="control-label">Dias de crédito: </label>
-                                                                <input type="number" class="form-control form-control-sm" required min="1" name="PROVE_dias_credito" placeholder="Dias de crédito"> </div>
-                                                             </div>
-                                                             <div class="col-md-6">
-                                                              <div class="form-group">
-                                                                <label class="control-label">Etiquetas: </label>
-                                                                <input type="text" class="form-control form-control-sm" required name="PROVE_etiqueta" placeholder="Etiquetas"> </div>
-                                                             </div>
-                                                             <div class="col-md-6">
-                                                                <label for="">Origen de proveedor</label>
-                                                                <select class="form-control  form-control-sm" id="TipoP" name="TipoP">
-                                                                    <option value="0">Importado</option>
-                                                                    <option value="1">Local</option>
-
-                                                                    </select>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                              <div class="form-group">
-                                                                <label class="control-label">Telefono: </label>
-                                                                <input type="text" class="form-control form-control-sm" required name="" placeholder="Telefono"> </div>
-                                                             </div>
-
-
-                                                      </div>
-                                                </div>
-
-
-
-
-                                        </div>
-                                    </blockquote>
-                                        </div>
-                                    <div class="col-md-6">
-                                        <div id="accordion">
-                                        <div class="card card-danger">
-                                            <div class="card-header">
-                                              <h4 class="card-title">
-                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                                  Collapsible Group Danger
-                                                </a>
-                                              </h4>
-                                            </div>
-                                            <div id="collapseTwo" class="panel-collapse collapse">
-                                              <div class="card-body">
-                                                <blockquote class="quote-secondary">
-                                                    <label for="">Datos de Expediente</label> <br>
-                                                    <div class="row ">
-                                                       <div  class="col-md-3" >
-                                                        <label class="control-label" style="display: inline-block;
-                                                       ">Descripcion: </label></div>
-                                                        <div class="col-md-9">
-                                                          <input type="text" class="form-control form-control-sm" id="" placeholder="Descripcion">
-                                                        </div> <br><br>
-                                                        <div  class="col-md-3" style=" display: inline-block;">
-                                                          Subir archivo:</div>
-                                                          <div class="input-group">
-                                                            <div class="custom-file">
-                                                              <input type="file" class="custom-file-input form-control-sm" id="exampleInputFile">
-                                                              <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                                            </div>
-
-                                                          </div>
-                                                          <br><br><div  class="col-md-2" style=" display: inline-block;">
-                                                            Observacion:</div>
-                                                            <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                                                            <div id="div_1">
-                                                                <span> Teléfono(s): </span><br>
-                                                                <label>Compañía: </label>
-                                                                    <input type="text" name="compania[]" id="compania" style="width:120px;" required=""> <label>
-                                                                        Número: </label> <input type="number" name="telefono[]" style="width:110px;">
-                                                                <input class=" btn btn-danger bt_plus" id="1" type="button" value="+">
-                                                                <div class="error_form"></div>
-                                                             </div>
-                                                      </blockquote>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                    </div>
-
-                                     </div>
-
-
-
-
-
-                                    </div>
-                                    <div class="modal-footer justify-content-between">
-                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                      <button type="submit" class="btn btn-primary">Save changes</button>
-                                    </div></form>
-                                  </div>
-                                  <!-- /.modal-content -->
-                                </div>
-                                <!-- /.modal-dialog -->
-                              </div>
                         </div>
                         <!-- /.col -->
                       </div>
@@ -435,49 +259,39 @@
         <div class="rightbar-overlay"></div>
 
 
-        <script>
-            $(document).ready(function() {
-          //ACA le asigno el evento click a cada boton de la clase bt_plus y llamo a la funcion addField
-          $(".bt_plus").each(function (el){
-          $(this).bind("click",addField);
-          });
-          });
-          function addField(){
-          // ID del elemento div quitandole la palabra "div_" de delante. Pasi asi poder aumentar el número.
-          // Esta parte no es necesaria pero yo la utilizaba ya que cada campo de mi formulario tenia un autosuggest,
-          // así que dejo como seria por si a alguien le hace falta.
-          var clickID = parseInt($(this).parent('div').attr('id').replace('div_',''));
-          // Genero el nuevo numero id
-          var newID = (clickID+1);
-          // Creo un clon del elemento div que contiene los campos de texto
-          $newClone = $('#div_'+clickID).clone(true);
-          //Le asigno el nuevo numero id
-          $newClone.attr("id",'div_'+newID);
-          //Asigno nuevo id al primer campo input dentro del div y le borro cualquier valor
-          // que tenga asi no copia lo ultimo que hayas escrito.(igual que antes no es necesario tener un id)
-          $newClone.children("input").eq(0).attr("id",'compania'+newID).val('');
-          //Borro el valor del segundo campo input(este caso es el campo de cantidad)
-          $newClone.children("input").eq(1).val('');
-          //Asigno nuevo id al boton
-          $newClone.children("input").eq(2).attr("id",newID)
-          //Inserto el div clonado y modificado despues del div original
-          $newClone.insertAfter($('#div_'+clickID));
-          //Cambio el signo "+" por el signo "-" y le quito el evento addfield
-          //$("#"+clickID-1).remove();
-          $("#"+clickID).val('-').unbind("click",addField);
-          //Ahora le asigno el evento delRow para que borre la fial en caso de hacer click
-          $("#"+clickID).bind("click",delRow);
-          }
-          function delRow() {
-          // Funcion que destruye el elemento actual una vez echo el click
-          $(this).parent('div').remove();
-          }
-          </script>
+
 
 
 @include('layouts.scripts')
 
+<script>
+    $('#buscar').click(function(){
+    var Bruc =$("#buscar_ruc").val();
+    var Brazon =$("#buscar_razon").val();
+    var Betiqueta =$("#buscar_etiqueta").val();
+    var token=$("#token").val();
 
+
+
+     $.ajax({
+                    url:"{{route('proveedorBuscar')}}" ,
+                    headers:{'X-CSRF-TOKEN':token},
+                    type:"POST",
+
+                    data:{PROVE_ruc:Bruc,PROVE_razon_social:Brazon,PROVE_etiqueta:Betiqueta},
+                    success:function(){
+                      var erwr= $("#buscar_ruc").val();
+
+                    },
+                    error: function (data){
+                       alert('gww');
+
+                    }
+
+               });
+
+    });
+    </script>
 
 
 
