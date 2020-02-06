@@ -32,8 +32,12 @@
     <label class="control-label" for="PROVE_dni">
        Documento
      </label>
+     <div class="input-group">
     <input type="text" class="form-control form-control-sm" required  placeholder="Documento" id="PROVE_dni" name="PROVE_dni">
-
+    <div  id="cargarDni" style="display:none"> <button class="btn btn-info btn-sm" type="button"  >
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="sr-only">f</span>
+    </button></div>
+</div>
 </div>
 <div class="col-md-4">
     <div class="form-group">
@@ -51,7 +55,7 @@
 
    <script>
       $(document).ready(function(){
-
+        $('#cargarDni').hide();
 
           $("#PROVE_dni").keyup(function(){
      var numdni= $("#PROVE_dni").val();
@@ -64,6 +68,7 @@
 
 
     function consultadatosSUNAT2(PROVE_dni){
+        $('#cargarDni').show();
 
       var dni=$('#PROVE_dni').val();
 
@@ -72,9 +77,10 @@
               method:'GET',
              url: "http://siempreaqui.com/json-sunat/consulta.php",
            data:'nruc='+dni,
-           
+
               success:function(data){
-                  $('.ajaxgif1').hide();
+
+                  $('#cargarDni').hide();
                   var dataObject = jQuery.parseJSON(data);
 
                            if (dataObject.success == true) {

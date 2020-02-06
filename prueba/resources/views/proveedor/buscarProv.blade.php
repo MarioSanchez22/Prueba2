@@ -1,5 +1,5 @@
 
-   <table data-toggle="table"
+    <table data-toggle="table"
      data-page-size="5"
     data-buttons-class="xs btn-light"
     data-pagination="true" class="table-bordered ">
@@ -34,5 +34,4 @@
     @endforeach
     </tbody>
     </table>
-
 

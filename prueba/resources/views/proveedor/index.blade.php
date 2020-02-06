@@ -86,36 +86,72 @@
                                  </div>
 
                                     </div>
-
                                     <div class="card-body" style="background:#f7fafb">
                                         <div class="row">
                                             <input type="hidden" name="_token" value="{{ csrf_token()}}" id="token">
                                             <div class="col-md-3">
-                                            <input type="text"  id="buscar_ruc" name="PROVE_ruc" class="form-control form-control-sm">
+                                            <input type="text"  id="buscar_ruc" name="buscar_ruc" class="form-control form-control-sm">
                                          </div>
                                          <div class="col-md-3">
-                                            <input type="text" id="buscar_razon" name="PROVE_razon_social" class="form-control form-control-sm">
+                                            <input type="text" id="buscar_razon" name="buscar_razon" class="form-control form-control-sm">
                                         </div>
                                         <div class="col-md-3">
-                                            <input type="text" id="buscar_etiqueta" name="PROVE_etiqueta" class="form-control form-control-sm">
+                                            <input type="text" id="buscar_etiqueta" name="buscar_etiqueta" class="form-control form-control-sm">
                                         </div>
                                         <div class="col-md-3">
-                                            <button class="btn  btn-blue btn-sm"  id="buscar" name="buscar"><span class=" fa fa-search-plus"> </span>  Buscar</button>
-                                        </div>
-                                        <div id="tablabusqueda" name="tablabusqueda"   >
+                                            <button type="button" class="btn  btn-blue btn-sm"  onclick="buscarProvedor()"><span class=" fa fa-search-plus"> </span>  Buscar</button>
                                         </div>
                                     </div>
 
-
-
                                         </div>
-
                                 </div>
+                                <div id="actualizarTabla">
+                                <table data-toggle="table"
+                                data-page-size="5"
+                                data-buttons-class="xs btn-light"
+                                data-pagination="true" class="table-bordered ">
+                             <thead class="thead-light">
+                             <tr>
+                                 <th data-field="state" >#</th>
+                                 <th data-field="id" data-switchable="false">RUC</th>
+                                 <th data-field="name">Razon social</th>
+
+
+                                 <th data-field="amount">Email</th>
+                                 <th data-field="amRount">Telefono</th>
+                                 <th data-field="amTount">Etiqueta</th>
+                                 <th data-field="user-status">Estado</th>
+                                 <th data-field="amouWnt">Opciones</th>
+                             </tr>
+                             </thead>
+
+
+                             <tbody>
+                                @foreach ($proveedor as $proveedores)
+                                @php
+                                $contacto=proveedor_contacto::where('PROVE_id','=',$proveedores->PROVE_id)->get();
+                                $cuenta=proveedor_cuenta::where('PROVE_id','=',$proveedores->PROVE_id)->get();
+                                @endphp
+                                    <tr>
+                                            <td>{{$loop->index+1}}</td>
+                                            <td>{{$proveedores->PROVE_ruc}}</td>
+                                            <td>{{$proveedores->PROVE_razon_social}}</td>
+                                            <td>{{$proveedores->PROVE_email}}</td>
+                                            <td>{{$proveedores->PROVE_telefono}}</td>
+                                            <td>{{$proveedores->PROVE_etiqueta}}</td>
+                                            <td>{{$proveedores->PROVE_estado}}</td>
+                                            <td>  <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                                <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a></td>
+                                    </tr>
+                                 @endforeach
 
 
 
+                             </tbody>
+                         </table>
                         </div>
-
+                            </div>
                             <!-- /.card-body -->
                           </div>
 
@@ -259,39 +295,70 @@
         <div class="rightbar-overlay"></div>
 
 
+        <script>
+            $(document).ready(function() {
+          //ACA le asigno el evento click a cada boton de la clase bt_plus y llamo a la funcion addField
+          $(".bt_plus").each(function (el){
+          $(this).bind("click",addField);
+          });
+          });
+          function addField(){
+          // ID del elemento div quitandole la palabra "div_" de delante. Pasi asi poder aumentar el número.
+          // Esta parte no es necesaria pero yo la utilizaba ya que cada campo de mi formulario tenia un autosuggest,
+          // así que dejo como seria por si a alguien le hace falta.
+          var clickID = parseInt($(this).parent('div').attr('id').replace('div_',''));
+          // Genero el nuevo numero id
+          var newID = (clickID+1);
+          // Creo un clon del elemento div que contiene los campos de texto
+          $newClone = $('#div_'+clickID).clone(true);
+          //Le asigno el nuevo numero id
+          $newClone.attr("id",'div_'+newID);
+          //Asigno nuevo id al primer campo input dentro del div y le borro cualquier valor
+          // que tenga asi no copia lo ultimo que hayas escrito.(igual que antes no es necesario tener un id)
+          $newClone.children("input").eq(0).attr("id",'compania'+newID).val('');
+          //Borro el valor del segundo campo input(este caso es el campo de cantidad)
+          $newClone.children("input").eq(1).val('');
+          //Asigno nuevo id al boton
+          $newClone.children("input").eq(2).attr("id",newID)
+          //Inserto el div clonado y modificado despues del div original
+          $newClone.insertAfter($('#div_'+clickID));
+          //Cambio el signo "+" por el signo "-" y le quito el evento addfield
+          //$("#"+clickID-1).remove();
+          $("#"+clickID).val('-').unbind("click",addField);
+          //Ahora le asigno el evento delRow para que borre la fial en caso de hacer click
+          $("#"+clickID).bind("click",delRow);
+          }
+          function delRow() {
+          // Funcion que destruye el elemento actual una vez echo el click
+          $(this).parent('div').remove();
+          }
 
+          function buscarProvedor() {
+
+var Bruc =$("#buscar_ruc").val();
+var Brazon =$("#buscar_razon").val();
+var Betiqueta =$("#buscar_etiqueta").val();
+var token=$("#token").val();
+
+ $.ajax({
+                url:"{{route('proveedorBuscar')}}" ,
+                headers:{'X-CSRF-TOKEN':token},
+                type:"POST",
+                dataType:'JSON',
+                data:{ruc:Bruc,razon:Brazon,etiqueta:Betiqueta},
+                success:function(data){
+                   ;
+                     $('#actualizarTabla').html(data);
+                }
+           });
+
+}
+          </script>
 
 
 @include('layouts.scripts')
 
-<script>
-    $('#buscar').click(function(){
-    var Bruc =$("#buscar_ruc").val();
-    var Brazon =$("#buscar_razon").val();
-    var Betiqueta =$("#buscar_etiqueta").val();
-    var token=$("#token").val();
 
-
-
-     $.ajax({
-                    url:"{{route('proveedorBuscar')}}" ,
-                    headers:{'X-CSRF-TOKEN':token},
-                    type:"POST",
-
-                    data:{PROVE_ruc:Bruc,PROVE_razon_social:Brazon,PROVE_etiqueta:Betiqueta},
-                    success:function(){
-                      var erwr= $("#buscar_ruc").val();
-
-                    },
-                    error: function (data){
-                       alert('gww');
-
-                    }
-
-               });
-
-    });
-    </script>
 
 
 

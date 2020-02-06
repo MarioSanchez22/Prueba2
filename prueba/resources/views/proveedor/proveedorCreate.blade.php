@@ -108,8 +108,10 @@
                                                               <label class="control-label">RUC: </label>
                                                               <div class="input-group">
                                                               <input type="text" class="form-control form-control-sm"   placeholder="RUC de empresa" name="PROVE_ruc" id="PROVE_ruc">
+                                                                <div  id="cargarRuc" style="display:none"> <button class="btn btn-info btn-sm" type="button"  >
+                                                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="sr-only">f</span>
+                                                            </button></div>
 
-                                                                <img src="{{asset('ajax.gif')}}" class="ajaxgif hide">
 
                                                             </div>
                                                             </div>
@@ -369,7 +371,7 @@
 
 <script>
     $(document).ready(function(){
-        $('.ajaxgif').hide();
+
 
         $("#PROVE_ruc").keyup(function(){
 	var numruc = $("#PROVE_ruc").val();
@@ -381,7 +383,7 @@
 
 
   function consultadatosSUNAT(PROVE_ruc){
-    $('.ajaxgif').show();
+    $('#cargarRuc').show();
     var ruc=$('#PROVE_ruc').val();
 
         $.ajax({
@@ -391,7 +393,7 @@
 			data:'nruc='+ruc,
 
             success:function(data){
-                $('.ajaxgif').hide();
+                $('#cargarRuc').hide();
                 var dataObject = jQuery.parseJSON(data);
 
                          if (dataObject.success == true) {
