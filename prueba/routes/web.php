@@ -31,7 +31,7 @@ Route::get('proveedor/registrar','proveedorController@create')->name('proveedorC
 Route::POST('proveedor/create', 'proveedorController@store')->name('proveedorStore');
 Route::POST('proveedor/buscar', 'proveedorController@buscar')->name('proveedorBuscar');
 Route::get('proveedor/datos/{id}', 'proveedorController@datos')->name('datos');
-
+Route::get('proveedor/ver/{id}', 'proveedorController@ver')->name('ver');
 Route::get('sunat/consulta', 'proveedorController@sunat')->name('sunat');
 Route::get('proveedor/origen/{id}', 'proveedorController@origen')->name('origen');
 
