@@ -156,6 +156,6 @@ $proveedor2=proveedor::all();
 
 
 
-            return view('proveedor.ver',['tipoPr'=>$id,'verP'=>$ver]);
+            return view('proveedor.ver',['tipoPr'=>$id,'ver'=>$ver]);
         }
     }
