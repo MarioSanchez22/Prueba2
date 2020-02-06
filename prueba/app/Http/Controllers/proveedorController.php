@@ -189,5 +189,10 @@ $proveedor2=proveedor::all();
 
             return view('proveedor.pais',['region'=>$region]);
         }
+        public function ver($id){
 
+
+
+            return view('proveedor.ver',['tipoPr'=>$id,'ver'=>$ver]);
+        }
     }
