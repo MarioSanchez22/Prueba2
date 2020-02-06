@@ -21,16 +21,53 @@ class proveedorController extends Controller
     //dd($proveedor);
        return view('proveedor.index',['proveedor'=>$proveedor]);
     }
-    public function buscar(Request $request){
-        //dd(1);
-        $ruc=$request->get('PROVE_ruc');
-        $razon=$request->get('PROVE_razon_social');
-        $etiqueta=$request->get('PROVE_etiqueta');
-        $proveedor=proveedor::where('PROVE_ruc','LIKE','%'.$ruc.'%')
-                ->where('PROVE_razon_social','LIKE','%'.$razon.'%')
-                ->where('PROVE_etiqueta','LIKE','%'.$etiqueta.'%')->get();
-
-                return view('proveedor.buscarProv',['proveedor'=>$proveedor]);
+    public function buscar($ruc2,$razon2,$etiqueta2){ 
+        $ruc=$ruc2;
+        $razon=$razon2;
+        $etiqueta=$etiqueta2; 
+           
+        if($ruc=='0'){
+            if($razon=='0'){
+                if($etiqueta=='0'){
+                    $proveedor=proveedor::all();
+                    
+                }else{
+                    $proveedor=proveedor::where('PROVE_etiqueta','LIKE','%'.$etiqueta.'%')->get();
+                }
+            }else{
+                if($etiqueta=='0'){
+                    $proveedor=proveedor::where('PROVE_razon_social','LIKE','%'.$razon.'%')->get(); 
+                    
+                }else{
+                    $proveedor=proveedor::where('PROVE_razon_social','LIKE','%'.$razon.'%')
+                    ->where('PROVE_etiqueta','LIKE','%'.$etiqueta.'%')->get(); 
+                }
+            }
+        }else{
+            if($razon=='0'){
+                if($etiqueta=='0'){
+                    $proveedor=proveedor::where('PROVE_ruc','LIKE','%'.$ruc.'%')->get();
+                    
+                }else{
+                    $proveedor=proveedor::where('PROVE_ruc','LIKE','%'.$ruc.'%')
+                    ->where('PROVE_etiqueta','LIKE','%'.$etiqueta.'%')->get(); 
+                    
+                }
+            }else{
+                if($etiqueta=='0'){
+                    $proveedor=proveedor::where('PROVE_ruc','LIKE','%'.$ruc.'%')->
+                    where('PROVE_razon_social','LIKE','%'.$razon.'%')->get(); 
+                    
+                    
+                }else{
+                    $proveedor=proveedor::where('PROVE_ruc','LIKE','%'.$ruc.'%')
+                    ->where('PROVE_razon_social','LIKE','%'.$razon.'%')
+                    ->where('PROVE_etiqueta','LIKE','%'.$etiqueta.'%')->get();
+                   
+                }
+            }
+        } 
+        return view('proveedor.buscarProv',['proveedor'=>$proveedor]);
     }
 
 

@@ -9,6 +9,7 @@
         <meta charset="utf-8" />
         <title>UBold - Responsive Admin Dashboard Template</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -86,49 +87,78 @@
                                  </div>
 
                                     </div>
-
                                     <div class="card-body" style="background:#f7fafb">
+                                    
                                         <div class="row">
-                                            <input type="hidden" name="_token" value="{{ csrf_token()}}" id="token">
                                             <div class="col-md-3">
-                                            <input type="text"  id="buscar_ruc" name="PROVE_ruc" class="form-control form-control-sm">
-                                         </div>
-                                         <div class="col-md-3">
-                                            <input type="text" id="buscar_razon" name="PROVE_razon_social" class="form-control form-control-sm">
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input type="text" id="buscar_etiqueta" name="PROVE_etiqueta" class="form-control form-control-sm">
-                                        </div>
-                                        <div class="col-md-3">
+                                            <input type="text"  id="PROVE_ruc" name="PROVE_ruc" class="form-control form-control-sm">
+                                            </div>
+                                            <div class="col-md-3">
+                                            <input type="text" id="PROVE_razon_social" name="PROVE_razon_social" class="form-control form-control-sm">
+                                            </div>
+                                            <div class="col-md-3">
+                                            <input type="text" id="PROVE_etiqueta" name="PROVE_etiqueta" class="form-control form-control-sm">
+                                            </div>
+                                            <div class="col-md-3">
                                             <button class="btn  btn-blue btn-sm"  id="buscar" name="buscar"><span class=" fa fa-search-plus"> </span>  Buscar</button>
-                                        </div>
-                                        <div id="tablabusqueda" name="tablabusqueda"   >
-                                        </div>
+                                            </div>
+                                        </div>                                    
                                     </div>
-
-
-
-                                        </div>
-
                                 </div>
+                                <div id="tablageneral">
+                                <table   data-toggle="table"
+                                data-page-size="5"
+                                data-buttons-class="xs btn-light"
+                                data-pagination="true" class="table-bordered ">
+                                <thead class="thead-light">
+                                <tr>
+                                <th data-field="state" >#</th>
+                                <th data-field="id" data-switchable="false">RUC</th>
+                                <th data-field="name">Razon social</th>
 
 
-
-                        </div>
-
-                            <!-- /.card-body -->
+                                <th data-field="amount">Email</th>
+                                <th data-field="amRount">Telefono</th>
+                                <th data-field="amTount">Etiqueta</th>
+                                <th data-field="user-status">Estado</th>
+                                <th data-field="amouWnt">Opciones</th>
+                                </tr>
+                                </thead>
+                                    <tbody>
+                                    @foreach ($proveedor as $proveedores)
+                                        <tr>
+                                                <td>{{$loop->index+1}}</td>
+                                                <td>{{$proveedores->PROVE_ruc}}</td>
+                                                <td>{{$proveedores->PROVE_razon_social}}</td>
+                                                <td>{{$proveedores->PROVE_email}}</td>
+                                                <td>{{$proveedores->PROVE_telefono}}</td>
+                                                <td>{{$proveedores->PROVE_etiqueta}}</td>
+                                                <td>{{$proveedores->PROVE_estado}}</td>
+                                                <td><a href="{{route('proveedorShow',[ $proveedores->PROVE_id] )}}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a> </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                    </table>
+                                    </div>
+   
+     <!-- Bootstrap Tables js -->
+ 
+                                <div   id ="tabla1" >
+                                
+                                </div>
+                                
+                                
+                    </div>
+                       <!-- /.card-body -->
                           </div>
-
                           <!-- /.card -->
-
                         </div>
                         <!-- /.col -->
                       </div>
-
                     </div> <!-- container -->
-
                 </div> <!-- content -->
-
                 <!-- Footer Start -->
                 <footer class="footer">
                     <div class="container-fluid">
@@ -147,17 +177,12 @@
                     </div>
                 </footer>
                 <!-- end Footer -->
-
             </div>
-
             <!-- ============================================================== -->
             <!-- End Page content -->
             <!-- ============================================================== -->
-
-
         </div>
         <!-- END wrapper -->
-
         <!-- Right Sidebar -->
         <div class="right-bar">
             <div class="rightbar-title">
@@ -173,11 +198,9 @@
                         <img src="assets/images/users/user-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
                         <a href="javascript:void(0);" class="user-edit"><i class="mdi mdi-pencil"></i></a>
                     </div>
-
                     <h5><a href="javascript: void(0);">Geneva Kennedy</a> </h5>
                     <p class="text-muted mb-0"><small>Admin Head</small></p>
                 </div>
-
                 <!-- Settings -->
                 <hr class="mt-0" />
                 <h5 class="pl-3">Basic Settings</h5>
@@ -215,7 +238,6 @@
                         </label>
                     </div>
                 </div>
-
                 <!-- Timeline -->
                 <hr class="mt-0" />
                 <h5 class="px-3">Messages <span class="float-right badge badge-pill badge-danger">25</span></h5>
@@ -237,7 +259,6 @@
                             <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Kurafire</a></p>
                             <p class="inbox-item-text">Nice to meet you</p>
                         </div>
-
                         <div class="inbox-item">
                             <div class="inbox-item-img"><img src="assets/images/users/user-5.jpg" class="rounded-circle" alt=""></div>
                             <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Shahedk</a></p>
@@ -250,51 +271,32 @@
                         </div>
                     </div> <!-- end inbox-widget -->
                 </div> <!-- end .p-3-->
-
             </div> <!-- end slimscroll-menu-->
         </div>
         <!-- /Right-bar -->
-
         <!-- Right bar overlay-->
         <div class="rightbar-overlay"></div>
 
-
-
-
-
 @include('layouts.scripts')
 
+
+
 <script>
-    $('#buscar').click(function(){
-    var Bruc =$("#buscar_ruc").val();
-    var Brazon =$("#buscar_razon").val();
-    var Betiqueta =$("#buscar_etiqueta").val();
-    var token=$("#token").val();
-
-
-
-     $.ajax({
-                    url:"{{route('proveedorBuscar')}}" ,
-                    headers:{'X-CSRF-TOKEN':token},
-                    type:"POST",
-
-                    data:{PROVE_ruc:Bruc,PROVE_razon_social:Brazon,PROVE_etiqueta:Betiqueta},
-                    success:function(){
-                      var erwr= $("#buscar_ruc").val();
-
-                    },
-                    error: function (data){
-                       alert('gww');
-
-                    }
-
-               });
-
-    });
-    </script>
-
-
-
-
+     $('#buscar').click(function(){
+        $('#tablageneral').hide();
+    var ruc=$('#PROVE_ruc').val();
+    var razon=$('#PROVE_razon_social').val();
+    var etiqueta=$('#PROVE_etiqueta').val();
+    $.ajax({
+    url:"proveedor/buscar/"+ruc+"/"+razon+"/"+etiqueta,
+    method:"GET",
+    success:function(data1){
+        $('#tabla1').html(data1);
+        }
+});   
+});
+     
+</script>
+    
     </body>
 </html>
