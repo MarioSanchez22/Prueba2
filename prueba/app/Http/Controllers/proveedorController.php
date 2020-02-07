@@ -12,6 +12,7 @@ use App\proveedor_contacto;
 use App\proveedorExpediente;
 use App\tipo_proveedor;
 use App\pais;
+use App\proveedor_cuenta;
 use App\region;
 class proveedorController extends Controller
 {
@@ -21,15 +22,13 @@ class proveedorController extends Controller
     //dd($proveedor);
        return view('proveedor.index',['proveedor'=>$proveedor]);
     }
-    public function buscar(Request $request){
-        //dd(1);
+    public function buscar(Request $request){      //dd(1);
         $ruc=$request->get('PROVE_ruc');
         $razon=$request->get('PROVE_razon_social');
         $etiqueta=$request->get('PROVE_etiqueta');
         $proveedor=proveedor::where('PROVE_ruc','LIKE','%'.$ruc.'%')
                 ->where('PROVE_razon_social','LIKE','%'.$razon.'%')
                 ->where('PROVE_etiqueta','LIKE','%'.$etiqueta.'%')->get();
-
                 return view('proveedor.buscarProv',['proveedor'=>$proveedor]);
     }
 
@@ -41,8 +40,7 @@ class proveedorController extends Controller
         $origen=origen_proveedor::all();
        return view('proveedor.proveedorCreate',['tipo'=>$tipo,'origen'=>$origen]);
     }
-    public function store(Request $request){
-        //dd($request);
+    public function store(Request $request){    //dd($request);
     $proveedor=new proveedor();
 
       $proveedor->fill($request->only('PROVE_ruc','PROVE_razon_social',
@@ -137,9 +135,7 @@ $proveedor2=proveedor::all();
 
 
     public function datos($id){
-
         $documento=proveedor_documento::all();
-
         return view('proveedor.datosProv',['tipoPr'=>$id,'documento'=>$documento]);
     }
         public function origen($id){
@@ -152,10 +148,32 @@ $proveedor2=proveedor::all();
 
             return view('proveedor.pais',['region'=>$region]);
         }
-        public function ver($id){
+        public function show($proveedor){
+            $prove=proveedor::find($proveedor);
+            $contacto=proveedor_contacto::where('PROVE_id','=',$proveedor)->get();
+            $expediente=proveedorExpediente::where('PROVE_id','=',$proveedor)->get();
+            $cuenta=proveedor_cuenta::where('PROVE_id','=',$proveedor)->get();
+            $tipo=tipo_proveedor::where('TIPPROVE_id','=',$prove->TIPPROVE_id)->get();
 
 
-
-            return view('proveedor.ver',['tipoPr'=>$id,'ver'=>$ver]);
+            return view('proveedor.proveedorShow',['proveedor'=>$prove,'contacto'=>$contacto,'expediente'=>$expediente,'cuenta'=>$cuenta,'tipo'=>$tipo]);
         }
+
+        public function download(proveedorExpediente $expediente){
+            //dd($expediente->PROEXP_ruta->getClientOriginalExtension());
+         //dd($expediente->PROEXP_extension);
+            $file=public_path()."/imgExpedientes/".$expediente->PROEXP_ruta;
+            $header=array(
+                'Content-Type: application/'.$expediente->PROEXP_extension.'',
+            );
+
+            return response()->download($file,''.$expediente->PROEXP_descripcion.'.'.$expediente->PROEXP_extension,$header);
+      }
+        public function darBaja($proveedor){
+            $proveedor2=proveedor::find($proveedor);
+            $proveedor2->PROVE_estado=0;
+            $proveedor2->save();
+            return back();
+        }
+
     }

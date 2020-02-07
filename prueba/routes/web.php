@@ -31,12 +31,14 @@ Route::get('proveedor/registrar','proveedorController@create')->name('proveedorC
 Route::POST('proveedor/create', 'proveedorController@store')->name('proveedorStore');
 Route::POST('proveedor/buscar', 'proveedorController@buscar')->name('proveedorBuscar');
 Route::get('proveedor/datos/{id}', 'proveedorController@datos')->name('datos');
-Route::get('proveedor/ver/{id}', 'proveedorController@ver')->name('ver');
+Route::get('proveedor/show/{proveedor}', 'proveedorController@show')->name('proveedorShow');
+Route::get('proveedor/darBaja/{proveedor}', 'proveedorController@darBaja')->name('proveedorDarBaja');
 Route::get('sunat/consulta', 'proveedorController@sunat')->name('sunat');
 Route::get('proveedor/origen/{id}', 'proveedorController@origen')->name('origen');
-
 Route::get('proveedor/pais/{id}', 'proveedorController@pais')->name('pais');
 
+    //Expediente Proveedor
+    Route::name('proveedorExpedienteDownload')->get('/proveedor/expediente/{expediente}/download','proveedorController@download');
 //PRODUCTO
 Route::POST('/producto', 'productoController@index')->name('productoBuscar');
 
