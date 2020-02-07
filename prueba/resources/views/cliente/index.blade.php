@@ -81,7 +81,7 @@
                                         <label for="">fecha 2:</label>
                                     </div>
                                     <div class="col-md-3">
-                                        <button type="button" class="btn  btn-primary btn-sm" onclick="location.href='{{route('proveedorCreate')}}'"><span class=" fa fa-user-plus"> </span>  Proveedor</button>
+                                        <button type="button" class="btn  btn-primary btn-sm" onclick="location.href='{{route('proveedorCreate')}}'"><span class=" fa fa-user-plus"> </span>  Cliente</button>
                                     </div>
                                  </div>
 
