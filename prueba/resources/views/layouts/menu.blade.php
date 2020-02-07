@@ -79,7 +79,7 @@
                         <a href="{{route('proveedorIndex')}}" class="nav-link {{ ! Route::is('proveedorIndex')?:'active'}} ">Proveedor</a>
                     </li>
                     <li>
-                        <a href="maps-vector.html">Vector Maps</a>
+                    <a href="{{route('clienteIndex')}}" class="nav-link {{ ! Route::is('clienteIndex')?:'active'}} ">Clientes</a>
                     </li>
                     <li>
                         <a href="maps-mapael.html">Mapael Maps</a>

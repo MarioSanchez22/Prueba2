@@ -1,7 +1,3 @@
-@php
-  use App\proveedor_contacto;
-  use App\proveedor_cuenta;
-@endphp
 
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +51,7 @@
                                     </ol>
                                 </div>
                                 <div class="row">
-                                 <div class="col-md-8"><h4 class="page-title">PROVEEDORES</h4></div>
+                                 <div class="col-md-8"><h4 class="page-title">CLIENTES</h4></div>
 
 
                             </div>
@@ -73,13 +69,16 @@
                                     <div class="card-header" style="background:#f1f5f7">
                                     <div class="row">
                                         <div class="col-md-3">
-                                         <label for="">RUC:</label>
+                                         <label for="">RUC/DNI:</label>
                                      </div>
                                      <div class="col-md-3">
-                                        <label for="">RAZON SOCIAL:</label>
+                                        <label for="">NOMBRE:</label>
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="">ETIQUETAS:</label>
+                                        <label for="">fecha 1:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="">fecha 2:</label>
                                     </div>
                                     <div class="col-md-3">
                                         <button type="button" class="btn  btn-primary btn-sm" onclick="location.href='{{route('proveedorCreate')}}'"><span class=" fa fa-user-plus"> </span>  Proveedor</button>
