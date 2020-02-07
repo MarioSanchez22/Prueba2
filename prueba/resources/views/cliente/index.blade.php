@@ -64,42 +64,45 @@
                           <div class="card">
 
                             <!-- /.card-header -->
-                            <div class="card-body">
+                            <div class="card-body" style="font-size: 13px; ">
                                 <div class="card">
-                                    <div class="card-header" style="background:#f1f5f7">
+                                    <div class="card-header" style="background:#f1f5f7; padding-top: 8px; padding-bottom: 8px">
                                     <div class="row">
-                                        <div class="col-md-3">
-                                         <label for="">RUC/DNI:</label>
+                                        <div class="col-md-2">
+                                         <label for="" style="font-weight:bold; ">RUC/DNI:</label>
                                      </div>
                                      <div class="col-md-3">
-                                        <label for="">NOMBRE:</label>
+                                        <label for="" style="font-weight:bold; ">NOMBRE:</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="" style="font-weight:bold; ">FECHA I:</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="" style="font-weight:bold; ">FECHA F:</label>
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="">fecha 1:</label>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label for="">fecha 2:</label>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <button type="button" class="btn  btn-primary btn-sm" onclick="location.href='{{route('proveedorCreate')}}'"><span class=" fa fa-user-plus"> </span>  Cliente</button>
+                                        <button type="button" class="btn  btn-primary btn-sm"  style="margin-left:55%" onclick="location.href='{{route('clienteCreate')}}'"><span class=" fa fa-user-plus"> </span>  Cliente</button>
                                     </div>
                                  </div>
 
                                     </div>
-                                    <div class="card-body" style="background:#f7fafb">
+                                    <div class="card-body" style="background:#fff">
                                     
                                         <div class="row">
-                                            <div class="col-md-3">
+                                            <div class="col-md-2">
                                             <input type="text"  id="PROVE_ruc" name="PROVE_ruc" class="form-control form-control-sm">
                                             </div>
                                             <div class="col-md-3">
                                             <input type="text" id="PROVE_razon_social" name="PROVE_razon_social" class="form-control form-control-sm">
                                             </div>
-                                            <div class="col-md-3">
-                                            <input type="text" id="PROVE_etiqueta" name="PROVE_etiqueta" class="form-control form-control-sm">
+                                            <div class="col-md-2">
+                                            <input type="text" id="PROVE_etiquffeta" name="PROfVE_etiqueta" class="form-control form-control-sm">
                                             </div>
+                                            <div class="col-md-2">
+                                                <input type="text" id="PROVE_etiquffeta" name="PROfVE_etiqueta" class="form-control form-control-sm">
+                                                </div>
                                             <div class="col-md-3">
-                                            <button class="btn  btn-blue btn-sm"  id="buscar" name="buscar"><span class=" fa fa-search-plus"> </span>  Buscar</button>
+                                            <button class="btn  btn-blue btn-sm"  id="buscar" name="buscar"><span class=" fa fa-search-plus"> </span> </button>
                                             </div>
                                         </div>                                    
                                     </div>
@@ -124,20 +127,21 @@
                                 </tr>
                                 </thead>
                                     <tbody>
-                                    @foreach ($proveedor as $proveedores)
+                                   
                                         <tr>
-                                                <td>{{$loop->index+1}}</td>
-                                                <td>{{$proveedores->PROVE_ruc}}</td>
-                                                <td>{{$proveedores->PROVE_razon_social}}</td>
-                                                <td>{{$proveedores->PROVE_email}}</td>
-                                                <td>{{$proveedores->PROVE_telefono}}</td>
-                                                <td>{{$proveedores->PROVE_etiqueta}}</td>
-                                                <td>{{$proveedores->PROVE_estado}}</td>
-                                                <td><a href="{{route('proveedorShow',[ $proveedores->PROVE_id] )}}" class="action-icon"> <i class="mdi mdi-eye"></i></a>
+                                                <td>1</td>
+                                                <td>2323232323</td>
+                                                <td>dfdfdfdf</td>
+                                                <td>dgdg</td>
+                                                <td>3232323</td>
+                                                <td>2323</td>
+                                                <td>232323</td>
+                                                <td><a href="" class="action-icon"> <i class="mdi mdi-eye"></i></a>
                     <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
                     <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a> </td>
                                         </tr>
-                                    @endforeach
+                                  
+                                        
                                     </tbody>
                                     </table>
                                     </div>

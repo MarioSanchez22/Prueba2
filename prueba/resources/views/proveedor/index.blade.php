@@ -55,7 +55,7 @@
                                     </ol>
                                 </div>
                                 <div class="row">
-                                 <div class="col-md-8"><h4 class="page-title">PROVEEDORES</h4></div>
+                                 <div class="col-md-8"><h5 class="page-title" style="font-size:18px">PROVEEDORES</h5></div>
 
 
                             </div>
@@ -68,9 +68,9 @@
                           <div class="card">
 
                             <!-- /.card-header -->
-                            <div class="card-body">
+                            <div class="card-body" style="background:#fff">
                                 <div class="card">
-                                    <div class="card-header" style="background:#f1f5f7">
+                                    <div class="card-header" style="background:#f1f5f7; padding-top: 8px; padding-bottom: 8px">
                                     <div class="row">
                                         <div class="col-md-3">
                                          <label for="">RUC:</label>
@@ -82,12 +82,12 @@
                                         <label for="">ETIQUETAS:</label>
                                     </div>
                                     <div class="col-md-3">
-                                        <button type="button" class="btn  btn-primary btn-sm" onclick="location.href='{{route('proveedorCreate')}}'"><span class=" fa fa-user-plus"> </span>  Proveedor</button>
+                                        <button type="button" class="btn  btn-primary btn-sm" style="margin-left:45%" onclick="location.href='{{route('proveedorCreate')}}'"><span class=" fa fa-user-plus"> </span>  Proveedor</button>
                                     </div>
                                  </div>
 
                                     </div>
-                                    <div class="card-body" style="background:#f7fafb">
+                                    <div class="card-body" style="background:#FFF">
                                     
                                         <div class="row">
                                             <div class="col-md-3">
@@ -100,7 +100,7 @@
                                             <input type="text" id="PROVE_etiqueta" name="PROVE_etiqueta" class="form-control form-control-sm">
                                             </div>
                                             <div class="col-md-3">
-                                            <button class="btn  btn-blue btn-sm"  id="buscar" name="buscar"><span class=" fa fa-search-plus"> </span>  Buscar</button>
+                                            <button class="btn  btn-blue btn-sm"  id="buscar" name="buscar"><span class=" fa fa-search-plus"> </span>  </button>
                                             </div>
                                         </div>                                    
                                     </div>
