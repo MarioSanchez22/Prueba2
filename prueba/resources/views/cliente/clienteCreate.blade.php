@@ -1,6 +1,5 @@
 @php
-  use App\proveedor_contacto;
-  use App\proveedor_cuenta;
+ 
 @endphp
 
 <!DOCTYPE html>
@@ -55,7 +54,7 @@
                                         <li class="breadcrumb-item active">Calendar</li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">REGISTRO DE PROVEEDORES</h4>
+                                <h4 class="page-title">REGISTRO DE CLIENTES</h4>
                             </div>
                         </div>
                     </div>

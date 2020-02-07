@@ -1,4 +1,5 @@
    <!-- Vendor js -->
+  
    <script src="{{asset('assets/js/vendor.min.js')}}"></script>
 
    <!-- Plugins js-->
@@ -24,22 +25,10 @@
    <script src="{{asset('assets/js/pages/form-advanced.init.js')}}"></script>
    <!-- App js-->
    <script src="{{asset('assets/js/app.min.js')}}"></script>
-
+  
     <!-- Bootstrap Tables js -->
     <script src="{{asset('assets/libs/bootstrap-table/bootstrap-table.min.js')}}"></script>
 
     <!-- Init js -->
     <script src="{{asset('assets/js/pages/bootstrap-tables.init.js')}}"></script>
-    <script>
-        $(function () {
-          $("#example1").DataTable();
-          $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-          });
-        });
-      </script>
+    
