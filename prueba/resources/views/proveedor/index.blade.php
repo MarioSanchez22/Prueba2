@@ -55,8 +55,9 @@
                                     </ol>
                                 </div>
                                 <div class="row">
-                                 <div class="col-md-8"><h5 class="page-title" style="font-size:18px">PROVEEDORES</h5></div>
-
+                                 <div class="col-md-8">
+                                 <div class="row">  <h5 class="page-title" style="font-size:18px">PROVEEDORES</h5></div>
+                                 </div>                     
 
                             </div>
                             </div>
