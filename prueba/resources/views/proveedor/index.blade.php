@@ -305,14 +305,7 @@
         var razon=$('#PROVE_razon_social').val();
         var etiqueta=$('#PROVE_etiqueta').val();
         $('#tablageneral').hide();
-<<<<<<< HEAD
         if(ruc==''){
-=======
-    var ruc=$('#PROVE_ruc').val();
-    var razon=$('#PROVE_razon_social').val();
-    var etiqueta=$('#PROVE_etiqueta').val();
-    if(ruc==''){
->>>>>>> 26224d13e11ac0b9ec7ec1aa059d31728dd4fe3c
             ruc='0';
         }
         if(razon==''){
