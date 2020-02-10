@@ -43,7 +43,7 @@ Route::get('proveedor/pais/{id}', 'proveedorController@pais')->name('pais');
 //CLIENTE
 Route::get('cliente', 'clienteController@index')->name('clienteIndex');
 Route::GET('cliente/registrar', 'clienteController@create')->name('clienteCreate');
-
+Route::get('cliente/datosCliente/{id}', 'clienteController@datosCliente')->name('datosCliente');
     //Expediente Proveedor
     Route::name('proveedorExpedienteDownload')->get('/proveedor/expediente/{expediente}/download','proveedorController@download');
 //PRODUCTO

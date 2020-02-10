@@ -71,8 +71,8 @@
                     <div class="row" style="margin-top: 10px;">
                         
                         <div class="col 12 bounceInLeft animated">
-                            
-                      <div class="card-box font-italic Italica" style="padding-bottom: 8px; padding-top: 8px; margin-bottom: 0px; background:#f1f1f1; color:#000">
+                       <div class="card-header" style="padding-top: 8px; padding-bottom: 8px;background: #6e8b90;color: white;"><i class="mdi mdi-file-search-outline"></i> Busqueda de proveedores </div>     
+                      <div class="card-box " style="padding-bottom: 8px; padding-top: 8px; margin-bottom: 0px; background:#f1f1f1; color:#000">
                         
                         <div class="row">
                         <div class="col-md-3">
@@ -106,7 +106,7 @@
                         </div>
 
                       </div>
-                      <div card-header style="background:#4584a2; height: 4px;"><br></div>
+                      
                           <div class="card">
                            
                             <!-- /.card-header -->
@@ -305,6 +305,15 @@
     var ruc=$('#PROVE_ruc').val();
     var razon=$('#PROVE_razon_social').val();
     var etiqueta=$('#PROVE_etiqueta').val();
+    if(ruc==''){
+            ruc='0';
+        }
+        if(razon==''){
+            razon='0';
+        }
+        if(etiqueta==''){
+            etiqueta='0';
+        }
     $.ajax({
     url:"proveedor/buscar/"+ruc+"/"+razon+"/"+etiqueta,
     method:"GET",
