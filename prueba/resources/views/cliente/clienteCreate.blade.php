@@ -118,14 +118,7 @@
 
                                                         <div class="col-md-12" style=" padding-bottom: 18px;">
                                                             <div class="row">
-                                                        <div class="col-md-4">
-                                                            <label for="">Origen de cliente</label>
-                                                              <select class="selectpicker form-control  form-control-sm" data-style="btn-light" id="PROVE_origen" name="PROVE_origen">
-                                                                @foreach ($origen as $origenes)
-                                                              <option value="{{$origenes->ORIPROVE_id}}">{{$origenes->ORIPROVE_descripcion}}</option>
-                                                                @endforeach
-                                                              </select>
-                                                          </div>
+                                                        
                                                           <div class="col-md-4">
                                                             <label for="">País</label>
                                                             <div id="select2lista"></div>
