@@ -72,17 +72,13 @@
                                             <ul class="nav nav-tabs" style="background:#f5f5f5">
                                                 <li class="nav-item">
                                                     <a href="#home" data-toggle="tab" aria-expanded="false" class="nav-link active">
-                                                       Datos de Proveedor
+                                                       Datos de Cliente
                                                     </a>
                                                 </li>
-                                                <li class="nav-item">
-                                                    <a href="#profile" data-toggle="tab" aria-expanded="true" class="nav-link ">
-                                                        Expediente de Proveedor
-                                                    </a>
-                                                </li>
+                                               
                                                 <li class="nav-item">
                                                     <a href="#messages" data-toggle="tab" aria-expanded="false" class="nav-link">
-                                                        Contacto de Proveedor
+                                                        Contacto de Cliente
                                                     </a>
                                                 </li>
                                             </ul>
@@ -93,7 +89,7 @@
 
                                                         <div class=" col-md-6 ">
 
-                                                          <label for="" >Tipo de proveedor:</label>
+                                                          <label for="" >Tipo de cliente:</label>
                                                             <select class="selectpicker form-control  form-control-sm" data-style="btn-light" id="TipoP" name="TIPPROVE_id"  style="background:#f5f5f5">
                                                                 @foreach ($tipo as $tipos)
                                                               <option value="{{$tipos->TIPPROVE_id}}">{{$tipos->TIPPROVE_descripcion}}</option>
@@ -106,7 +102,7 @@
                                                             <div class="form-group">
                                                               <label class="control-label">RUC: </label>
                                                               <div class="input-group">
-                                                              <input type="text" class="form-control form-control-sm"   placeholder="RUC de empresa" name="PROVE_ruc" id="PROVE_ruc">
+                                                              <input type="text" class="form-control form-control-sm"   placeholder="RUC de cliente" name="PROVE_ruc" id="PROVE_ruc">
                                                                 <div  id="cargarRuc" style="display:none"> <button class="btn btn-info btn-sm" type="button"  >
                                                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="sr-only">f</span>
                                                             </button></div>
@@ -123,7 +119,7 @@
                                                         <div class="col-md-12" style=" padding-bottom: 18px;">
                                                             <div class="row">
                                                         <div class="col-md-4">
-                                                            <label for="">Origen de proveedor</label>
+                                                            <label for="">Origen de cliente</label>
                                                               <select class="selectpicker form-control  form-control-sm" data-style="btn-light" id="PROVE_origen" name="PROVE_origen">
                                                                 @foreach ($origen as $origenes)
                                                               <option value="{{$origenes->ORIPROVE_id}}">{{$origenes->ORIPROVE_descripcion}}</option>
@@ -140,61 +136,26 @@
                                                         </div>
 
                                                         </div></div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <div class="form-group">
                                                               <label class="control-label">Direccion: </label>
                                                               <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion"> </div>
                                                            </div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <div class="form-group">
                                                               <label class="control-label" for="PROVE_telefono">Telefono: </label>
                                                               <input type="text" class="form-control form-control-sm" required placeholder="Telefono" name="PROVE_telefono"> </div>
                                                            </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                              <label class="control-label" for="PROVE_web">Web: </label>
-                                                              <input type="text" class="form-control form-control-sm"  placeholder="Direccion web" name="PROVE_web"> </div>
-                                                           </div>
-                                                           <div class="col-md-6">
+                                                       
+                                                           <div class="col-md-4">
                                                             <div class="form-group">
                                                               <label class="control-label" for="PROVE_email" >Email: </label>
                                                               <input type="text" class="form-control form-control-sm" required  placeholder="Email" name="PROVE_email"> </div>
                                                            </div>
-                                                           <div class="col-md-12">
-                                                            <div class="form-group">
-                                                              <label class="control-label">Etiquetas: </label>
-                                                              <textarea class="form-control" id="example-textarea" rows="3" name="PROVE_etiqueta"></textarea></div>
-                                                           </div>
+                                                           
                                                 </div>
                                                 </div>
-                                                <div class="tab-pane " id="profile">
-                                                <div class="row">
-
-                                                        <div class="col-md-6">
-                                                           <label for="PROEXP_descripcion" style=" ">Descripcion:</label>
-
-                                                            <input type="text" class="form-control "   placeholder="Describa el archivo" name="PROEXP_descripcion">
-
-                                                            </div>
-
-                                                     <br>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                        <label class="control-label" for="file">Subir archivo: </label>
-                                                            <div class="input-group">
-                                                              <div class="custom-file">
-                                                                <input type="file" class="custom-file-input form-control-sm" id="exampleInputFile" name="file">
-                                                                <label class="custom-file-label form-control-sm" for="exampleInputFile">Choose file</label>
-                                                              </div>
-                                                            </div>
-                                                    </div>   </div>
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                          <label class="control-label">Observacion: </label>
-                                                          <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea> </div>
-                                                    </div>
-                                                </div>
-                                                </div>
+                                                
                                                 <div class="tab-pane " id="messages">
                                                         <div class="row">
                                                         <div class="col-sm-12">
@@ -279,7 +240,7 @@
             $(this).bind("click",addField);
         });
             $.ajax({
-                url:"/proveedor/datos/1",
+                url:"/cliente/datosCliente/1",
                 method:"GET",
                 success:function(data){
                     $('#verD').html(data);
@@ -297,7 +258,7 @@
             $('#TipoP').change(function(){
                 var tipoPr= $(this).val();
                 $.ajax({
-                    url:"/proveedor/datos/"+tipoPr,
+                    url:"/cliente/datosCliente/"+tipoPr,
                     method:"GET",
                     success:function(data){
                         $('#verD').html(data);

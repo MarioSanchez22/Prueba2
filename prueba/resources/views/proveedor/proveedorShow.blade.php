@@ -203,9 +203,7 @@
               @endif
               </div>      <!-- /.end row -->
                      </div>  <!-- /.end car box -->
-                        <div class="card-box">
-                       
-                        </div>
+                      
 
                      </div>  <!-- /.end col lg8 -->
                      </div>

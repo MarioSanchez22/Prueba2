@@ -1,14 +1,14 @@
-<div class="left-side-menu " style="background-color: #fff;" >
-<div class="slimscroll-menu" style="background-color:#fff;">
+<div class="left-side-menu " style="background-color:#dedede;" >
+<div class="slimscroll-menu" >
 
     <!--- Sidemenu -->
-    <div id="sidebar-menu" style="background-color: #fff;">
+    <div id="sidebar-menu" ">
 
         <ul class="metismenu" id="side-menu">
 
-            <li class="menu-title">Navigation</li>
+            <li class="menu-title" style="border-bottom: 1px solid #cac8c8;">Navigation</li>
 
-            <li>
+            <li style="border-bottom: 1px solid #cac8c8;">
                 <a href="javascript: void(0);">
                     <i class="fe-airplay"></i>
                     <span class="badge badge-success badge-pill float-right">4</span>
@@ -35,7 +35,7 @@
 
 
 
-            <li>
+            <li style="border-bottom: 1px solid #cac8c8;">
                 <a href="javascript: void(0);">
                     <i class="fe-sidebar"></i>
                     <span class="badge badge-pink float-right">New</span>
@@ -68,36 +68,36 @@
 
 
 
-            <li>
+            <li style="border-bottom: 1px solid #cac8c8;">
                 <a href="javascript: void(0); class="nav-link {{ ! Route::is('proveedorIndex')?:'active'}}"">
                     <i class="fe-map"></i>
                     <span> Maps </span>
                     <span class="menu-arrow"></span>
                 </a>
                 <ul class="nav-second-level" aria-expanded="false">
-                    <li>
+                    <li >
                         <a href="{{route('proveedorIndex')}}" class="nav-link {{ ! Route::is('proveedorIndex')?:'active'}} ">Proveedor</a>
                     </li>
-                    <li>
+                    <li >
                     <a href="{{route('clienteIndex')}}" class="nav-link {{ ! Route::is('clienteIndex')?:'active'}} ">Clientes</a>
                     </li>
-                    <li>
+                    <li >
                         <a href="maps-mapael.html">Mapael Maps</a>
                     </li>
                 </ul>
             </li>
 
-            <li>
+            <li style="border-bottom: 1px solid #cac8c8;">
                 <a href="javascript: void(0);">
                     <i class="fe-folder-plus"></i>
                     <span> Multi Level </span>
                     <span class="menu-arrow"></span>
                 </a>
                 <ul class="nav-second-level nav" aria-expanded="false">
-                    <li>
+                    <li style="border-bottom: 1px solid #cac8c8;">
                         <a href="javascript: void(0);">Level 1.1</a>
                     </li>
-                    <li>
+                    <li style="border-bottom: 1px solid #cac8c8;">
                         <a href="javascript: void(0);" aria-expanded="false">Level 1.2
                             <span class="menu-arrow"></span>
                         </a>

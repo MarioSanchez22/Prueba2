@@ -286,10 +286,20 @@
 
 <script>
      $('#buscar').click(function(){
-        $('#tablageneral').hide();
-    var ruc=$('#PROVE_ruc').val();
+         var ruc=$('#PROVE_ruc').val();
     var razon=$('#PROVE_razon_social').val();
     var etiqueta=$('#PROVE_etiqueta').val();
+        $('#tablageneral').hide();
+        if(ruc==''){
+            ruc='0';
+        }
+        if(razon==''){
+            razon='0';
+        }
+        if(etiqueta==''){
+            etiqueta='0';
+        }
+    
     $.ajax({
     url:"proveedor/buscar/"+ruc+"/"+razon+"/"+etiqueta,
     method:"GET",

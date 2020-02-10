@@ -28,5 +28,8 @@ class clienteController extends Controller
         $origen=origen_proveedor::all();
        return view('cliente.clienteCreate',['tipo'=>$tipo,'origen'=>$origen]);
     }
-
+    public function datosCliente($id){
+        $documento=proveedor_documento::all();
+        return view('cliente.datosClie',['tipoPr'=>$id,'documento'=>$documento]);
+    }
 }

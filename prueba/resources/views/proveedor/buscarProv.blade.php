@@ -7,19 +7,19 @@
 data-page-size="5"
 data-buttons-class="xs btn-light"
 data-pagination="true" class="table-bordered " style="display: inline-table;">
-<thead class="" style="background: #003346;
+<thead class="" style="background:#778084;
 color: white;">
 <tr>
-  <th data-field="state" >#</th>
-  <th data-field="id" data-switchable="false">RUC</th>
-  <th data-field="name">Razon social</th>
+<th data-field="state" >#</th>
+<th data-field="id" data-switchable="false">RUC</th>
+<th data-field="name">Razon social</th>
 
 
-  <th data-field="amount">Email</th>
-  <th data-field="amRount">Telefono</th>
-  <th data-field="amTount">Etiqueta</th>
-  <th data-field="user-status">Estado</th>
-  <th data-field="amouWnt">Opciones</th>
+<th data-field="amount">Email</th>
+<th data-field="amRount">Telefono</th>
+<th data-field="amTount">Etiqueta</th>
+<th data-field="user-status">Estado</th>
+<th data-field="amouWnt">Opciones</th>
 </tr>
 </thead>
     <tbody>
