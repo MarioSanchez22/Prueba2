@@ -140,7 +140,16 @@ class proveedorController extends Controller
 $proveedor2=proveedor::all();
            return view('proveedor.index',['proveedor'=>$proveedor2]);
         }
-        public function sunat(Request $request){
+
+//edit
+public function editar($proveedor){
+    $proveedor2=proveedor::find($proveedor);
+    $tipoPro=tipo_proveedor::where('TIPPROVE_id','=',$proveedor2->TIPPROVE_id)->get();
+    $contactoPro=proveedor_contacto::where('PROVE_id','=',$proveedor2->PROVE_id)->get();
+
+   return view('proveedor.proveedorUpdate',['proveedor'=>$proveedor2,'tipopro'=>$tipoPro[0],'contactoPro'=>$contactoPro]);
+}
+public function sunat(Request $request){
             if ($request->ajax()) {
                 $ruc=$request->get('ruc');
                 $ruta = file_get_contents("https://api.sunat.cloud/ruc/".$ruc);
@@ -170,10 +179,7 @@ $proveedor2=proveedor::all();
 
            // $proveedor=proveedor::all();
             //dd($id);
-
-
-
-    public function datos($id){
+public function datos($id){
         $documento=proveedor_documento::all();
         return view('proveedor.datosProv',['tipoPr'=>$id,'documento'=>$documento]);
     }
@@ -214,5 +220,14 @@ $proveedor2=proveedor::all();
             $proveedor2->save();
             return back();
         }
+        public function darAlta($proveedor){
+            $proveedor2=proveedor::find($proveedor);
+            $proveedor2->PROVE_estado=1;
+            $proveedor2->save();
+            return back();
+        }
+    public function contactoStore(Request $request){
+        dd($request);
+    }
 
     }

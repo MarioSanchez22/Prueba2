@@ -1,7 +1,4 @@
-@php
-  use App\proveedor_contacto;
-  use App\proveedor_cuenta;
-@endphp
+
 
 <!DOCTYPE html>
 <html lang="en">

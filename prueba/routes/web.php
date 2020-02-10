@@ -30,22 +30,29 @@ Route::get('proveedor', 'proveedorController@index')->name('proveedorIndex');
 
 
 Route::get('proveedor/registrar','proveedorController@create')->name('proveedorCreate');
+Route::get('proveedor/editar/{proveedor}','proveedorController@editar')->name('proveedorEdit');
 Route::POST('proveedor/create', 'proveedorController@store')->name('proveedorStore');
-Route::get('proveedor/buscar/{ruc}/{razon}/{etiqueta}', 'proveedorController@buscar')->name('proveedorBuscar');
-Route::get('proveedor/datos/{id}', 'proveedorController@datos')->name('datos');
+Route::POST('proveedor/update/{proveedor}', 'proveedorController@update')->name('proveedorUpdate');
+
+    Route::get('proveedor/datos/{id}', 'proveedorController@datos')->name('datos');
 Route::get('proveedor/show/{proveedor}', 'proveedorController@show')->name('proveedorShow');
-Route::get('proveedor/darBaja/{proveedor}', 'proveedorController@darBaja')->name('proveedorDarBaja');
-Route::get('sunat/consulta', 'proveedorController@sunat')->name('sunat');
-Route::get('proveedor/origen/{id}', 'proveedorController@origen')->name('origen');
-Route::get('proveedor/pais/{id}', 'proveedorController@pais')->name('pais');
+    Route::get('proveedor/darBaja/{proveedor}', 'proveedorController@darBaja')->name('proveedorDarBaja');
+    Route::get('proveedor/darAlta/{proveedor}', 'proveedorController@darAlta')->name('proveedorDarAlta');
+    Route::get('sunat/consulta', 'proveedorController@sunat')->name('sunat');
+    Route::get('proveedor/origen/{id}', 'proveedorController@origen')->name('origen');
+    Route::get('proveedor/pais/{id}', 'proveedorController@pais')->name('pais');
 
+Route::get('proveedor/buscar/{ruc}/{razon}/{etiqueta}', 'proveedorController@buscar')->name('proveedorBuscar');
 
+    //Expediente Proveedor
+    Route::name('proveedorExpedienteDownload')->get('/proveedor/expediente/{expediente}/download','proveedorController@download');
+    //Contacto Proveedor
+    Route::POST('proveedor/contacto/create', 'proveedorController@contactoStore')->name('contactoProveedorCreate');
 //CLIENTE
 Route::get('cliente', 'clienteController@index')->name('clienteIndex');
 Route::GET('cliente/registrar', 'clienteController@create')->name('clienteCreate');
 
-    //Expediente Proveedor
-    Route::name('proveedorExpedienteDownload')->get('/proveedor/expediente/{expediente}/download','proveedorController@download');
+
 //PRODUCTO
 Route::POST('/producto', 'productoController@index')->name('productoBuscar');
 

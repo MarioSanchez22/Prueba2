@@ -141,11 +141,11 @@
                                                     @endif
                                                     </td>
                                                     <td>  <a href="{{route('proveedorShow',[ $proveedores->PROVE_id] )}}" class="action-icon" title="Ver"> <i class="mdi mdi-eye"></i></a>
-                                                        <a href="javascript:void(0);" class="action-icon" title="Editar"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                        <a href="{{route('proveedorEdit',[$proveedores->PROVE_id])}}" class="action-icon" title="Editar"> <i class="mdi mdi-square-edit-outline"></i></a>
                                                         @if($proveedores->PROVE_estado==1)
                                                         <a href="{{route('proveedorDarBaja',[ $proveedores->PROVE_id] )}}" class="action-icon" title="Bloquear"> <i class="mdi mdi-block-helper"></i></a></td>
                                                         @else
-                                                        <a href="{{route('proveedorDarBaja',[ $proveedores->PROVE_id] )}}" class="action-icon" title="Activar"> <i class="mdi mdi-transfer-up"></i></a></td>
+                                                        <a href="{{route('proveedorDarAlta',[ $proveedores->PROVE_id] )}}" class="action-icon" title="Activar"> <i class="mdi mdi-transfer-up"></i></a></td>
                                                         @endif
                                                 </tr>
                                     @endforeach
@@ -293,10 +293,19 @@
 
 <script>
      $('#buscar').click(function(){
+        var ruc=$('#PROVE_ruc').val();
+        var razon=$('#PROVE_razon_social').val();
+        var etiqueta=$('#PROVE_etiqueta').val();
         $('#tablageneral').hide();
-    var ruc=$('#PROVE_ruc').val();
-    var razon=$('#PROVE_razon_social').val();
-    var etiqueta=$('#PROVE_etiqueta').val();
+        if(ruc==''){
+            ruc='0';
+        }
+        if(razon==''){
+            razon='0';
+        }
+        if(etiqueta==''){
+            etiqueta='0';
+        }
     $.ajax({
     url:"proveedor/buscar/"+ruc+"/"+razon+"/"+etiqueta,
     method:"GET",

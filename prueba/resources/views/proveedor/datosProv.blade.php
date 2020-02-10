@@ -1,6 +1,5 @@
 
 
-
 @if($tipoPr==1)
 
 <div class="col-md-5">
@@ -41,10 +40,10 @@
 </div>
 <div class="col-md-4">
     <div class="form-group">
-    <label class="control-label" for="PROVE_razon_social">
+    <label class="control-label" for="PROVE_razon_social" >
        Nombre
     </label>
-    <input type="text" class="form-control form-control-sm" required  placeholder="Razon social" name="PROVE_razon_social"  id="PROVE_razon_social"> </div>
+    <input type="text" class="form-control form-control-sm" required  placeholder="Nombre" name="PROVE_razon_social"  id="PROVE_razon_social"> </div>
 </div>
 @endif
 <div class="col-md-2">
