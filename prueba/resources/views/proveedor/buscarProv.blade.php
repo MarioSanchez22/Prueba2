@@ -39,7 +39,7 @@ color: white;">
                     @endif
                     </td>
                     <td>  <a href="{{route('proveedorShow',[ $proveedores->PROVE_id] )}}" class="action-icon" title="Ver"> <i class="mdi mdi-eye"></i></a>
-                        <a href="javascript:void(0);" class="action-icon" title="Editar"> <i class="mdi mdi-square-edit-outline"></i></a>
+                        <a href="{{route('proveedorEdit',[$proveedores->PROVE_id])}}" class="action-icon" title="Editar"> <i class="mdi mdi-square-edit-outline"></i></a>
                         @if($proveedores->PROVE_estado==1)
                         <a href="{{route('proveedorDarBaja',[ $proveedores->PROVE_id] )}}" class="action-icon" title="Bloquear"> <i class="mdi mdi-block-helper"></i></a></td>
                         @else

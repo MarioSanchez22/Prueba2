@@ -48,32 +48,32 @@
                         <div class="col-12">
                             <div class="page-title-box">
                                 <div class="page-title-right">
-                                   
+
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
-                                     
+
                                 <div class="row icons-list-demo" style="color:#000000">
                                     <div class="col-sm-7 col-md-7 col-lg-4" style="font-size: 19px;font-weight: bold;padding-top: 5px; padding-left: 0px">
                                         <i class="mdi mdi-24px mdi-home-city" style=" margin-right: -6px;color:#000000"></i> PROVEEDORES
-                                    </div>  
+                                    </div>
                                     <div class="col-md-8" style="padding-top: 6px">
                                         <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" onclick="location.href='{{route('proveedorCreate')}}'"><span class=" fa fa-user-plus"> </span>  Proveedor</button>
                                     </div>
                             </div>
                         </div>
-                        
+
                     </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="row" style="margin-top: 10px;">
-                        
+
                         <div class="col 12 bounceInLeft animated">
-                            
+
                       <div class="card-box font-italic Italica" style="padding-bottom: 8px; padding-top: 8px; margin-bottom: 0px; background: #00526b; color:#fff">
-                        
+
                         <div class="row">
                         <div class="col-md-3">
                             <form action="" class="form-inline">
@@ -101,17 +101,17 @@
                         </div>
                         <div class="col-md-2" style="padding-left: 10%" >
                              <button class="btn  btn-blue btn-sm"  id="buscar" name="buscar"><i class="fe-search" style="font-size:16px"></i>  </button>
-                          
+
                             </div>
                         </div>
 
                       </div>
                       <div card-header style="background:#4584a2; height: 4px;"><br></div>
                           <div class="card">
-                           
+
                             <!-- /.card-header -->
                             <div class="card-body" style="background:#fff">
-                               
+
                                 <div id="tablageneral" class="bounceInLeft animated">
                                 <table   data-toggle="table"
                                 data-page-size="6"

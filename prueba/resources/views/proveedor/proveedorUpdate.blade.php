@@ -63,7 +63,7 @@
                             <!-- /.card-header -->
                             <div class="card-body col-md-12" style="padding-left: 0px; padding-right: 0px;">
                                 <div class="row" >
-                                    <form action=" {{route('proveedorStore')}} " method="POST" enctype="multipart/form-data" class="col-md-12">
+                                    <form action=" {{route('proveedorUpdate',['proveedor'=>$proveedor])}} " method="POST" enctype="multipart/form-data" class="col-md-12">
                                     {{ csrf_field()}}
                                         <div class="card-box " style=" padding-top: 0px; margin-bottom: 0px;padding-bottom: 5px;">
                                             <ul class="nav nav-tabs" style="background:#f5f5f5">
@@ -111,13 +111,13 @@
                                                                 <label class="control-label" for="PROVE_razon_social">
                                                                    Razon social
                                                                 </label>
-                                                                <input type="text" class="form-control form-control-sm" required  placeholder="Razon social" id="PROVE_razon_social" name="PROVE_razon_social"> </div>
+                                                                <input type="text" class="form-control form-control-sm" required  placeholder="Razon social" id="PROVE_razon_social" name="PROVE_razon_social" value="{{$proveedor->PROVE_razon_social}}"> </div>
                                                             </div>
 
                                                                <div class="col-md-5">
                                                                 <div class="form-group">
                                                                   <label class="control-label">Razon comercial: </label>
-                                                                  <input type="text" class="form-control form-control-sm" placeholder="Razon comercial" name="PROVE_razon_comercial" id="PROVE_razon_comercial"> </div>
+                                                                  <input type="text" class="form-control form-control-sm" placeholder="Razon comercial" name="PROVE_razon_comercial" id="PROVE_razon_comercial" value="{{$proveedor->PROVE_razon_comercial}}"> </div>
                                                                </div>
                                                                @endif
                                                                @if($proveedor->TIPPROVE_id==2)
@@ -209,7 +209,10 @@
                                                 </div>
 
                                                 <div class="tab-pane " id="messages">
-                                                        <div class="row">
+                                                    <div class="row" id="divmsg" style="display:none" class="alert alert-primary" role="alert "></div>
+
+                                                    <div class="row">
+
                                                         <div class="col-sm-10">
                                                         <label for="" class="control-label">Contacto(s):</label>   </div>
                                                         <div class="col-sm-2">
@@ -218,7 +221,7 @@
                                                     </div>
 
                                                         <!--  Modal content for the above example -->
-                                                            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                                                            <div class="modal fade bs-example-modal-lg" id="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
                                                                 <div class="modal-dialog modal-lg">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
@@ -260,8 +263,7 @@
 
 
 
-                                                        <div class="row">
-
+                                                    <div class="row" id="contacto">
                                                         <div class="col-sm-2"><label >Cargo: </label></div>
                                                         <span class="col-sm-1"></span>
                                                         <div class="col-sm-2"><label >Nombre: </label></div>
@@ -269,21 +271,24 @@
                                                         <div class="col-sm-2"><label >Número: </label></div>
                                                         <span class="col-sm-1"></span>
                                                         <div class="col-sm-2"><label >Email: </label></div>
-                                                        </div>
+                                                    </div>
+                                                    <div id="ProveedorContactos">
                                                         @foreach ($contactoPro as $contactos)
-                                                            <div  class="row" style="margin-bottom: 2%;">
+                                                        <div  class="row" style="margin-bottom: 2%;">
                                                             <input type="text" name="PROVECONT_descripcion[]" id="PROVECONT_descripcion"  class="form-control form-control-sm col-sm-2" style="margin-left: 2%;" value="{{$contactos->PROVECONT_descripcion}}">
-                                                                <span class="col-sm-1"></span>
-                                                                <input type="text" name="PROVECONT_nombre[]" id="PROVECONT_nombre"  class="form-control form-control-sm col-sm-2" value="{{$contactos->PROVECONT_nombre}}">
-                                                                <span class="col-sm-1"></span>
-                                                                <input type="number" name="PROVECONT_telefono[]" id="PROVECONT_telefono"  class="form-control form-control-sm col-sm-2" value="{{$contactos->PROVECONT_telefono}}">
-                                                                <span class="col-sm-1"></span>
-                                                                <input type="email" name="PROVECONT_email[]"  id="PROVECONT_email" class=" form-control form-control-sm col-sm-2" style="margin-right: 2%;" value="{{$contactos->PROVECONT_email}}">
-                                                                <!--<input class="btn btn-primary bt_plus" id="100" type="button" value="+">-->
-                                                                <button class="btn btn-primary" id="{{$loop->index+1}}" type="button"  style="padding: 4px 8px; background-color: #446e8c; border-Color:#04233a;"><i class="fe-phone-forwarded" style="width:20px; height:20px;" ></i></button>
-                                                                <div class="error_form"></div>
-                                                            </div>
-                                                        @endforeach
+                                                            <span class="col-sm-1"></span>
+                                                            <input type="text" name="PROVECONT_nombre[]" id="PROVECONT_nombre"  class="form-control form-control-sm col-sm-2" value="{{$contactos->PROVECONT_nombre}}">
+                                                            <span class="col-sm-1"></span>
+                                                            <input type="number" name="PROVECONT_telefono[]" id="PROVECONT_telefono"  class="form-control form-control-sm col-sm-2" value="{{$contactos->PROVECONT_telefono}}">
+                                                            <span class="col-sm-1"></span>
+                                                            <input type="email" name="PROVECONT_email[]"  id="PROVECONT_email" class=" form-control form-control-sm col-sm-2" style="margin-right: 2%;" value="{{$contactos->PROVECONT_email}}">
+                                                            <!--<input class="btn btn-primary bt_plus" id="100" type="button" value="+">-->
+                                                            <button class="btn btn-primary" id="{{$loop->index+1}}" type="button"  style="padding: 4px 8px; background-color: #446e8c; border-Color:#04233a;"><i class="fe-phone-forwarded" style="width:20px; height:20px;" ></i></button>
+                                                            <div class="error_form"></div>
+                                                        </div>
+                                                    @endforeach
+                                                    </div>
+
 
 
 
@@ -339,11 +344,16 @@
     <script>
         $(document).ready(function() {
 
+
+
+
+
             $.ajaxSetup({
                 headers:{
                     'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
                 }
             });
+//////////////////////////////////////////
         //Llenar div de datos al inicio
         $(".bt_guarda").each(function (el){
             $(this).bind("click",saveContacto);
@@ -372,6 +382,20 @@
 	        });
 //Llenar div de pais al cambiar
         });
+
+        function mostrarMensaje(mensaje){
+            $('#divmsg').empty();
+            $('#divmsg').append("<p>"+mensaje+"</p>");
+            $('#divmsg').show(500);
+            $('#divmsg').hide(5000);
+        };
+        function limpiarFormContacto(){
+            $('#PROVECONT_descripcion').val('');
+            $('#PROVECONT_nombre').val('');
+            $('#PROVECONT_telefono').val('');
+            $('#PROVECONT_email').val('');
+        };
+
         function saveContacto(){
             var cargo=$('#PROVECONT_descripcion').val();
             var nombre=$('#PROVECONT_nombre').val();
@@ -385,10 +409,16 @@
                         PROVECONT_descripcion:cargo,PROVECONT_nombre:nombre,PROVECONT_telefono:telefono,
                         PROVECONT_email:email
                     },
-                    success:function(data){
+                success:function(data){
+                    $('#modal').modal("hide");
+                    mostrarMensaje(data.mensaje);
+                    $('#ProveedorContactos').html(data);
+                    limpiarFormContacto();
+                }
+        });
 
-                        }
-                });
+
+
 
         }
 </script>

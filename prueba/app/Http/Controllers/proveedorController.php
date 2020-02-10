@@ -146,9 +146,11 @@ public function editar($proveedor){
     $proveedor2=proveedor::find($proveedor);
     $tipoPro=tipo_proveedor::where('TIPPROVE_id','=',$proveedor2->TIPPROVE_id)->get();
     $contactoPro=proveedor_contacto::where('PROVE_id','=',$proveedor2->PROVE_id)->get();
-
    return view('proveedor.proveedorUpdate',['proveedor'=>$proveedor2,'tipopro'=>$tipoPro[0],'contactoPro'=>$contactoPro]);
 }
+
+
+
 public function sunat(Request $request){
             if ($request->ajax()) {
                 $ruc=$request->get('ruc');
@@ -195,14 +197,22 @@ public function datos($id){
         }
         public function show($proveedor){
             $prove=proveedor::find($proveedor);
-            $contacto=proveedor_contacto::where('PROVE_id','=',$proveedor)->get();
+
             $expediente=proveedorExpediente::where('PROVE_id','=',$proveedor)->get();
             $cuenta=proveedor_cuenta::where('PROVE_id','=',$proveedor)->get();
             $tipo=tipo_proveedor::where('TIPPROVE_id','=',$prove->TIPPROVE_id)->get();
-
-
-            return view('proveedor.proveedorShow',['proveedor'=>$prove,'contacto'=>$contacto,'expediente'=>$expediente,'cuenta'=>$cuenta,'tipo'=>$tipo]);
+            $contactoPro=proveedor_contacto::where('PROVE_id','=',$proveedor)->get();
+            return view('proveedor.proveedorShow',['proveedor'=>$prove,'contacto'=>$contactoPro,'expediente'=>$expediente,'cuenta'=>$cuenta,'tipo'=>$tipo]);
         }
+        public function update($proveedor,Request $request){
+            dd($request);
+        }
+
+
+
+
+
+
 
         public function download(proveedorExpediente $expediente){
             //dd($expediente->PROEXP_ruta->getClientOriginalExtension());
@@ -226,10 +236,18 @@ public function datos($id){
             $proveedor2->save();
             return back();
         }
-    public function contactoStore($proveedor,Request $request){
-        $contactoPro=new proveedor_contacto();
-        dd($request->get('PROVECONT_descripcion'));
-
-    }
+        public function contactoStore($proveedor,Request $request){
+            $contactoPro=new proveedor_contacto();
+            $contactoPro->PROVECONT_descripcion=$request->get('PROVECONT_descripcion');
+            $contactoPro->PROVECONT_nombre=$request->get('PROVECONT_nombre');
+            $contactoPro->PROVECONT_telefono=$request->get('PROVECONT_telefono');
+            $contactoPro->PROVECONT_email=$request->get('PROVECONT_email');
+            $contactoPro->PROVE_id=$proveedor;
+            $contactoPro->created_at=now();
+            $contactoPro->updated_at=null;
+            $contactoPro->save();
+            $contacto=proveedor_contacto::where('PROVE_id','=',$proveedor)->get();
+            return view('proveedor.proveedorContactos',['contactoPro'=>$contacto]);
+        }
 
     }
