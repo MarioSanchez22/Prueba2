@@ -226,8 +226,10 @@ public function datos($id){
             $proveedor2->save();
             return back();
         }
-    public function contactoStore(Request $request){
-        dd($request);
+    public function contactoStore($proveedor,Request $request){
+        $contactoPro=new proveedor_contacto();
+        dd($request->get('PROVECONT_descripcion'));
+
     }
 
     }

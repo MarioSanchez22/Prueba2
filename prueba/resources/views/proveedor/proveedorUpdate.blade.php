@@ -377,12 +377,13 @@
             var nombre=$('#PROVECONT_nombre').val();
             var telefono=$('#PROVECONT_telefono').val();
             var email=$('#PROVECONT_email').val();
+
                 $.ajax({
-                    url:"{{route('contactoProveedorCreate')}}",
+                    url:"{{route('contactoProveedorCreate',['proveedor'=>$proveedor])}}",
                     method:"POST",
                     data:{
                         PROVECONT_descripcion:cargo,PROVECONT_nombre:nombre,PROVECONT_telefono:telefono,
-                        PROVECONT_email:email,PROVE_id:
+                        PROVECONT_email:email
                     },
                     success:function(data){
 
