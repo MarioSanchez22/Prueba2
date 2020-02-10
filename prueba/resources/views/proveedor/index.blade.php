@@ -114,7 +114,7 @@
                                
                                 <div id="tablageneral" class="bounceInLeft animated">
                                 <table   data-toggle="table"
-                                data-page-size="4"
+                                data-page-size="6"
                                 data-buttons-class="xs btn-light"
                                 data-pagination="true" class="table-bordered ">
                                 <thead class="" style="background: #003346;

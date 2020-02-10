@@ -109,31 +109,31 @@
                       <div class="row">
                      
                        <div class="col-md-4" style="border-right: solid; border-color:#afbdca">
-                        <div class="form-group ">
+                        <div class="form-group " style=" margin-bottom: 2px;">
                         <label class="control-label"><i class="mdi mdi-timer mr-1"></i>Dias de crédito: </label>
                         <input type="number" readonly="" class="form-control-plaintext form-control-sm "  required min="1" placeholder="Dias de crédito" name="PROVE_dias_credito" value="{{$proveedor->PROVE_dias_credito }}">
                          </div>
                          </div>
                          
                 <div class="col-md-4" style="border-right: solid; border-color:#afbdca">
-                    <div class="form-group">
+                    <div class="form-group" style=" margin-bottom: 2px;">
                         <label class="control-label" for="PROVE_telefono"><i class="mdi mdi-phone mr-1"></i>Telefono: </label>
                         <input type="text" readonly="" class="form-control-plaintext form-control-sm "  required placeholder="Telefono" name="PROVE_telefono" value=" {{$proveedor->PROVE_telefono }}"> </div>
                     </div>
                 <div class="col-md-4" style="border-right: solid;border-color:#afbdca ">
-                    <div class="form-group">
+                    <div class="form-group" style=" margin-bottom: 2px;">
                         <label class="control-label" for="PROVE_web"><i class="mdi mdi-web mr-1"></i>Web: </label>
                         <input type="text" readonly="" class="form-control-plaintext form-control-sm "   placeholder="Direccion web" name="PROVE_web" value=" {{$proveedor->PROVE_web }}"> </div>
                     </div>
                     <div class="col-md-12" style="border-top: solid;border-color:#afbdca ">
                     </div>
                     <div class="col-md-6 " style="border-right: solid;border-color:#afbdca ">
-                    <div class="form-group">
+                    <div class="form-group" style=" margin-bottom: 2px;">
                         <label class="control-label" for="PROVE_email" > <i class="mdi mdi-email mr-1"></i>Email: </label>
                         <input type="text" creadonly="" class="form-control-plaintext form-control-sm "  required  placeholder="Email" name="PROVE_email" value=" {{$proveedor->PROVE_email }}"> </div>
                     </div>
                     <div class="col-md-6 " style="border-right: solid;border-color:#afbdca ">
-                        <div class="form-group">
+                        <div class="form-group" style=" margin-bottom: 2px;">
                         <label class="control-label"><i class="mdi mdi-needle mr-1"></i>Etiquetas:</label>
                         <input type="text" creadonly="" class="form-control-plaintext form-control-sm "  required  placeholder="Email" name="PROVE_email" value="{{$proveedor->PROVE_etiqueta }}"> </div>
                     </div>
