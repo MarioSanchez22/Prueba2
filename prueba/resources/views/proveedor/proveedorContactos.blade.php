@@ -1,4 +1,4 @@
-@foreach ($contactoPro as $contactos)
+@foreach ($contactoPro as $contactos) 
     <div  class="row" style="margin-bottom: 2%;">
         <input type="text" name="PROVECONT_descripcion[]" id="PROVECONT_descripcion"  class="form-control form-control-sm col-sm-2" style="margin-left: 2%;" value="{{$contactos->PROVECONT_descripcion}}">
         <span class="col-sm-1"></span>
