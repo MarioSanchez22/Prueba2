@@ -21,7 +21,7 @@
 
     </head>
 
-    <body>
+    <body style="color: #4585bd;">
 
         <!-- Begin page -->
         <div id="wrapper">
@@ -58,202 +58,163 @@
                                         <li class="breadcrumb-item active">Calendar</li>
                                     </ol>
                                 </div>
-                            <h4 class="page-title">PROVEEDOR: {{$proveedor->PROVE_razon_social}}</h4>
+                            <h4 class="page-title">PROVEEDOR </h4>
                             </div>
                         </div>
-                    </div>
+                    </div>  <!-- end row -->
 
                     <div class="row">
                         <div class="col-md-12">
-                          <div class="card" style=" margin-bottom: 0px;   ">
-
+                         
                             <!-- /.card-header -->
-                            <div class="card-body col-md-12" style="padding-left: 0px; padding-right: 0px;">
+                           
                                 <div class="row" >
-                                    <form action=" {{route('proveedorStore')}} " method="POST" enctype="multipart/form-data" class="col-md-12">
-                                    {{ csrf_field()}}
-                                        <div class="card-box " style=" padding-top: 0px; margin-bottom: 0px;padding-bottom: 5px;">
-                                            <ul class="nav nav-tabs" style="background:#f5f5f5">
-                                                <li class="nav-item">
-                                                    <a href="#home" data-toggle="tab" aria-expanded="false" class="nav-link active">
-                                                       Datos de Proveedor
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                            <div class="tab-content ">
-                                                <div class="tab-pane show active " id="home">
-                                                    <div class="row">
-                                                        <div class=" col-md-3">
-                                                          <label class="labelEstilo" for="" >Tipo de proveedor:</label>
-                                                        <input  type="text" readonly="" class="form-control-plaintext form-control-sm" id="example-static" value="{{$tipo[0]->TIPPROVE_descripcion}}" >
-                                                          </div>
-                                                       
-                                                            <div class="col-md-3">
-                                                                <div class="form-group">
-                                                                    <label class="labelEstilo">RUC: </label>
-                                                                    <div class="input-group">
-                                                                    <input  type="text" readonly="" class="form-control-plaintext form-control-sm" id="example-static" value="{{$proveedor->PROVE_ruc }}" >
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                <div class="col-lg-4 col-xl-4">
+                                <div class="card-box text-center">
+                                    <img src="{{asset('proveedor.png')}}" class="rounded-circle avatar-lg img-thumbnail"
+                                        alt="profile-image">
 
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                            @if($tipo[0]->TIPPROVE_id==1)
-                                                                <label class="labelEstilo" for="PROVE_razon_social">
-                                                                Razon social
-                                                                </label>
-                                                            @else
-                                                                <label class="labelEstilo" for="PROVE_razon_social">
-                                                                Nombre:
-                                                                </label>
-                                                            @endif
-                                                            <input type="text" readonly="" class="form-control-plaintext form-control-sm" value="{{$proveedor->PROVE_razon_social }}"> </div>
-                                                        </div>
-                                                        @if($tipo[0]->TIPPROVE_id==1)
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                            <label class="control-label">Razon comercial: </label>
-                                                            <input type="text" class="form-control form-control-sm" placeholder="Razon comercial" name="PROVE_razon_comercial" id="PROVE_razon_comercial" value="{{$proveedor->PROVE_razon_comercial }}"> </div>
-                                                        </div>
-                                                        @else
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label class="control-label">Tipo de documento: </label>
-                                                            <input  type="text" readonly="" class="form-control-plaintext form-control-sm" id="example-static" value="{{$proveedor->PROVEDOC_descripcion }}" >
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <label class="control-label" for="PROVE_dni">
-                                                                Documento
-                                                            </label>
-                                                            <input  type="text" readonly="" class="form-control-plaintext form-control-sm" id="example-static" value="{{$proveedor->PROVE_dni }}" >
-                                                        </div>
+                                    <h4 class="mb-0">{{$proveedor->PROVE_razon_social}}</h4> <BR>
+                                    <p >RUC: {{$proveedor->PROVE_ruc}}</p>
+                                    <p >DNI: {{$proveedor->PROVE_dni}}</p>
+                                    @if($proveedor->PROVE_estado==1)
+                                    <button type="button" class="btn btn-success btn-xs waves-effect mb-2 waves-light">Activo</button>
+                                    @else
+                                    <button type="button" class="btn btn-danger btn-xs waves-effect mb-2 waves-light">Bloqueado</button>
+                                    @endif 
+                                    
+                                    
 
-                                                        @endif
-                                                    </div>
+                                    <div class="text-center mt-3">
+                                        <h4 class="font-13 text-uppercase text-center">Ubicacion :</h4>
+                                        
+                                        <p class="text-muted mb-2 font-13"><strong>Origen:</strong> <span class="ml-2">{{$proveedor->PROVE_origen }}</span></p>
 
+                                        <p class="text-muted mb-2 font-13"><strong>Pais :</strong><span class="ml-2">{{$proveedor->PROVE_pais }}</span></p>
 
+                                        <p class="text-muted mb-2 font-13"><strong>Region :</strong> <span class="ml-2 ">{{$proveedor->PROVE_region }}</span></p>
 
+                                        <p class="text-muted mb-1 font-13"><strong>Direccion :</strong> <span class="ml-2">{{$proveedor->PROVE_direccion }}</span></p>
+                                    </div>
 
-                                                        <div class="col-md-2">
-                                                            <div class="form-group">
-                                                            <label class="control-label">Dias de crédito: </label>
-                                                            <input type="number" class="form-control form-control-sm" required min="1" placeholder="Dias de crédito" name="PROVE_dias_credito" value="{{$proveedor->PROVE_dias_credito }}"> </div>
-                                                        </div>
+                                  
+                                </div> <!-- end card-box -->
 
-                                                        <div class="col-md-12" style=" padding-bottom: 18px;">
-                                                            <div class="row">
-                                                        <div class="col-md-4">
-                                                            <label class="labelEstilo" for="">Origen de proveedor</label>
-                                                            <input class="form-control form-control-sm" type="text" value="{{$proveedor->PROVE_origen }}">
-                                                          </div>
-                                                          <div class="col-md-4">
-                                                            <label class="labelEstilo" for="">País</label>
-                                                            <input class="form-control form-control-sm" type="text" value="{{$proveedor->PROVE_pais }}">
-                                                          </div>
-                                                          <div class="col-md-4">
-                                                            <label class="labelEstilo" for="">Región</label>
-                                                            <input class="form-control form-control-sm" type="text" value="{{$proveedor->PROVE_region }}">
-                                                        </div>
+                              
 
-                                                        </div></div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                              <label class="control-label">Direccion: </label>
-                                                              <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion" value="{{$proveedor->PROVE_direccion }}"> </div>
-                                                           </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                              <label class="control-label" for="PROVE_telefono">Telefono: </label>
-                                                              <input type="text" class="form-control form-control-sm" required placeholder="Telefono" name="PROVE_telefono" value="{{$proveedor->PROVE_telefono }}"> </div>
-                                                           </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                              <label class="control-label" for="PROVE_web">Web: </label>
-                                                              <input type="text" class="form-control form-control-sm"  placeholder="Direccion web" name="PROVE_web" value="{{$proveedor->PROVE_web }}"> </div>
-                                                           </div>
-                                                           <div class="col-md-6">
-                                                            <div class="form-group">
-                                                              <label class="control-label" for="PROVE_email" >Email: </label>
-                                                              <input type="text" class="form-control form-control-sm" required  placeholder="Email" name="PROVE_email" value="{{$proveedor->PROVE_email }}"> </div>
-                                                           </div>
-                                                           <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                <label class="control-label">Etiquetas:</label>
-                                                                <textarea class="form-control" id="example-textarea" rows="3" name="PROVE_etiqueta">{{$proveedor->PROVE_etiqueta }}</textarea></div>
-                                                                </div>
-                                                    </div>
-                                                </div>
+                            </div> <!-- end col-->
 
+                     <div class="col-lg-8 col-xl-8">
+                     <div class="card-box ">
+                      <div class="row">
+                     
+                       <div class="col-md-4" style="border-right: solid; border-color:#afbdca">
+                        <div class="form-group " style=" margin-bottom: 2px;">
+                        <label class="control-label"><i class="mdi mdi-timer mr-1"></i>Dias de crédito: </label>
+                        <input type="number" readonly="" class="form-control-plaintext form-control-sm "  required min="1" placeholder="Dias de crédito" name="PROVE_dias_credito" value="{{$proveedor->PROVE_dias_credito }}">
+                         </div>
+                         </div>
+                         
+                <div class="col-md-4" style="border-right: solid; border-color:#afbdca">
+                    <div class="form-group" style=" margin-bottom: 2px;">
+                        <label class="control-label" for="PROVE_telefono"><i class="mdi mdi-phone mr-1"></i>Telefono: </label>
+                        <input type="text" readonly="" class="form-control-plaintext form-control-sm "  required placeholder="Telefono" name="PROVE_telefono" value=" {{$proveedor->PROVE_telefono }}"> </div>
+                    </div>
+                <div class="col-md-4" style="border-right: solid;border-color:#afbdca ">
+                    <div class="form-group" style=" margin-bottom: 2px;">
+                        <label class="control-label" for="PROVE_web"><i class="mdi mdi-web mr-1"></i>Web: </label>
+                        <input type="text" readonly="" class="form-control-plaintext form-control-sm "   placeholder="Direccion web" name="PROVE_web" value=" {{$proveedor->PROVE_web }}"> </div>
+                    </div>
+                    <div class="col-md-12" style="border-top: solid;border-color:#afbdca ">
+                    </div>
+                    <div class="col-md-6 " style="border-right: solid;border-color:#afbdca ">
+                    <div class="form-group" style=" margin-bottom: 2px;">
+                        <label class="control-label" for="PROVE_email" > <i class="mdi mdi-email mr-1"></i>Email: </label>
+                        <input type="text" creadonly="" class="form-control-plaintext form-control-sm "  required  placeholder="Email" name="PROVE_email" value=" {{$proveedor->PROVE_email }}"> </div>
+                    </div>
+                    <div class="col-md-6 " style="border-right: solid;border-color:#afbdca ">
+                        <div class="form-group" style=" margin-bottom: 2px;">
+                        <label class="control-label"><i class="mdi mdi-needle mr-1"></i>Etiquetas:</label>
+                        <input type="text" creadonly="" class="form-control-plaintext form-control-sm "  required  placeholder="Email" name="PROVE_email" value="{{$proveedor->PROVE_etiqueta }}"> </div>
+                    </div>
+                    <div class="col-md-12" style="border-top: solid;border-color:#afbdca ">
+                    </div>
+                     </div>  <!-- /.end row -->
+                     </div>  <!-- /.end car box -->
 
-                                                    @if( count($expediente)>=1)
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <label for="PROEXP_descripcion" style=" ">Descripcion:</label>
-                                                                <input type="text" class="form-control "  value={{$expediente[0]->PROEXP_descripcion}}>
-                                                            </div>
-                                                            <br>
-                                                            <div class="col-md-6">
-                                                                <div class="row">
-                                                                    <label for="PROEXP_descripcion" style=" ">Archivo:</label>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <a href="{{route('proveedorExpedienteDownload',['expediente'=>$expediente[0]])}}">
-                                                                        <label for="PROEXP_descripcion" style=" "><i class=' mdi mdi-file-download' style='font-size: xx-large;'></i>{{$expediente[0]->PROEXP_ruta}}</label>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <div class="form-group">
-                                                                    <label class="control-label">Observacion: </label>
-                                                                    <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                     <div class="card-box ">
+                     <div class="row">
+                     @if( count($contacto)>=1)
+                     <div class="col-md-12"><label for="" class="control-label"><i class="mdi mdi-briefcase-account mr-1"></i>Contacto(s):</label> </div>
+                        
+                    @foreach ($contacto as $contactos)
+                    <form class="form-inline col-md-12" style="border-top: solid; padding-top:7px">
+                        <div class="form-group"><label class="control-label">Nombre: </label>  <input type="text"  id="PROVECONT_nombre"  class="form-control-plaintext form-control-sm "  value="{{$contactos->PROVECONT_nombre}}">
+                        </div></form>
+                        <div class="col-md-4">
+                         <div class="form-group">
+                         <label class="control-label" >Cargo: </label>
+                         <input type="text"   class="form-control-plaintext form-control-sm " id="PROVECONT_descripcion"    value="{{$contactos->PROVECONT_descripcion}}">
+                        </div>
+                        </div>
+                        
+                        <div class="col-md-3">
+                        <div class="form-group"><label class="control-label">Número: </label>  <input type="text"    id="PROVECONT_telefono"  class="form-control-plaintext form-control-sm " value="{{$contactos->PROVECONT_telefono}}"></div></div>
+                      
+                        <div class="col-md-4">
+                        <div class="form-group">
+                        <label class="control-label">Email: </label> 
+                         <input type="email"  id="PROVECONT_email" class="form-control-plaintext form-control-sm " style="margin-right: 2%;" value="{{$contactos->PROVECONT_email}}"></div> </div>
+                      
+                   
+                    
+                    @endforeach
+            <br>
+            @endif
 
-                                                    @endif
-                                                    @if( count($contacto)>=1)
-                                                    <div class="row">
-                                                        <div class="col-sm-12">
-                                                        <label for="" class="control-label">Contacto(s):</label>   </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-sm-2"><label >Cargo: </label></div>
-                                                            <span class="col-sm-1"></span>
-                                                            <div class="col-sm-2"><label >Nombre: </label></div>
-                                                            <span class="col-sm-1"></span>
-                                                            <div class="col-sm-2"><label >Número: </label></div>
-                                                            <span class="col-sm-1"></span>
-                                                            <div class="col-sm-2"><label >Email: </label></div>
-                                                        </div>
-                                                        @foreach ($contacto as $contactos)
-                                                        <div id="div_100" class="row" style="margin-bottom: 2%;">
-                                                        <input type="text"  id="PROVECONT_descripcion"  class="form-control form-control-sm col-sm-2" style="margin-left: 2%;" value="{{$contactos->PROVECONT_descripcion}}">
-                                                            <span class="col-sm-1"></span>
-                                                            <input type="text"  id="PROVECONT_nombre"  class="form-control form-control-sm col-sm-2" value="{{$contactos->PROVECONT_nombre}}">
-                                                            <span class="col-sm-1"></span>
-                                                            <input type="text"  id="PROVECONT_telefono"  class="form-control form-control-sm col-sm-2" value="{{$contactos->PROVECONT_telefono}}">
-                                                            <span class="col-sm-1"></span>
-                                                            <input type="email"  id="PROVECONT_email" class=" form-control form-control-sm col-sm-2" style="margin-right: 2%;" value="{{$contactos->PROVECONT_email}}">
-                                                        </div>
-                                                        @endforeach
-                                                </div> <br>
-                                                @endif
-                                      </div>
-                                        </div> <!-- end card-box-->
-                                    </form>
-                                </div>
-                                <!-- end row -->
+               @if( count($expediente)>=1)
+               <div class="col-md-12" style="border-top: solid; padding-top:7px">
+                        <div class="form-group"><label class="control-label">Expediente: </label></div>  </div>
+                    <div class="col-md-6">
+                        <label for="PROEXP_descripcion" style=" "><i class="mdi mdi-clipboard-account-outline mr-1"></i>Descripcion:</label>
+                        <input type="text" class="form-control-plaintext form-control-sm "  value={{$expediente[0]->PROEXP_descripcion}}>
+                    </div>
+                    <br>
+                    <form class="form-inline">
+                    <div class="col-md-6 form-group">
+                       
+                            <label for="PROEXP_descripcion" style=" "><i class="mdi mdi-file mr-1"></i>Archivo:</label>
+                       
+                            <form class="form-inline">
+                            <div class="form-group"><a  href="{{route('proveedorExpedienteDownload',['expediente'=>$expediente[0]])}}">
+                              <span><i class='mdi  mdi-file-download ' style='font-size:18px;'></i>{{$expediente[0]->PROEXP_ruta}}</span>
+                            </a> </div>
+                              </form>
+                        
+                    </div>
+                    </form>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="control-label">Observacion: </label>
+                            <input type="text" class="form-control-plaintext form-control-sm "  value={{$expediente[0]->PROEXP_observacion}}>
+                        </div>
+                    </div>
+               
+              @endif
+              </div>      <!-- /.end row -->
+                     </div>  <!-- /.end car box -->
+                        <div class="card-box">
+                       
+                        </div>
+
+                     </div>  <!-- /.end col lg8 -->
+                     </div>
+                    
                             </div>
                             <!-- /.card-body -->
-                          </div>
-
-
-                        <!-- /.col -->
-                      </div>
-
-                    </div> <!-- container -->
+                     
+                            </div> <!-- end row -->      
+                    </div> <!-- container fluid -->
 
                 </div> <!-- content -->
 
@@ -275,7 +236,7 @@
                     </div>
                 </footer>
                 <!-- end Footer -->
-            </div>
+            </div>  <!-- End Page content -->
             <!-- ============================================================== -->
             <!-- End Page content -->
             <!-- ============================================================== -->
