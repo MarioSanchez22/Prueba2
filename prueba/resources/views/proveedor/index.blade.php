@@ -72,7 +72,7 @@
                         
                         <div class="col 12 bounceInLeft animated">
                             
-                      <div class="card-box font-italic Italica" style="padding-bottom: 8px; padding-top: 8px; margin-bottom: 0px; background: #00526b; color:#fff">
+                      <div class="card-box font-italic Italica" style="padding-bottom: 8px; padding-top: 8px; margin-bottom: 0px; background:#f1f1f1; color:#000">
                         
                         <div class="row">
                         <div class="col-md-3">
@@ -117,7 +117,7 @@
                                 data-page-size="6"
                                 data-buttons-class="xs btn-light"
                                 data-pagination="true" class="table-bordered ">
-                                <thead class="" style="background: #003346;
+                                <thead class="" style="background:#778084;
                                 color: white;">
                                 <tr>
                                 <th data-field="state" >#</th>

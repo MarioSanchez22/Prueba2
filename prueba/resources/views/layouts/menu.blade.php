@@ -1,8 +1,8 @@
-<div class="left-side-menu " style="background-color: #fff;" >
-<div class="slimscroll-menu" style="background-color:#fff;">
+<div class="left-side-menu " style="background-color:#fff;" >
+<div class="slimscroll-menu" >
 
     <!--- Sidemenu -->
-    <div id="sidebar-menu" style="background-color: #fff;">
+    <div id="sidebar-menu" ">
 
         <ul class="metismenu" id="side-menu">
 
