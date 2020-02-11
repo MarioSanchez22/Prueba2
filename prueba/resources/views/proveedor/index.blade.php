@@ -53,9 +53,9 @@
                                 <div class="row">
                                     <div class="col-12">
 
-                                <div class="row icons-list-demo" style="color:#000000">
+                                <div class="row icons-list-demo" style="color:#373f5f">
                                     <div class="col-sm-7 col-md-7 col-lg-4" style="font-size: 19px;font-weight: bold;padding-top: 5px; padding-left: 0px">
-                                        <i class="mdi mdi-24px mdi-home-city" style=" margin-right: -6px;color:#000000"></i> PROVEEDORES
+                                        <i class="mdi mdi-24px mdi-home-city" style=" margin-right: -6px;color:#373f5f"></i> PROVEEDORES
                                     </div>
                                     <div class="col-md-8" style="padding-top: 6px">
                                         <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" onclick="location.href='{{route('proveedorCreate')}}'"><span class=" fa fa-user-plus"> </span>  Proveedor</button>
@@ -72,7 +72,7 @@
 
                         <div class="col 12 bounceInLeft animated">
 
-                      <div class="card-box font-italic Italica" style="padding-bottom: 8px; padding-top: 8px; margin-bottom: 0px; background: #00526b; color:#fff">
+                      <div class="card-box " style="padding-bottom: 8px; padding-top: 8px; margin-bottom: 0px; background: #566675; color:#fff">
 
                         <div class="row">
                         <div class="col-md-3">
@@ -117,8 +117,7 @@
                                 data-page-size="6"
                                 data-buttons-class="xs btn-light"
                                 data-pagination="true" class="table-bordered ">
-                                <thead class="" style="background:#778084;
-                                color: white;">
+                                <thead class="thead-light">
                                 <tr>
                                 <th data-field="state" >#</th>
                                 <th data-field="id" data-switchable="false">RUC</th>
@@ -163,7 +162,7 @@
 
      <!-- Bootstrap Tables js -->
 
-                                <div id ="tabla1" >
+                                <div id ="tabla1" class="bounceInLeft animated">
 
                                 </div>
 

@@ -57,7 +57,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div  class="row bounceInUp animated">
                         <div class="col-md-12">
                           <div class="card" style=" margin-bottom: 0px;   ">
 
@@ -70,17 +70,17 @@
                                             <ul class="nav nav-tabs" style="background:#f5f5f5">
                                                 <li class="nav-item">
                                                     <a href="#home" data-toggle="tab" aria-expanded="false" class="nav-link active">
-                                                       Datos de Proveedor
+                                                        <i class="mdi mdi-database-edit"></i> Datos de Proveedor
                                                     </a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a href="#profile" data-toggle="tab" aria-expanded="true" class="nav-link ">
-                                                        Expediente de Proveedor
+                                                        <i class="mdi mdi-checkbox-multiple-blank-outline"></i>  Expediente de Proveedor
                                                     </a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a href="#messages" data-toggle="tab" aria-expanded="false" class="nav-link">
-                                                        Contacto de Proveedor
+                                                        <i class="mdi mdi-contacts"></i>     Contacto de Proveedor
                                                     </a>
                                                 </li>
                                             </ul>
@@ -104,11 +104,14 @@
                                                             <div class="form-group">
                                                               <label class="control-label">RUC: </label>
                                                               <div class="input-group">
+                                                                <div class="input-group-prepend ">
+                                                                    <span class="input-group-text form-control-sm" style="color:#a9a9a9" id="basic-addon1">#</span>
+                                                                </div>    
                                                               <input type="text" class="form-control form-control-sm"   placeholder="RUC de empresa" name="PROVE_ruc" id="PROVE_ruc">
                                                                 <div  id="cargarRuc" style="display:none"> <button class="btn btn-info btn-sm" type="button"  >
-                                                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="sr-only">f</span>
+                                                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="sr-only"></span>
                                                             </button></div>
-
+                                                          
 
                                                             </div>
                                                             </div>
@@ -141,23 +144,36 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                               <label class="control-label">Direccion: </label>
+                                                              <div class="input-group">
+                                                                <div class="input-group-prepend ">
+                                                                    <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-bank-transfer-in"></i></span>
+                                                                </div> 
                                                               <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion"> </div>
-                                                           </div>
+                                                           </div></div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                               <label class="control-label" for="PROVE_telefono">Telefono: </label>
-                                                              <input type="text" class="form-control form-control-sm" required placeholder="Telefono" name="PROVE_telefono"> </div>
-                                                           </div>
+                                                              <div class="input-group">
+                                                                <div class="input-group-prepend ">
+                                                                    <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-phone mr-1"></i></span>
+                                                                </div> <input type="text" class="form-control form-control-sm" required placeholder="Telefono" name="PROVE_telefono"> </div>
+                                                           </div></div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                               <label class="control-label" for="PROVE_web">Web: </label>
-                                                              <input type="text" class="form-control form-control-sm"  placeholder="Direccion web" name="PROVE_web"> </div>
-                                                           </div>
+                                                              <div class="input-group">
+                                                                <div class="input-group-prepend ">
+                                                                    <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-web mr-1"></i></span>
+                                                                </div> <input type="text" class="form-control form-control-sm"  placeholder="Direccion web" name="PROVE_web"> </div>
+                                                           </div></div>
                                                            <div class="col-md-6">
                                                             <div class="form-group">
                                                               <label class="control-label" for="PROVE_email" >Email: </label>
-                                                              <input type="text" class="form-control form-control-sm" required  placeholder="Email" name="PROVE_email"> </div>
-                                                           </div>
+                                                              <div class="input-group">
+                                                                <div class="input-group-prepend ">
+                                                                    <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-email mr-1"></i></span>
+                                                                </div>  <input type="text" class="form-control form-control-sm" required  placeholder="Email" name="PROVE_email"> </div>
+                                                           </div></div>
                                                            <div class="col-md-12">
                                                             <div class="form-group">
                                                               <label class="control-label">Etiquetas: </label>

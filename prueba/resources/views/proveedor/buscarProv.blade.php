@@ -7,8 +7,7 @@
 data-page-size="5"
 data-buttons-class="xs btn-light"
 data-pagination="true" class="table-bordered " style="display: inline-table;">
-<thead class="" style="background:#778084;
-color: white;">
+<thead class="thead-light">
 <tr>
 <th data-field="state" >#</th>
 <th data-field="id" data-switchable="false">RUC</th>

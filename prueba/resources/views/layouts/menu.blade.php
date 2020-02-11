@@ -1,14 +1,14 @@
-<div class="left-side-menu " style="background-color:#ffffff;" >
+<div class="left-side-menu " style="background-color:#f9f9f9" >
 <div class="slimscroll-menu" >
 
     <!--- Sidemenu -->
-    <div id="sidebar-menu" ">
+    <div id="sidebar-menu" >
 
         <ul class="metismenu" id="side-menu">
 
-            <li class="menu-title" style="border-bottom: 1px solid #cac8c8;">Navigation</li>
+            <li class="menu-title" >Navigation</li>
 
-            <li style="border-bottom: 1px solid #cac8c8;">
+            <li >
                 <a href="javascript: void(0);">
                     <i class="fe-airplay"></i>
                     <span class="badge badge-success badge-pill float-right">4</span>
@@ -35,7 +35,7 @@
 
 
 
-            <li style="border-bottom: 1px solid #cac8c8;">
+            <li >
                 <a href="javascript: void(0);">
                     <i class="fe-sidebar"></i>
                     <span class="badge badge-pink float-right">New</span>
@@ -68,7 +68,7 @@
 
 
 
-            <li style="border-bottom: 1px solid #cac8c8;">
+            <li >
                 <a href="javascript: void(0); class="nav-link {{ ! Route::is('proveedorIndex')?:'active'}}"">
                     <i class="fe-map"></i>
                     <span> Maps </span>
@@ -87,17 +87,17 @@
                 </ul>
             </li>
 
-            <li style="border-bottom: 1px solid #cac8c8;">
+            <li >
                 <a href="javascript: void(0);">
                     <i class="fe-folder-plus"></i>
                     <span> Multi Level </span>
                     <span class="menu-arrow"></span>
                 </a>
                 <ul class="nav-second-level nav" aria-expanded="false">
-                    <li style="border-bottom: 1px solid #cac8c8;">
+                    <li >
                         <a href="javascript: void(0);">Level 1.1</a>
                     </li>
-                    <li style="border-bottom: 1px solid #cac8c8;">
+                    <li >
                         <a href="javascript: void(0);" aria-expanded="false">Level 1.2
                             <span class="menu-arrow"></span>
                         </a>
