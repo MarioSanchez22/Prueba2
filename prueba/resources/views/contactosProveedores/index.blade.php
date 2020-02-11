@@ -1,4 +1,4 @@
-@php 
+@php
 use App\proveedor;
 @endphp
 <!DOCTYPE html>
@@ -77,7 +77,7 @@ use App\proveedor;
                             <form action="" class="form-inline">
                             <div class="form-group">
                             <label class="control-label" >Empresa:</label>&nbsp&nbsp
-                             <input type="text"  id="PROVE_ruc" name="PROVE_ruc" class="form-control form-control-sm">
+                             <input type="text"  id="PROVE_razon_social" name="PROVE_razon_social" class="form-control form-control-sm">
                             </div>
                         </form>
                         </div>
@@ -85,7 +85,7 @@ use App\proveedor;
                             <form action="" class="form-inline">
                             <div class="form-group">
                             <label class="control-label" >Nombre:</label>&nbsp&nbsp
-                            <input type="text" id="PROVE_razon_social" name="PROVE_razon_social" class="form-control form-control-sm">
+                            <input type="text" id="PROVECONT_nombre" name="PROVECONT_nombre" class="form-control form-control-sm">
                             </div>
                         </form>
                         </div>
@@ -93,74 +93,58 @@ use App\proveedor;
                             <form action="" class="form-inline">
                             <div class="form-group">
                             <label class="control-label" >Etiquetas: </label> &nbsp&nbsp
-                             <input type="text" id="PROVE_etiqueta" name="PROVE_etiqueta" class="form-control form-control-sm">
+                             <input type="text" id="PROVECONT_etiqueta" name="PROVECONT_etiqueta" class="form-control form-control-sm">
                             </div>
                             </form>
                         </div>
                         <div class="col-md-2" style="padding-left: 10%" >
                              <button class="btn  btn-blue btn-sm"  id="buscar" name="buscar"><i class="fe-search" style="font-size:16px"></i>  </button>
-
                             </div>
                         </div>
-
                       </div>
-
                           <div class="card">
-
                             <!-- /.card-header -->
                             <div class="card-body" style="background:#fff">
-
                                 <div id="tablageneral" class="bounceInLeft animated">
-                                <table   data-toggle="table"
-                                data-page-size="6"
-                                data-buttons-class="xs btn-light"
-                                data-pagination="true" class="table-bordered ">
-                                <thead class="" style="background:#778084;
-                                color: white;">
-                                <tr>
-                                <th data-field="state" >#</th>
-                                <th data-field="nombre" data-switchable="false">Nombre</th>
-                                <th data-field="cargo">Cargo</th>
-                                <th data-field="empresa">Empresa</th  >
-                                <th data-field="etiqueta">Etiqueta</th>  
-                                <th data-field="telefono">Telefono</th>
-                                <th data-field="email">Email</th>
-                                <th data-field="usuario">Usuario</th>
-                                
-                                </tr>
-                                </thead>
-                                    <tbody>
-                                    @foreach($contactos as $contacto)
-                                        @php
-                                            $empresa=proveedor::where('PROVE_id','=',$contacto->PROVE_id)->get(); 
-                                            //dd($empresa);
-                                        @endphp
-                                        <tr>
-                                            <td>{{$loop->index+1}}</td>
-                                            <td>{{$contacto->PROVECONT_nombre}}</td>
-                                            
-                                            <td>{{$contacto->PROVECONT_descripcion}}</td>
-                                            <td>{{$contacto->PROVE_id}}</td>
-                                            <td>{{$contacto->PROVECONT_etiqueta}}</td>
-                                            <td>{{$contacto->PROVECONT_telefono}}</td>
-                                            <td>{{$contacto->PROVECONT_email}}</td>
-                                            <td>{{$contacto->USER_id}}</td>       
-                                                        
-                                        </tr>
-                                    @endforeach
-                                        
-                                   
-                                    </tbody>
-                                    </table>
+                                    <table   data-toggle="table"
+                                    data-page-size="6"
+                                    data-buttons-class="xs btn-light"
+                                    data-pagination="true" class="table-bordered ">
+                                    <thead class="" style="background:#778084;
+                                    color: white;">
+                                    <tr>
+                                    <th data-field="state" >#</th>
+                                    <th data-field="nombre" data-switchable="false">Nombre</th>
+                                    <th data-field="cargo">Cargo</th>
+                                    <th data-field="empresa">Empresa</th  >
+                                    <th data-field="etiqueta">Etiqueta</th>
+                                    <th data-field="telefono">Telefono</th>
+                                    <th data-field="email">Email</th>
+                                    <th data-field="usuario">Usuario</th>
+                                    </tr>
+                                    </thead>
+                                        <tbody>
+                                        @foreach($contactos as $contacto)
+                                            @php
+                                                $empresa=proveedor::where('PROVE_id','=',$contacto->PROVE_id)->get();
+                                            @endphp
+                                            <tr>
+                                                <td>{{$loop->index+1}}</td>
+                                                <td>{{$contacto->PROVECONT_nombre}}</td>
+                                                <td>{{$contacto->PROVECONT_descripcion}}</td>
+                                                <td>{{$empresa[0]->PROVE_razon_social}}</td>
+                                                <td>{{$contacto->PROVECONT_etiqueta}}</td>
+                                                <td>{{$contacto->PROVECONT_telefono}}</td>
+                                                <td>{{$contacto->PROVECONT_email}}</td>
+                                                <td>{{$contacto->USER_id}}</td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                        </table>
                                     </div>
-
      <!-- Bootstrap Tables js -->
-
                                 <div id ="tabla1" >
-
                                 </div>
-
-
                     </div>
                        <!-- /.card-body -->
                           </div>
@@ -287,19 +271,21 @@ use App\proveedor;
         <!-- /Right-bar -->
         <!-- Right bar overlay-->
         <div class="rightbar-overlay"></div>
-
 @include('layouts.scripts')
+<script>
+    $(document).ready(function() {
 
-
+    });
+</script>
 
 <script>
-     $('#buscar').click(function(){
-        var ruc=$('#PROVE_ruc').val();
+    $('#buscar').click(function(){
+        var nombre=$('#PROVECONT_nombre').val();
         var razon=$('#PROVE_razon_social').val();
-        var etiqueta=$('#PROVE_etiqueta').val();
+        var etiqueta=$('#PROVECONT_etiqueta').val();
         $('#tablageneral').hide();
-        if(ruc==''){
-            ruc='0';
+        if(nombre==''){
+            nombre='0';
         }
         if(razon==''){
             razon='0';
@@ -307,15 +293,14 @@ use App\proveedor;
         if(etiqueta==''){
             etiqueta='0';
         }
-    $.ajax({
-    url:"proveedor/buscar/"+ruc+"/"+razon+"/"+etiqueta,
-    method:"GET",
-    success:function(data1){
-        $('#tabla1').html(data1);
-        }
-});
-});
-
+        $.ajax({
+        url:"/contactos/buscar/"+nombre+"/"+razon+"/"+etiqueta,
+        method:"GET",
+        success:function(data1){
+            $('#tabla1').html(data1);
+            }
+        });
+    });
 </script>
 
     </body>

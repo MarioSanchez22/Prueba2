@@ -10,8 +10,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
          <!-- App favicon -->
          @include('layouts.estilos')
-
-
     </head>
 
     <body>

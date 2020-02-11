@@ -48,6 +48,9 @@ Route::get('proveedor/buscar/{ruc}/{razon}/{etiqueta}', 'proveedorController@bus
     Route::name('proveedorExpedienteDownload')->get('/proveedor/expediente/{expediente}/download','proveedorController@download');
     //Contacto Proveedor
     Route::POST('proveedor/{proveedor}/contacto/create', 'proveedorController@contactoStore')->name('contactoProveedorCreate');
+    Route::get('contactos/proveedor', 'contactosProvController@index')->name('contactosProv');
+    Route::get('contactos/buscar/{nombre}/{razon}/{etiqueta}', 'contactosProvController@buscar')->name('contactoProveedorBuscar');
+
 //CLIENTE
 Route::get('cliente', 'clienteController@index')->name('clienteIndex');
 Route::GET('cliente/registrar', 'clienteController@create')->name('clienteCreate');
@@ -60,5 +63,4 @@ Route::POST('/producto', 'productoController@index')->name('productoBuscar');
 Route::POST('/producto/{id}/ajuste', 'productoController@ajuste')->name('productoAjuste');
 
 
-//contactos
-Route::get('contactos/proveedor', 'contactosProvController@index')->name('contactosProv');
+
