@@ -26,10 +26,12 @@ class clienteController extends Controller
     public function create(){
         $tipo=tipo_proveedor::all();
         $origen=origen_proveedor::all();
-       return view('cliente.clienteCreate',['tipo'=>$tipo,'origen'=>$origen]);
+        $region=region::where('ubicacionpaisid','=',89)->get();
+       return view('cliente.clienteCreate',['tipo'=>$tipo,'origen'=>$origen,'region'=>$region]);
     }
     public function datosCliente($id){
         $documento=proveedor_documento::all();
+        
         return view('cliente.datosClie',['tipoPr'=>$id,'documento'=>$documento]);
     }
 }

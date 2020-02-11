@@ -1,5 +1,5 @@
             <!-- Topbar Start -->
-            <div class="navbar-custom" style="background-color:#6e7b88">
+            <div class="navbar-custom" style="background-color:#2e4965">
                 <ul class="list-unstyled topnav-menu float-right mb-0">
 
                     <li class="d-none d-sm-block">

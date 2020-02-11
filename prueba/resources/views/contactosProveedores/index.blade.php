@@ -1,8 +1,6 @@
-@php
-  use App\proveedor_contacto;
-  use App\proveedor_cuenta;
+@php 
+use App\proveedor;
 @endphp
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -53,12 +51,12 @@
                                 <div class="row">
                                     <div class="col-12">
 
-                                <div class="row icons-list-demo" style="color:#373f5f">
+                                <div class="row icons-list-demo" style="color:#000000">
                                     <div class="col-sm-7 col-md-7 col-lg-4" style="font-size: 19px;font-weight: bold;padding-top: 5px; padding-left: 0px">
-                                        <i class="mdi mdi-24px mdi-home-city" style=" margin-right: -6px;color:#373f5f"></i> PROVEEDORES
+                                        <i class="mdi mdi-24px mdi-briefcase-account" style=" margin-right: -6px;color:#000000"></i> Contactos de Proveedores
                                     </div>
                                     <div class="col-md-8" style="padding-top: 6px">
-                                        <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" onclick="location.href='{{route('proveedorCreate')}}'"><span class=" fa fa-user-plus"> </span>  Proveedor</button>
+                                        <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" onclick=""><span class=" fa fa-user-plus"> </span>  Proveedor</button>
                                     </div>
                             </div>
                         </div>
@@ -72,13 +70,13 @@
 
                         <div class="col 12 bounceInLeft animated">
 
-                      <div class="card-box " style="padding-bottom: 8px; padding-top: 8px; margin-bottom: 0px; background: #566675; color:#fff">
+                      <div class="card-box font-italic Italica" style="padding-bottom: 8px; padding-top: 8px; margin-bottom: 0px; background: #00526b; color:#fff">
 
                         <div class="row">
                         <div class="col-md-3">
                             <form action="" class="form-inline">
                             <div class="form-group">
-                            <label class="control-label" >RUC:   </label>&nbsp&nbsp
+                            <label class="control-label" >Empresa:</label>&nbsp&nbsp
                              <input type="text"  id="PROVE_ruc" name="PROVE_ruc" class="form-control form-control-sm">
                             </div>
                         </form>
@@ -86,7 +84,7 @@
                         <div class="col-md-4">
                             <form action="" class="form-inline">
                             <div class="form-group">
-                            <label class="control-label" >Razon social: </label>&nbsp&nbsp
+                            <label class="control-label" >Nombre:</label>&nbsp&nbsp
                             <input type="text" id="PROVE_razon_social" name="PROVE_razon_social" class="form-control form-control-sm">
                             </div>
                         </form>
@@ -117,52 +115,48 @@
                                 data-page-size="6"
                                 data-buttons-class="xs btn-light"
                                 data-pagination="true" class="table-bordered ">
-                                <thead class="thead-light">
+                                <thead class="" style="background:#778084;
+                                color: white;">
                                 <tr>
                                 <th data-field="state" >#</th>
-                                <th data-field="id" data-switchable="false">RUC</th>
-                                <th data-field="name">Razon social</th>
-
-
-                                <th data-field="amount">Email</th>
-                                <th data-field="amRount">Telefono</th>
-                                <th data-field="amTount">Etiqueta</th>
-                                <th data-field="user-status">Estado</th>
-                                <th data-field="amouWnt">Opciones</th>
+                                <th data-field="nombre" data-switchable="false">Nombre</th>
+                                <th data-field="cargo">Cargo</th>
+                                <th data-field="empresa">Empresa</th  >
+                                <th data-field="etiqueta">Etiqueta</th>  
+                                <th data-field="telefono">Telefono</th>
+                                <th data-field="email">Email</th>
+                                <th data-field="usuario">Usuario</th>
+                                
                                 </tr>
                                 </thead>
                                     <tbody>
-                                    @foreach ($proveedor as $proveedores)
+                                    @foreach($contactos as $contacto)
+                                        @php
+                                            $empresa=proveedor::where('PROVE_id','=',$contacto->PROVE_id)->get(); 
+                                            //dd($empresa);
+                                        @endphp
                                         <tr>
-                                                <td>{{$loop->index+1}}</td>
-                                                <td>{{$proveedores->PROVE_ruc}}</td>
-                                                <td>{{$proveedores->PROVE_razon_social}}</td>
-                                                <td>{{$proveedores->PROVE_email}}</td>
-                                                <td>{{$proveedores->PROVE_telefono}}</td>
-                                                <td>{{$proveedores->PROVE_etiqueta}}</td>
-                                                <td>
-                                                    @if($proveedores->PROVE_estado==1)
-                                                        <span class="badge bg-soft-success text-success shadow-none">Activo</span>
-                                                    @else
-                                                        <span class="badge bg-soft-danger text-danger shadow-none">Bloqueado</span>
-                                                    @endif
-                                                    </td>
-                                                    <td>  <a href="{{route('proveedorShow',[ $proveedores->PROVE_id] )}}" class="action-icon" title="Ver"> <i class="mdi mdi-eye"></i></a>
-                                                        <a href="{{route('proveedorEdit',[$proveedores->PROVE_id])}}" class="action-icon" title="Editar"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                                        @if($proveedores->PROVE_estado==1)
-                                                        <a href="{{route('proveedorDarBaja',[ $proveedores->PROVE_id] )}}" class="action-icon" title="Bloquear"> <i class="mdi mdi-block-helper"></i></a></td>
-                                                        @else
-                                                        <a href="{{route('proveedorDarAlta',[ $proveedores->PROVE_id] )}}" class="action-icon" title="Activar"> <i class="mdi mdi-transfer-up"></i></a></td>
-                                                        @endif
-                                                </tr>
+                                            <td>{{$loop->index+1}}</td>
+                                            <td>{{$contacto->PROVECONT_nombre}}</td>
+                                            
+                                            <td>{{$contacto->PROVECONT_descripcion}}</td>
+                                            <td>{{$contacto->PROVE_id}}</td>
+                                            <td>{{$contacto->PROVECONT_etiqueta}}</td>
+                                            <td>{{$contacto->PROVECONT_telefono}}</td>
+                                            <td>{{$contacto->PROVECONT_email}}</td>
+                                            <td>{{$contacto->USER_id}}</td>       
+                                                        
+                                        </tr>
                                     @endforeach
+                                        
+                                   
                                     </tbody>
                                     </table>
                                     </div>
 
      <!-- Bootstrap Tables js -->
 
-                                <div id ="tabla1" class="bounceInLeft animated">
+                                <div id ="tabla1" >
 
                                 </div>
 
