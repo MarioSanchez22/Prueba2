@@ -1,4 +1,6 @@
-
+@php 
+use App\proveedor;
+@endphp
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -117,32 +119,36 @@
                                 color: white;">
                                 <tr>
                                 <th data-field="state" >#</th>
-                                <th data-field="id" data-switchable="false">RUC</th>
-                                <th data-field="name">Razon social</th>
-
-
-                                <th data-field="amount">Email</th>
-                                <th data-field="amRount">Telefono</th>
-                                <th data-field="amTount">Etiqueta</th>
-                                <th data-field="user-status">Estado</th>
-                                <th data-field="amouWnt">Opciones</th>
+                                <th data-field="nombre" data-switchable="false">Nombre</th>
+                                <th data-field="cargo">Cargo</th>
+                                <th data-field="empresa">Empresa</th  >
+                                <th data-field="etiqueta">Etiqueta</th>  
+                                <th data-field="telefono">Telefono</th>
+                                <th data-field="email">Email</th>
+                                <th data-field="usuario">Usuario</th>
+                                
                                 </tr>
                                 </thead>
                                     <tbody>
-                                  
+                                    @foreach($contactos as $contacto)
+                                        @php
+                                            $empresa=proveedor::where('PROVE_id','=',$contacto->PROVE_id)->get(); 
+                                            //dd($empresa);
+                                        @endphp
                                         <tr>
-                                                <td>k</td>
-                                                <td>k</td>
-                                                <td>k</td>
-                                                <td>k</td>
-                                                <td>k</td>
-                                                <td></td>
-                                                <td>
-                                                    
-                                                    </td>
-                                                    <td>  </td>
-                                                       
-                                                </tr>
+                                            <td>{{$loop->index+1}}</td>
+                                            <td>{{$contacto->PROVECONT_nombre}}</td>
+                                            
+                                            <td>{{$contacto->PROVECONT_descripcion}}</td>
+                                            <td>{{$contacto->PROVE_id}}</td>
+                                            <td>{{$contacto->PROVECONT_etiqueta}}</td>
+                                            <td>{{$contacto->PROVECONT_telefono}}</td>
+                                            <td>{{$contacto->PROVECONT_email}}</td>
+                                            <td>{{$contacto->USER_id}}</td>       
+                                                        
+                                        </tr>
+                                    @endforeach
+                                        
                                    
                                     </tbody>
                                     </table>
