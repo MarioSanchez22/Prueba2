@@ -104,9 +104,7 @@
                                                             <div class="form-group">
                                                               <label class="control-label">RUC: </label>
                                                               <div class="input-group">
-                                                                <div class="input-group-prepend ">
-                                                                    <span class="input-group-text form-control-sm" style="color:#a9a9a9" id="basic-addon1">#</span>
-                                                                </div>    
+                                                                 
                                                               <input type="text" class="form-control form-control-sm"   placeholder="RUC de empresa" name="PROVE_ruc" id="PROVE_ruc">
                                                                 <div  id="cargarRuc" style="display:none"> <button class="btn btn-info btn-sm" type="button"  >
                                                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="sr-only"></span>

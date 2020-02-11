@@ -51,7 +51,7 @@
                                         <li class="breadcrumb-item active">Calendar</li>
                                     </ol>
                                 </div>
-                            <h4 class="page-title">EDICION DE PROVEEDORES: {{$proveedor->PROVE_razon_social}}</h4>
+                            <h4 class="page-title" style="color: #373f5f">EDICION DE PROVEEDORES: {{$proveedor->PROVE_razon_social}}</h4>
                             </div>
                         </div>
                     </div>

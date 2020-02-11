@@ -7,18 +7,14 @@
     <label class="control-label" for="PROVE_razon_social">
        Razon social
     </label><div class="input-group">
-    <div class="input-group-prepend ">
-        <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-lead-pencil"></i></span>
-    </div>  <input type="text" class="form-control form-control-sm" required  placeholder="Razon social" id="PROVE_razon_social" name="PROVE_razon_social"> </div>
+    <input type="text" class="form-control form-control-sm" required  placeholder="Razon social" id="PROVE_razon_social" name="PROVE_razon_social"> </div>
 </div></div>
 
    <div class="col-md-5">
     <div class="form-group">
       <label class="control-label">Razon comercial: </label>
       <div class="input-group">
-        <div class="input-group-prepend ">
-            <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-lead-pencil"></i></span>
-        </div> 
+      
       <input type="text" class="form-control form-control-sm" placeholder="Razon comercial" name="PROVE_razon_comercial" id="PROVE_razon_comercial"> </div>
    </div></div>
 @endif
@@ -50,18 +46,14 @@
        Nombre
     </label>
     <div class="input-group">
-        <div class="input-group-prepend ">
-            <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-lead-pencil"></i></span>
-        </div> <input type="text" class="form-control form-control-sm" required  placeholder="Nombre" name="PROVE_razon_social"  id="PROVE_razon_social"> </div>
+        <input type="text" class="form-control form-control-sm" required  placeholder="Nombre" name="PROVE_razon_social"  id="PROVE_razon_social"> </div>
 </div></div>
 @endif
 <div class="col-md-2">
     <div class="form-group">
       <label class="control-label">Dias de crédito: </label>
       <div class="input-group">
-        <div class="input-group-prepend ">
-            <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-timer mr-1"></i></span>
-        </div> 
+        
       <input type="number" class="form-control form-control-sm" required min="1" placeholder="Dias " name="PROVE_dias_credito"> </div>
    </div></div>
 
