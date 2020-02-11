@@ -81,7 +81,7 @@
                             <label class="control-label" >RUC:   </label>&nbsp&nbsp
                              <input type="text"  id="PROVE_ruc" name="PROVE_ruc" class="form-control form-control-sm">
                             </div>
-                        </form>
+                            </form>
                         </div>
                         <div class="col-md-4">
                             <form action="" class="form-inline">
