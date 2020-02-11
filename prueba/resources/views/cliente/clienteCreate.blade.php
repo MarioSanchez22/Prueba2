@@ -119,13 +119,18 @@
                                                         <div class="col-md-12" style=" padding-bottom: 18px;">
                                                             <div class="row">
                                                         
-                                                          <div class="col-md-4">
-                                                            <label for="">País</label>
-                                                            <div id="select2lista"></div>
-                                                          </div>
+                                                          
                                                           <div class="col-md-4">
                                                             <label for="">Región</label>
-                                                            <div id="select3lista"></div>
+                                                            <div id="select3lista">
+                                                            <select class="form-control  form-control-sm" id="region" name="PROVE_region" >
+                                                            <option value="0">[Seleccionar]</option>
+                                                                @foreach ($region as $regiones)
+                                                                    <option value="{{$regiones->id}}">{{$regiones->estadonombre}}</option>
+                                                                    @endforeach
+                                                        </select>
+
+                                                            </div>
                                                         </div>
 
                                                         </div></div>

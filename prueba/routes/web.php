@@ -59,3 +59,6 @@ Route::POST('/producto', 'productoController@index')->name('productoBuscar');
 
 Route::POST('/producto/{id}/ajuste', 'productoController@ajuste')->name('productoAjuste');
 
+
+//contactos
+Route::get('contactos/proveedor', 'contactosProvController@index')->name('contactosProv');

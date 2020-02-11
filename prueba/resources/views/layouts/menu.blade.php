@@ -1,4 +1,4 @@
-<div class="left-side-menu " style="background-color:#dedede;" >
+<div class="left-side-menu " style="background-color:#ffffff;" >
 <div class="slimscroll-menu" >
 
     <!--- Sidemenu -->
@@ -82,7 +82,7 @@
                     <a href="{{route('clienteIndex')}}" class="nav-link {{ ! Route::is('clienteIndex')?:'active'}} ">Clientes</a>
                     </li>
                     <li >
-                        <a href="maps-mapael.html">Mapael Maps</a>
+                    <a href="{{route('contactosProv')}}" class="nav-link {{ ! Route::is('contactosProv')?:'active'}} ">Contactos Prov</a>
                     </li>
                 </ul>
             </li>
