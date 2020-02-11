@@ -5,7 +5,7 @@
         <meta charset="utf-8" />
         <title>UBold - Responsive Admin Dashboard Template</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       
+
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -42,20 +42,14 @@
                     <!-- start page title -->
                     <div class="row">
                         <div class="col-12">
-                            <div class="page-title-box">
-                                <div class="page-title-right">
-                                    <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">UBold</a></li>
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Apps</a></li>
-                                        <li class="breadcrumb-item active">Calendar</li>
-                                    </ol>
+                            <div class="row icons-list-demo" style="color:#373f5f">
+                                <div class="col-sm-7 col-md-7 col-lg-4" style="font-size: 19px;font-weight: bold;padding-top: 5px; padding-left: 0px">
+                                    <i class="mdi mdi-24px mdi-account-card-details" style=" margin-right: -6px;color:#373f5f"></i>CLIENTES
                                 </div>
-                                <div class="row">
-                                 <div class="col-md-8"><h4 class="page-title">CLIENTES</h4></div>
-
-
-                            </div>
-                            </div>
+                                <div class="col-md-8" style="padding-top: 6px">
+                                    <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" onclick="location.href='{{route('clienteCreate')}}'"><span class=" fa fa-user-plus"> </span> Cliente</button>
+                                </div>
+                        </div>
                         </div>
                     </div>
 
@@ -87,7 +81,7 @@
 
                                     </div>
                                     <div class="card-body" style="background:#fff">
-                                    
+
                                         <div class="row">
                                             <div class="col-md-2">
                                             <input type="text"  id="PROVE_ruc" name="PROVE_ruc" class="form-control form-control-sm">
@@ -104,7 +98,7 @@
                                             <div class="col-md-3">
                                             <button class="btn  btn-blue btn-sm"  id="buscar" name="buscar"><span class=" fa fa-search-plus"> </span> </button>
                                             </div>
-                                        </div>                                    
+                                        </div>
                                     </div>
                                 </div>
                                 <div id="tablageneral">
@@ -127,7 +121,7 @@
                                 </tr>
                                 </thead>
                                     <tbody>
-                                   
+
                                         <tr>
                                                 <td>1</td>
                                                 <td>2323232323</td>
@@ -140,19 +134,19 @@
                     <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
                     <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a> </td>
                                         </tr>
-                                  
-                                        
+
+
                                     </tbody>
                                     </table>
                                     </div>
-   
+
      <!-- Bootstrap Tables js -->
- 
+
                                 <div id ="tabla1" >
-                                
+
                                 </div>
-                                
-                                
+
+
                     </div>
                        <!-- /.card-body -->
                           </div>
@@ -299,17 +293,17 @@
         if(etiqueta==''){
             etiqueta='0';
         }
-    
+
     $.ajax({
     url:"proveedor/buscar/"+ruc+"/"+razon+"/"+etiqueta,
     method:"GET",
     success:function(data1){
         $('#tabla1').html(data1);
         }
-});   
 });
-     
+});
+
 </script>
-    
+
     </body>
 </html>

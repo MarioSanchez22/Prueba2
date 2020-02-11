@@ -1,5 +1,5 @@
 @php
- 
+
 @endphp
 
 <!DOCTYPE html>
@@ -75,7 +75,7 @@
                                                        Datos de Cliente
                                                     </a>
                                                 </li>
-                                               
+
                                                 <li class="nav-item">
                                                     <a href="#messages" data-toggle="tab" aria-expanded="false" class="nav-link">
                                                         Contacto de Cliente
@@ -116,13 +116,13 @@
 
                                                         </div>
 
-                                                        <div class="col-md-12" style=" padding-bottom: 18px;">
+                                                        <div class="col-md-6" style=" padding-bottom: 18px;">
                                                             <div class="row">
-                                                        
-                                                          
-                                                          <div class="col-md-4">
+
+
+                                                          <div class="col-md-12">
                                                             <label for="">Región</label>
-                                                            <div id="select3lista">
+
                                                             <select class="form-control  form-control-sm" id="region" name="PROVE_region" >
                                                             <option value="0">[Seleccionar]</option>
                                                                 @foreach ($region as $regiones)
@@ -130,13 +130,13 @@
                                                                     @endforeach
                                                         </select>
 
-                                                            </div>
+
                                                         </div>
 
                                                         </div></div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-6">
                                                             <div class="form-group">
-                                                              <label class="control-label">Direccion: </label>
+                                                              <label class="control-label">Direccion Principal: </label>
                                                               <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion"> </div>
                                                            </div>
                                                         <div class="col-md-4">
@@ -144,16 +144,31 @@
                                                               <label class="control-label" for="PROVE_telefono">Telefono: </label>
                                                               <input type="text" class="form-control form-control-sm" required placeholder="Telefono" name="PROVE_telefono"> </div>
                                                            </div>
-                                                       
+
                                                            <div class="col-md-4">
                                                             <div class="form-group">
                                                               <label class="control-label" for="PROVE_email" >Email: </label>
                                                               <input type="text" class="form-control form-control-sm" required  placeholder="Email" name="PROVE_email"> </div>
                                                            </div>
-                                                           
+
+                                                            <div class="row">
+
+                                                            <div class="col-sm-2"><label >Cargo: </label></div>
+                                                            <span class="col-sm-1"></span>
+
+                                                            </div>
+                                                            <div id="div_100" class="row" style="margin-bottom: 2%;">
+                                                                <input type="text" name="PROVECONT_descripcion[]" id="PROVECONT_descripcion"  class="form-control form-control-sm col-sm-2" style="margin-left: 2%;">
+                                                                <span class="col-sm-1"></span>
+
+                                                                <!--<input class="btn btn-primary bt_plus" id="100" type="button" value="+">-->
+                                                                <button class="btn btn-primary bt_plus" id="100" type="button"  style=" background-color: #446e8c; border-Color:#04233a;"><i class="fe-phone-forwarded" ></i></button>
+                                                                <div class="error_form"></div>
+                                                            </div>
+
                                                 </div>
                                                 </div>
-                                                
+
                                                 <div class="tab-pane " id="messages">
                                                         <div class="row">
                                                         <div class="col-sm-12">
