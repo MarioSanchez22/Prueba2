@@ -205,7 +205,22 @@ public function datos($id){
             return view('proveedor.proveedorShow',['proveedor'=>$prove,'contacto'=>$contactoPro,'expediente'=>$expediente,'cuenta'=>$cuenta,'tipo'=>$tipo]);
         }
         public function update($proveedor,Request $request){
-            dd($request);
+            $prove=proveedor::find($proveedor);
+
+            $prove->fill($request->only('PROVE_ruc','PROVE_razon_social',
+            'PROVE_razon_comercial','PROVE_direccion','PROVE_email',
+            'PROVE_telefono','PROVE_etiqueta','PROVE_dni','PROVE_dias_credito',
+            'PROVE_web','TIPPROVE_id'));
+            $prove->save();
+
+            $expediente=proveedorExpediente::where('PROVE_id','=',$proveedor)->get();
+            $cuenta=proveedor_cuenta::where('PROVE_id','=',$proveedor)->get();
+            $tipo=tipo_proveedor::where('TIPPROVE_id','=',$prove->TIPPROVE_id)->get();
+            $contactoPro=proveedor_contacto::where('PROVE_id','=',$proveedor)->get();
+
+            return view('proveedor.proveedorShow',['proveedor'=>$prove,'contacto'=>$contactoPro,'expediente'=>$expediente,'cuenta'=>$cuenta,'tipo'=>$tipo]);
+
+
         }
 
 
@@ -249,5 +264,4 @@ public function datos($id){
             $contacto=proveedor_contacto::where('PROVE_id','=',$proveedor)->get();
             return view('proveedor.proveedorContactos',['contactoPro'=>$contacto]);
         }
-
     }

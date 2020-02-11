@@ -63,8 +63,7 @@
                             <!-- /.card-header -->
                             <div class="card-body col-md-12" style="padding-left: 0px; padding-right: 0px;">
                                 <div class="row" >
-                                    <form action=" {{route('proveedorUpdate',['proveedor'=>$proveedor])}} " method="POST" enctype="multipart/form-data" class="col-md-12">
-                                    {{ csrf_field()}}
+
                                         <div class="card-box " style=" padding-top: 0px; margin-bottom: 0px;padding-bottom: 5px;">
                                             <ul class="nav nav-tabs" style="background:#f5f5f5">
                                                 <li class="nav-item">
@@ -81,6 +80,8 @@
                                             </ul>
                                             <div class="tab-content ">
                                                 <div class="tab-pane show active " id="home">
+                                                    <form action=" {{route('proveedorUpdate',['proveedor'=>$proveedor])}} " method="POST" enctype="multipart/form-data" class="col-md-12">
+                                                        {{ csrf_field()}}
                                                     <div class="row">
 
 
@@ -205,9 +206,13 @@
                                                               <label class="control-label">Etiquetas: </label>
                                                               <textarea class="form-control" id="example-textarea" rows="3" name="PROVE_etiqueta">{{$proveedor->PROVE_etiqueta}}</textarea></div>
                                                            </div>
-                                                </div>
-                                                </div>
+                                                           <div class="col-md-12" style="background:#f5f5f5">
+                                                            <button type="submit" class="btn btn-primary" style="background-color: #446e8c;">Save changes</button>
+                                                          </div>
 
+                                                </div>
+                                                </div>
+                                            </form>
                                                 <div class="tab-pane " id="messages">
                                                     <div class="row" id="divmsg" style="display:none" class="alert alert-primary" role="alert "></div>
 
@@ -252,7 +257,6 @@
                                                                                     <div class="error_form"></div>
                                                                             </div>
                                                                                     <button class="btn btn-primary bt_guarda" id="bt_guarda" type="button"  style="padding: 4px 8px; background-color: #446e8c; border-Color:#04233a;">Guardar</button>
-
                                                                         </div>
                                                                     </div><!-- /.modal-content -->
                                                                 </div><!-- /.modal-dialog -->
@@ -288,30 +292,18 @@
                                                         </div>
                                                     @endforeach
                                                     </div>
-
-
-
-
                                                 </div> <br>
-                                        <div class="modal-footer d-flex" style="background:#f5f5f5">
-                                        <button type="submit" class="btn btn-primary" style="background-color: #446e8c;">Save changes</button>
-                                      </div>
-                                        </div> <!-- end card-box-->
-                                    </form>
+                                        </div>
+                                        <!-- end card-box-->
                                 </div>
                                 <!-- end row -->
                             </div>
                             <!-- /.card-body -->
                           </div>
-
-
                         <!-- /.col -->
                       </div>
-
                     </div> <!-- container -->
-
                 </div> <!-- content -->
-
                 <!-- Footer Start -->
                 <footer class="footer">
                     <div class="container-fluid">
@@ -338,16 +330,10 @@
         <!-- END wrapper -->
         <!-- Right bar overlay-->
         <div class="rightbar-overlay"></div>
-
         <!-- Vendor js -->
         @include('layouts.scripts')
     <script>
         $(document).ready(function() {
-
-
-
-
-
             $.ajaxSetup({
                 headers:{
                     'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
