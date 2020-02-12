@@ -55,9 +55,7 @@ use App\proveedor;
                                     <div class="col-sm-7 col-md-7 col-lg-4" style="font-size: 19px;font-weight: bold;padding-top: 5px; padding-left: 0px">
                                         <i class="mdi mdi-24px mdi-briefcase-account" style=" margin-right: -6px;color:#000000"></i> Contactos de Proveedores
                                     </div>
-                                    <div class="col-md-8" style="padding-top: 6px">
-                                        <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" onclick=""><span class=" fa fa-user-plus"> </span>  Proveedor</button>
-                                    </div>
+
                             </div>
                         </div>
 
@@ -114,9 +112,9 @@ use App\proveedor;
                                     color: white;">
                                     <tr>
                                     <th data-field="state" >#</th>
-                                    <th data-field="nombre" data-switchable="false">Nombre</th>
+                                    <th data-field="empresa">Empresa</th>
                                     <th data-field="cargo">Cargo</th>
-                                    <th data-field="empresa">Empresa</th  >
+                                    <th data-field="nombre" data-switchable="false">Nombre</th>
                                     <th data-field="etiqueta">Etiqueta</th>
                                     <th data-field="telefono">Telefono</th>
                                     <th data-field="email">Email</th>
@@ -130,9 +128,9 @@ use App\proveedor;
                                             @endphp
                                             <tr>
                                                 <td>{{$loop->index+1}}</td>
-                                                <td>{{$contacto->PROVECONT_nombre}}</td>
-                                                <td>{{$contacto->PROVECONT_descripcion}}</td>
                                                 <td>{{$empresa[0]->PROVE_razon_social}}</td>
+                                                <td>{{$contacto->PROVECONT_descripcion}}</td>
+                                                <td>{{$contacto->PROVECONT_nombre}}</td>
                                                 <td>{{$contacto->PROVECONT_etiqueta}}</td>
                                                 <td>{{$contacto->PROVECONT_telefono}}</td>
                                                 <td>{{$contacto->PROVECONT_email}}</td>
@@ -275,7 +273,9 @@ use App\proveedor;
 <script>
     $(document).ready(function() {
 
+
     });
+
 </script>
 
 <script>

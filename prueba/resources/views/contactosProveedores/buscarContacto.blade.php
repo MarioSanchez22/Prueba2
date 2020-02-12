@@ -10,9 +10,9 @@ use App\proveedor;
 <thead class="" style="background:#778084; color: white;">
     <tr>
         <th data-field="state" >#</th>
-        <th data-field="nombre" data-switchable="false">Nombre</th>
-        <th data-field="cargo">Cargo</th>
         <th data-field="empresa">Empresa</th  >
+        <th data-field="cargo">Cargo</th>
+        <th data-field="nombre" data-switchable="false">Nombre</th>
         <th data-field="etiqueta">Etiqueta</th>
         <th data-field="telefono">Telefono</th>
         <th data-field="email">Email</th>
@@ -26,9 +26,9 @@ use App\proveedor;
     @endphp
     <tr>
         <td>{{$loop->index+1}}</td>
-        <td>{{$contacto->PROVECONT_nombre}}</td>
-        <td>{{$contacto->PROVECONT_descripcion}}</td>
         <td>{{$empresa[0]->PROVE_razon_social}}</td>
+        <td>{{$contacto->PROVECONT_descripcion}}</td>
+        <td>{{$contacto->PROVECONT_nombre}}</td>
         <td>{{$contacto->PROVECONT_etiqueta}}</td>
         <td>{{$contacto->PROVECONT_telefono}}</td>
         <td>{{$contacto->PROVECONT_email}}</td>
