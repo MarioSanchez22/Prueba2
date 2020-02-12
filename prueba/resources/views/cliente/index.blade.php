@@ -58,48 +58,43 @@
                           <div class="card">
 
                             <!-- /.card-header -->
-                            <div class="card-body" style="font-size: 13px; ">
+                            <div class="card-body bounceInDown animated" style="font-size: 13px; ">
                                 <div class="card">
-                                    <div class="card-header" style="background:#f1f5f7; padding-top: 8px; padding-bottom: 8px">
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                         <label for="" style="font-weight:bold; ">RUC/DNI:</label>
-                                     </div>
-                                     <div class="col-md-3">
-                                        <label for="" style="font-weight:bold; ">NOMBRE:</label>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label for="" style="font-weight:bold; ">FECHA I:</label>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label for="" style="font-weight:bold; ">FECHA F:</label>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <button type="button" class="btn  btn-primary btn-sm"  style="margin-left:55%" onclick="location.href='{{route('clienteCreate')}}'"><span class=" fa fa-user-plus"> </span>  Cliente</button>
-                                    </div>
-                                 </div>
 
-                                    </div>
-                                    <div class="card-body" style="background:#fff">
+                                    <div class="card-box " style="padding-bottom: 8px; padding-top: 8px; margin-bottom: 0px; background: #566675; color:#fff">
 
                                         <div class="row">
-                                            <div class="col-md-2">
-                                            <input type="text"  id="PROVE_ruc" name="PROVE_ruc" class="form-control form-control-sm">
+                                        <div class="col-md-3">
+                                            <form action="" class="form-inline">
+                                            <div class="form-group">
+                                            <label class="control-label" >RUC:   </label>&nbsp&nbsp
+                                             <input type="text"  id="PROVE_ruc" name="PROVE_ruc" class="form-control form-control-sm">
                                             </div>
-                                            <div class="col-md-3">
+                                            </form>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <form action="" class="form-inline">
+                                            <div class="form-group">
+                                            <label class="control-label" >Razon social: </label>&nbsp&nbsp
                                             <input type="text" id="PROVE_razon_social" name="PROVE_razon_social" class="form-control form-control-sm">
                                             </div>
-                                            <div class="col-md-2">
-                                            <input type="text" id="PROVE_etiquffeta" name="PROfVE_etiqueta" class="form-control form-control-sm">
+                                        </form>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <form action="" class="form-inline">
+                                            <div class="form-group">
+                                            <label class="control-label" >Etiquetas: </label> &nbsp&nbsp
+                                             <input type="text" id="PROVE_etiqueta" name="PROVE_etiqueta" class="form-control form-control-sm">
                                             </div>
-                                            <div class="col-md-2">
-                                                <input type="text" id="PROVE_etiquffeta" name="PROfVE_etiqueta" class="form-control form-control-sm">
-                                                </div>
-                                            <div class="col-md-3">
-                                            <button class="btn  btn-blue btn-sm"  id="buscar" name="buscar"><span class=" fa fa-search-plus"> </span> </button>
+                                            </form>
+                                        </div>
+                                        <div class="col-md-2" style="padding-left: 10%" >
+                                             <button class="btn  btn-blue btn-sm"  id="buscar" name="buscar"><i class="fe-search" style="font-size:16px"></i>  </button>
+
                                             </div>
                                         </div>
-                                    </div>
+
+                                      </div>
                                 </div>
                                 <div id="tablageneral">
                                 <table   data-toggle="table"
