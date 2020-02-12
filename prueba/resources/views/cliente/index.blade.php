@@ -1,3 +1,7 @@
+@php
+  use App\cliente_contacto;
+  use App\cliente_direccion;
+@endphp
 
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +62,7 @@
                           <div class="card">
 
                             <!-- /.card-header -->
-                            <div class="card-body bounceInDown animated" style="font-size: 13px; ">
+                            <div class="card-body bounceInDown animated"  >
                                 <div class="card">
 
                                     <div class="card-box " style="padding-bottom: 8px; padding-top: 8px; margin-bottom: 0px; background: #566675; color:#fff">
@@ -83,7 +87,7 @@
                                         <div class="col-md-3">
                                             <form action="" class="form-inline">
                                             <div class="form-group">
-                                            <label class="control-label" >Etiquetas: </label> &nbsp&nbsp
+                                            <label class="control-label" >Vendedor: </label> &nbsp&nbsp
                                              <input type="text" id="PROVE_etiqueta" name="PROVE_etiqueta" class="form-control form-control-sm">
                                             </div>
                                             </form>
@@ -96,7 +100,8 @@
 
                                       </div>
                                 </div>
-                                <div id="tablageneral">
+                                
+                                <div id="tablageneral" class="bounceInLeft animated">
                                 <table   data-toggle="table"
                                 data-page-size="4"
                                 data-buttons-class="xs btn-light"
@@ -106,31 +111,45 @@
                                 <th data-field="state" >#</th>
                                 <th data-field="id" data-switchable="false">RUC</th>
                                 <th data-field="name">Razon social</th>
-
-
                                 <th data-field="amount">Email</th>
                                 <th data-field="amRount">Telefono</th>
-                                <th data-field="amTount">Etiqueta</th>
+                                <th data-field="amTount">Region</th>
+                                <th data-field="amuuTount">Vendedor</th>
                                 <th data-field="user-status">Estado</th>
                                 <th data-field="amouWnt">Opciones</th>
                                 </tr>
                                 </thead>
-                                    <tbody>
-
+                                <tbody>
+                                    @foreach ($cliente as $clientes)
                                         <tr>
-                                                <td>1</td>
-                                                <td>2323232323</td>
-                                                <td>dfdfdfdf</td>
-                                                <td>dgdg</td>
-                                                <td>3232323</td>
-                                                <td>2323</td>
-                                                <td>232323</td>
-                                                <td><a href="" class="action-icon"> <i class="mdi mdi-eye"></i></a>
-                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a> </td>
-                                        </tr>
-
-
+                                                <td>{{$loop->index+1}}</td>
+                                                <td> @if ($clientes->TIPPROVE_id==1)
+                                                    {{$clientes->CLIE_ruc}}
+                                                    @else {{$clientes->CLIE_dni}} @endif
+                                                </td>
+                                                <td>{{$clientes->CLIE_razon_social}}</td>
+                                                <td>{{$clientes->CLIE_email}}</td>
+                                                <td>{{$clientes->CLIE_telefono}}</td>
+                                                
+                                                <td>{{$clientes->CLIE_region}}</td>
+                                                <td>{{$clientes->USER_id}}</td>
+                                                <td>
+                                                    @if($clientes->CLIE_estado==1)
+                                                        <span class="badge bg-soft-success text-success shadow-none">Activo</span>
+                                                    @else
+                                                        <span class="badge bg-soft-danger text-danger shadow-none">Bloqueado</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>  <a href="" class="action-icon" title="Ver"> <i class="mdi mdi-eye"></i></a>
+                                                        <a href="" class="action-icon" title="Editar"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                       
+                                                        @if($clientes->CLIE_estado==1)
+                                                        <a href="" class="action-icon" title="Bloquear"> <i class="mdi mdi-block-helper"></i></a></td>
+                                                        @else
+                                                        <a href="" class="action-icon" title="Activar"> <i class="mdi mdi-transfer-up"></i></a></td>
+                                                        @endif
+                                                </tr>
+                                    @endforeach
                                     </tbody>
                                     </table>
                                     </div>

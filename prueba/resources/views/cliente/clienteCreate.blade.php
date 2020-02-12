@@ -1,7 +1,3 @@
-@php
-
-@endphp
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
