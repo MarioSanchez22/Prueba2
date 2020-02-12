@@ -1,5 +1,5 @@
 @php
- 
+
 @endphp
 
 <!DOCTYPE html>
@@ -58,10 +58,18 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="col-md-4 bounceInDown animated">
+                        <form action="" class="form-inline">
+                        <div class="form-group">
+                            <i class="mdi mdi-24px mdi-clipboard-account-outline"></i> <h4>Registrado por:</h4> &nbsp&nbsp
+                        <input type="text" id="PROVECONT_nombre" name="PROVECONT_nombre" value="Vendedor-01"  style="background-color: #343a40; border-color: #4284a7; color:#f5f5f5" class="form-control form-control-sm" disabled>
+                        </div>
+                    </form>
+                    </div> <br>
                     <div class="row">
+
                         <div class="col-md-12">
-                          <div class="card" style=" margin-bottom: 0px;   ">
+                          <div class="card bounceInDown animated" style=" margin-bottom: 0px;   ">
 
                             <!-- /.card-header -->
                             <div class="card-body col-md-12" style="padding-left: 0px; padding-right: 0px;">
@@ -75,7 +83,7 @@
                                                        Datos de Cliente
                                                     </a>
                                                 </li>
-                                               
+
                                                 <li class="nav-item">
                                                     <a href="#messages" data-toggle="tab" aria-expanded="false" class="nav-link">
                                                         Contacto de Cliente
@@ -116,13 +124,13 @@
 
                                                         </div>
 
-                                                        <div class="col-md-12" style=" padding-bottom: 18px;">
+                                                        <div class="col-md-4" style=" padding-bottom: 18px;">
                                                             <div class="row">
-                                                        
-                                                          
-                                                          <div class="col-md-4">
+
+
+                                                          <div class="col-md-12">
                                                             <label for="">Región</label>
-                                                            <div id="select3lista">
+
                                                             <select class="form-control  form-control-sm" id="region" name="PROVE_region" >
                                                             <option value="0">[Seleccionar]</option>
                                                                 @foreach ($region as $regiones)
@@ -130,30 +138,41 @@
                                                                     @endforeach
                                                         </select>
 
-                                                            </div>
+
                                                         </div>
 
                                                         </div></div>
                                                         <div class="col-md-4">
                                                             <div class="form-group">
-                                                              <label class="control-label">Direccion: </label>
-                                                              <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion"> </div>
-                                                           </div>
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
                                                               <label class="control-label" for="PROVE_telefono">Telefono: </label>
                                                               <input type="text" class="form-control form-control-sm" required placeholder="Telefono" name="PROVE_telefono"> </div>
                                                            </div>
-                                                       
+
                                                            <div class="col-md-4">
                                                             <div class="form-group">
                                                               <label class="control-label" for="PROVE_email" >Email: </label>
                                                               <input type="text" class="form-control form-control-sm" required  placeholder="Email" name="PROVE_email"> </div>
                                                            </div>
-                                                           
+
+                                                            <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label >Direccion Principal </label>
+                                                                <div id="div_1000" class="row col-md-12" >
+                                                                    <input type="text" name="PROVECONT_descripcion[]" id="PROVECONT_descripcion"  class="form-control form-control-sm " style="margin-left: 2%;">
+
+
+                                                                    <!--<input class="btn btn-primary bt_plus" id="100" type="button" value="+">-->
+                                                                    <button class="btn btn-primary bt_plus1 btn-sm" id="1000" type="button"  style=" background-color: #446e8c; border-Color:#04233a;margin-left: 101%;margin-top: -7%;"><i class="fe-plus fe-plus-sm" ></i>direccion</button><br>
+                                                                    <div class="error_form"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
                                                 </div>
                                                 </div>
-                                                
+
                                                 <div class="tab-pane " id="messages">
                                                         <div class="row">
                                                         <div class="col-sm-12">
@@ -237,6 +256,9 @@
         $(".bt_plus").each(function (el){
             $(this).bind("click",addField);
         });
+        $(".bt_plus1").each(function (el){
+            $(this).bind("click",addField1);
+        });
             $.ajax({
                 url:"/cliente/datosCliente/1",
                 method:"GET",
@@ -307,7 +329,42 @@
         //Ahora le asigno el evento delRow para que borre la fial en caso de hacer click
         $("#"+clickID).bind("click",delRow);
         }
+        function addField1(){
+        // ID del elemento div quitandole la palabra "div_" de delante. Pasi asi poder aumentar el número.
+        // Esta parte no es necesaria pero yo la utilizaba ya que cada campo de mi formulario tenia un autosuggest,
+        // así que dejo como seria por si a alguien le hace falta.
+        var clickID = parseInt($(this).parent('div').attr('id').replace('div_',''));
+        // Genero el nuevo numero id
+        var newID = (clickID+1);
+        // Creo un clon del elemento div que contiene los campos de texto
+        $newClone = $('#div_'+clickID).clone(true);
+        //Le asigno el nuevo numero id
+        $newClone.attr("id",'div_'+newID);
+        //Asigno nuevo id al primer campo input dentro del div y le borro cualquier valor
+        // que tenga asi no copia lo ultimo que hayas escrito.(igual que antes no es necesario tener un id)
+        $newClone.children("input").eq(0).attr("id",'PROVECONT_descripcion'+newID).val('');
+        //Borro el valor del segundo campo input(este caso es el campo de cantidad)
+        $newClone.children("input").eq(1).attr("id",'PROVECONT_nombre'+newID).val('');
+        $newClone.children("input").eq(2).attr("id",'PROVECONT_telefono'+newID).val('');
+        $newClone.children("input").eq(3).attr("id",'PROVECONT_email'+newID).val('');
+        //Asigno nuevo id al boton
+        $newClone.children("button").attr("id",newID)
+        //Inserto el div clonado y modificado despues del div original
+        $newClone.insertAfter($('#div_'+clickID));
+        //Cambio el signo "+" por el signo "-" y le quito el evento addfield
+        //$("#"+clickID-1).remove();
+        $("#"+clickID).css("backgroundColor","#c54040");
+        $("#"+clickID).css("border-Color"," #4e0303");
+
+        $("#"+clickID).html('<i class="fe-minus" style="width:20px; height:20px;"></i>').unbind("click",addField1);
+        //Ahora le asigno el evento delRow para que borre la fial en caso de hacer click
+        $("#"+clickID).bind("click",delRow1);
+        }
         function delRow() {
+        // Funcion que destruye el elemento actual una vez echo el click
+        $(this).parent('div').remove();
+        }
+        function delRow1() {
         // Funcion que destruye el elemento actual una vez echo el click
         $(this).parent('div').remove();
         }

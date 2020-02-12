@@ -212,16 +212,50 @@
                                                 </div>
                                             </form>
                                                 <div class="tab-pane " id="messages">
-                                                    <div class="row" id="divmsg" style="display:none" class="alert alert-primary" role="alert "></div>
-
                                                     <div class="row">
 
                                                         <div class="col-sm-10">
-                                                        <label for="" class="control-label">Contacto(s):</label>   </div>
+                                                         </div>
                                                         <div class="col-sm-2">
                                                             <button type="button" class="btn btn-success waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-lg"> <i class="mdi mdi-phone-plus" style="width:20px; height:20px;" ></i>  Contacto:</button>
                                                         </div>
-                                                    </div>
+                                                    </div> <br>
+                                                    <div class="table-responsive">
+                                                        <table class="table table-centered mb-0" id="btn-editable">
+                                                            <thead style="background:  #f5f5f5">
+                                                                <tr>
+                                                                    <th>#</th>
+                                                                    <th>Cargo</th>
+                                                                    <th>Nombre</th>
+                                                                    <th>Numero</th>
+                                                                    <th>Email</th>
+                                                                    <th>Opciones</th>
+                                                                </tr>
+                                                            </thead>
+
+                                                            <tbody>
+
+                                                                    @foreach ($contactoPro as $contactos)
+                                                                    <tr>
+                                                                        <th>{{$loop->index+1}}</th>
+                                                                        <th><input type="text" name="PROVECONT_descripcion[]" id="PROVECONT_descripcion"  class="form-control form-control-sm" style="margin-left: 2%;" value="{{$contactos->PROVECONT_descripcion}}"></th>
+                                                                        <th><input type="text" name="PROVECONT_nombre[]" id="PROVECONT_nombre"  class="form-control form-control-sm" value="{{$contactos->PROVECONT_nombre}}"></th>
+
+                                                                        <th><input type="number" name="PROVECONT_telefono[]" id="PROVECONT_telefono" class="form-control form-control-sm"  value="{{$contactos->PROVECONT_telefono}}"></th>
+
+                                                                       <th> <input type="email" name="PROVECONT_email[]"  id="PROVECONT_email" class="form-control form-control-sm"  value="{{$contactos->PROVECONT_email}}"></th>
+                                                                        <!--<input class="btn btn-primary bt_plus" id="100" type="button" value="+">-->
+                                                                        <th><button type="button" class="btn btn-danger btn-xs waves-effect waves-light" ><i class="mdi mdi-trash-can-outline"></i></button></th>
+                                                                    </tr>
+                                                                @endforeach
+
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div> <!-- end .table-responsive-->
+                                                    <div class="row" id="divmsg" style="display:none" class="alert alert-primary" role="alert "></div>
+
+
 
                                                         <!--  Modal content for the above example -->
                                                             <div class="modal fade bs-example-modal-lg" id="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
@@ -265,31 +299,9 @@
 
 
 
-                                                    <div class="row" id="contacto">
-                                                        <div class="col-sm-2"><label >Cargo: </label></div>
-                                                        <span class="col-sm-1"></span>
-                                                        <div class="col-sm-2"><label >Nombre: </label></div>
-                                                        <span class="col-sm-1"></span>
-                                                        <div class="col-sm-2"><label >Número: </label></div>
-                                                        <span class="col-sm-1"></span>
-                                                        <div class="col-sm-2"><label >Email: </label></div>
-                                                    </div>
-                                                    <div id="ProveedorContactos">
-                                                        @foreach ($contactoPro as $contactos)
-                                                        <div  class="row" style="margin-bottom: 2%;">
-                                                            <input type="text" name="PROVECONT_descripcion[]" id="PROVECONT_descripcion"  class="form-control form-control-sm col-sm-2" style="margin-left: 2%;" value="{{$contactos->PROVECONT_descripcion}}">
-                                                            <span class="col-sm-1"></span>
-                                                            <input type="text" name="PROVECONT_nombre[]" id="PROVECONT_nombre"  class="form-control form-control-sm col-sm-2" value="{{$contactos->PROVECONT_nombre}}">
-                                                            <span class="col-sm-1"></span>
-                                                            <input type="number" name="PROVECONT_telefono[]" id="PROVECONT_telefono"  class="form-control form-control-sm col-sm-2" value="{{$contactos->PROVECONT_telefono}}">
-                                                            <span class="col-sm-1"></span>
-                                                            <input type="email" name="PROVECONT_email[]"  id="PROVECONT_email" class=" form-control form-control-sm col-sm-2" style="margin-right: 2%;" value="{{$contactos->PROVECONT_email}}">
-                                                            <!--<input class="btn btn-primary bt_plus" id="100" type="button" value="+">-->
-                                                            <button class="btn btn-primary" id="{{$loop->index+1}}" type="button"  style="padding: 4px 8px; background-color: #446e8c; border-Color:#04233a;"><i class="fe-phone-forwarded" style="width:20px; height:20px;" ></i></button>
-                                                            <div class="error_form"></div>
-                                                        </div>
-                                                    @endforeach
-                                                    </div>
+
+
+
                                                 </div> <br>
                                         </div>
                                         <!-- end card-box-->
