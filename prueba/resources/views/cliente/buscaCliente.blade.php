@@ -10,6 +10,7 @@ data-pagination="true" class="table-bordered " style="display: inline-table;">
 <tr>
 <th data-field="state" >#</th>
 <th data-field="id" data-switchable="false">RUC</th>
+<th data-field="idd" data-switchable="false">DNI</th>
 <th data-field="name">Razon social</th>
 <th data-field="amount">Email</th>
 <th data-field="amRount">Telefono</th>
@@ -23,14 +24,15 @@ data-pagination="true" class="table-bordered " style="display: inline-table;">
     @foreach ($cliente as $clientes)
         <tr>
                 <td>{{$loop->index+1}}</td>
-                <td> @if ($clientes->TIPPROVE_id==1)
-                    {{$clientes->CLIE_ruc}}
-                    @else {{$clientes->CLIE_dni}} @endif
+                <td>{{($clientes->CLIE_ruc)}}
+
                 </td>
+                 <td> {{$clientes->CLIE_dni}}</td>
+
                 <td>{{$clientes->CLIE_razon_social}}</td>
                 <td>{{$clientes->CLIE_email}}</td>
                 <td>{{$clientes->CLIE_telefono}}</td>
-                
+
                 <td>{{$clientes->CLIE_region}}</td>
                 <td>{{$clientes->USER_id}}</td>
                 <td>
@@ -42,7 +44,7 @@ data-pagination="true" class="table-bordered " style="display: inline-table;">
                     </td>
                     <td>  <a href="" class="action-icon" title="Ver"> <i class="mdi mdi-eye"></i></a>
                         <a href="" class="action-icon" title="Editar"> <i class="mdi mdi-square-edit-outline"></i></a>
-                       
+
                         @if($clientes->CLIE_estado==1)
                         <a href="" class="action-icon" title="Bloquear"> <i class="mdi mdi-block-helper"></i></a></td>
                         @else

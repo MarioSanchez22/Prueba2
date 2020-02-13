@@ -72,15 +72,15 @@
                                             <form action="" class="form-inline">
                                             <div class="form-group">
                                             <label class="control-label" >RUC:   </label>&nbsp&nbsp
-                                             <input type="text"  id="PROVE_ruc" name="PROVE_ruc" class="form-control form-control-sm">
+                                             <input type="text"  id="CLIE_ruc" name="CLIE_ruc" class="form-control form-control-sm">
                                             </div>
                                             </form>
                                         </div>
                                         <div class="col-md-4">
                                             <form action="" class="form-inline">
                                             <div class="form-group">
-                                            <label class="control-label" >Razon social: </label>&nbsp&nbsp
-                                            <input type="text" id="PROVE_razon_social" name="PROVE_razon_social" class="form-control form-control-sm">
+                                                &nbsp&nbsp&nbsp&nbsp<label class="control-label" >Tipo: </label>&nbsp&nbsp
+                                           <select class="form-control  form-control-sm" name="TIPPROVE_id" id="TIPPROVE_id"> <option value="0">[seleccione]</option> <option value="1">Empresa</option> <option value="2">Persona matural</option></select>
                                             </div>
                                         </form>
                                         </div>
@@ -88,7 +88,7 @@
                                             <form action="" class="form-inline">
                                             <div class="form-group">
                                             <label class="control-label" >Vendedor: </label> &nbsp&nbsp
-                                             <input type="text" id="PROVE_etiqueta" name="PROVE_etiqueta" class="form-control form-control-sm">
+                                             <input type="text" id="USER_id" name="USER_id" class="form-control form-control-sm">
                                             </div>
                                             </form>
                                         </div>
@@ -100,7 +100,7 @@
 
                                       </div>
                                 </div>
-                                
+
                                 <div id="tablageneral" class="bounceInLeft animated">
                                 <table   data-toggle="table"
                                 data-page-size="4"
@@ -110,6 +110,7 @@
                                 <tr>
                                 <th data-field="state" >#</th>
                                 <th data-field="id" data-switchable="false">RUC</th>
+                                <th data-field="iEd" data-switchable="false">DNI</th>
                                 <th data-field="name">Razon social</th>
                                 <th data-field="amount">Email</th>
                                 <th data-field="amRount">Telefono</th>
@@ -123,14 +124,15 @@
                                     @foreach ($cliente as $clientes)
                                         <tr>
                                                 <td>{{$loop->index+1}}</td>
-                                                <td> @if ($clientes->TIPPROVE_id==1)
-                                                    {{$clientes->CLIE_ruc}}
-                                                    @else {{$clientes->CLIE_dni}} @endif
+                                                <td>{{($clientes->CLIE_ruc)}}
+
                                                 </td>
+                                                 <td> {{$clientes->CLIE_dni}}</td>
+
                                                 <td>{{$clientes->CLIE_razon_social}}</td>
                                                 <td>{{$clientes->CLIE_email}}</td>
                                                 <td>{{$clientes->CLIE_telefono}}</td>
-                                                
+
                                                 <td>{{$clientes->CLIE_region}}</td>
                                                 <td>{{$clientes->USER_id}}</td>
                                                 <td>
@@ -142,7 +144,7 @@
                                                     </td>
                                                     <td>  <a href="" class="action-icon" title="Ver"> <i class="mdi mdi-eye"></i></a>
                                                         <a href="" class="action-icon" title="Editar"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                                       
+
                                                         @if($clientes->CLIE_estado==1)
                                                         <a href="" class="action-icon" title="Bloquear"> <i class="mdi mdi-block-helper"></i></a></td>
                                                         @else
@@ -294,22 +296,22 @@
 
 <script>
      $('#buscar').click(function(){
-         var ruc=$('#PROVE_ruc').val();
-    var razon=$('#PROVE_razon_social').val();
-    var etiqueta=$('#PROVE_etiqueta').val();
+         var ruc=$('#CLIE_ruc').val();
+    var tprove=$('#TIPPROVE_id').val();
+    var user=$('#USER_id').val();
         $('#tablageneral').hide();
         if(ruc==''){
             ruc='0';
         }
-        if(razon==''){
-            razon='0';
+        if(tprove==''){
+            tprove='0';
         }
-        if(etiqueta==''){
-            etiqueta='0';
+        if(user==''){
+            user='0';
         }
 
     $.ajax({
-    url:"proveedor/buscar/"+ruc+"/"+razon+"/"+etiqueta,
+    url:"cliente/buscar/"+ruc+"/"+tprove+"/"+user,
     method:"GET",
     success:function(data1){
         $('#tabla1').html(data1);
