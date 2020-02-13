@@ -136,6 +136,22 @@ class proveedorController extends Controller
                 $contacto->save();
             }
         }
+        $beneficiario=$request->get('PROVECU_beneficiario');
+        $cuenta=$request->get('PROVECU_cuenta');
+        $observacion=$request->get('PROVECU_observacion');
+       
+        //dd($cargo[0]);
+        if($request->get('PROVECU_beneficiario')!=null){
+            for ($i=0; $i < sizeof($telefono) ; $i++) {
+                $cuentas=new proveedor_cuenta();
+                $cuentas->PROVECU_beneficiario=$beneficiario[$i];
+                $cuentas->PROVECU_cuenta=$cuenta[$i];
+                $cuentas->PROVECU_observacion= $observacion[$i];
+              
+                $cuentas->PROVE_id=$proveedor->PROVE_id;
+                $cuentas->save();
+            }
+        }
 //dd($proveedor);
 $proveedor2=proveedor::all();
            return view('proveedor.index',['proveedor'=>$proveedor2]);

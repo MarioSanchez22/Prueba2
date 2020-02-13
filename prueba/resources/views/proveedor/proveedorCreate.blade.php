@@ -257,11 +257,11 @@
 
                                                     </div>
                                                     <div id="div_300" class="row" style="margin-bottom: 2%;">
-                                                        <input type="text" name="PROVECONT_descripcion[]" id="PROVECONT_descripcion"  class="form-control form-control-sm col-sm-2" style="margin-left: 2%;">
+                                                        <input type="text" name="PROVECU_beneficiario[]" id="PROVECU_beneficiario"  class="form-control form-control-sm col-sm-2" style="margin-left: 2%;">
                                                         <span class="col-sm-1"></span>
-                                                        <input type="text" name="PROVECONT_nombre[]" id="PROVECONT_nombre"  class="form-control form-control-sm col-sm-2">
+                                                        <input type="text" name="PROVECU_cuenta[]" id="PROVECU_cuenta"  class="form-control form-control-sm col-sm-2">
                                                         <span class="col-sm-1"></span>
-                                                        <input type="number" name="PROVECONT_telefono[]" id="PROVECONT_telefono"  class="form-control form-control-sm col-sm-2">
+                                                        <input type="number" name="PROVECU_observacion[]" id="PROVECU_observacion"  class="form-control form-control-sm col-sm-2">
                                                         <span class="col-sm-1"></span>
                                                         <!--<input class="btn btn-primary bt_plus" id="100" type="button" value="+">-->
                                                         <button class="btn btn-primary bt_plus" id="300" type="button"  style="padding: 4px 8px; background-color: #446e8c; border-Color:#04233a;"><i class="fe-phone-forwarded" style="width:20px; height:20px;" ></i></button>
@@ -410,10 +410,10 @@
         $newClone.attr("id",'div_'+newID);
         //Asigno nuevo id al primer campo input dentro del div y le borro cualquier valor
         // que tenga asi no copia lo ultimo que hayas escrito.(igual que antes no es necesario tener un id)
-        $newClone.children("input").eq(0).attr("id",'PROVECONT_descripcion'+newID).val('');
+        $newClone.children("input").eq(0).attr("id",'PROVECU_beneficiario'+newID).val('');
         //Borro el valor del segundo campo input(este caso es el campo de cantidad)
-        $newClone.children("input").eq(1).attr("id",'PROVECONT_nombre'+newID).val('');
-        $newClone.children("input").eq(2).attr("id",'PROVECONT_telefono'+newID).val('');
+        $newClone.children("input").eq(1).attr("id",'PROVECU_cuenta'+newID).val('');
+        $newClone.children("input").eq(2).attr("id",'PROVECU_observacion'+newID).val('');
 
         //Asigno nuevo id al boton
         $newClone.children("button").attr("id",newID)
