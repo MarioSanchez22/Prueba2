@@ -80,7 +80,6 @@
                              $("#CLIE_ruc").val(dataObject.result.RUC);
                              $("#CLIEDIRE_descripcion").val(dataObject.result.Direccion);
 
-
                            // $("#rs_dni").val(dataObject.result.DNI); No devuelve DNI
                            }
                            else{
