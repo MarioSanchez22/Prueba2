@@ -57,6 +57,9 @@ Route::GET('cliente/registrar', 'clienteController@create')->name('clienteCreate
 Route::get('cliente/datosCliente/{id}', 'clienteController@datosCliente')->name('datosCliente');
 Route::get('cliente/buscar/{ruc}/{tprove}/{user}', 'clienteController@buscar')->name('clienteBuscar');
 Route::POST('cliente/create', 'clienteController@store')->name('clienteStore');
+Route::get('cliente/show/{cliente}', 'clienteController@show')->name('clienteShow');
+Route::get('cliente/editar/{cliente}','clienteController@editar')->name('clienteEdit');
+Route::POST('cliente/update/{cliente}', 'clienteController@update')->name('clienteUpdate');
     //Expediente Proveedor
     Route::name('proveedorExpedienteDownload')->get('/proveedor/expediente/{expediente}/download','proveedorController@download');
 //PRODUCTO

@@ -80,7 +80,7 @@
                                             <form action="" class="form-inline">
                                             <div class="form-group">
                                                 &nbsp&nbsp&nbsp&nbsp<label class="control-label" >Tipo: </label>&nbsp&nbsp
-                                           <select class="form-control  form-control-sm" name="TIPPROVE_id" id="TIPPROVE_id"> <option value="0">[seleccione]</option> <option value="1">Empresa</option> <option value="2">Persona matural</option></select>
+                                           <select class="form-control  form-control-sm" name="TIPPROVE_id" id="TIPPROVE_id"> <option value="0">[seleccione]</option> <option value="1">Empresa</option> <option value="2">Persona Natural</option></select>
                                             </div>
                                         </form>
                                         </div>
@@ -142,8 +142,8 @@
                                                         <span class="badge bg-soft-danger text-danger shadow-none">Bloqueado</span>
                                                         @endif
                                                     </td>
-                                                    <td>  <a href="" class="action-icon" title="Ver"> <i class="mdi mdi-eye"></i></a>
-                                                        <a href="" class="action-icon" title="Editar"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                    <td>  <a href="{{route('clienteShow',[ $clientes->CLIE_id] )}}" class="action-icon" title="Ver"> <i class="mdi mdi-eye"></i></a>
+                                                        <a href="{{route('clienteEdit',[$clientes->CLIE_id])}}" class="action-icon" title="Editar"> <i class="mdi mdi-square-edit-outline"></i></a>
 
                                                         @if($clientes->CLIE_estado==1)
                                                         <a href="" class="action-icon" title="Bloquear"> <i class="mdi mdi-block-helper"></i></a></td>

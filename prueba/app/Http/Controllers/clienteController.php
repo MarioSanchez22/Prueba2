@@ -145,4 +145,23 @@ class clienteController extends Controller
     $cliente2=cliente::all();
                return view('cliente.index',['cliente'=>$cliente2]);
             }
+
+     public function show($cliente){
+                $clie=cliente::find($cliente);
+
+
+            $tipo=tipo_proveedor::where('TIPPROVE_id','=',$clie->TIPPROVE_id)->get();
+            $contactoCli=cliente_contacto::where('CLIE_id','=',$cliente)->get();
+            $direccionCli=cliente_direccion::where('CLIE_id','=',$cliente)->get();
+
+                return view('cliente.clienteShow',['cliente'=>$clie,'contacto'=>$contactoCli,'tipo'=>$tipo,'direccion'=>$direccionCli]);
+            }
+
+            public function editar($cliente){
+                $cliente2=cliente::find($cliente);
+                $tipoPro=tipo_proveedor::where('TIPPROVE_id','=',$cliente2->TIPPROVE_id)->get();
+                $contactoCli=cliente_contacto::where('CLIE_id','=',$cliente2->CLIE_id)->get();
+               return view('cliente.clienteUpdate',['cliente'=>$cliente2,'tipopro'=>$tipoPro[0],'contacto'=>$contactoCli]);
+            }
+
 }

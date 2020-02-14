@@ -155,7 +155,7 @@
                                                             <div class="form-group">
                                                                 <label >Direccion Principal </label>
                                                                 <div id="div_1000" class="row col-md-12" >
-                                                                    <input type="text" name="CLIEDIRE_descripcion[]" id="CLIEDIRE_descripcion[]"  class="form-control form-control-sm " style="margin-left: 2%;">
+                                                                    <input type="text" name="CLIEDIRE_descripcion[]" id="CLIEDIRE_descripcion"  class="form-control form-control-sm " style="margin-left: 2%;">
 
 
                                                                     <!--<input class="btn btn-primary bt_plus" id="100" type="button" value="+">-->
@@ -400,7 +400,8 @@
                          if (dataObject.success == true) {
 						  $("#CLIE_razon_social").val(dataObject.result.RazonSocial);
                            $("#CLIE_razon_comercial").val(dataObject.result.NombreComercial);
-                           $("#CLIE_direccion").val(dataObject.result.Direccion);
+                           $("#CLIEDIRE_descripcion").val(dataObject.result.Direccion);
+
                            $("#CLIE_dni").val(ruc.substr(2,8));
 
                          // $("#rs_dni").val(dataObject.result.DNI); No devuelve DNI

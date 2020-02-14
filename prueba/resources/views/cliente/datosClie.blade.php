@@ -1,15 +1,11 @@
-
-
-
 @if($tipoPr==1)
-
 <div class="col-md-6">
     <div class="form-group">
     <label class="control-label" for="PROVE_razon_social">
        Razon social
     </label>
     <input type="text" class="form-control form-control-sm" required  placeholder="Razon social" id="CLIE_razon_social" name="CLIE_razon_social"> </div>
-</div>
+    </div>
 
    <div class="col-md-6">
     <div class="form-group">
@@ -44,7 +40,7 @@
     <label class="control-label" for="CLIE_razon_social">
        Nombre
     </label>
-    <input type="text" class="form-control form-control-sm" required  placeholder="Nombre de cliente" name="PROVE_razon_social"  id="CLIE_razon_social"> </div>
+    <input type="text" class="form-control form-control-sm" required  placeholder="Nombre de cliente" name="CLIE_razon_social"  id="CLIE_razon_social"> </div>
 </div>
 @endif
 
@@ -82,7 +78,7 @@
                            if (dataObject.success == true) {
                       $("#CLIE_razon_social").val(dataObject.result.RazonSocial);
                              $("#CLIE_ruc").val(dataObject.result.RUC);
-                             $("#CLIE_direccion").val(dataObject.result.Direccion);
+                             $("#CLIEDIRE_descripcion").val(dataObject.result.Direccion);
 
 
                            // $("#rs_dni").val(dataObject.result.DNI); No devuelve DNI
@@ -134,14 +130,10 @@
                            if (dataObject.success == true) {
                       $("#CLIE_razon_social").val(dataObject.result.nombres);
                              $("#CLIE_ruc").val(dataObject.result.RUC);
-                             $("#CLIE_direccion").val(dataObject.result.Direccion);
 
-
+                             $("#CLIEDIRE_descripcion").val(dataObject.result.Direccion);
                            // $("#rs_dni").val(dataObject.result.DNI); No devuelve DNI
                            }
-
-
-
 
               }
           });
