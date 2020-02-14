@@ -12,9 +12,9 @@ data-pagination="true" class="table-bordered " style="display: inline-table;">
 <th data-field="id" data-switchable="false">RUC</th>
 <th data-field="idd" data-switchable="false">DNI</th>
 <th data-field="name">Razon social</th>
-<th data-field="amount">Email</th>
+
 <th data-field="amRount">Telefono</th>
-<th data-field="amTount">Region</th>
+
 <th data-field="amuuTount">Vendedor</th>
 <th data-field="user-status">Estado</th>
 <th data-field="amouWnt">Opciones</th>
@@ -30,10 +30,10 @@ data-pagination="true" class="table-bordered " style="display: inline-table;">
                  <td> {{$clientes->CLIE_dni}}</td>
 
                 <td>{{$clientes->CLIE_razon_social}}</td>
-                <td>{{$clientes->CLIE_email}}</td>
+
                 <td>{{$clientes->CLIE_telefono}}</td>
 
-                <td>{{$clientes->CLIE_region}}</td>
+
                 <td>{{$clientes->USER_id}}</td>
                 <td>
                     @if($clientes->CLIE_estado==1)

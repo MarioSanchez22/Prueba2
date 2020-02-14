@@ -60,6 +60,8 @@ Route::POST('cliente/create', 'clienteController@store')->name('clienteStore');
 Route::get('cliente/show/{cliente}', 'clienteController@show')->name('clienteShow');
 Route::get('cliente/editar/{cliente}','clienteController@editar')->name('clienteEdit');
 Route::POST('cliente/update/{cliente}', 'clienteController@update')->name('clienteUpdate');
+Route::get('cliente/darBaja/{cliente}', 'clienteController@darBaja')->name('clienteDarBaja');
+Route::get('cliente/darAlta/{cliente}', 'clienteController@darAlta')->name('clienteDarAlta');
     //Expediente Proveedor
     Route::name('proveedorExpedienteDownload')->get('/proveedor/expediente/{expediente}/download','proveedorController@download');
 //PRODUCTO

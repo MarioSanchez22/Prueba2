@@ -59,7 +59,7 @@
                           <div class="card" style=" margin-bottom: 0px;   ">
 
                             <!-- /.card-header -->
-                            <div class="card-body col-md-12" style="padding-left: 0px; padding-right: 0px;">
+                            <div class="card-body col-md-12" style="">
                                 <div class="row" >
 
                                         <div class="card-box " style=" padding-top: 0px; margin-bottom: 0px;padding-bottom: 5px;">
@@ -178,7 +178,7 @@
                                                            </div>
 
                                                            <div class="col-md-12" style="background:#f5f5f5">
-                                                            <button type="submit" class="btn btn-primary" style="background-color: #446e8c;">Save changes</button>
+                                                            <button type="submit" style="margin-left: 91%" class="btn btn-primary" style="background-color: #446e8c;">Guardar</button>
                                                           </div>
 
                                                 </div>
@@ -277,12 +277,13 @@
 
                                                 </div> <br>
                                         </div>
+
                                         <!-- end card-box-->
                                 </div>
                                 <!-- end row -->
                             </div>
                             <!-- /.card-body -->
-                          </div>
+                          </div> <!-- /.card-body HEADER -->
                         <!-- /.col -->
                       </div>
                     </div> <!-- container -->
@@ -305,11 +306,13 @@
                     </div>
                 </footer>
                 <!-- end Footer -->
+
             </div>
             <!-- ============================================================== -->
             <!-- End Page content -->
             <!-- ============================================================== -->
         </div>
+    </div><!-- ==-->
         <!-- END wrapper -->
         <!-- Right bar overlay-->
         <div class="rightbar-overlay"></div>
@@ -391,5 +394,6 @@
 
         // }
 </script>
+        </div>
     </body>
 </html>

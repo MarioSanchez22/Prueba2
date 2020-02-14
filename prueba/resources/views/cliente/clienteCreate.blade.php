@@ -67,12 +67,32 @@
                                 <div class="row" >
                                     <form action=" {{route('clienteStore')}} " method="POST" enctype="multipart/form-data" class="col-md-12">
                                     {{ csrf_field()}}
-                                    <div class="form-inline" style="margin-left: 20px">
-                                        <div class="form-group">
-                                          <i class="mdi mdi-24px mdi-clipboard-account-outline"></i> <h5>Registrado por:</h5> &nbsp&nbsp
-                                        <input type="text" id="USER_id" name="USER_id" value="Vendedor-01"  style="background-color: #343a40; border-color: #4284a7; color:#f5f5f5" class="form-control form-control-sm" disabled>
+                                    <div class="row" >
+                                        <div class="col-md-6">
+                                        <div class="form-inline" style="margin-left: 20px">
+                                            <div class="form-group">
+                                              <i class="mdi mdi-24px mdi-clipboard-account-outline"></i> <h5>Registrado por:</h5> &nbsp&nbsp
+                                            <input type="text" id="USER_id" name="USER_id" value="Vendedor-01"  style=" color:#2e4965" class="form-control form-control-sm" disabled>
+                                            </div>
                                         </div>
-                                    </div><br>
+                                        </div>
+                                        <div class="col-md-6">
+                                        <div class="form-inline" style="margin-left: 20px">
+                                            <div class="form-group">
+                                              <i class="mdi mdi-24px mdi-clipboard-account-outline"></i> <h5>Vendedor:</h5> &nbsp&nbsp
+                                              <select name="" id=""  class="form-control form-control-sm">
+                                                  <option value="">Vendedor1</option>
+                                                  <option value="">Vendedor2</option>
+                                                  <option value="">Vendedor3</option>
+                                                  <option value="">Vendedor4</option>
+
+                                              </select>
+                                             </div>
+                                        </div>
+                                        </div>
+                                    </div>
+
+                                    <br>
                                         <div class="card-box " style=" padding-top: 0px; margin-bottom: 0px;padding-bottom: 5px;">
                                             <ul class="nav nav-tabs" style="background:#f5f5f5">
                                                 <li class="nav-item">

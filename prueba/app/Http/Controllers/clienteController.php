@@ -164,4 +164,16 @@ class clienteController extends Controller
                return view('cliente.clienteUpdate',['cliente'=>$cliente2,'tipopro'=>$tipoPro[0],'contacto'=>$contactoCli]);
             }
 
+            public function darBaja($cliente){
+                $cliente2=cliente::find($cliente);
+                $cliente2->CLIE_estado=0;
+                $cliente2->save();
+                return back();
+            }
+            public function darAlta($cliente){
+                $cliente2=cliente::find($cliente);
+                $cliente2->CLIE_estado=1;
+                $cliente2->save();
+                return back();
+            }
 }

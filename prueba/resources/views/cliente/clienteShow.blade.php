@@ -58,7 +58,7 @@
                                         <li class="breadcrumb-item active">Calendar</li>
                                     </ol>
                                 </div>
-                            <h4 class="page-title">CLIENTE </h4>
+                            <h4 class="page-title">CLIENTE:{{$cliente->CLIE_razon_social}}</h4>
                             </div>
                         </div>
                     </div>  <!-- end row -->
@@ -127,7 +127,21 @@
                                              @endfor
 
                                            <br> </div>
+
                                            @endif
+
+                                    <div class="col-md-12 " style="border-left: solid;border-color:#afbdca ">
+                                    <div class="form-group" style="    width: 160%;
+                                    ">
+                                        <label class="control-label text-left" for="PROVE_email" > <i class="mdi mdi-email mr-1"></i>creado por: </label>
+                                        <input type="text" creadonly="" class=" col-md-12 form-control-plaintext form-control-sm "  required  placeholder="Email" name="PROVE_email" value=" {{$cliente->USER_id }}"> </div>
+                                    </div>
+                                    <div class="col-md-12 " style="border-left: solid;border-color:#afbdca ">
+                                        <div class="form-group" style="    width: 160%;
+                                        ">
+                                            <label class="control-label text-left" for="PROVE_email" > <i class="mdi mdi-email mr-1"></i>Vendedor: </label>
+                                            <input type="text" creadonly="" class=" col-md-12 form-control-plaintext form-control-sm "  required  placeholder="Email" name="PROVE_email" value=" {{$cliente->EMPLE_id }}"> </div>
+                                        </div>
                                 </div>
                                 </div>
                                 <div class="row">
@@ -182,6 +196,18 @@
 
 
                      </div>  <!-- /.end col lg8 -->
+                     <div class="col-lg-6 col-xl-6">
+
+
+                        <div class="card-box ">
+                        <div class="row">
+
+
+                 </div>      <!-- /.end row -->
+                        </div>  <!-- /.end car box -->
+
+
+                        </div>  <!-- /.end col lg8 -->
                      </div>
 
                             </div>

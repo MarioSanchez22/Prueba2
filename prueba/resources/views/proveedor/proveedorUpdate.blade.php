@@ -59,7 +59,7 @@
                           <div class="card" style=" margin-bottom: 0px;   ">
 
                             <!-- /.card-header -->
-                            <div class="card-body col-md-12" style="padding-left: 0px; padding-right: 0px;">
+                            <div class="card-body col-md-12" style="">
                                 <div class="row" >
 
                                         <div class="card-box " style=" padding-top: 0px; margin-bottom: 0px;padding-bottom: 5px;">
@@ -205,7 +205,7 @@
                                                               <textarea class="form-control" id="example-textarea" rows="3" name="PROVE_etiqueta">{{$proveedor->PROVE_etiqueta}}</textarea></div>
                                                            </div>
                                                            <div class="col-md-12" style="background:#f5f5f5">
-                                                            <button type="submit" class="btn btn-primary" style="background-color: #446e8c;">Save changes</button>
+                                                            <button type="submit" style="margin-left: 91%" class="btn btn-primary" style="background-color: #446e8c;">Guardar</button>
                                                           </div>
 
                                                 </div>
@@ -288,7 +288,7 @@
                                                                             <button class="btn btn-primary bt_plus" id="{{$proveedor->PROVE_id}}" type="button"  style="padding: 4px 8px; background-color: #446e8c; border-Color:#04233a;"><i class="fe-phone-forwarded" style="width:20px; height:20px;" ></i></button>
                                                                                     <div class="error_form"></div>
                                                                             </div>
-                                                                                    <button class="btn btn-primary bt_guarda" id="bt_guarda" type="button"  style="padding: 4px 8px; background-color: #446e8c; border-Color:#04233a;">Guardar</button>
+                                                                                    <button class="btn btn-primary bt_guarda" id="bt_guarda" style=""  type="button"  style="padding: 4px 8px; background-color: #446e8c; border-Color:#04233a;">Guardar</button>
                                                                         </div>
                                                                     </div><!-- /.modal-content -->
                                                                 </div><!-- /.modal-dialog -->
