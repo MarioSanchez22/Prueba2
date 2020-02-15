@@ -194,20 +194,27 @@
               </div>      <!-- /.end row -->
                      </div>  <!-- /.end car box -->
 
-
-                     </div>  <!-- /.end col lg8 -->
-                     <div class="col-lg-6 col-xl-6">
-
-
-                        <div class="card-box ">
+                     <div class="card-box ">
                         <div class="row">
-
+                            <div class="col-md-6" style="margin-left: 27%">
+                                <form action="" class="form-inline">
+                                <div class="form-group">
+                                <label class="control-label"  style="font-weight: bold;">Fecha y hora de creacion: </label> &nbsp&nbsp
+                                 <input type="text" value="{{$contactos->created_at}}" class="form-control form-control-sm" style="border-color: #fff; font-weight: bold;">
+                                </div>
+                                </form>
+                            </div>
 
                  </div>      <!-- /.end row -->
                         </div>  <!-- /.end car box -->
 
+                     </div>  <!-- /.end col lg8 -->
 
-                        </div>  <!-- /.end col lg8 -->
+
+
+
+
+
                      </div>
 
                             </div>

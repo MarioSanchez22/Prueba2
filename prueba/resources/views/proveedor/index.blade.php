@@ -111,7 +111,42 @@
 
                             <!-- /.card-header -->
                             <div class="card-body" style="background:#fff">
+                                <!--  Modal content for the above example -->
+ <div class="modal fade bs-example-modal-lg" id="modal"  role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myLargeModalLabel">Agregar contacto</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
 
+                    <div class="col-sm-2"><label >Cargo: </label></div>
+                    <span class="col-sm-1"></span>
+                    <div class="col-sm-2"><label >Nombre: </label></div>
+                    <span class="col-sm-1"></span>
+                    <div class="col-sm-2"><label >Número: </label></div>
+                    <span class="col-sm-1"></span>
+                    <div class="col-sm-2"><label >Email: </label></div>
+                </div>
+                <div id="div_100" class="row" style="margin-bottom: 2%;">
+                    <input type="text" name="PROVECONT_descripcion" id="PROVECONT_descripcion"  class="form-control form-control-sm col-sm-2" style="margin-left: 2%;">
+                        <span class="col-sm-1"></span>
+                        <input type="text" name="PROVECONT_nombre" id="PROVECONT_nombre"  class="form-control form-control-sm col-sm-2" >
+                        <span class="col-sm-1"></span>
+                        <input type="number" name="PROVECONT_telefono" id="PROVECONT_telefono"  class="form-control form-control-sm col-sm-2" >
+                        <span class="col-sm-1"></span>
+                        <input type="email" name="PROVECONT_email"  id="PROVECONT_email" class=" form-control form-control-sm col-sm-2" style="margin-right: 2%;" >
+                        <!--<input class="btn btn-primary bt_plus" id="100" type="button" value="+">-->
+                <button class="btn btn-primary bt_plus"  type="button"  style="padding: 4px 8px; background-color: #446e8c; border-Color:#04233a;"><i class="fe-phone-forwarded" style="width:20px; height:20px;" ></i></button>
+                        <div class="error_form"></div>
+                </div>
+                        <button class="btn btn-primary bt_guarda" id="bt_guarda" style=""  type="button"  style="padding: 4px 8px; background-color: #446e8c; border-Color:#04233a;">Guardar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
                                 <div id="tablageneral" class="bounceInLeft animated">
                                 <table   data-toggle="table"
                                 data-page-size="6"
@@ -147,13 +182,26 @@
                                                         <span class="badge bg-soft-danger text-danger shadow-none">Bloqueado</span>
                                                     @endif
                                                     </td>
-                                                    <td>  <a href="{{route('proveedorShow',[ $proveedores->PROVE_id] )}}" class="action-icon" title="Ver"> <i class="mdi mdi-eye"></i></a>
-                                                        <a href="{{route('proveedorEdit',[$proveedores->PROVE_id])}}" class="action-icon" title="Editar"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                    <td>
+                                                        <div class="dropdown float-right">
+                                                            <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
+                                                                <i class=" mdi mdi-settings m-0 text-muted h3"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-right">
+
+                                                                <a href="{{route('proveedorShow',[ $proveedores->PROVE_id] )}}" class="dropdown-item" title="Ver"> <i class="mdi mdi-eye"></i> Ver</a>
+                                                                 <a href="{{route('proveedorEdit',[$proveedores->PROVE_id])}}" class="dropdown-item" title="Editar"> <i class="mdi mdi-square-edit-outline"></i> Editar</a>
+                                                                 <a   data-toggle="modal" href="#modal" class="dropdown-item" > <i class="mdi mdi-plus"></i> Agregar contacto</a>
+
+                                                            </div>
+                                                        </div>
+
                                                         @if($proveedores->PROVE_estado==1)
                                                         <a href="{{route('proveedorDarBaja',[ $proveedores->PROVE_id] )}}" class="action-icon" title="Bloquear"> <i class="mdi mdi-block-helper"></i></a></td>
                                                         @else
                                                         <a href="{{route('proveedorDarAlta',[ $proveedores->PROVE_id] )}}" class="action-icon" title="Activar"> <i class="mdi mdi-transfer-up"></i></a></td>
                                                         @endif
+
                                                 </tr>
                                     @endforeach
                                     </tbody>
