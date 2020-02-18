@@ -18,15 +18,38 @@ Route::get('/dashboard', function () {
 
 
 
+
+
+
+
+
+
+Route::get('/','Auth\LoginController@showLoginForm')->middleware('guest');
+
+Route::name('login')->post('login','Auth\LoginController@login');
+Route::name('logout')->post('logout','Auth\LoginController@logout');
+
+Route::name('Dashboard')->get('dashboard','HomeController@index');
+
 Route::get('/compras', function () {
     return view('compras');
 })->name('compras');
-Route::get('/','pruebaController@index')->name('home');
 
 
+
+
+
+//CONFIGURACION ROLES
+//ROLES
+Route::name('rolesIndex')->get('roles','rolesController@index');
+Route::get('roles/registrar','rolesController@create')->name('rolCreate');
+Route::POST('roles/create', 'rolesController@store')->name('rolStore');
+/////////////////////////
 //LOGISTICA
 //POVEEDOR
+
 Route::get('proveedor', 'proveedorController@index')->name('proveedorIndex');
+
 
 
 Route::get('proveedor/registrar','proveedorController@create')->name('proveedorCreate');
