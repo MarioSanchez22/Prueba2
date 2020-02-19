@@ -62,9 +62,7 @@ use App\categoria_producto;
                                     <div class="col-sm-7 col-md-7 col-lg-4" style="font-size: 19px;font-weight: bold;padding-top: 5px; padding-left: 0px">
                                         <i class="mdi mdi-24px mdi-apps" style=" margin-right: -6px;color:#373f5f"></i> CATEGORIAS
                                     </div>
-                                    <div class="col-md-8" style="padding-top: 6px">
-                                        <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" onclick="location.href='{{route('proveedorCreate')}}'"><span class=" fa fa-user-plus"> </span>  Producto</button>
-                                    </div>
+
                             </div>
                         </div>
 
@@ -75,48 +73,134 @@ use App\categoria_producto;
 
                     <div class="row" style="margin-top: 10px;">
 
-                        <div class="col 12 bounceInLeft animated">
+                        <div class="col 12 ">
                             <div class="card-box">
-                            <h4>Registro de categoria</h4>
-                            <div class="row">
-                              <div class="col-md-4">
-                               <div class="row">
 
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                          <label for="">Descripcion:</label>
-                                          <input type="text" name="CATPRO_descripcion" id="CATPRO_descripcion" class="form-control form-control-sm">
+                                <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                    <div class="modal-dialog" style="max-width: 700px">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="padding: 9px">
+                                                <h5 class="modal-title">Registro de categoria</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            </div>
+                                            <div class="modal-body p-2">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                  <div class="form-group">
+                                                      <label for="">Codigo:</label>
+                                                      <div class="input-group">
+                                                        <div class="input-group-prepend ">
+                                                            <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-barcode"></i></span>
+                                                        </div>
+                                                      <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion"> </div>
+                                                  </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Descripcion:</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend ">
+                                                                <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class=" mdi mdi-border-color"></i></span>
+                                                            </div>
+                                                          <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion"> </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="col-md-12">
+                                                    <hr style="border-top: 2px solid #f1f1f1; margin: 0px" />
+                                                  </div>
+                                                  <div class="col-md-12">
+                                                      <h5>Ganancia</h5>
+                                                  </div>
+                                                  <div class="col-md-4">
+                                                      <div class="form-group">
+                                                          <label for="">Precio 1:</label>
+                                                          <div class="input-group">
+
+                                                          <input type="text" class="form-control form-control-sm"  >
+                                                          <div class="input-group-prepend ">
+                                                            <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9">%</span>
+                                                        </div> </div>
+                                                      </div>
+                                                  </div>
+                                                  <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="">Precio 2:</label>
+                                                        <div class="input-group">
+
+                                                            <input type="text" class="form-control form-control-sm"  >
+                                                            <div class="input-group-prepend ">
+                                                              <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9">%</span>
+                                                          </div> </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="">Precio 3:</label>
+                                                        <div class="input-group">
+
+                                                            <input type="text" class="form-control form-control-sm"  >
+                                                            <div class="input-group-prepend ">
+                                                              <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9">%</span>
+                                                          </div> </div>
+                                                    </div>
+                                                </div><br>
+                                                <div class="col-md-12">
+                                                    <hr style="border-top: 2px solid #f1f1f1; margin: 0px" />
+                                                  </div><br>
+                                                <div class="col-md-6">
+                                                    <div class="form-inline">
+                                                        <div class="form-group">
+                                                            <label for="">Descuento máximo: </label>&nbsp &nbsp
+                                                            <div class="input-group col-md-5">
+
+                                                                <input type="text" class="form-control form-control-sm"  >
+                                                                <div class="input-group-prepend ">
+                                                                  <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9">%</span>
+                                                              </div> </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            </div>
+                                            <div class="modal-footer" style="padding: 10px;">
+                                                <button type="button" class="btn btn-light btn-sm waves-effect" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-blue btn-sm waves-effect waves-light">Save changes</button>
+                                            </div>
                                         </div>
-                                         <button type="submit" class="btn btn-dark waves-effect waves-light bt_guarda">Registrar</button>
-                                        </div>
+                                    </div>
+                                </div><!-- /.modal -->
+                                <button type="button" class="btn btn-success waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal">Responsive Modal</button>
+
+                                <div class="col-md-8">
+                                    <table data-toggle="table"
+                                    data-show-columns="false"
+                                    data-page-list="[5, 10, 20]"
+                                    data-page-size="5"
+                                    data-buttons-class="xs btn-light"
+                                    data-pagination="true" class="table-borderless" id="categorias">
+                                            <thead class="thead-light">
+                                              <tr>
+                                              <th>#</th>
+                                              <th>Descripcion</th>
+                                              <th>Opciones</th>
+                                          </tr>
+                                          </thead>
+                                          <tbody>
+                                              <tr>
+                                              @foreach ($categoria_producto as $categoria)
+                                              <td>{{$loop->index+1}}</td>
+                                              <td>{{$categoria->CATPRO_descripcion}}</td>
+                                              <td><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                  <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a></td></tr>
+                                              @endforeach
+                                          </tbody>
+                                      </table>
+                                  </div>
 
                                </div>
                               </div>
-                              <div class="col-md-8">
-                                <table data-toggle="table"
-                                data-show-columns="false"
-                                data-page-list="[5, 10, 20]"
-                                data-page-size="5"
-                                data-buttons-class="xs btn-light"
-                                data-pagination="true" class="table-borderless" id="categorias">
-                             <thead class="thead-light">
-                                          <tr>
-                                          <th>#</th>
-                                          <th>Descripcion</th>
-                                          <th>Opciones</th>
-                                      </tr>
-                                      </thead>
-                                      <tbody>
-                                          <tr>
-                                          @foreach ($categoria_producto as $categoria)
-                                          <td>{{$loop->index+1}}</td>
-                                          <td>{{$categoria->CATPRO_descripcion}}</td>
-                                          <td><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                              <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a></td></tr>
-                                          @endforeach
-                                      </tbody>
-                                  </table>
-                              </div>
+
                           </div>
                         </div>
                           <!-- /.card -->
