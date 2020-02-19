@@ -60,7 +60,7 @@ use App\categoria_producto;
 
                                 <div class="row icons-list-demo" style="color:#373f5f">
                                     <div class="col-sm-7 col-md-7 col-lg-4" style="font-size: 19px;font-weight: bold;padding-top: 5px; padding-left: 0px">
-                                        <i class="mdi mdi-24px mdi-apps" style=" margin-right: -6px;color:#373f5f"></i> CATEGORIAS
+                                        <i class="mdi mdi-24px mdi-apps" style=" margin-right: -6px;color:#373f5f"></i> MARCAS
                                     </div>
                                     <div class="col-md-8" style="padding-top: 6px">
                                         <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" onclick="location.href='{{route('proveedorCreate')}}'"><span class=" fa fa-user-plus"> </span>  Producto</button>
@@ -81,18 +81,20 @@ use App\categoria_producto;
                             <div class="row">
                               <div class="col-md-4">
                                <div class="row">
-
+                                <form action=" {{route('marcaStore')}} " method="POST" enctype="multipart/form-data" class="col-md-12">
+                                    {{ csrf_field()}}
                                   <div class="col-md-12">
                                   <div class="form-group">
                                     <label for="">Descripcion:</label>
-                                    <input type="text" class="form-control form-control-sm">
+                                    <input type="text" class="form-control form-control-sm" id="MARCA_descripcion" name="MARCA_descripcion" required>
 
                                   </div>
-                                   <button type="button" class="btn btn-dark waves-effect waves-light">Registrar</button>
+                                   <button type="submit" id="btnS" name="btnS" class="btn btn-dark waves-effect waves-light">Registrar</button>
                                   </div>
+                                </form>
                                </div>
                               </div>
-                              <div class="col-md-8">
+                              <div class="col-md-8" id="cat" name="cat">
                                 <table data-toggle="table"
                                 data-show-columns="false"
                                 data-page-list="[5, 10, 20]"
@@ -246,7 +248,24 @@ use App\categoria_producto;
 @include('layouts.scripts')
 
 
+<script>
+     $('#btnS').click(function(){
 
+
+
+$.ajax({
+  type:"get",
+
+  success:function(data, status){
+
+
+     $('#cat').load(location.href+" #cat>*");
+
+
+}
+});
+});
+</script>
 
 
     </body>

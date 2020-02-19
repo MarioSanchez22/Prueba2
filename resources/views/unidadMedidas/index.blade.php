@@ -1,6 +1,6 @@
 @php
-use App\marca;
-use App\categoria_producto;
+use App\umedidas;
+
 @endphp
 
 <!DOCTYPE html>
@@ -9,7 +9,7 @@ use App\categoria_producto;
         <meta charset="utf-8" />
         <title>UBold - Responsive Admin Dashboard Template</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="csrf-token" content="{{csrf_token()}}"/>
+
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -60,7 +60,7 @@ use App\categoria_producto;
 
                                 <div class="row icons-list-demo" style="color:#373f5f">
                                     <div class="col-sm-7 col-md-7 col-lg-4" style="font-size: 19px;font-weight: bold;padding-top: 5px; padding-left: 0px">
-                                        <i class="mdi mdi-24px mdi-apps" style=" margin-right: -6px;color:#373f5f"></i> CATEGORIAS
+                                        <i class="mdi mdi-24px mdi-led-strip" style=" margin-right: -6px;color:#373f5f"></i> UNIDAD DE MEDIDAS
                                     </div>
                                     <div class="col-md-8" style="padding-top: 6px">
                                         <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" onclick="location.href='{{route('proveedorCreate')}}'"><span class=" fa fa-user-plus"> </span>  Producto</button>
@@ -71,58 +71,74 @@ use App\categoria_producto;
                     </div>
                             </div>
                         </div>
+
                     </div>
+                    <div class="row">
+                        <div class="col-xl-8">
+                            <div class="card">
+                                <div class="card-body">
 
-                    <div class="row" style="margin-top: 10px;">
+                                    <table data-toggle="table"
+                                    data-show-columns="false"
+                                    data-page-list="[5, 10, 20]"
+                                    data-page-size="5"
+                                    data-buttons-class="xs btn-light"
+                                    data-pagination="true" class="table-borderless">
+                                 <thead class="thead-light">
+                                              <tr>
+                                              <th>#</th>
+                                              <th>Descripcion</th>
+                                              <th>Abreviatura</th>
+                                              <th>Opciones</th>
+                                          </tr>
+                                          </thead>
+                                          <tbody>
+                                            <tr>
+                                            @foreach ($umedidas as $umedidas )
+                                            <td>{{$loop->index+1}}</td>
+                                            <td>{{$umedidas->UME_descripcion}}</td>
+                                            <td>{{$umedidas->UME_abreviatura}}</td>
+                                            <td><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a></td></tr>
+                                            @endforeach
+                                        </tbody>
+                                      </table>
 
-                        <div class="col 12 bounceInLeft animated">
+
+
+
+                                </div> <!-- end card-body-->
+                            </div> <!-- end card-->
+                        </div> <!-- end col -->
+
+                        <div class="col-xl-4">
                             <div class="card-box">
-                            <h4>Registro de categoria</h4>
-                            <div class="row">
-                              <div class="col-md-4">
-                               <div class="row">
+                                <h4>Registro de unida de medidas</h4>
+                                <div class="form-group">
+                                    <label for="">Descripcion:</label>
+                                    <input type="text" class="form-control form-control-sm" id="marca" name="marca">
 
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                          <label for="">Descripcion:</label>
-                                          <input type="text" name="CATPRO_descripcion" id="CATPRO_descripcion" class="form-control form-control-sm">
-                                        </div>
-                                         <button type="submit" class="btn btn-dark waves-effect waves-light bt_guarda">Registrar</button>
-                                        </div>
 
-                               </div>
-                              </div>
-                              <div class="col-md-8">
-                                <table data-toggle="table"
-                                data-show-columns="false"
-                                data-page-list="[5, 10, 20]"
-                                data-page-size="5"
-                                data-buttons-class="xs btn-light"
-                                data-pagination="true" class="table-borderless" id="categorias">
-                             <thead class="thead-light">
-                                          <tr>
-                                          <th>#</th>
-                                          <th>Descripcion</th>
-                                          <th>Opciones</th>
-                                      </tr>
-                                      </thead>
-                                      <tbody>
-                                          <tr>
-                                          @foreach ($categoria_producto as $categoria)
-                                          <td>{{$loop->index+1}}</td>
-                                          <td>{{$categoria->CATPRO_descripcion}}</td>
-                                          <td><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                              <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a></td></tr>
-                                          @endforeach
-                                      </tbody>
-                                  </table>
-                              </div>
-                          </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Abreviatura:</label>
+                                    <input type="text" class="form-control form-control-sm" id="marca" name="marca">
+
+
+
+                                </div>
+                                <div class="text-right">
+                                    <br>
+                                <button type="button" class="btn btn-dark waves-effect waves-light">Registrar</button>
+                                </div>
+
+
+                            </div> <!-- end card-box-->
                         </div>
-                          <!-- /.card -->
-                        </div>
-                        <!-- /.col -->
-                      </div>
+                    </div>
+                    <!-- end row -->
+
                     </div> <!-- container -->
                 </div> <!-- content -->
                 <!-- Footer Start -->
@@ -247,38 +263,7 @@ use App\categoria_producto;
 
 
 
-<script>
- $(document).ready(function() {
-            $.ajaxSetup({
-                headers:{
-                    'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
-                }
-            });
-//////////////////////////////////////////
-        //Llenar div de datos al inicio
-        $(".bt_guarda").each(function (el){
-            $(this).bind("click",saveCategoria);
-        });
 
-        function saveCategoria(){
-            var categoria=$('#CATPRO_descripcion').val();
-                $.ajax({
-                    url:"{{route('categoriaStore')}}",
-                    method:"POST",
-                    data:{
-                        CATPRO_descripcion:categoria
-                    },
-                success:function(data){
-                    $('#categorias').load(location.href+" #categorias>*");
-                    limpiarFormCategoria();
-                }
-            });
-        }
-        function limpiarFormCategoria(){
-            $('#CATPRO_descripcion').val('');
-        };
-    })
-</script>
 
     </body>
 </html>

@@ -139,7 +139,7 @@ class proveedorController extends Controller
         $beneficiario=$request->get('PROVECU_beneficiario');
         $cuenta=$request->get('PROVECU_cuenta');
         $observacion=$request->get('PROVECU_observacion');
-       
+
         //dd($cargo[0]);
         if($request->get('PROVECU_beneficiario')!=null){
             for ($i=0; $i < sizeof($telefono) ; $i++) {
@@ -147,7 +147,7 @@ class proveedorController extends Controller
                 $cuentas->PROVECU_beneficiario=$beneficiario[$i];
                 $cuentas->PROVECU_cuenta=$cuenta[$i];
                 $cuentas->PROVECU_observacion= $observacion[$i];
-              
+
                 $cuentas->PROVE_id=$proveedor->PROVE_id;
                 $cuentas->save();
             }
@@ -268,6 +268,7 @@ public function datos($id){
             return back();
         }
         public function contactoStore($proveedor,Request $request){
+
             $contactoPro=new proveedor_contacto();
             $contactoPro->PROVECONT_descripcion=$request->get('PROVECONT_descripcion');
             $contactoPro->PROVECONT_nombre=$request->get('PROVECONT_nombre');
@@ -278,6 +279,6 @@ public function datos($id){
             $contactoPro->updated_at=null;
             $contactoPro->save();
             $contacto=proveedor_contacto::where('PROVE_id','=',$proveedor)->get();
-            return view('proveedor.proveedorContactos',['contactoPro'=>$contacto]);
+            return 0;
         }
     }

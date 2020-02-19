@@ -16,7 +16,11 @@
     </head>
 
     <body>
-
+        <div id="preloader">
+            <div id="status">
+                <div class="spinner">Loading...</div>
+            </div>
+        </div>
         <!-- Begin page -->
         <div id="wrapper">
 
@@ -94,7 +98,12 @@
                                                               </select>
                                                           </div>
                                                           <div class="col-md-4">
-                                                          </div>
+                                                            <div class="form-group">
+                                                              <label class="control-label">Estado: </label>
+
+                                                              <input type="text" class="form-control form-control-sm border border-warning"  disabled value="En transito">
+                                                           </div></div>
+
                                                           <div class="col-md-4">
                                                             <div class="form-group">
                                                               <label class="control-label">Nombre: </label>

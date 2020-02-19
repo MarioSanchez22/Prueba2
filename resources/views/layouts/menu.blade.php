@@ -92,6 +92,9 @@
                     <a href="{{route('clienteIndex')}}" class="nav-link {{ ! Route::is('clienteIndex')?:'active'}} ">Clientes</a>
                     </li>
                     <li >
+                        <a href="{{route('umedidaIndex')}}" class="nav-link {{ ! Route::is('umedidaIndex')?:'active'}} ">Unidad de medida</a>
+                        </li>
+                    <li >
                     <a href="{{route('contactosProv')}}" class="nav-link {{ ! Route::is('contactosProv')?:'active'}} ">Contactos Prov</a>
                     </li>
                 </ul>

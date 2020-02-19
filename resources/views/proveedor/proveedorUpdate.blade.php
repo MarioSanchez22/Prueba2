@@ -220,8 +220,8 @@
                                                             <button type="button" class="btn btn-success waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-lg"> <i class="mdi mdi-phone-plus" style="width:20px; height:20px;" ></i>  Contacto:</button>
                                                         </div>
                                                     </div> <br>
-                                                    <div class="table-responsive">
-                                                        <table class="table table-centered mb-0" id="btn-editable">
+                                                    <div class="table-responsive" id="ProveedorContactos" name="ProveedorContactos">
+                                                        <table class="table table-centered mb-0" >
                                                             <thead style="background:  #f5f5f5">
                                                                 <tr>
                                                                     <th>#</th>
@@ -234,29 +234,28 @@
                                                             </thead>
 
                                                             <tbody>
-
+                                                            <form action="{{route('proveedorContactosUpdate')}}" method="POST">
+                                                                    {{csrf_field()}}
                                                                     @foreach ($contactoPro as $contactos)
                                                                     <tr>
                                                                         <th>{{$loop->index+1}}</th>
-                                                                        <th><input type="text" name="PROVECONT_descripcion[]" id="PROVECONT_descripcion"  class="form-control form-control-sm" style="margin-left: 2%;" value="{{$contactos->PROVECONT_descripcion}}"></th>
-                                                                        <th><input type="text" name="PROVECONT_nombre[]" id="PROVECONT_nombre"  class="form-control form-control-sm" value="{{$contactos->PROVECONT_nombre}}"></th>
-
-                                                                        <th><input type="number" name="PROVECONT_telefono[]" id="PROVECONT_telefono" class="form-control form-control-sm"  value="{{$contactos->PROVECONT_telefono}}"></th>
-
-                                                                       <th> <input type="email" name="PROVECONT_email[]"  id="PROVECONT_email" class="form-control form-control-sm"  value="{{$contactos->PROVECONT_email}}"></th>
+                                                                        <th><input type="text"    name="PROVECONT_descripcion[]" class="form-control form-control-sm" style="margin-left: 2%;" value="{{$contactos->PROVECONT_descripcion}}"></th>
+                                                                        <th><input type="text"    name="PROVECONT_nombre[]" class="form-control form-control-sm" value="{{$contactos->PROVECONT_nombre}}"></th>
+                                                                        <th><input type="number"  name="PROVECONT_telefono[]" class="form-control form-control-sm"  value="{{$contactos->PROVECONT_telefono}}"></th>
+                                                                        <th> <input type="email"  name="PROVECONT_email[]" class="form-control form-control-sm"  value="{{$contactos->PROVECONT_email}}"></th>
                                                                         <!--<input class="btn btn-primary bt_plus" id="100" type="button" value="+">-->
                                                                         <th><button type="button" class="btn btn-danger btn-xs waves-effect waves-light" ><i class="mdi mdi-trash-can-outline"></i></button></th>
-                                                                    </tr>
-                                                                @endforeach
+                                                                            </tr>
+                                                                        @endforeach
 
-
+                                                                </form>
                                                             </tbody>
                                                         </table>
+                                                            <div class="col-md-12" style="background:#f5f5f5">
+                                                                <button type="submit" style="margin-left: 91%" class="btn btn-primary" style="background-color: #446e8c;">Guardar</button>
+                                                            </div>
                                                     </div> <!-- end .table-responsive-->
                                                     <div class="row" id="divmsg" style="display:none" class="alert alert-primary" role="alert "></div>
-
-
-
                                                         <!--  Modal content for the above example -->
                                                             <div class="modal fade bs-example-modal-lg" id="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
                                                                 <div class="modal-dialog modal-lg">
@@ -379,12 +378,7 @@
 //Llenar div de pais al cambiar
         });
 
-        function mostrarMensaje(mensaje){
-            $('#divmsg').empty();
-            $('#divmsg').append("<p>"+mensaje+"</p>");
-            $('#divmsg').show(500);
-            $('#divmsg').hide(5000);
-        };
+
         function limpiarFormContacto(){
             $('#PROVECONT_descripcion').val('');
             $('#PROVECONT_nombre').val('');
@@ -407,8 +401,7 @@
                     },
                 success:function(data){
                     $('#modal').modal("hide");
-                    mostrarMensaje(data.mensaje);
-                    $('#ProveedorContactos').html(data);
+                    $('#ProveedorContactos').load(location.href+" #ProveedorContactos>*");
                     limpiarFormContacto();
                 }
         });

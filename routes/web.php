@@ -47,6 +47,7 @@ Route::get('proveedor/buscar/{ruc}/{razon}/{etiqueta}', 'proveedorController@bus
     //Expediente Proveedor
     Route::name('proveedorExpedienteDownload')->get('/proveedor/expediente/{expediente}/download','proveedorController@download');
     //Contacto Proveedor
+    Route::POST('proveedor/{proveedor}/contacto/update', 'proveedorController@contactoStore')->name('contactoProveedorUpdate');
     Route::POST('proveedor/{proveedor}/contacto/create', 'proveedorController@contactoStore')->name('contactoProveedorCreate');
     Route::get('contactos/proveedor', 'contactosProvController@index')->name('contactosProv');
     Route::get('contactos/buscar/{nombre}/{razon}/{etiqueta}', 'contactosProvController@buscar')->name('contactoProveedorBuscar');
@@ -71,5 +72,11 @@ Route::POST('/producto/{id}/ajuste', 'productoController@ajuste')->name('product
 Route::get('producto/registrar','productoController@create')->name('productoCreate');
 
 Route::get('/categoria', 'categoriaController@index')->name('categoriaIndex');
+Route::POST('/categoria/store', 'categoriaController@store')->name('categoriaStore');
+
 Route::get('/marca', 'marcaController@index')->name('marcaIndex');
 
+Route::get('/unidadMedida', 'umedidasController@index')->name('umedidaIndex');
+
+//MARCA
+Route::POST('marca/create', 'marcaController@store')->name('marcaStore');
