@@ -92,7 +92,7 @@ use App\categoria_producto;
                                                         <div class="input-group-prepend ">
                                                             <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-barcode"></i></span>
                                                         </div>
-                                                      <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion"> </div>
+                                                      <input type="text" class="form-control form-control-sm" value=" {{$id_ultimo }}"  id="codigo" name="codigo" disabled style="background: #e9ecef"> </div>
                                                   </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -102,7 +102,7 @@ use App\categoria_producto;
                                                             <div class="input-group-prepend ">
                                                                 <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class=" mdi mdi-border-color"></i></span>
                                                             </div>
-                                                          <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion"> </div>
+                                                          <input type="text" class="form-control form-control-sm"  name="CATPRO_descripcion"  id="CATPRO_descripcion"> </div>
                                                     </div>
                                                   </div>
                                                   <div class="col-md-12">
@@ -116,7 +116,7 @@ use App\categoria_producto;
                                                           <label for="">Precio 1:</label>
                                                           <div class="input-group">
 
-                                                          <input type="text" class="form-control form-control-sm"  >
+                                                          <input type="text" class="form-control form-control-sm" id="CATPRO_precio1"  name="CATPRO_precio1">
                                                           <div class="input-group-prepend ">
                                                             <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9">%</span>
                                                         </div> </div>
@@ -127,7 +127,7 @@ use App\categoria_producto;
                                                         <label for="">Precio 2:</label>
                                                         <div class="input-group">
 
-                                                            <input type="text" class="form-control form-control-sm"  >
+                                                            <input type="text" class="form-control form-control-sm" id="CATPRO_precio2"  name="CATPRO_precio2" >
                                                             <div class="input-group-prepend ">
                                                               <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9">%</span>
                                                           </div> </div>
@@ -138,7 +138,7 @@ use App\categoria_producto;
                                                         <label for="">Precio 3:</label>
                                                         <div class="input-group">
 
-                                                            <input type="text" class="form-control form-control-sm"  >
+                                                            <input type="text" class="form-control form-control-sm" id="CATPRO_precio3"  name="CATPRO_precio3" >
                                                             <div class="input-group-prepend ">
                                                               <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9">%</span>
                                                           </div> </div>
@@ -153,7 +153,7 @@ use App\categoria_producto;
                                                             <label for="">Descuento máximo: </label>&nbsp &nbsp
                                                             <div class="input-group col-md-5">
 
-                                                                <input type="text" class="form-control form-control-sm"  >
+                                                                <input type="text" class="form-control form-control-sm" id="CATPRO_descuento" name="CATPRO_descuento" max="99">
                                                                 <div class="input-group-prepend ">
                                                                   <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9">%</span>
                                                               </div> </div>
@@ -165,37 +165,56 @@ use App\categoria_producto;
                                             </div>
                                             <div class="modal-footer" style="padding: 10px;">
                                                 <button type="button" class="btn btn-light btn-sm waves-effect" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-blue btn-sm waves-effect waves-light">Save changes</button>
+                                                <button type="submit"  id="bt_guarda" name="bt_guarda"  class="btn btn-blue btn-sm waves-effect waves-light bt_guarda">Save changes</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div><!-- /.modal -->
-                                <button type="button" class="btn btn-success waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal">Responsive Modal</button>
+                                <button type="button" class="btn btn-blue waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal">Agregar categoria</button>
+                                <br><br><br>
+                                <div class="col-md-12">
+                                    <table id="basic-datatable" class="table dt-responsive nowrap">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th rowspan="2"  class="align-middle">#</th>
+                                                <th rowspan="2"  class="align-middle">Codigo</th>
+                                                <th rowspan="2" class="align-middle">Nombre</th>
+                                                <th colspan="3"  class="text-center">Ganancia</th>
+                                                <th rowspan="2" class="align-middle"> descuento max</th>
+                                                <th rowspan="2" class="align-middle">Opciones</th>
+                                            </tr>
+                                            <tr>
 
-                                <div class="col-md-8">
-                                    <table data-toggle="table"
-                                    data-show-columns="false"
-                                    data-page-list="[5, 10, 20]"
-                                    data-page-size="5"
-                                    data-buttons-class="xs btn-light"
-                                    data-pagination="true" class="table-borderless" id="categorias">
-                                            <thead class="thead-light">
-                                              <tr>
-                                              <th>#</th>
-                                              <th>Descripcion</th>
-                                              <th>Opciones</th>
-                                          </tr>
-                                          </thead>
-                                          <tbody>
-                                              <tr>
-                                              @foreach ($categoria_producto as $categoria)
-                                              <td>{{$loop->index+1}}</td>
-                                              <td>{{$categoria->CATPRO_descripcion}}</td>
-                                              <td><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                                  <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a></td></tr>
-                                              @endforeach
-                                          </tbody>
-                                      </table>
+                                                <th  class="align-middle">Precio 1</th>
+                                                <th  class="align-middle">Precio 2</th>
+                                                <th  class="align-middle">Precio 3</th>
+
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($categoria_producto as $categoria)
+                                            <tr>
+
+                                                <td>{{$loop->index+1}}</td>
+                                                <td>{{$categoria->CATPRO_id}}</td>
+                                                <td>{{$categoria->CATPRO_descripcion}}</td>
+                                                <td>{{$categoria->CATPRO_precio1*100}} % </td>
+                                                <td>{{$categoria->CATPRO_precio2*100}} % </td>
+                                                <td>{{$categoria->CATPRO_precio2*100}} % </td>
+                                                <td>{{$categoria->CATPRO_descuento*100}} % </td>
+                                                <td><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a></td>
+
+                                            </tr>
+                                            @endforeach
+
+
+                                        </tbody>
+
+                                    </table>
+
                                   </div>
 
                                </div>
@@ -327,7 +346,38 @@ use App\categoria_producto;
         <!-- Right bar overlay-->
         <div class="rightbar-overlay"></div>
 
-@include('layouts.scripts')
+<!-- Vendor js -->
+
+<script src="{{asset('assets/js/vendor.min.js')}}"></script>
+
+<!-- Plugins js-->
+
+ <script src="{{asset('assets/js/pages/animation.init.js')}}"></script>
+
+
+
+
+<script src="{{asset('assets/libs/select2/select2.min.js')}}"></script>
+<script src="{{asset('assets/libs/bootstrap-select/bootstrap-select.min.js')}}"></script>
+<!-- Dashboar 1 init js-->
+<script src="{{asset('assets/js/pages/dashboard-1.init.js')}}"></script>
+<script src="{{asset('assets/js/pages/form-advanced.init.js')}}"></script>
+<!-- App js-->
+<script src="{{asset('assets/js/app.min.js')}}"></script>
+
+<script src="assets/libs/datatables/jquery.dataTables.min.js"></script>
+<script src="assets/libs/datatables/dataTables.bootstrap4.js"></script>
+<script src="assets/libs/datatables/dataTables.responsive.min.js"></script>
+
+<script src="assets/libs/datatables/dataTables.buttons.min.js"></script>
+
+
+
+<!-- third party js ends -->
+
+<!-- Datatables init -->
+<script src="assets/js/pages/datatables.init.js"></script>
+
 
 
 
@@ -346,20 +396,35 @@ use App\categoria_producto;
 
         function saveCategoria(){
             var categoria=$('#CATPRO_descripcion').val();
+            var precio1=$('#CATPRO_precio1').val();
+            var precio2=$('#CATPRO_precio2').val();
+            var precio3=$('#CATPRO_precio3').val();
+            var descuento=$('#CATPRO_descuento').val();
                 $.ajax({
                     url:"{{route('categoriaStore')}}",
                     method:"POST",
                     data:{
-                        CATPRO_descripcion:categoria
+                        CATPRO_descripcion:categoria,
+                        CATPRO_precio1: precio1/100,
+                        CATPRO_precio2: precio2/100,
+                        CATPRO_precio3: precio3/100,
+                        CATPRO_descuento: descuento/100
                     },
                 success:function(data){
-                    $('#categorias').load(location.href+" #categorias>*");
+                    $('#basic-datatable').load(location.href+" #basic-datatable>*");
                     limpiarFormCategoria();
+
+                    $("#con-close-modal").modal("hide");
                 }
             });
         }
         function limpiarFormCategoria(){
+
             $('#CATPRO_descripcion').val('');
+            $('#CATPRO_precio1').val('');
+            $('#CATPRO_precio2').val('');
+            $('#CATPRO_precio3').val('');
+            $('#CATPRO_descuento').val('');
         };
     })
 </script>
