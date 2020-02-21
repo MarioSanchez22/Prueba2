@@ -106,36 +106,6 @@ $k=0;
                     </li>
                 </ul>
             </li>
-            <li >
-                <a href="javascript: void(0);">
-                    <i class="fe-sidebar"></i>
-                    <span class="badge badge-pink float-right">New</span>
-                    <span> Layouts </span>
-                </a>
-                <ul class="nav-second-level" aria-expanded="false">
-                    <li>
-                        <a href="layouts-sidebar-user.html">Sidebar with User</a>
-                    </li>
-                    <li>
-                        <a href="layouts-sidebar-sm.html">Small Sidebar</a>
-                    </li>
-                    <li>
-                        <a href="layouts-dark-sidebar.html">Dark Sidebar</a>
-                    </li>
-                    <li>
-                        <a href="layouts-light-topbar.html">Light Topbar</a>
-                    </li>
-                    <li>
-                        <a href="layouts-preloader.html">Preloader</a>
-                    </li>
-                    <li>
-                        <a href="layouts-sidebar-collapsed.html">Sidebar Collapsed</a>
-                    </li>
-                    <li>
-                        <a href="layouts-boxed.html">Boxed</a>
-                    </li>
-                </ul>
-            </li>
             @foreach ($menu as $menus)
             <li >
                 <a href="javascript: void(0);" class="nav-link" >
@@ -155,7 +125,7 @@ $k=0;
                 </ul>
             </li>
             @endforeach
-        </ul>-->
+        </ul>
 
     </div>
     <!-- End Sidebar -->

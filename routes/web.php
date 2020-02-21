@@ -93,6 +93,7 @@ Route::get('producto/registrar','productoController@create')->name('productoCrea
 
 Route::get('/categoria', 'categoriaController@index')->name('categoriaIndex');
 Route::POST('/categoria/store', 'categoriaController@store')->name('categoriaStore');
+Route::get('/categoria/delete/{categoria}', 'categoriaController@delete')->name('categoriaDelete');
 
 //CONFIGURACION ROLES
 //ROLES

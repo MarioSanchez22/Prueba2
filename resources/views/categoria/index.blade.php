@@ -121,7 +121,7 @@ use App\categoria_producto;
                                                           <label for="">Precio 1:</label>
                                                           <div class="input-group">
 
-                                                          <input type="text" class="form-control form-control-sm" id="CATPRO_precio1"  name="CATPRO_precio1">
+                                                          <input type="number" class="form-control form-control-sm" id="CATPRO_precio1"  name="CATPRO_precio1" min="0" max="99">
                                                           <div class="input-group-prepend ">
                                                             <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9">%</span>
                                                         </div> </div>
@@ -132,7 +132,7 @@ use App\categoria_producto;
                                                         <label for="">Precio 2:</label>
                                                         <div class="input-group">
 
-                                                            <input type="text" class="form-control form-control-sm" id="CATPRO_precio2"  name="CATPRO_precio2" >
+                                                            <input type="number" class="form-control form-control-sm" id="CATPRO_precio2"  name="CATPRO_precio2" min="0" max="99">
                                                             <div class="input-group-prepend ">
                                                               <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9">%</span>
                                                           </div> </div>
@@ -143,7 +143,7 @@ use App\categoria_producto;
                                                         <label for="">Precio 3:</label>
                                                         <div class="input-group">
 
-                                                            <input type="text" class="form-control form-control-sm" id="CATPRO_precio3"  name="CATPRO_precio3" >
+                                                            <input type="number" class="form-control form-control-sm" id="CATPRO_precio3"  name="CATPRO_precio3" min="0" max="99">
                                                             <div class="input-group-prepend ">
                                                               <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9">%</span>
                                                           </div> </div>
@@ -158,7 +158,7 @@ use App\categoria_producto;
                                                             <label for="">Descuento máximo: </label>&nbsp &nbsp
                                                             <div class="input-group col-md-5">
 
-                                                                <input type="text" class="form-control form-control-sm" id="CATPRO_descuento" name="CATPRO_descuento" max="99">
+                                                                <input type="number" class="form-control form-control-sm" id="CATPRO_descuento" name="CATPRO_descuento" max="99">
                                                                 <div class="input-group-prepend ">
                                                                   <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9">%</span>
                                                               </div> </div>
@@ -203,14 +203,14 @@ use App\categoria_producto;
                                             <tr style=" text-align: center; " >
 
 
-                                                <td class="align-middle"   style="padding: 2px;border-right: solid 1px #dee2e6;">{{$categoria->CATPRO_id}}</td>
+                                                <td class="align-middle"   style="padding: 2px;border-right: solid 1px #dee2e6;">{{$categoria->CATPRO_codigo}}</td>
                                                 <td class="align-middle" style="padding: 2px;">{{$categoria->CATPRO_descripcion}}</td>
                                                 <td class="align-middle" style="padding: 2px;border-left: solid 1px #dee2e6;">{{$categoria->CATPRO_precio1*100}} % </td>
                                                 <td class="align-middle" style="padding: 2px;border-left: solid 1px #dee2e6;">{{$categoria->CATPRO_precio2*100}} % </td>
                                                 <td class="align-middle" style="padding: 2px;border-left: solid 1px #dee2e6;border-right: solid 1px #dee2e6; ">{{$categoria->CATPRO_precio2*100}} % </td>
                                                 <td class="align-middle" style="padding: 2px;border-right: solid 1px #dee2e6;"> {{$categoria->CATPRO_descuento*100}} % </td>
                                                 <td class="align-middle" style="padding: 2px"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a></td>
+                                                <a href="{{route('categoriaDelete',[$categoria->CATPRO_id])}}" class="action-icon"> <i class="mdi mdi-delete"></i></a></td>
 
                                             </tr>
                                             @endforeach
@@ -400,6 +400,7 @@ use App\categoria_producto;
         });
 
         function saveCategoria(){
+            var codigo= $('#codigo').val();
             var categoria=$('#CATPRO_descripcion').val();
             var precio1=$('#CATPRO_precio1').val();
             var precio2=$('#CATPRO_precio2').val();
@@ -409,6 +410,7 @@ use App\categoria_producto;
                     url:"{{route('categoriaStore')}}",
                     method:"POST",
                     data:{
+                        CATPRO_codigo:codigo,
                         CATPRO_descripcion:categoria,
                         CATPRO_precio1: precio1/100,
                         CATPRO_precio2: precio2/100,
@@ -416,15 +418,16 @@ use App\categoria_producto;
                         CATPRO_descuento: descuento/100
                     },
                 success:function(data){
-                    $('#basic-datatable').load(location.href+" #basic-datatable>*");
-                    limpiarFormCategoria();
 
+                    $('#basic-datatable').load(location.href+" #basic-datatable>*");
+                    $('#codigo').val(data);
+                    limpiarFormCategoria();
                     $("#con-close-modal").modal("hide");
+
                 }
             });
         }
         function limpiarFormCategoria(){
-
             $('#CATPRO_descripcion').val('');
             $('#CATPRO_precio1').val('');
             $('#CATPRO_precio2').val('');
