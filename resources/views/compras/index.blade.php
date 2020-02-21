@@ -14,6 +14,7 @@
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         @include('layouts.estilos')
+        <link href="assets/libs/custombox/custombox.min.css" rel="stylesheet">
 
     </head>
 
@@ -75,6 +76,114 @@
                                        </div>
                                     </div>
                                     </div>
+                                   <!-- Modal -->
+                                  <div id="custom-modal" class="modal-demo"  role="dialog" style="width: 1000px!important">
+                                    <button type="button" class="close" onclick="Custombox.modal.close();" style="top:10px">
+                                        <span>&times;</span><span class="sr-only">Close</span>
+                                    </button>
+                                    <h5 class="custom-modal-title" style="padding: 10px; font-size: 15px">Agregar producto a la compra</h5>
+                                    <div class="custom-modal-text text-left" style="background: #f5f6f8; padding-bottom: 0px">
+                                       <div class="row">
+                                           <div class="card-box col-md-7" style="background: #fff;left: 20px; padding-top: 10px">
+                                            
+                                              <h5 style="font-size: 16px!important">Datos de articulo</h5>
+                                              <div class="row">
+                                                <div class="col-md-9 mb-2">
+                                                    <div class="form-inline">
+
+
+                                                        <label class="not-bold">Codigo:</label> &nbsp;
+
+
+                                                        <div class="col-md-8">
+                                                         <div class="input-group input-group-sm">
+                                                            <input type="text" class="form-control form-control-sm">
+                                                            <span class="input-group-append">
+                                                              <button type="button" class="btn btn-info btn-flat btn-sm"><span class=" fa fa-search"> </span></button>
+                                                            </span>
+                                                          </div>
+                                                        </div>
+
+
+
+                                                     </div>
+                                                    </div>
+                                                    <div class="col-md-3 mb-2" >
+                                                        <button type="button" class="btn btn-block btn-light btn-sm" ><span class=" fa fa-plus-square"> </span> Nuevo</button></div>
+                                                        <div class="col-md-12 mb-2">
+                                                            <div class="form-inline">
+
+
+                                                                <label class="" >Nombre:</label>&nbsp;&nbsp;&nbsp;
+
+
+                                                                
+
+                                                                    <input type="text" style="background: #f2f3f5;" class="col-md-9 form-control form-control-sm" disabled>
+
+
+                                                                
+
+
+
+                                                             </div>
+                                                            </div>
+                                                            <div class="col-md-6 mb-2">
+                                                                <div class="form-inline">
+                                                                    <label for="">Cantidad: </label>&nbsp;&nbsp;
+                                                                    <input type="text" class="col-md-8 form-control form-control-sm">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 mb-2">
+                                                                <div class="form-inline">
+                                                                    <label for="">Garantia: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                    <input type="text" class="col-md-8 form-control form-control-sm">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-5 mb-2">
+                                                                <div class="form-inline">
+                                                                    <label for="">Costo: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                    <input type="text" class="col-md-7 form-control form-control-sm">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-7 mb-2">
+                                                                <div class="form-inline">
+                                                                    <label for="">Descuento: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                    <input type="text" class="col-md-8 form-control form-control-sm">
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                           </div>
+                                           <div class="card-box col-md-4" style="background: #fff;left: 60px;padding-top: 10px">
+                                            <h5 style="font-size: 16px!important" class="text-center">Informacion de articulo</h5><br>
+                                            <div class="col-md-12 mb-2 text-center">
+                                              <div class="form-inline text-center">
+                                                  <label for="">Categoria: </label>&nbsp;
+                                                  <input type="text" style="background: #f2f3f5;" disabled class="form-control form-control-sm">
+                                              </div>
+                                          </div>
+                                          <div class="col-md-12 mb-2 text-center">
+                                              <div class="form-inline text-center">
+                                                  <label class="text-center" for="">Marca: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                  <input type="text" style="background: #f2f3f5;" disabled class="form-control form-control-sm text-center">
+                                              </div>
+                                          </div>
+                                          <div class="col-md-12 mb-2 text-center">
+                                              <div class="form-inline text-center">
+                                                  <label class="text-center" for="">Modelo: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                  <input type="text" style="background: #f2f3f5;" disabled class="form-control form-control-sm text-center">
+                                              </div>
+                                          </div>
+                                           </div>  
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer" style="padding: 6px">
+                                    <div class="text-right">
+                                      <button type="submit" class="btn btn-success waves-effect waves-light btn-sm">Save</button>
+                                      <button type="button" class="btn btn-danger waves-effect waves-light btn-sm" onclick="Custombox.close();">Cancel</button>
+                                  </div></div>
+                                </div> 
                                     <div class="card-body" style=" zoom:95%; padding-bottom: 10px;padding-top: 12px;border-right: solid 1px #dee2e6;border-left: solid 1px #dee2e6;border-bottom: solid 1px #dee2e6;  ">
                                         <div class="row">
                                             <div class="modal fade bs-example-modal-lg" id="con-close-modal"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
@@ -179,7 +288,7 @@
                                                         </div>
                                                         </div>
                                                         </div>
-                                                        <div class="modal-footer" style="padding: 10px;">
+                                                        <div class="modal-footer" style="padding: 10px; background: #ebececc9">
                                                             <button type="button" class="btn btn-light btn-sm waves-effect" data-dismiss="modal">Close</button>
                                                             <button type="submit"  id="bt_guarda" name="bt_guarda"  class="btn btn-blue btn-sm waves-effect waves-light bt_guarda">Save changes</button>
                                                         </div>
@@ -282,8 +391,9 @@
                                                   </div>
                                               </div>
                                         </div>
-                                        <div class="col-md-3 mb-2" style="padding-left: 1%">
-                                            <button type="button" style="background-color: #e8eef1;" class="btn btn-light btn-rounded waves-effect btn-sm" data-toggle="modal" data-target="#con-close-modal">+ Agregar producto a la compra</button>
+                                        <div class="col-md-3 mb-2">
+                                          <a href="#custom-modal" class="btn btn-light btn-rounded waves-effect btn-sm" style="width: 105%; right: 11px"  data-animation="fadein" data-plugin="custommodal" data-overlayColor="#38414a"><i class="mdi mdi-plus-circle mr-1"></i> Agregar producto a la compra</a>
+                                           
                                         </div>
 
 
@@ -425,7 +535,7 @@
         <div class="rightbar-overlay"></div>
 
 @include('layouts.scripts')
-
+<script src="assets/libs/custombox/custombox.min.js"></script>
 
 
 
