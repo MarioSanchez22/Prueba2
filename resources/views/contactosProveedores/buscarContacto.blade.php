@@ -37,4 +37,3 @@ use App\proveedor;
     @endforeach
 </tbody>
 </table>
-
