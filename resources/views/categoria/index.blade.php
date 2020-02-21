@@ -24,6 +24,11 @@ use App\categoria_producto;
         background-color: #5e6696;
     }
         </style>
+        <style>
+            .estiloT{
+                padding: 0px;
+            }
+        </style>
         <!-- Begin page -->
         <div id="wrapper">
 
@@ -71,7 +76,7 @@ use App\categoria_producto;
                         </div>
                     </div>
 
-                    <div class="row" style="margin-top: 10px;">
+                    <div class="row" style="margin-top: 0px;">
 
                         <div class="col 12 ">
                             <div class="card-box">
@@ -170,24 +175,24 @@ use App\categoria_producto;
                                         </div>
                                     </div>
                                 </div><!-- /.modal -->
-                                <button type="button" class="btn btn-blue waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal">Agregar categoria</button>
-                                <br><br><br>
+                                &nbsp <button type="button" class="btn btn-blue waves-effect waves-light btn-sm" data-toggle="modal" data-target="#con-close-modal">+ categoria</button>
+                                <br><br>
                                 <div class="col-md-12">
-                                    <table id="basic-datatable" class="table dt-responsive nowrap">
+                                    <table id="basic-datatable" class="table dt-responsive nowrap" style=" font-size: 13px; border-collapse: collapse;border-left: solid 1px #dee2e6;border-right: solid 1px #dee2e6;border-bottom:solid 1px #dee2e6 ">
                                         <thead class="thead-light">
-                                            <tr>
-                                                <th rowspan="2"  class="align-middle">#</th>
-                                                <th rowspan="2"  class="align-middle">Codigo</th>
-                                                <th rowspan="2" class="align-middle">Nombre</th>
-                                                <th colspan="3"  class="text-center">Ganancia</th>
-                                                <th rowspan="2" class="align-middle"> descuento max</th>
-                                                <th rowspan="2" class="align-middle">Opciones</th>
-                                            </tr>
-                                            <tr>
+                                            <tr  style=" text-align: center;">
 
-                                                <th  class="align-middle">Precio 1</th>
-                                                <th  class="align-middle">Precio 2</th>
-                                                <th  class="align-middle">Precio 3</th>
+                                                <th rowspan="2"  class="align-middle" style="padding: 3px;border-right: solid 1px #dee2e6">Codigo</th>
+                                                <th rowspan="2" class="align-middle" style="padding: 3px;border-right: solid 1px #dee2e6" >Categoria</th>
+                                                <th colspan="3"  style="padding: 3px;">Ganancia</th>
+                                                <th rowspan="2" class="align-middle" style="padding: 3px;border-left: solid 1px #dee2e6"> descuento max</th>
+                                                <th rowspan="2" class="align-middle" style="padding: 3px;border-left: solid 1px #dee2e6">Opciones</th>
+                                            </tr>
+                                            <tr style="text-align: center">
+
+                                                <th  style="padding: 4px; ">Precio 1</th>
+                                                <th style="padding: 4px;">Precio 2</th>
+                                                <th style="padding: 4px; ">Precio 3</th>
 
 
 
@@ -195,16 +200,16 @@ use App\categoria_producto;
                                         </thead>
                                         <tbody>
                                             @foreach ($categoria_producto as $categoria)
-                                            <tr>
+                                            <tr style=" text-align: center; " >
 
-                                                <td>{{$loop->index+1}}</td>
-                                                <td>{{$categoria->CATPRO_id}}</td>
-                                                <td>{{$categoria->CATPRO_descripcion}}</td>
-                                                <td>{{$categoria->CATPRO_precio1*100}} % </td>
-                                                <td>{{$categoria->CATPRO_precio2*100}} % </td>
-                                                <td>{{$categoria->CATPRO_precio2*100}} % </td>
-                                                <td>{{$categoria->CATPRO_descuento*100}} % </td>
-                                                <td><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+
+                                                <td class="align-middle"   style="padding: 2px;border-right: solid 1px #dee2e6;">{{$categoria->CATPRO_id}}</td>
+                                                <td class="align-middle" style="padding: 2px;">{{$categoria->CATPRO_descripcion}}</td>
+                                                <td class="align-middle" style="padding: 2px;border-left: solid 1px #dee2e6;">{{$categoria->CATPRO_precio1*100}} % </td>
+                                                <td class="align-middle" style="padding: 2px;border-left: solid 1px #dee2e6;">{{$categoria->CATPRO_precio2*100}} % </td>
+                                                <td class="align-middle" style="padding: 2px;border-left: solid 1px #dee2e6;border-right: solid 1px #dee2e6; ">{{$categoria->CATPRO_precio2*100}} % </td>
+                                                <td class="align-middle" style="padding: 2px;border-right: solid 1px #dee2e6;"> {{$categoria->CATPRO_descuento*100}} % </td>
+                                                <td class="align-middle" style="padding: 2px"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
                                                     <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a></td>
 
                                             </tr>

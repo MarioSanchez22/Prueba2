@@ -97,6 +97,9 @@
                     <li >
                     <a href="{{route('contactosProv')}}" class="nav-link {{ ! Route::is('contactosProv')?:'active'}} ">Contactos Prov</a>
                     </li>
+                    <li >
+                        <a href="{{route('comprasIndex')}}" class="nav-link {{ ! Route::is('comprasIndex')?:'active'}} ">Registro de compras</a>
+                        </li>
                 </ul>
             </li>
 

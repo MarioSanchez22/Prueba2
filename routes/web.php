@@ -80,3 +80,6 @@ Route::get('/unidadMedida', 'umedidasController@index')->name('umedidaIndex');
 
 //MARCA
 Route::POST('marca/create', 'marcaController@store')->name('marcaStore');
+
+//COMPRAS
+Route::get('/compras', 'comprasController@index')->name('comprasIndex');
