@@ -19,7 +19,10 @@
     </head>
 
     <body>
-
+ <style>
+ .custom-modal-title {
+    background-color:#526f8c;
+ }</style>
         <!-- Begin page -->
         <div id="wrapper">
 
@@ -77,25 +80,26 @@
                                     </div>
                                     </div>
                                    <!-- Modal -->
-                                  <div id="custom-modal" class="modal-demo"  role="dialog" style="width: 1000px!important">
+                                  <div id="custom-modal" class="modal-demo"  role="dialog" style="width: 1000px!important;bottom: 40px;">
                                     <button type="button" class="close" onclick="Custombox.modal.close();" style="top:10px">
                                         <span>&times;</span><span class="sr-only">Close</span>
                                     </button>
                                     <h5 class="custom-modal-title" style="padding: 10px; font-size: 15px">Agregar producto a la compra</h5>
-                                    <div class="custom-modal-text text-left" style="background: #f5f6f8; padding-bottom: 0px">
+                                    <div class="custom-modal-text text-left" style="background: ##526f8c; padding-bottom: 0px;    padding-top: 10px;">
                                        <div class="row">
-                                           <div class="card-box col-md-7" style="background: #fff;left: 20px; padding-top: 10px">
-                                            
+                                           <div class="card-box col-md-7" style="background: #fff;left: 20px; padding-top: 10px;
+                                           margin-bottom: 10px; border: 2px solid #e8e8e8;">
+
                                               <h5 style="font-size: 16px!important">Datos de articulo</h5>
                                               <div class="row">
-                                                <div class="col-md-9 mb-2">
+                                                <div class="col-md-7 mb-2">
                                                     <div class="form-inline">
 
 
                                                         <label class="not-bold">Codigo:</label> &nbsp;
 
 
-                                                        <div class="col-md-8">
+                                                        <div class="col-md-9">
                                                          <div class="input-group input-group-sm">
                                                             <input type="text" class="form-control form-control-sm">
                                                             <span class="input-group-append">
@@ -108,7 +112,7 @@
 
                                                      </div>
                                                     </div>
-                                                    <div class="col-md-3 mb-2" >
+                                                    <div class="col-md-3 mb-2"  style="left:26px">
                                                         <button type="button" class="btn btn-block btn-light btn-sm" ><span class=" fa fa-plus-square"> </span> Nuevo</button></div>
                                                         <div class="col-md-12 mb-2">
                                                             <div class="form-inline">
@@ -117,12 +121,12 @@
                                                                 <label class="" >Nombre:</label>&nbsp;&nbsp;&nbsp;
 
 
-                                                                
+
 
                                                                     <input type="text" style="background: #f2f3f5;" class="col-md-9 form-control form-control-sm" disabled>
 
 
-                                                                
+
 
 
 
@@ -137,7 +141,8 @@
                                                             <div class="col-md-6 mb-2">
                                                                 <div class="form-inline">
                                                                     <label for="">Garantia: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                    <input type="text" class="col-md-8 form-control form-control-sm">
+                                                                    <input type="text" class="col-md-5 form-control form-control-sm">&nbsp;&nbsp;
+                                                                    <label for="">mes(es)</label>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-5 mb-2">
@@ -148,153 +153,53 @@
                                                             </div>
                                                             <div class="col-md-7 mb-2">
                                                                 <div class="form-inline">
-                                                                    <label for="">Descuento: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                    <input type="text" class="col-md-8 form-control form-control-sm">
+                                                                    <label for="">Descuento: </label>&nbsp;&nbsp;
+                                                                    <input type="text" class="col-md-6 form-control form-control-sm">
+                                                                    <select class="form-control form-control-sm" name="" id="">&nbsp;
+                                                                        <option value="">%</option>
+                                                                        <option value="">S/</option>
+                                                                        <option value="">$</option>
+                                                                    </select>
                                                                 </div>
                                                             </div>
+
                                                     </div>
                                            </div>
-                                           <div class="card-box col-md-4" style="background: #fff;left: 60px;padding-top: 10px">
+                                           <div class="card-box col-md-4" style="background: #fff;left: 60px;padding-top: 10px; margin-bottom: 10px;border: 2px solid #e8e8e8;">
                                             <h5 style="font-size: 16px!important" class="text-center">Informacion de articulo</h5><br>
                                             <div class="col-md-12 mb-2 text-center">
                                               <div class="form-inline text-center">
+
                                                   <label for="">Categoria: </label>&nbsp;
-                                                  <input type="text" style="background: #f2f3f5;" disabled class="form-control form-control-sm">
+                                                  <input type="text" style="background: #f2f3f5;" disabled class="col-md-8 form-control form-control-sm">
                                               </div>
                                           </div>
                                           <div class="col-md-12 mb-2 text-center">
                                               <div class="form-inline text-center">
-                                                  <label class="text-center" for="">Marca: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                  <input type="text" style="background: #f2f3f5;" disabled class="form-control form-control-sm text-center">
+                                                  <label class="text-center" for="">Marca: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                  <input type="text" style="background: #f2f3f5;" disabled class="col-md-8 form-control form-control-sm text-center">
                                               </div>
                                           </div>
                                           <div class="col-md-12 mb-2 text-center">
                                               <div class="form-inline text-center">
                                                   <label class="text-center" for="">Modelo: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                  <input type="text" style="background: #f2f3f5;" disabled class="form-control form-control-sm text-center">
+                                                  <input type="text" style="background: #f2f3f5;" disabled class="col-md-8 form-control form-control-sm text-center">
                                               </div>
                                           </div>
-                                           </div>  
-                                            
+                                           </div>
+
                                         </div>
                                     </div>
                                     <div class="modal-footer" style="padding: 6px">
                                     <div class="text-right">
-                                      <button type="submit" class="btn btn-success waves-effect waves-light btn-sm">Save</button>
-                                      <button type="button" class="btn btn-danger waves-effect waves-light btn-sm" onclick="Custombox.close();">Cancel</button>
+                                        <button type="button" class="btn btn-light waves-effect waves-light btn-sm" onclick="Custombox.close();">Cancel</button>
+                                      <button type="submit" class="btn btn-blue waves-effect waves-light btn-sm">Guardar</button>
+
                                   </div></div>
-                                </div> 
+                                </div>
                                     <div class="card-body" style=" zoom:95%; padding-bottom: 10px;padding-top: 12px;border-right: solid 1px #dee2e6;border-left: solid 1px #dee2e6;border-bottom: solid 1px #dee2e6;  ">
                                         <div class="row">
-                                            <div class="modal fade bs-example-modal-lg" id="con-close-modal"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                                                <<div class="modal-dialog modal-full" style="max-width: 1000px">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header" style="padding: 11px; background: #ebececc9">
-                                                            <h5 class="modal-title">Registro de articulo</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                        </div>
-                                                        <div class="modal-body p-2" style="background-color: #ffff;">
-                                                        <div class="row">
-                                                        <div class="col-md-8" style="">
-                                                            <h4>Datos de articulo</h4> <br>
-                                                            <div class="row">
-                                                                <div class="col-md-5 mb-2">
-                                                                    <div class="form-inline">
 
-
-                                                                        <label class="not-bold">Codigo:</label> &nbsp;
-
-
-                                                                        <div class="col-md-8">
-                                                                         <div class="input-group input-group-sm">
-                                                                            <input type="text" class="form-control form-control-sm">
-                                                                            <span class="input-group-append">
-                                                                              <button type="button" class="btn btn-info btn-flat btn-sm"><span class=" fa fa-search"> </span></button>
-                                                                            </span>
-                                                                          </div>
-                                                                        </div>
-
-
-
-                                                                     </div>
-                                                                    </div>
-                                                                    <div class="col-md-2 mb-2" >
-                                                                        <button type="button" class="btn btn-block btn-light btn-sm" ><span class=" fa fa-plus-square"> </span> Nuevo</button></div>
-                                                                        <div class="col-md-12 mb-2">
-                                                                            <div class="form-inline">
-
-
-                                                                                <label class="not-bold">Nombre:</label>
-
-
-                                                                                <div class="col-md-6">
-
-                                                                                    <input type="text" style="width: 540px;" class="form-control form-control-sm">
-
-
-                                                                                </div>
-
-
-
-                                                                             </div>
-                                                                            </div>
-                                                                            <div class="col-md-6 mb-2">
-                                                                                <div class="form-inline">
-                                                                                    <label for="">Cantidad: </label>&nbsp;&nbsp;
-                                                                                    <input type="text" class="form-control form-control-sm">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-6 mb-2">
-                                                                                <div class="form-inline">
-                                                                                    <label for="">Garantia: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                                    <input type="text" class="form-control form-control-sm">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-6 mb-2">
-                                                                                <div class="form-inline">
-                                                                                    <label for="">Costo: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                                    <input type="text" class="form-control form-control-sm">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-6 mb-2">
-                                                                                <div class="form-inline">
-                                                                                    <label for="">Descuento: </label>&nbsp;&nbsp;
-                                                                                    <input type="text" class="form-control form-control-sm">
-                                                                                </div>
-                                                                            </div>
-                                                                    </div>
-                                                        </div>
-                                                        <div class="col-md-4" style="   border-left: solid 1px #dee2e6; padding-right: 0px;
-                                                        padding-left: 60px;">
-                                                          <h4 style="margin-left: 17px;">Informacion de articulo</h4><br>
-                                                          <div class="col-md-12 mb-2 text-center">
-                                                            <div class="form-inline text-center">
-                                                                <label for="">Categoria: </label>&nbsp;
-                                                                <input type="text" class="form-control form-control-sm">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12 mb-2 text-center">
-                                                            <div class="form-inline text-center">
-                                                                <label class="text-center" for="">Marca: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                <input type="text" class="form-control form-control-sm text-center">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12 mb-2 text-center">
-                                                            <div class="form-inline text-center">
-                                                                <label class="text-center" for="">Modelo: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                <input type="text" class="form-control form-control-sm text-center">
-                                                            </div>
-                                                        </div>
-                                                        </div>
-                                                        </div>
-                                                        </div>
-                                                        <div class="modal-footer" style="padding: 10px; background: #ebececc9">
-                                                            <button type="button" class="btn btn-light btn-sm waves-effect" data-dismiss="modal">Close</button>
-                                                            <button type="submit"  id="bt_guarda" name="bt_guarda"  class="btn btn-blue btn-sm waves-effect waves-light bt_guarda">Save changes</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div><!-- /.modal -->
                                              <div class="col-md-10 mb-2">
                                             <div class="form-inline">
 
@@ -393,7 +298,7 @@
                                         </div>
                                         <div class="col-md-3 mb-2">
                                           <a href="#custom-modal" class="btn btn-light btn-rounded waves-effect btn-sm" style="width: 105%; right: 11px"  data-animation="fadein" data-plugin="custommodal" data-overlayColor="#38414a"><i class="mdi mdi-plus-circle mr-1"></i> Agregar producto a la compra</a>
-                                           
+
                                         </div>
 
 
