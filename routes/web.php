@@ -67,6 +67,7 @@ Route::get('proveedor/buscar/{ruc}/{razon}/{etiqueta}', 'proveedorController@bus
     //Expediente Proveedor
     Route::name('proveedorExpedienteDownload')->get('/proveedor/expediente/{expediente}/download','proveedorController@download');
     //Contacto Proveedor
+    Route::POST('proveedor/{proveedor}/contacto/update', 'proveedorController@contactoStore')->name('contactoProveedorUpdate');
     Route::POST('proveedor/{proveedor}/contacto/create', 'proveedorController@contactoStore')->name('contactoProveedorCreate');
     Route::get('contactos/proveedor', 'contactosProvController@index')->name('contactosProvIndex');
     Route::get('contactos/buscar/{nombre}/{razon}/{etiqueta}', 'contactosProvController@buscar')->name('contactoProveedorBuscar');
@@ -75,13 +76,23 @@ Route::get('proveedor/buscar/{ruc}/{razon}/{etiqueta}', 'proveedorController@bus
 Route::get('cliente', 'clienteController@index')->name('clienteIndex');
 Route::GET('cliente/registrar', 'clienteController@create')->name('clienteCreate');
 Route::get('cliente/datosCliente/{id}', 'clienteController@datosCliente')->name('datosCliente');
+Route::get('cliente/buscar/{ruc}/{tprove}/{user}', 'clienteController@buscar')->name('clienteBuscar');
+Route::POST('cliente/create', 'clienteController@store')->name('clienteStore');
+Route::get('cliente/show/{cliente}', 'clienteController@show')->name('clienteShow');
+Route::get('cliente/editar/{cliente}','clienteController@editar')->name('clienteEdit');
+Route::POST('cliente/update/{cliente}', 'clienteController@update')->name('clienteUpdate');
+Route::get('cliente/darBaja/{cliente}', 'clienteController@darBaja')->name('clienteDarBaja');
+Route::get('cliente/darAlta/{cliente}', 'clienteController@darAlta')->name('clienteDarAlta');
     //Expediente Proveedor
     Route::name('proveedorExpedienteDownload')->get('/proveedor/expediente/{expediente}/download','proveedorController@download');
 //PRODUCTO
-Route::POST('/producto', 'productoController@index')->name('productoBuscar');
+Route::get('/productos', 'productoController@index')->name('productosIndex');
 
 Route::POST('/producto/{id}/ajuste', 'productoController@ajuste')->name('productoAjuste');
+Route::get('producto/registrar','productoController@create')->name('productoCreate');
 
+Route::get('/categoria', 'categoriaController@index')->name('categoriaIndex');
+Route::POST('/categoria/store', 'categoriaController@store')->name('categoriaStore');
 
 //CONFIGURACION ROLES
 //ROLES
@@ -90,3 +101,12 @@ Route::get('roles/registrar','rolesController@create')->name('rolCreate');
 Route::POST('roles/create', 'rolesController@store')->name('rolStore');
 Route::get('roles/editar/{rol}','rolesController@editar')->name('rolEdit');
 Route::POST('roles/update/{rol}','rolesController@update')->name('rolUpdate');
+Route::get('/marca', 'marcaController@index')->name('marcaIndex');
+
+Route::get('/unidadMedida', 'umedidasController@index')->name('umedidaIndex');
+
+//MARCA
+Route::POST('marca/create', 'marcaController@store')->name('marcaStore');
+
+//COMPRAS
+Route::get('/compras', 'comprasController@index')->name('comprasIndex');

@@ -83,6 +83,11 @@
                                                         <i class="mdi mdi-contacts"></i>     Contacto de Proveedor
                                                     </a>
                                                 </li>
+                                                <li class="nav-item">
+                                                    <a href="#cuentas" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                                        <i class="mdi mdi-account-card-details"></i>     Cuentas de Proveedor
+                                                    </a>
+                                                </li>
                                             </ul>
                                             <div class="tab-content ">
                                                 <div class="tab-pane show active " id="home">
@@ -104,12 +109,12 @@
                                                             <div class="form-group">
                                                               <label class="control-label">RUC: </label>
                                                               <div class="input-group">
-                                                                 
+
                                                               <input type="text" class="form-control form-control-sm"   placeholder="RUC de empresa" name="PROVE_ruc" id="PROVE_ruc">
                                                                 <div  id="cargarRuc" style="display:none"> <button class="btn btn-info btn-sm" type="button"  >
                                                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="sr-only"></span>
                                                             </button></div>
-                                                          
+
 
                                                             </div>
                                                             </div>
@@ -145,7 +150,7 @@
                                                               <div class="input-group">
                                                                 <div class="input-group-prepend ">
                                                                     <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-bank-transfer-in"></i></span>
-                                                                </div> 
+                                                                </div>
                                                               <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion"> </div>
                                                            </div></div>
                                                         <div class="col-md-6">
@@ -235,7 +240,35 @@
                                                             <button class="btn btn-primary bt_plus" id="100" type="button"  style="padding: 4px 8px; background-color: #446e8c; border-Color:#04233a;"><i class="fe-phone-forwarded" style="width:20px; height:20px;" ></i></button>
                                                             <div class="error_form"></div>
                                                         </div>
-                                                </div> <br>
+                                                </div>
+                                                <div class="tab-pane " id="cuentas">
+                                                    <div class="row">
+                                                    <div class="col-sm-12">
+                                                    <p>Cuenta(s):</p>   </div>
+                                                    </div>
+                                                    <div class="row">
+
+                                                    <div class="col-sm-2"><label >Beneficiario: </label></div>
+                                                    <span class="col-sm-1"></span>
+                                                    <div class="col-sm-2"><label >Cuenta: </label></div>
+                                                    <span class="col-sm-1"></span>
+                                                    <div class="col-sm-2"><label >Observacion: </label></div>
+
+
+                                                    </div>
+                                                    <div id="div_300" class="row" style="margin-bottom: 2%;">
+                                                        <input type="text" name="PROVECU_beneficiario[]" id="PROVECU_beneficiario"  class="form-control form-control-sm col-sm-2" style="margin-left: 2%;">
+                                                        <span class="col-sm-1"></span>
+                                                        <input type="text" name="PROVECU_cuenta[]" id="PROVECU_cuenta"  class="form-control form-control-sm col-sm-2">
+                                                        <span class="col-sm-1"></span>
+                                                        <input type="number" name="PROVECU_observacion[]" id="PROVECU_observacion"  class="form-control form-control-sm col-sm-2">
+                                                        <span class="col-sm-1"></span>
+                                                        <!--<input class="btn btn-primary bt_plus" id="100" type="button" value="+">-->
+                                                        <button class="btn btn-primary bt_plus" id="300" type="button"  style="padding: 4px 8px; background-color: #446e8c; border-Color:#04233a;"><i class="fe-phone-forwarded" style="width:20px; height:20px;" ></i></button>
+                                                        <div class="error_form"></div>
+                                                    </div>
+                                            </div>
+                                                <br>
                                         <div class="modal-footer d-flex" style="background:#f5f5f5">
                                         <button type="submit" class="btn btn-primary" style="background-color: #446e8c;">Save changes</button>
                                       </div>
@@ -361,6 +394,41 @@
         $("#"+clickID).bind("click",delRow);
         }
         function delRow() {
+        // Funcion que destruye el elemento actual una vez echo el click
+        $(this).parent('div').remove();
+        }
+        function addFieldCu(){
+        // ID del elemento div quitandole la palabra "div_" de delante. Pasi asi poder aumentar el número.
+        // Esta parte no es necesaria pero yo la utilizaba ya que cada campo de mi formulario tenia un autosuggest,
+        // así que dejo como seria por si a alguien le hace falta.
+        var clickID = parseInt($(this).parent('div').attr('id').replace('div_',''));
+        // Genero el nuevo numero id
+        var newID = (clickID+1);
+        // Creo un clon del elemento div que contiene los campos de texto
+        $newClone = $('#div_'+clickID).clone(true);
+        //Le asigno el nuevo numero id
+        $newClone.attr("id",'div_'+newID);
+        //Asigno nuevo id al primer campo input dentro del div y le borro cualquier valor
+        // que tenga asi no copia lo ultimo que hayas escrito.(igual que antes no es necesario tener un id)
+        $newClone.children("input").eq(0).attr("id",'PROVECU_beneficiario'+newID).val('');
+        //Borro el valor del segundo campo input(este caso es el campo de cantidad)
+        $newClone.children("input").eq(1).attr("id",'PROVECU_cuenta'+newID).val('');
+        $newClone.children("input").eq(2).attr("id",'PROVECU_observacion'+newID).val('');
+
+        //Asigno nuevo id al boton
+        $newClone.children("button").attr("id",newID)
+        //Inserto el div clonado y modificado despues del div original
+        $newClone.insertAfter($('#div_'+clickID));
+        //Cambio el signo "+" por el signo "-" y le quito el evento addfield
+        //$("#"+clickID-1).remove();
+        $("#"+clickID).css("backgroundColor","#c54040");
+        $("#"+clickID).css("border-Color"," #4e0303");
+
+        $("#"+clickID).html('<i class="fe-phone-off" style="width:20px; height:20px;"></i>').unbind("click",addField);
+        //Ahora le asigno el evento delRow para que borre la fial en caso de hacer click
+        $("#"+clickID).bind("click",delRow);
+        }
+        function delRowCu() {
         // Funcion que destruye el elemento actual una vez echo el click
         $(this).parent('div').remove();
         }

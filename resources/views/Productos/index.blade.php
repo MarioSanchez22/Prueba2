@@ -1,6 +1,6 @@
 @php
-  use App\cliente_contacto;
-  use App\cliente_direccion;
+use App\marca;
+use App\categoria_producto;
 @endphp
 
 <!DOCTYPE html>
@@ -18,7 +18,12 @@
     </head>
 
     <body>
-
+        <style>
+            .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+        color: #fff;
+        background-color: #5e6696;
+    }
+        </style>
         <!-- Begin page -->
         <div id="wrapper">
 
@@ -46,126 +51,101 @@
                     <!-- start page title -->
                     <div class="row">
                         <div class="col-12">
-                            <div class="row icons-list-demo" style="color:#373f5f">
-                                <div class="col-sm-7 col-md-7 col-lg-4" style="font-size: 19px;font-weight: bold;padding-top: 5px; padding-left: 0px">
-                                    <i class="mdi mdi-24px mdi-account-card-details" style=" margin-right: -6px;color:#373f5f"></i>CLIENTES
+                            <div class="page-title-box">
+                                <div class="page-title-right">
+
                                 </div>
-                                <div class="col-md-8" style="padding-top: 6px">
-                                    <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" onclick="location.href='{{route('clienteCreate')}}'"><span class=" fa fa-user-plus"> </span> Cliente</button>
-                                </div>
-                        </div>
-                        </div>
-                    </div>
+                                <div class="row">
+                                    <div class="col-12">
 
-                    <div class="row">
-                        <div class="col-12">
-                          <div class="card">
-
-                            <!-- /.card-header -->
-                            <div class="card-body bounceInDown animated"  >
-                                <div class="card">
-
-                                    <div class="card-box " style="padding-bottom: 8px; padding-top: 8px; margin-bottom: 0px; background: #566675; color:#fff">
-
-                                        <div class="row">
-                                        <div class="col-md-3">
-                                            <form action="" class="form-inline">
-                                            <div class="form-group">
-                                            <label class="control-label" >RUC:   </label>&nbsp&nbsp
-                                             <input type="text"  id="CLIE_ruc" name="CLIE_ruc" class="form-control form-control-sm">
-                                            </div>
-                                            </form>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <form action="" class="form-inline">
-                                            <div class="form-group">
-                                                &nbsp&nbsp&nbsp&nbsp<label class="control-label" >Tipo: </label>&nbsp&nbsp
-                                           <select class="form-control  form-control-sm" name="TIPPROVE_id" id="TIPPROVE_id"> <option value="0">[seleccione]</option> <option value="1">Empresa</option> <option value="2">Persona Natural</option></select>
-                                            </div>
-                                        </form>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <form action="" class="form-inline">
-                                            <div class="form-group">
-                                            <label class="control-label" >Vendedor: </label> &nbsp&nbsp
-                                             <input type="text" id="USER_id" name="USER_id" class="form-control form-control-sm">
-                                            </div>
-                                            </form>
-                                        </div>
-                                        <div class="col-md-2" style="padding-left: 10%" >
-                                             <button class="btn  btn-blue btn-sm"  id="buscar" name="buscar"><i class="fe-search" style="font-size:16px"></i>  </button>
-
-                                            </div>
-                                        </div>
-
-                                      </div>
-                                </div>
-
-                                <div id="tablageneral" class="bounceInLeft animated">
-                                <table   data-toggle="table"
-                                data-page-size="4"
-                                data-buttons-class="xs btn-light"
-                                data-pagination="true" class="table-bordered ">
-                                <thead class="thead-light">
-                                <tr>
-                                <th data-field="state" >#</th>
-                                <th data-field="id" data-switchable="false">RUC</th>
-                                <th data-field="iEd" data-switchable="false">DNI</th>
-                                <th data-field="name">Razon social</th>
-
-                                <th data-field="amRount">Telefono</th>
-
-                                <th data-field="amuuTount">Vendedor</th>
-                                <th data-field="user-status">Estado</th>
-                                <th data-field="amouWnt">Opciones</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($cliente as $clientes)
-                                        <tr>
-                                                <td>{{$loop->index+1}}</td>
-                                                <td>{{($clientes->CLIE_ruc)}}
-
-                                                </td>
-                                                 <td> {{$clientes->CLIE_dni}}</td>
-
-                                                <td>{{$clientes->CLIE_razon_social}}</td>
-
-                                                <td>{{$clientes->CLIE_telefono}}</td>
-
-
-                                                <td>{{$clientes->USER_id}}</td>
-                                                <td>
-                                                    @if($clientes->CLIE_estado==1)
-                                                        <span class="badge bg-soft-success text-success shadow-none">Activo</span>
-                                                    @else
-                                                        <span class="badge bg-soft-danger text-danger shadow-none">Bloqueado</span>
-                                                        @endif
-                                                    </td>
-                                                    <td>  <a href="{{route('clienteShow',[ $clientes->CLIE_id] )}}" class="action-icon" title="Ver"> <i class="mdi mdi-eye"></i></a>
-                                                        <a href="{{route('clienteEdit',[$clientes->CLIE_id])}}" class="action-icon" title="Editar"> <i class="mdi mdi-square-edit-outline"></i></a>
-
-                                                        @if($clientes->CLIE_estado==1)
-                                                        <a href="{{route('clienteDarBaja',[ $clientes->CLIE_id] )}}" class="action-icon" title="Bloquear"> <i class="mdi mdi-block-helper"></i></a></td>
-                                                        @else
-                                                        <a href="{{route('clienteDarAlta',[ $clientes->CLIE_id] )}}" class="action-icon" title="Activar"> <i class="mdi mdi-transfer-up"></i></a></td>
-                                                        @endif
-                                                </tr>
-                                    @endforeach
-                                    </tbody>
-                                    </table>
+                                <div class="row icons-list-demo" style="color:#373f5f">
+                                    <div class="col-sm-7 col-md-7 col-lg-4" style="font-size: 19px;font-weight: bold;padding-top: 5px; padding-left: 0px">
+                                        <i class="mdi mdi-24px mdi-apps" style=" margin-right: -6px;color:#373f5f"></i> PRODUCTOS
                                     </div>
-
-     <!-- Bootstrap Tables js -->
-
-                                <div id ="tabla1" >
-
-                                </div>
-
+                                    <div class="col-md-8" style="padding-top: 6px">
+                                        <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" onclick="location.href='{{route('productoCreate')}}'"><span class=" fa fa-user-plus"> </span>  Producto</button>
+                                    </div>
+                            </div>
+                        </div>
 
                     </div>
-                       <!-- /.card-body -->
-                          </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 10px;">
+
+                        <div class="col 12 bounceInLeft animated">
+                            <div class="col-xl-12">
+                                <div class="card-box">
+
+
+                                    <ul class="nav nav-pills navtab-bg nav-justified">
+                                        <li class="nav-item">
+                                            <a href="#home1" data-toggle="tab" aria-expanded="true" class="nav-link active">
+                                                Lista de productos
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane show active" id="home1">
+                                            <div id="tablageneral" class="bounceInLeft animated">
+                                                <table id="datatable-buttons" class="table table-striped dt-responsive nowrap">
+                                            <thead >
+                                            <tr>
+                                            <th  >#</th>
+                                            <th >Categoria</th>
+                                            <th >Marca</th>
+
+
+                                            <th>Modelo</th>
+                                            <th >Detalle</th>
+
+                                            <th >Opciones</th>
+                                            </tr>
+                                            </thead>
+                                                <tbody>
+                                                @foreach ($producto as $productos)
+                                                @php
+                                                $categoria=categoria_producto::where('CATPRO_id','=',$productos->CATPRO_id)->get();
+                                                $marca=marca::where('MARCA_id','=',$productos->MARCA_id)->get();
+                                                @endphp
+                                                    <tr>
+                                                            <td>{{$loop->index+1}}</td>
+                                                            <td>{{$categoria[0]->CATPRO_descripcion}}</td>
+                                                            <td>{{$marca[0]->MARCA_descripcion}}</td>
+                                                            <td>{{$productos->PRO_modelo}}</td>
+                                                            <td>{{$productos->PRO_detalle}}</td>
+
+                                                                <td>
+                                                                    <div class="dropdown float-right">
+                                                                        <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
+                                                                            <i class=" mdi mdi-settings m-0 text-muted h3"></i>
+                                                                        </a>
+                                                                        <div class="dropdown-menu dropdown-menu-right">
+
+                                                                            <a href="" class="dropdown-item" title="Ver"> <i class="mdi mdi-eye"></i> Ver</a>
+                                                                             <a href="" class="dropdown-item" title="Editar"> <i class="mdi mdi-square-edit-outline"></i> Editar</a>
+                                                                             <a   data-toggle="modal" href="#modal" class="dropdown-item" > <i class="mdi mdi-plus"></i> Agregar contacto</a>
+
+                                                                        </div>
+                                                                    </div>
+
+
+                                                            </tr>
+                                                @endforeach
+                                                </tbody>
+                                                </table>
+                                                </div>
+                                        </div>
+
+
+                                    </div>
+                                </div> <!-- end card-box-->
+                            </div> <!-- end col -->
+
+
                           <!-- /.card -->
                         </div>
                         <!-- /.col -->
@@ -296,22 +276,21 @@
 
 <script>
      $('#buscar').click(function(){
-         var ruc=$('#CLIE_ruc').val();
-    var tprove=$('#TIPPROVE_id').val();
-    var user=$('#USER_id').val();
+        var ruc=$('#PROVE_ruc').val();
+        var razon=$('#PROVE_razon_social').val();
+        var etiqueta=$('#PROVE_etiqueta').val();
         $('#tablageneral').hide();
         if(ruc==''){
             ruc='0';
         }
-        if(tprove==''){
-            tprove='0';
+        if(razon==''){
+            razon='0';
         }
-        if(user==''){
-            user='0';
+        if(etiqueta==''){
+            etiqueta='0';
         }
-
     $.ajax({
-    url:"cliente/buscar/"+ruc+"/"+tprove+"/"+user,
+    url:"proveedor/buscar/"+ruc+"/"+razon+"/"+etiqueta,
     method:"GET",
     success:function(data1){
         $('#tabla1').html(data1);

@@ -31,12 +31,12 @@
 <div class="wrapper">
 
   <!-- Navbar -->
-  @include('layout.header')
+  @include('layouts.header')
 
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  @extends('layout.menu')
+  @extends('layouts.menu')
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -129,7 +129,7 @@
           </div>
           <div class="input-group mb-3">
           <table class="table table-bordered">
-            <thead>                  
+            <thead>
               <tr>
                 <th >#</th>
                 <th>Codigo</th>
@@ -166,7 +166,7 @@
                 <td>h</td>
                 <td>h</td>
               </tr>
-              
+
             </tbody>
           </table>
           </div>
@@ -175,7 +175,7 @@
               <label class="not-bold">Almacen</label>
             </div>
             <div class="col-md-3">
-              
+
               <select class="form-control form-control-sm">
                 <option>option 1</option>
                 <option>option 2</option>
@@ -185,7 +185,7 @@
               </select>
               </div>
           </div>
-            
+
         </div>
           <input class="form-control form-control-lg" type="text" placeholder=".form-control-lg">
           <br>
@@ -199,10 +199,10 @@
             </div>
           </div>
         </div>
-        
+
         <!-- /.card-body -->
       </div>
-      
+
     </section>
     <!-- Main content -->
     <section class="content">
@@ -220,7 +220,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  @extends('layout.footer')
+  @extends('layouts.footer')
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

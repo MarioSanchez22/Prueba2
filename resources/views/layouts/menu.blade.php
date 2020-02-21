@@ -155,50 +155,6 @@ $k=0;
                 </ul>
             </li>
             @endforeach
-            <!--<li >
-                <a href="javascript: void(0);" class="nav-link" >
-                    <i class="fe-map"></i>
-                    <span> Maps </span>
-                    <span class="menu-arrow"></span>
-                </a>
-                <ul class="nav-second-level" aria-expanded="false">
-                    <li >
-                        <a href="{{route('proveedorIndex')}}" class="nav-link {{ ! Route::is('proveedorIndex')?:'active'}} ">Proveedor</a>
-                    </li>
-                    <li >
-                    <a href="{{route('clienteIndex')}}" class="nav-link {{ ! Route::is('clienteIndex')?:'active'}} ">Clientes</a>
-                    </li>
-                    <li >
-                    <a href="{{route('contactosProvIndex')}}" class="nav-link {{ ! Route::is('contactosProvIndex')?:'active'}} ">Contactos Prov</a>
-                    </li>
-                </ul>
-            </li>
-
-            <li >
-                <a href="javascript: void(0);">
-                    <i class="fe-folder-plus"></i>
-                    <span> Configuracion </span>
-                    <span class="menu-arrow"></span>
-                </a>
-                <ul class="nav-second-level nav" aria-expanded="false">
-                    <li >
-                    <a href="{{route('rolesIndex')}}">Configuracion Roles</a>
-                    </li>
-                    <li >
-                        <a href="javascript: void(0);" aria-expanded="false">Level 1.2
-                            <span class="menu-arrow"></span>
-                        </a>
-                        <ul class="nav-third-level nav" aria-expanded="false">
-                            <li>
-                                <a href="javascript: void(0);">Level 2.1</a>
-                            </li>
-                            <li>
-                                <a href="javascript: void(0);">Level 2.2</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
         </ul>-->
 
     </div>

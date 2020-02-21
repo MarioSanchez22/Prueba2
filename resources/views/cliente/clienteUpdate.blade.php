@@ -49,7 +49,7 @@
                                         <li class="breadcrumb-item active">Calendar</li>
                                     </ol>
                                 </div>
-                            <h4 class="page-title" style="color: #373f5f">EDICION DE PROVEEDORES: {{$proveedor->PROVE_razon_social}}</h4>
+                            <h4 class="page-title" style="color: #373f5f">EDICION DE CLIENTES: {{$cliente->CLIE_razon_social}}</h4>
                             </div>
                         </div>
                     </div>
@@ -78,7 +78,7 @@
                                             </ul>
                                             <div class="tab-content ">
                                                 <div class="tab-pane show active " id="home">
-                                                    <form action=" {{route('proveedorUpdate',['proveedor'=>$proveedor])}} " method="POST" enctype="multipart/form-data" class="col-md-12">
+                                                    <form action=" {{route('clienteUpdate',['cliente'=>$cliente])}} " method="POST" enctype="multipart/form-data" class="col-md-12">
                                                         {{ csrf_field()}}
                                                     <div class="row">
 
@@ -95,36 +95,36 @@
                                                             <div class="form-group">
                                                               <label class="control-label">RUC: </label>
                                                               <div class="input-group">
-                                                              <input type="text" class="form-control form-control-sm"   placeholder="RUC de empresa" name="PROVE_ruc" id="PROVE_ruc" value="{{$proveedor->PROVE_ruc}}">
+                                                              <input type="text" class="form-control form-control-sm"   placeholder="RUC de empresa" name="CLIE_ruc" id="CLIE_ruc" value="{{$cliente->CLIE_ruc}}">
                                                                 <div  id="cargarRuc" style="display:none"> <button class="btn btn-info btn-sm" type="button"  >
-                                                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="sr-only">f</span>
+                                                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="sr-only"></span>
                                                             </button></div>
                                                             </div>
                                                             </div>
                                                            </div>
 
                                                         <div class=" row col-md-12" id="verD"  style=" padding: 0;  margin: 0;  ">
-                                                            @if($proveedor->TIPPROVE_id==1)
+                                                            @if($cliente->TIPPROVE_id==1)
                                                             <div class="col-md-5">
                                                                 <div class="form-group">
                                                                 <label class="control-label" for="PROVE_razon_social">
                                                                    Razon social
                                                                 </label>
-                                                                <input type="text" class="form-control form-control-sm" required  placeholder="Razon social" id="PROVE_razon_social" name="PROVE_razon_social" value="{{$proveedor->PROVE_razon_social}}"> </div>
+                                                                <input type="text" class="form-control form-control-sm" required  placeholder="Razon social" id="CLIE_razon_social" name="CLIE_razon_social" value="{{$cliente->CLIE_razon_social}}"> </div>
                                                             </div>
 
                                                                <div class="col-md-5">
                                                                 <div class="form-group">
                                                                   <label class="control-label">Razon comercial: </label>
-                                                                  <input type="text" class="form-control form-control-sm" placeholder="Razon comercial" name="PROVE_razon_comercial" id="PROVE_razon_comercial" value="{{$proveedor->PROVE_razon_comercial}}"> </div>
+                                                                  <input type="text" class="form-control form-control-sm" placeholder="Razon comercial" name="CLIE_razon_comercial" id="CLIE_razon_comercial" value="{{$cliente->CLIE_razon_comercial}}"> </div>
                                                                </div>
                                                                @endif
-                                                               @if($proveedor->TIPPROVE_id==2)
+                                                               @if($cliente->TIPPROVE_id==2)
                                                                <div class="col-md-3">
                                                                 <div class="form-group">
                                                                   <label class="control-label">Tipo de documento: </label>
                                                                   <select  class="form-control  form-control-sm" name="PROVEDOC_descripcion" id="">
-                                                                  <option value="{{$proveedor->PROVEDOC_descripcion}}">{{$proveedor->PROVEDOC_descripcion}}</option>
+                                                                  <option value="{{$cliente->PROVEDOC_descripcion}}">{{$cliente->PROVEDOC_descripcion}}</option>
 
                                                                   </select>
                                                                </div>
@@ -134,9 +134,9 @@
                                                                    Documento
                                                                  </label>
                                                                  <div class="input-group">
-                                                                 <input type="text" class="form-control form-control-sm" required  placeholder="Documento" id="PROVE_dni" name="PROVE_dni" value="{{$proveedor->PROVE_dni }}">
+                                                                 <input type="text" class="form-control form-control-sm" required  placeholder="Documento" id="CLIE_dni" name="CLIE_dni" value="{{$cliente->CLIE_dni }}">
                                                                 <div  id="cargarDni" style="display:none"> <button class="btn btn-info btn-sm" type="button"  >
-                                                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="sr-only">f</span>
+                                                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="sr-only"></span>
                                                                 </button></div>
                                                             </div>
                                                             </div>
@@ -145,65 +145,38 @@
                                                                 <label class="control-label" for="PROVE_razon_social">
                                                                    Nombre
                                                                 </label>
-                                                            <input type="text" class="form-control form-control-sm" required  placeholder="Nombre" name="PROVE_razon_social"  id="PROVE_razon_social" value="{{$proveedor->PROVE_razon_social}}"> </div>
+                                                            <input type="text" class="form-control form-control-sm" required  placeholder="Nombre" name="CLIE_razon_social"  id="CLIE_razon_social" value="{{$cliente->CLIE_razon_social}}"> </div>
                                                             </div>
                                                             @endif
-                                                            <div class="col-md-2">
-                                                            <div class="form-group">
-                                                              <label class="control-label">Dias de crédito: </label>
-                                                            <input type="number" class="form-control form-control-sm" required min="1" placeholder="Dias de crédito" name="PROVE_dias_credito" value="{{$proveedor->PROVE_dias_credito}}" ></div>
-                                                           </div>
+
                                                         </div>
 
                                                         <div class="col-md-12" style=" padding-bottom: 18px;">
                                                             <div class="row">
-                                                        <div class="col-md-4">
-                                                            <label for="">Origen de proveedor</label>
-                                                              <select class="selectpicker form-control  form-control-sm" data-style="btn-light" id="PROVE_origen" name="PROVE_origen">
-                                                                <option value="{{$proveedor->PROVE_origen}}">{{$proveedor->PROVE_origen}}</option>
-                                                              </select>
-                                                          </div>
-                                                          <div class="col-md-4">
-                                                            <label for="">País</label>
-                                                            <select class="selectpicker form-control  form-control-sm" data-style="btn-light" id="pais" name="PROVE_pais">
-                                                                <option value="{{$proveedor->PROVE_pais}}">{{$proveedor->PROVE_pais}}</option>
-                                                              </select>
-                                                            <div id="select2lista" style="display:none;"></div>
-                                                          </div>
+
+
                                                           <div class="col-md-4">
                                                             <label for="">Región</label>
-                                                            <select class="selectpicker form-control  form-control-sm" data-style="btn-light" id="region" name="PROVE_region">
-                                                                <option value="{{$proveedor->PROVE_region}}">{{$proveedor->PROVE_region}}</option>
+                                                            <select class="selectpicker form-control  form-control-sm" data-style="btn-light" id="region" name="CLIE_region">
+                                                                <option value="{{$cliente->CLIE_region}}">{{$cliente->CLIE_region}}</option>
                                                               </select>
                                                             <div id="select3lista" style="display:none"></div>
                                                         </div>
 
                                                         </div></div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                              <label class="control-label">Direccion: </label>
-                                                            <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion" value="{{$proveedor->PROVE_direccion}}"> </div>
-                                                           </div>
+
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                               <label class="control-label" for="PROVE_telefono">Telefono: </label>
-                                                              <input type="text" class="form-control form-control-sm" required placeholder="Telefono" name="PROVE_telefono" value="{{$proveedor->PROVE_telefono}}"> </div>
+                                                              <input type="text" class="form-control form-control-sm" required placeholder="Telefono" name="CLIE_telefono" value="{{$cliente->CLIE_telefono}}"> </div>
                                                            </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                              <label class="control-label" for="PROVE_web">Web: </label>
-                                                              <input type="text" class="form-control form-control-sm"  placeholder="Direccion web" name="PROVE_web" value="{{$proveedor->PROVE_web}}"> </div>
-                                                           </div>
+
                                                            <div class="col-md-6">
                                                             <div class="form-group">
                                                               <label class="control-label" for="PROVE_email" >Email: </label>
-                                                              <input type="text" class="form-control form-control-sm" required  placeholder="Email" name="PROVE_email" value="{{$proveedor->PROVE_email}}"> </div>
+                                                              <input type="text" class="form-control form-control-sm" required  placeholder="Email" name="CLIE_email" value="{{$cliente->CLIE_email}}"> </div>
                                                            </div>
-                                                           <div class="col-md-12">
-                                                            <div class="form-group">
-                                                              <label class="control-label">Etiquetas: </label>
-                                                              <textarea class="form-control" id="example-textarea" rows="3" name="PROVE_etiqueta">{{$proveedor->PROVE_etiqueta}}</textarea></div>
-                                                           </div>
+
                                                            <div class="col-md-12" style="background:#f5f5f5">
                                                             <button type="submit" style="margin-left: 91%" class="btn btn-primary" style="background-color: #446e8c;">Guardar</button>
                                                           </div>
@@ -220,8 +193,8 @@
                                                             <button type="button" class="btn btn-success waves-effect waves-light" data-toggle="modal" data-target=".bs-example-modal-lg"> <i class="mdi mdi-phone-plus" style="width:20px; height:20px;" ></i>  Contacto:</button>
                                                         </div>
                                                     </div> <br>
-                                                    <div class="table-responsive" id="ProveedorContactos" name="ProveedorContactos">
-                                                        <table class="table table-centered mb-0" >
+                                                    <div class="table-responsive">
+                                                        <table class="table table-centered mb-0" id="btn-editable">
                                                             <thead style="background:  #f5f5f5">
                                                                 <tr>
                                                                     <th>#</th>
@@ -234,28 +207,29 @@
                                                             </thead>
 
                                                             <tbody>
-                                                            <form action="{{route('proveedorContactosUpdate')}}" method="POST">
-                                                                    {{csrf_field()}}
-                                                                    @foreach ($contactoPro as $contactos)
+
+                                                                    @foreach ($contacto as $contactos)
                                                                     <tr>
                                                                         <th>{{$loop->index+1}}</th>
-                                                                        <th><input type="text"    name="PROVECONT_descripcion[]" class="form-control form-control-sm" style="margin-left: 2%;" value="{{$contactos->PROVECONT_descripcion}}"></th>
-                                                                        <th><input type="text"    name="PROVECONT_nombre[]" class="form-control form-control-sm" value="{{$contactos->PROVECONT_nombre}}"></th>
-                                                                        <th><input type="number"  name="PROVECONT_telefono[]" class="form-control form-control-sm"  value="{{$contactos->PROVECONT_telefono}}"></th>
-                                                                        <th> <input type="email"  name="PROVECONT_email[]" class="form-control form-control-sm"  value="{{$contactos->PROVECONT_email}}"></th>
+                                                                        <th><input type="text" name="PROVECONT_descripcion[]" id="PROVECONT_descripcion"  class="form-control form-control-sm" style="margin-left: 2%;" value="{{$contactos->CLIECON_descripcion}}"></th>
+                                                                        <th><input type="text" name="PROVECONT_nombre[]" id="PROVECONT_nombre"  class="form-control form-control-sm" value="{{$contactos->CLIECON_nombre}}"></th>
+
+                                                                        <th><input type="number" name="PROVECONT_telefono[]" id="PROVECONT_telefono" class="form-control form-control-sm"  value="{{$contactos->CLIECON_telefono}}"></th>
+
+                                                                       <th> <input type="email" name="PROVECONT_email[]"  id="PROVECONT_email" class="form-control form-control-sm"  value="{{$contactos->CLIECON_email}}"></th>
                                                                         <!--<input class="btn btn-primary bt_plus" id="100" type="button" value="+">-->
                                                                         <th><button type="button" class="btn btn-danger btn-xs waves-effect waves-light" ><i class="mdi mdi-trash-can-outline"></i></button></th>
-                                                                            </tr>
-                                                                        @endforeach
+                                                                    </tr>
+                                                                @endforeach
 
-                                                                </form>
+
                                                             </tbody>
                                                         </table>
-                                                            <div class="col-md-12" style="background:#f5f5f5">
-                                                                <button type="submit" style="margin-left: 91%" class="btn btn-primary" style="background-color: #446e8c;">Guardar</button>
-                                                            </div>
                                                     </div> <!-- end .table-responsive-->
                                                     <div class="row" id="divmsg" style="display:none" class="alert alert-primary" role="alert "></div>
+
+
+
                                                         <!--  Modal content for the above example -->
                                                             <div class="modal fade bs-example-modal-lg" id="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
                                                                 <div class="modal-dialog modal-lg">
@@ -284,10 +258,10 @@
                                                                                     <span class="col-sm-1"></span>
                                                                                     <input type="email" name="PROVECONT_email"  id="PROVECONT_email" class=" form-control form-control-sm col-sm-2" style="margin-right: 2%;" >
                                                                                     <!--<input class="btn btn-primary bt_plus" id="100" type="button" value="+">-->
-                                                                            <button class="btn btn-primary bt_plus" id="{{$proveedor->PROVE_id}}" type="button"  style="padding: 4px 8px; background-color: #446e8c; border-Color:#04233a;"><i class="fe-phone-forwarded" style="width:20px; height:20px;" ></i></button>
+                                                                            <button class="btn btn-primary bt_plus" id="{{$cliente->CLIE_id}}" type="button"  style="padding: 4px 8px; background-color: #446e8c; border-Color:#04233a;"><i class="fe-phone-forwarded" style="width:20px; height:20px;" ></i></button>
                                                                                     <div class="error_form"></div>
                                                                             </div>
-                                                                                    <button class="btn btn-primary bt_guarda" id="bt_guarda" style=""  type="button"  style="padding: 4px 8px; background-color: #446e8c; border-Color:#04233a;">Guardar</button>
+                                                                                    <button class="btn btn-primary bt_guarda" id="bt_guarda" type="button"  style="padding: 4px 8px; background-color: #446e8c; border-Color:#04233a;">Guardar</button>
                                                                         </div>
                                                                     </div><!-- /.modal-content -->
                                                                 </div><!-- /.modal-dialog -->
@@ -303,12 +277,13 @@
 
                                                 </div> <br>
                                         </div>
+
                                         <!-- end card-box-->
                                 </div>
                                 <!-- end row -->
                             </div>
                             <!-- /.card-body -->
-                          </div>
+                          </div> <!-- /.card-body HEADER -->
                         <!-- /.col -->
                       </div>
                     </div> <!-- container -->
@@ -331,11 +306,13 @@
                     </div>
                 </footer>
                 <!-- end Footer -->
+
             </div>
             <!-- ============================================================== -->
             <!-- End Page content -->
             <!-- ============================================================== -->
         </div>
+    </div><!-- ==-->
         <!-- END wrapper -->
         <!-- Right bar overlay-->
         <div class="rightbar-overlay"></div>
@@ -378,7 +355,12 @@
 //Llenar div de pais al cambiar
         });
 
-
+        function mostrarMensaje(mensaje){
+            $('#divmsg').empty();
+            $('#divmsg').append("<p>"+mensaje+"</p>");
+            $('#divmsg').show(500);
+            $('#divmsg').hide(5000);
+        };
         function limpiarFormContacto(){
             $('#PROVECONT_descripcion').val('');
             $('#PROVECONT_nombre').val('');
@@ -386,30 +368,32 @@
             $('#PROVECONT_email').val('');
         };
 
-        function saveContacto(){
-            var cargo=$('#PROVECONT_descripcion').val();
-            var nombre=$('#PROVECONT_nombre').val();
-            var telefono=$('#PROVECONT_telefono').val();
-            var email=$('#PROVECONT_email').val();
+        // function saveContacto(){
+        //     var cargo=$('#PROVECONT_descripcion').val();
+        //     var nombre=$('#PROVECONT_nombre').val();
+        //     var telefono=$('#PROVECONT_telefono').val();
+        //     var email=$('#PROVECONT_email').val();
 
-                $.ajax({
-                    url:"{{route('contactoProveedorCreate',['proveedor'=>$proveedor])}}",
-                    method:"POST",
-                    data:{
-                        PROVECONT_descripcion:cargo,PROVECONT_nombre:nombre,PROVECONT_telefono:telefono,
-                        PROVECONT_email:email
-                    },
-                success:function(data){
-                    $('#modal').modal("hide");
-                    $('#ProveedorContactos').load(location.href+" #ProveedorContactos>*");
-                    limpiarFormContacto();
-                }
-        });
+        //         $.ajax({
+        //
+        //             method:"POST",
+        //             data:{
+        //                 PROVECONT_descripcion:cargo,PROVECONT_nombre:nombre,PROVECONT_telefono:telefono,
+        //                 PROVECONT_email:email
+        //             },
+        //         success:function(data){
+        //             $('#modal').modal("hide");
+        //             mostrarMensaje(data.mensaje);
+        //             $('#ProveedorContactos').html(data);
+        //             limpiarFormContacto();
+        //         }
+        // });
 
 
 
 
-        }
+        // }
 </script>
+        </div>
     </body>
 </html>
