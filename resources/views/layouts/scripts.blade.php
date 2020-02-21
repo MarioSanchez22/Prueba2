@@ -11,13 +11,15 @@
    <script src="{{asset('assets/libs/flot-charts/jquery.flot.tooltip.min.js')}}"></script>
    <script src="{{asset('assets/libs/flot-charts/jquery.flot.selection.js')}}"></script>
    <script src="{{asset('assets/libs/flot-charts/jquery.flot.crosshair.js')}}"></script>
+
    <script src="{{asset('assets/libs/jquery-nice-select/jquery.nice-select.min.js')}}"></script>
+   
    <script src="{{asset('assets/libs/multiselect/jquery.multi-select.js')}}"></script>
     <script src="{{asset('assets/libs/switchery/switchery.min.js')}}"></script>
     <script src="{{asset('assets/js/pages/animation.init.js')}}"></script>
-
-
-
+    <script src="{{asset('assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js')}}"></script>
+    <script src="{{asset('assets/libs/jquery-mockjax/jquery.mockjax.min.js')}}"></script>
+    <script src="{{asset('assets/libs/autocomplete/jquery.autocomplete.min.js')}}"></script>
 
    <script src="{{asset('assets/libs/select2/select2.min.js')}}"></script>
    <script src="{{asset('assets/libs/bootstrap-select/bootstrap-select.min.js')}}"></script>
@@ -44,4 +46,5 @@
         <script src="{{asset('assets/libs/datatables/dataTables.keyTable.min.js')}}"></script>
         <script src="{{asset('assets/libs/datatables/dataTables.select.min.js')}}"></script>
         <script src="{{asset('assets/js/pages/datatables.init.js')}}"></script>
+
 

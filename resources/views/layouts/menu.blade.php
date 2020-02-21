@@ -26,7 +26,7 @@ if (! $permiso_usuario->isEmpty()) {
             }
         }
     }
-    
+
 }
 /*dd($permiso_usuario);
 dd($rol_usuario);
@@ -169,7 +169,7 @@ $k=0;
                     <a href="{{route('clienteIndex')}}" class="nav-link {{ ! Route::is('clienteIndex')?:'active'}} ">Clientes</a>
                     </li>
                     <li >
-                    <a href="{{route('contactosProv')}}" class="nav-link {{ ! Route::is('contactosProv')?:'active'}} ">Contactos Prov</a>
+                    <a href="{{route('contactosProvIndex')}}" class="nav-link {{ ! Route::is('contactosProvIndex')?:'active'}} ">Contactos Prov</a>
                     </li>
                 </ul>
             </li>

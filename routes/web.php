@@ -31,25 +31,22 @@ Route::name('logout')->post('logout','Auth\LoginController@logout');
 
 Route::name('Dashboard')->get('dashboard','HomeController@index');
 
+
+
 Route::get('/compras', function () {
     return view('compras');
 })->name('compras');
 
 
+//Usuarios
+Route::get('usuarios', 'proveedorController@index')->name('usuariosIndex');
 
 
-
-//CONFIGURACION ROLES
-//ROLES
-Route::name('rolesIndex')->get('roles','rolesController@index');
-Route::get('roles/registrar','rolesController@create')->name('rolCreate');
-Route::POST('roles/create', 'rolesController@store')->name('rolStore');
 /////////////////////////
 //LOGISTICA
 //POVEEDOR
 
 Route::get('proveedor', 'proveedorController@index')->name('proveedorIndex');
-
 
 
 Route::get('proveedor/registrar','proveedorController@create')->name('proveedorCreate');
@@ -71,7 +68,7 @@ Route::get('proveedor/buscar/{ruc}/{razon}/{etiqueta}', 'proveedorController@bus
     Route::name('proveedorExpedienteDownload')->get('/proveedor/expediente/{expediente}/download','proveedorController@download');
     //Contacto Proveedor
     Route::POST('proveedor/{proveedor}/contacto/create', 'proveedorController@contactoStore')->name('contactoProveedorCreate');
-    Route::get('contactos/proveedor', 'contactosProvController@index')->name('contactosProv');
+    Route::get('contactos/proveedor', 'contactosProvController@index')->name('contactosProvIndex');
     Route::get('contactos/buscar/{nombre}/{razon}/{etiqueta}', 'contactosProvController@buscar')->name('contactoProveedorBuscar');
 
 //CLIENTE
@@ -86,4 +83,10 @@ Route::POST('/producto', 'productoController@index')->name('productoBuscar');
 Route::POST('/producto/{id}/ajuste', 'productoController@ajuste')->name('productoAjuste');
 
 
-
+//CONFIGURACION ROLES
+//ROLES
+Route::name('rolesIndex')->get('roles','rolesController@index');
+Route::get('roles/registrar','rolesController@create')->name('rolCreate');
+Route::POST('roles/create', 'rolesController@store')->name('rolStore');
+Route::get('roles/editar/{rol}','rolesController@editar')->name('rolEdit');
+Route::POST('roles/update/{rol}','rolesController@update')->name('rolUpdate');

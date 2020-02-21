@@ -220,7 +220,6 @@ public function datos($id){
 
             return view('proveedor.proveedorShow',['proveedor'=>$prove,'contacto'=>$contactoPro,'expediente'=>$expediente,'cuenta'=>$cuenta,'tipo'=>$tipo]);
 
-
         }
 
 

@@ -18,8 +18,26 @@ use App\User;
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        @include('layouts.estilos')
 
+        <!-- Plugins css -->
+        <link href="assets/libs/jquery-nice-select/nice-select.css" rel="stylesheet" type="text/css" />
+        <link href="assets/libs/switchery/switchery.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/libs/multiselect/multi-select.css" rel="stylesheet" type="text/css" />
+        <link href="assets/libs/select2/select2.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/libs/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.css" rel="stylesheet" type="text/css" />
+
+        <!-- App css -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+  <!-- Bootstrap Tables css -->
+  <link href="{{asset('assets/libs/bootstrap-table/bootstrap-table.min.css')}}" rel="stylesheet" type="text/css" />
+
+  <link href="{{asset('assets/libs/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
+  <link href="{{asset('assets/libs/datatables/responsive.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
+  <link href="{{asset('assets/libs/datatables/buttons.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
+  <link href="{{asset('assets/libs/datatables/select.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
     </head>
 
     <body>
@@ -58,7 +76,10 @@ use App\User;
                                     <div class="col-sm-7 col-md-7 col-lg-4" style="font-size: 19px;font-weight: bold;padding-top: 5px; padding-left: 0px">
                                         <i class="mdi mdi-24px mdi-home-city" style=" margin-right: -6px;color:#373f5f"></i>REGISTRO DE ROLES
                                     </div>
-                                    
+                                    <div class="col-md-8" style="padding-top: 6px">
+                                        <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" onclick="location.href='{{route('rolCreate')}}'"><span class=" fa fa-user-plus"> </span>  Rol</button>
+                                    </div>
+
                             </div>
                         </div>
 
@@ -71,40 +92,19 @@ use App\User;
                         <div class="col-md-12">
                           <div class="card" style=" margin-bottom: 0px;   ">
                             <div class="card-body col-md-12" style="padding-left: 0px; padding-right: 0px;">
-                                <div class="row" >
-                                    <form action=" {{route('proveedorStore')}} " method="POST" enctype="multipart/form-data" class="col-md-12">
-                                    {{ csrf_field()}}
                                         <div class="card-box " style=" padding-top: 0px; margin-bottom: 0px;padding-bottom: 5px;">
                                             <ul class="nav nav-tabs" style="background:#f5f5f5">
                                                 <li class="nav-item">
                                                     <a href="#home" data-toggle="tab" aria-expanded="false" class="nav-link active">
-                                                       Registro de roles
-                                                    </a>
-                                                </li>
-
-                                                <li class="nav-item">
-                                                    <a href="#messages" data-toggle="tab" aria-expanded="false" class="nav-link">
-                                                        Asignacion de roles
+                                                       Roles
                                                     </a>
                                                 </li>
                                             </ul>
                                             <div class="tab-content ">
                                                 <div class="tab-pane show active " id="home">
                                                     <div class="row">
-                                                        <div class="col-lg-4">
-                                                            <h4>Registro de rol</h4>
-                                                            <div class="form-group">
-                                                                <label for="">
-                                                                    Descripcion:
+                                                        <div class="col-lg-12">
 
-                                                                </label> <br>
-                                                                <input  class=" col-md-10 form-control form-control-sm " type="text">
-                                                            </div>
-                                                            <div class="text-right col-md-9">
-                                                                <button type="submit" class="btn btn-block btn-blue waves-effect waves-light"> Registrar</button>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-8">
                                                             <table   data-toggle="table"
                                                             data-page-size="6"
                                                             data-buttons-class="xs btn-light"
@@ -130,7 +130,7 @@ use App\User;
                                                                             @endif
                                                                         </td>
                                                                         <td>  <a href="#" class="action-icon" title="Ver"> <i class="mdi mdi-eye"></i></a>
-                                                                            <a href="#" class="action-icon" title="Editar"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                                        <a href="{{route('rolEdit',[$roles->ROL_id])}}" class="action-icon" title="Editar"> <i class="mdi mdi-square-edit-outline"></i></a>
                                                                             @if($roles->ROL_estado==1)
                                                                             <a href="#" class="action-icon" title="Bloquear"> <i class="mdi mdi-block-helper"></i></a></td>
                                                                             @else
@@ -141,64 +141,13 @@ use App\User;
                                                                 </tbody>
                                                             </table>
                                                         </div>
-
-
-
-
-
-
                                                 </div>
                                                 </div>
-
-                                                <div class="tab-pane " id="messages">
-                                                        <div class="row">
-                                                            <div class=" col-md-6 ">
-                                                                <label for="" >Roles:</label>
-                                                                <select class="selectpicker form-control  form-control-sm" data-style="btn-light"  name="ROL_id"  style="background:#f5f5f5">
-                                                                    <option value="">ROLES</option>
-                                                                    @foreach ($rol as $roles)
-                                                                    <option value="{{$roles->ROL_id}}">{{$roles->ROL_descripcion}}</option>
-                                                                    @endforeach
-                                                                      <!--<option selected type="" value="" disabled selected >[Seleccionar modo de pago]</option>-->
-                                                                </select> <br>
-                                                                <div class="text-right col-md-6">
-                                                                    <br><br> <button type="submit" class="btn btn-block btn-blue waves-effect waves-light"> Registrar</button>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                @foreach ($menu as $menus)
-                                                                <div class="form-group">
-                                                                    <div class="col-auto">
-                                                                        <div class="custom-control custom-checkbox mb-2">
-                                                                        <input type="checkbox" class="custom-control-input" name="menu[]" id="menu{{$menus->MENU_id}}" value="{{$menus->MENU_descripcion}}">
-                                                                        <label class="custom-control-label" for="menu{{$menus->MENU_id}}" >{{$menus->MENU_descripcion}}</label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                    @foreach ($submenu as $submenus)
-                                                                        @if ($menus->MENU_id==$submenus->MENU_id)
-                                                                        <div class="form-group" style="margin-left: 5%;">
-                                                                            <div class="col-auto">
-                                                                                <div class="custom-control custom-checkbox mb-2">
-                                                                                    <input type="checkbox" class="custom-control-input" name="submenu[]" id="submenu{{$submenus->SUBMENU_id}}" value="{{$submenus->SUBMENU_descripcion}}">
-                                                                                <label class="custom-control-label"  for="submenu{{$submenus->SUBMENU_id}}">{{$submenus->SUBMENU_descripcion}}</label>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        @endif
-                                                                    @endforeach
-                                                                @endforeach
-                                                            </div>
-
-                                                        </div>
-
-
-                                                </div> <br>
                                         <div class="modal-footer d-flex" style="background:#f5f5f5">
 
                                       </div>
-                                        </div> <!-- end card-box-->
-                                    </form>
+                                        <!-- end card-box-->
+
                                 </div>
                                 <!-- end row -->
                             </div>
@@ -230,10 +179,7 @@ use App\User;
                             </div>
                         </div>
                     </div>
-
                     <div class="row" >
-
-
                         <!-- /.col -->
                       </div>
                     </div> <!-- container -->
@@ -355,8 +301,44 @@ use App\User;
         <!-- /Right-bar -->
         <!-- Right bar overlay-->
         <div class="rightbar-overlay"></div>
+        <script role="preloader" src="{{asset('assets/libs/jquery-nice-select/jquery.nice-select.min.js')}}"></script>
+ <!-- Vendor js -->
+ <script src="assets/js/vendor.min.js"></script>
 
-@include('layouts.scripts')
+ <script src="assets/libs/jquery-nice-select/jquery.nice-select.min.js"></script>
+ <script src="assets/libs/switchery/switchery.min.js"></script>
+ <script src="assets/libs/multiselect/jquery.multi-select.js"></script>
+ <script src="assets/libs/select2/select2.min.js"></script>
+ <script src="assets/libs/jquery-mockjax/jquery.mockjax.min.js"></script>
+ <script src="assets/libs/autocomplete/jquery.autocomplete.min.js"></script>
+ <script src="assets/libs/bootstrap-select/bootstrap-select.min.js"></script>
+ <script src="assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+ <script src="assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+
+ <!-- Init js-->
+ <script src="assets/js/pages/form-advanced.init.js"></script>
+
+ <!-- App js -->
+ <script src="assets/js/app.min.js"></script>
+   <!-- Bootstrap Tables js -->
+   <script src="{{asset('assets/libs/bootstrap-table/bootstrap-table.min.js')}}"></script>
+
+   <!-- Init js -->
+   <script src="{{asset('assets/libs/datatables/jquery.dataTables.min.js')}}"></script>
+   <script src="{{asset('assets/js/pages/bootstrap-tables.init.js')}}"></script>
+    <script src="{{asset('assets/libs/datatables/dataTables.bootstrap4.js')}}')}}"></script>
+       <script src="{{asset('assets/libs/datatables/dataTables.responsive.min.js')}}"></script>
+       <script src="{{asset('assets/libs/datatables/responsive.bootstrap4.min.js')}}"></script>
+       <script src="{{asset('assets/libs/datatables/dataTables.buttons.min.js')}}"></script>
+       <script src="{{asset('assets/libs/datatables/buttons.bootstrap4.min.js')}}"></script>
+       <script src="{{asset('assets/libs/datatables/buttons.html5.min.js')}}"></script>
+       <script src="{{asset('assets/libs/datatables/buttons.flash.min.js')}}"></script>
+       <script src="{{asset('assets/libs/datatables/buttons.print.min.js')}}"></script>
+       <script src="{{asset('assets/libs/datatables/dataTables.keyTable.min.js')}}"></script>
+       <script src="{{asset('assets/libs/datatables/dataTables.select.min.js')}}"></script>
+       <script src="{{asset('assets/js/pages/datatables.init.js')}}"></script>
+
+
 
 
 

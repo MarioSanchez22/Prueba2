@@ -32,3 +32,4 @@
 <link href="{{asset('assets/libs/datatables/select.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
 
 <link href="{{asset('assets/libs/animate/animate.min.css')}}" rel="stylesheet" type="text/css" />
+
