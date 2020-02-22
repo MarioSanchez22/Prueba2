@@ -70,7 +70,7 @@
 
                     <div class="row" style="margin-top: 10px;">
 
-                        <div class="col 12 bounceInLeft animated">
+                        <div class="col 12 ">
 
                       <div class="card-box " style="padding-bottom: 8px; padding-top: 8px; margin-bottom: 0px; background: #566675; color:#fff">
 
