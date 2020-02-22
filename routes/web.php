@@ -39,7 +39,7 @@ Route::get('/compras', function () {
 
 
 //Usuarios
-Route::get('usuarios', 'proveedorController@index')->name('usuariosIndex');
+Route::get('usuarios', 'UsuariosController@index')->name('usuariosIndex');
 
 
 /////////////////////////

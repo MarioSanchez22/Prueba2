@@ -158,26 +158,21 @@
 
                                 <th data-field="amount">Email</th>
                                 <th data-field="amRount">Telefono</th>
-                                <th data-field="amTount">Etiqueta</th>
+
                                 <th data-field="user-status">Estado</th>
                                 <th data-field="amouWnt">Opciones</th>
                                 </tr>
                                 </thead>
                                     <tbody>
-                                    @foreach ($proveedor as $proveedores)
+                                    @foreach ($usuarios as $usuario)
                                         <tr>
                                                 <td>{{$loop->index+1}}</td>
-                                                <td>{{$proveedores->PROVE_ruc}}</td>
-                                                <td>{{$proveedores->PROVE_razon_social}}</td>
-                                                <td>{{$proveedores->PROVE_email}}</td>
-                                                <td>{{$proveedores->PROVE_telefono}}</td>
-                                                <td>{{$proveedores->PROVE_etiqueta}}</td>
+                                                <td>{{$usuario->name}}</td>
+                                                <td>{{$usuario->email}}</td>
+                                                <td>{{$usuario->email}}</td>
+                                                <td>{{$usuario->contraseña}}</td>
                                                 <td>
-                                                    @if($proveedores->PROVE_estado==1)
                                                         <span class="badge bg-soft-success text-success shadow-none">Activo</span>
-                                                    @else
-                                                        <span class="badge bg-soft-danger text-danger shadow-none">Bloqueado</span>
-                                                    @endif
                                                     </td>
                                                     <td>
                                                         <div class="dropdown float-right">
@@ -186,32 +181,21 @@
                                                             </a>
                                                             <div class="dropdown-menu dropdown-menu-right">
 
-                                                                <a href="{{route('proveedorShow',[ $proveedores->PROVE_id] )}}" class="dropdown-item" title="Ver"> <i class="mdi mdi-eye"></i> Ver</a>
-                                                                 <a href="{{route('proveedorEdit',[$proveedores->PROVE_id])}}" class="dropdown-item" title="Editar"> <i class="mdi mdi-square-edit-outline"></i> Editar</a>
-                                                                 <a   data-toggle="modal" href="#modal" class="dropdown-item" > <i class="mdi mdi-plus"></i> Agregar contacto</a>
+                                                                <a href="#" class="dropdown-item" title="Ver"> <i class="mdi mdi-eye"></i> Ver</a>
+                                                                 <a href="#" class="dropdown-item" title="Editar"> <i class="mdi mdi-square-edit-outline"></i> Editar</a>
+                                                                 <a data-toggle="modal" href="#modal" class="dropdown-item" > <i class="mdi mdi-plus"></i> Agregar contacto</a>
 
                                                             </div>
                                                         </div>
-
-                                                        @if($proveedores->PROVE_estado==1)
-                                                        <a href="{{route('proveedorDarBaja',[ $proveedores->PROVE_id] )}}" class="action-icon" title="Bloquear"> <i class="mdi mdi-block-helper"></i></a></td>
-                                                        @else
-                                                        <a href="{{route('proveedorDarAlta',[ $proveedores->PROVE_id] )}}" class="action-icon" title="Activar"> <i class="mdi mdi-transfer-up"></i></a></td>
-                                                        @endif
-
+                                                        <a href="#" class="action-icon" title="Bloquear"> <i class="mdi mdi-block-helper"></i></a></td>
                                                 </tr>
                                     @endforeach
                                     </tbody>
                                     </table>
                                     </div>
-
      <!-- Bootstrap Tables js -->
-
                                 <div id ="tabla1" class="bounceInLeft animated">
-
                                 </div>
-
-
                     </div>
                        <!-- /.card-body -->
                           </div>
@@ -340,9 +324,6 @@
         <div class="rightbar-overlay"></div>
 
 @include('layouts.scripts')
-
-
-
 <script>
      $('#buscar').click(function(){
         var ruc=$('#PROVE_ruc').val();
