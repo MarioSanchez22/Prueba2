@@ -9,11 +9,12 @@
         <meta charset="utf-8" />
         <title>UBold - Responsive Admin Dashboard Template</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        <meta name="csrf-token" content="{{csrf_token()}}"/>
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        @include('layouts.estilos')
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+       @include('layouts.estilos')
         <link href="assets/libs/custombox/custombox.min.css" rel="stylesheet">
 
     </head>
@@ -74,7 +75,7 @@
                                         <div class="form-group">
                                       <label for="">Dias de credito:</label> &nbsp;
 
-                                        <input  class=" col-md-3 form-control form-control-sm" type="number"  min="1" name="" value="1">
+                                        <input  class=" col-md-3 form-control form-control-sm" type="number"  id="PROVE_dias" name="PROVE_dias" min="1" name="" >
                                      </div>
                                     </div>
                                        </div>
@@ -389,9 +390,9 @@
                                                 <div class="col-md-9">
                                                     <div class="input-group input-group-sm">
                                                        <select name="bpro" id="bpro" class=" col-md-10 form-control input-sm" data-toggle="select2">
-                                                           <option value="0" >[Seleccione proveedor]</option>
+                                                           <option value="0" >[Busque proveedor]</option>
                                                            @foreach ($proveedor as $proveedores)
-                                                   <option value="{{$proveedores->PROVE_id}}">{{$proveedores->PROVE_ruc}}-{{$proveedores->PROVE_razon_social}}</option>
+                                                   <option value="{{$proveedores->PROVE_id}}">{{$proveedores->PROVE_ruc}} - {{$proveedores->PROVE_razon_social}}</option>
                                                      @endforeach
                                                          </select>
                                                        <span class="input-group-append">
@@ -423,7 +424,7 @@
                                                   <div class="input-group-prepend">
                                                     <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                                   </div>
-                                                  <input type="text" class="form-control form-control-sm " data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" im-insert="false">
+                                                  <input class="form-control form-control-sm" data-date-format="dd/mm/yyyy" id="datepicker">
                                                 </div>
                                               </div>
                                             </div>
@@ -443,7 +444,7 @@
                                                   <div class="input-group-prepend">
                                                     <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                                   </div>
-                                                  <input type="text" class="form-control form-control-sm" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" im-insert="false">
+                                                  <input class="form-control form-control-sm" data-date-format="dd/mm/yyyy" id="datepicker1">
                                                 </div>
                                               </div>
                                             </div>
@@ -466,7 +467,7 @@
                                                   </div>
                                               </div>
                                         </div>
-                                        <div class="col-md-6 mb-2" style="left: 100px">
+                                        <div class="col-md-5 mb-2" style="left: 100px">
                                             <div class="form-inline">
 
                                                   <label class="not-bold">Moneda: </label> &nbsp;&nbsp;&nbsp;&nbsp;
@@ -482,7 +483,7 @@
                                                   </div>
                                               </div>
                                         </div>
-                                        <div class="col-md-3 mb-2">
+                                        <div class="col-md-4 mb-2">
                                           <a href="#custom-modal" class="btn btn-light btn-rounded waves-effect btn-sm" style="width: 105%; right: 11px"  data-animation="fadein" data-plugin="custommodal" data-overlayColor="#38414a"><i class="mdi mdi-plus-circle mr-1"></i> Agregar producto a la compra</a>
 
                                         </div>
@@ -629,10 +630,29 @@
 <script src="assets/libs/custombox/custombox.min.js"></script>
 
 <script>
-          $(document).ready(function() {
+$(document).ready(function() {
+    $.ajaxSetup({
+        headers:{
+            'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
             $('#bpro').select2({
          minimumInputLength: 3,
     });
+    $('#bpro').change(function(){
+           var prov = $(this).val();
+           $.ajax({
+                    url:"{{route('comprasShowp')}}",
+                    method:"POST",
+                    data:{
+                        prov:prov,
+                    },
+                success:function(data){
+                   $('#PROVE_dias').val(data.PROVE_dias_credito);
+                }
+           });
+      });
         //Llenar div de datos al inicio
         $(".bt_plus").each(function (el){
             $(this).bind("click",addField);
@@ -678,6 +698,30 @@
         })
 </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+
+
+<script type="text/javascript">
+    $('#datepicker').datepicker({
+        weekStart: 1,
+        daysOfWeekHighlighted: "6,0",
+        autoclose: true,
+        todayHighlight: true,
+    });
+    $('#datepicker').datepicker("setDate", new Date());
+
+</script>
+<script type="text/javascript">
+    $('#datepicker1').datepicker({
+        weekStart: 1,
+        daysOfWeekHighlighted: "6,0",
+        autoclose: true,
+        todayHighlight: true,
+    });
+    $('#datepicker1').datepicker("setDate", new Date());
+
+</script>
+</body>
 
     </body>
 </html>

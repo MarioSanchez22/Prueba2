@@ -36,7 +36,7 @@
 
                                         <span><img src="{{asset('assets/usuario.png')}}" alt="" height="120"></span>
 
-                                   
+
                                 </div>
 
                                 <form action="{{route('login')}}" method="POST" style="margin:40px">
@@ -44,7 +44,7 @@
 
                                     <div class="form-group mb-3">
                                         <label for="emailaddress">Email</label>
-                                        <input class="form-control" type="email" name="email" placeholder="Ingresa  tu email" required value="{{old('email')}}">
+                                        <input class="form-control" type="text" name="email" placeholder="Ingresa  tu email" required value="{{old('email')}}">
                                     </div>
 
                                     <div class="form-group mb-3">

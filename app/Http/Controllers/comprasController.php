@@ -17,4 +17,9 @@ class comprasController extends Controller
     $region=region::where('ubicacionpaisid','=',89)->get();
        return view('compras.Index',['tipo'=>$tipo,'region'=>$region,'proveedor'=>$proveedor]);
    }
+   public function showp(Request $request){
+
+    $prove=proveedor::find($request->get('prov'));
+    return $prove;
+}
 }
