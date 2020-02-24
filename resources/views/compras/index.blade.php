@@ -376,7 +376,7 @@
 
                                   </div></div>
                                 </div>
-                                    <div class="card-body" style=" zoom:95%; padding-bottom: 10px;padding-top: 12px;border-right: solid 1px #dee2e6;border-left: solid 1px #dee2e6;border-bottom: solid 1px #dee2e6;  ">
+                                <div class="card-body" style="font-size: 12.8px;padding-bottom: 10px;padding-top: 12px;border-right: solid 1px #dee2e6;border-left: solid 1px #dee2e6;border-bottom: solid 1px #dee2e6;  ">
                                         <div class="row">
 
                                              <div class="col-md-10 mb-2">
@@ -386,19 +386,19 @@
                                                 <label class="not-bold">Proveedor:</label> &nbsp;
 
 
-                                                <div class="col-md-5">
-                                                 <div class="input-group input-group-sm">
-                                                    <select name="bpro" id="bpro" class="form-control" data-toggle="select2">
-                                                      <option value="">Seleccione</option>
-                                                      <option value="">alicia</option>
-                                                      <option value="">nept c</option>
-                                                      <option value="">macro</option>
-                                                    </select>
-
-
-
-                                                  </div>
-                                                </div>
+                                                <div class="col-md-9">
+                                                    <div class="input-group input-group-sm">
+                                                       <select name="bpro" id="bpro" class=" col-md-10 form-control input-sm" data-toggle="select2">
+                                                           <option value="0" >[Seleccione proveedor]</option>
+                                                           @foreach ($proveedor as $proveedores)
+                                                   <option value="{{$proveedores->PROVE_id}}">{{$proveedores->PROVE_ruc}}-{{$proveedores->PROVE_razon_social}}</option>
+                                                     @endforeach
+                                                         </select>
+                                                       <span class="input-group-append">
+                                                           <span class="input-group-text " id="basic-addon1" style="color:#a9a9a9"><i class="fe-search"></i></span>
+                                                       </span>
+                                                     </div>
+                                                   </div>
 
 
 
