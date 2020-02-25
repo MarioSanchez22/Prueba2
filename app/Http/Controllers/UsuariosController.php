@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\origen_proveedor;
+use App\proveedor_documento;
+use App\rol;
+use App\tipo_proveedor;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -31,7 +35,11 @@ class UsuariosController extends Controller
      */
     public function create()
     {
-        //
+        $documento=proveedor_documento::all();
+        $tipo=tipo_proveedor::all();
+        $rol=rol::all();
+
+        return view('usuarios.usuarioCreate',['tipo'=>$tipo,'documento'=>$documento,'rol'=>$rol]);
     }
 
 }

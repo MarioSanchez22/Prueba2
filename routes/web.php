@@ -1,6 +1,8 @@
 <?php
 
 /*
+
+
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -40,6 +42,7 @@ Route::get('/compras', function () {
 
 //Usuarios
 Route::get('usuarios', 'UsuariosController@index')->name('usuariosIndex');
+Route::get('usuarios/registrar', 'UsuariosController@create')->name('usuariosCreate');
 
 
 /////////////////////////

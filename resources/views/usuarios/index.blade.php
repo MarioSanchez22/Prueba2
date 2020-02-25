@@ -1,6 +1,8 @@
 @php
-  use App\proveedor_contacto;
-  use App\proveedor_cuenta;
+  use App\persona;
+  use App\rol;
+  use App\sucursal;
+  use App\empresa;
 @endphp
 
 <!DOCTYPE html>
@@ -55,10 +57,10 @@
 
                                 <div class="row icons-list-demo" style="color:#373f5f">
                                     <div class="col-sm-7 col-md-7 col-lg-4" style="font-size: 19px;font-weight: bold;padding-top: 5px; padding-left: 0px">
-                                        <i class="mdi mdi-24px mdi-home-city" style=" margin-right: -6px;color:#373f5f"></i> PROVEEDORES
+                                        <i class="mdi mdi-24px mdi-home-city" style=" margin-right: -6px;color:#373f5f"></i> USUARIOS
                                     </div>
                                     <div class="col-md-8" style="padding-top: 6px">
-                                        <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" onclick="location.href='{{route('proveedorCreate')}}'"><span class=" fa fa-user-plus"> </span>  Proveedor</button>
+                                        <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" onclick="location.href='{{route('usuariosCreate')}}'"><span class=" fa fa-user-plus"> </span>  Usuario</button>
                                     </div>
                             </div>
                         </div>
@@ -75,7 +77,7 @@
                         <div class="col-md-3">
                             <form action="" class="form-inline">
                             <div class="form-group">
-                            <label class="control-label" >RUC:   </label>&nbsp&nbsp
+                            <label class="control-label" >DNI:   </label>&nbsp&nbsp
                              <input type="text"  id="PROVE_ruc" name="PROVE_ruc" class="form-control form-control-sm">
                             </div>
                             </form>
@@ -83,7 +85,7 @@
                         <div class="col-md-4">
                             <form action="" class="form-inline">
                             <div class="form-group">
-                            <label class="control-label" >Razon social: </label>&nbsp&nbsp
+                            <label class="control-label" >Nombre usuario: </label>&nbsp&nbsp
                             <input type="text" id="PROVE_razon_social" name="PROVE_razon_social" class="form-control form-control-sm">
                             </div>
                         </form>
@@ -91,7 +93,7 @@
                         <div class="col-md-3">
                             <form action="" class="form-inline">
                             <div class="form-group">
-                            <label class="control-label" >Etiquetas: </label> &nbsp&nbsp
+                            <label class="control-label" >Email: </label> &nbsp&nbsp
                              <input type="text" id="PROVE_etiqueta" name="PROVE_etiqueta" class="form-control form-control-sm">
                             </div>
                             </form>
@@ -109,41 +111,7 @@
                             <!-- /.card-header -->
                             <div class="card-body" style="background:#fff">
                                 <!--  Modal content for the above example -->
- <div class="modal fade bs-example-modal-lg" id="modal"  role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myLargeModalLabel">Agregar contacto</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
 
-                    <div class="col-sm-2"><label >Cargo: </label></div>
-                    <span class="col-sm-1"></span>
-                    <div class="col-sm-2"><label >Nombre: </label></div>
-                    <span class="col-sm-1"></span>
-                    <div class="col-sm-2"><label >Número: </label></div>
-                    <span class="col-sm-1"></span>
-                    <div class="col-sm-2"><label >Email: </label></div>
-                </div>
-                <div id="div_100" class="row" style="margin-bottom: 2%;">
-                    <input type="text" name="PROVECONT_descripcion" id="PROVECONT_descripcion"  class="form-control form-control-sm col-sm-2" style="margin-left: 2%;">
-                        <span class="col-sm-1"></span>
-                        <input type="text" name="PROVECONT_nombre" id="PROVECONT_nombre"  class="form-control form-control-sm col-sm-2" >
-                        <span class="col-sm-1"></span>
-                        <input type="number" name="PROVECONT_telefono" id="PROVECONT_telefono"  class="form-control form-control-sm col-sm-2" >
-                        <span class="col-sm-1"></span>
-                        <input type="email" name="PROVECONT_email"  id="PROVECONT_email" class=" form-control form-control-sm col-sm-2" style="margin-right: 2%;" >
-                        <!--<input class="btn btn-primary bt_plus" id="100" type="button" value="+">-->
-                <button class="btn btn-primary bt_plus"  type="button"  style="padding: 4px 8px; background-color: #446e8c; border-Color:#04233a;"><i class="fe-phone-forwarded" style="width:20px; height:20px;" ></i></button>
-                        <div class="error_form"></div>
-                </div>
-                        <button class="btn btn-primary bt_guarda" id="bt_guarda" style=""  type="button"  style="padding: 4px 8px; background-color: #446e8c; border-Color:#04233a;">Guardar</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
                                 <div id="tablageneral" class="bounceInLeft animated">
                                 <table   data-toggle="table"
                                 data-page-size="6"
@@ -152,42 +120,54 @@
                                 <thead class="thead-light">
                                 <tr>
                                 <th data-field="state" >#</th>
-                                <th data-field="id" data-switchable="false">RUC</th>
-                                <th data-field="name">Razon social</th>
-
-
-                                <th data-field="amount">Email</th>
-                                <th data-field="amRount">Telefono</th>
-
-                                <th data-field="user-status">Estado</th>
-                                <th data-field="amouWnt">Opciones</th>
+                                <th data-field="id" data-switchable="false">Nombre Usuario</th>
+                                <th data-field="name">Usuario</th>
+                                <th data-field="email">Email</th>
+                                <th data-field="perfil">Perfil</th>
+                                <th data-field="venta">PtoVenta</th>
+                                <th data-field="estado">Estado</th>
+                                <th data-field="opciones">Opciones</th>
                                 </tr>
                                 </thead>
                                     <tbody>
                                     @foreach ($usuarios as $usuario)
+                                    @php
+                                    $persona=persona::where('PERSONA_id','=',$usuario->PERSONA_id)->first();
+                                    $rol=rol::where('ROL_id','=',$usuario->ROL_id)->first();
+                                    $sucursal=sucursal::where('SUCURSAL_id','=',$persona->SUCURSAL_id)->first();
+                                    $empresa=empresa::where('EMPRESA_id','=',$sucursal->EMPRESA_id)->first();
+                                    @endphp
                                         <tr>
                                                 <td>{{$loop->index+1}}</td>
-                                                <td>{{$usuario->name}}</td>
+                                                <td>{{$persona->PERSONA_nombres}}</td>
                                                 <td>{{$usuario->email}}</td>
-                                                <td>{{$usuario->email}}</td>
-                                                <td>{{$usuario->contraseña}}</td>
+                                                <td>{{$usuario->USER_nick}}</td>
+                                                <td>{{$rol->ROL_descripcion}}</td>
+                                        <td>{{$sucursal->SUCURSAL_nombre}} - {{$empresa->EMPRESA_nombre}}</td>
                                                 <td>
-                                                        <span class="badge bg-soft-success text-success shadow-none">Activo</span>
-                                                    </td>
+                                                    @if($usuario->USER_estado==1)
+                                                    <span class="badge bg-soft-success text-success shadow-none">Activo</span>
+                                                    @else
+                                                        <span class="badge bg-soft-danger text-danger shadow-none">Bloqueado</span>
+                                                    @endif
+                                                </td>
                                                     <td>
                                                         <div class="dropdown float-right">
                                                             <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
                                                                 <i class=" mdi mdi-settings m-0 text-muted h3"></i>
                                                             </a>
                                                             <div class="dropdown-menu dropdown-menu-right">
-
                                                                 <a href="#" class="dropdown-item" title="Ver"> <i class="mdi mdi-eye"></i> Ver</a>
                                                                  <a href="#" class="dropdown-item" title="Editar"> <i class="mdi mdi-square-edit-outline"></i> Editar</a>
                                                                  <a data-toggle="modal" href="#modal" class="dropdown-item" > <i class="mdi mdi-plus"></i> Agregar contacto</a>
-
                                                             </div>
                                                         </div>
+                                                        @if ($usuario->USER_estado==1)
                                                         <a href="#" class="action-icon" title="Bloquear"> <i class="mdi mdi-block-helper"></i></a></td>
+                                                        @else
+                                                        <a href="#" class="action-icon" title="Activar"> <i class="mdi mdi-transfer-up"></i></a></td>
+                                                        @endif
+
                                                 </tr>
                                     @endforeach
                                     </tbody>
