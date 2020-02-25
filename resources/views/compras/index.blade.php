@@ -188,7 +188,7 @@
                                   </div></div>
                                 </div>
                                    <!-- Modal -->
-                                  <div id="custom-modal" class="modal-demo"  role="dialog" style="width: 1000px!important;">
+                                  <div id="custom-modal1" class="modal-demo"  role="dialog" style="width: 1000px!important;">
                                     <button type="button" class="close" onclick="Custombox.modal.close();" style="top:10px">
                                         <span style="color:#6c757d">&times;</span><span class="sr-only" style="color:#6c757d" >Close</span>
                                     </button>
@@ -213,20 +213,20 @@
                                                               <h4 class="header-title mb-2">Datos de articulo</h4>
 
                                                               <div class="row">
-                                                                <div class="col-md-7 mb-2">
-                                                                  <div class="form-inline">
-                                                                      <label class="control-label">Codigo: </label>&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                      <div class="input-group">
-
-                                                                      <input type="text" class="col-md-6 form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion">
-                                                                      <div class="input-group-prepend ">
-                                                                          <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="fe-search"></i></span>
-                                                                      </div>
-
-                                                                  </div>
+                                                                <div class="col-md-10 mb-2">
+                                                                    <div class="input-group ">
+                                                                       <select id="bprodu" name="bprodu" class="form-control" data-toggle="select2">
+                                                                           <option value="0" >         [Busque articulo ]        </option>
+                                                                           @foreach ($producto as $productos)
+                                                                   <option value="{{$productos->PRO_id}}">{{$productos->PRO_id}} - {{$productos->PRO_nombre}}</option>
+                                                                     @endforeach
+                                                                         </select>
+                                                                       <span class="input-group-append">
+                                                                           <span class="input-group-text " id="basic-addon1" style="color:#a9a9a9"><i class="fe-search"></i></span>
+                                                                       </span>
+                                                                     </div>
                                                                    </div>
-                                                                 </div>
-                                                              <div class="col-md-3 mb-2"  style="left:12px">
+                                                              <div class="col-md-2 mb-2">
                                                                   <button type="button" class="btn btn-block btn-light btn-sm" ><span class=" fa fa-plus-square"> </span> Nuevo</button></div>
 
                                                                   <div class="col-md-12 mb-2">
@@ -484,7 +484,7 @@
                                               </div>
                                         </div>
                                         <div class="col-md-4 mb-2">
-                                          <a href="#custom-modal" class="btn btn-light btn-rounded waves-effect btn-sm" style="width: 105%; right: 11px"  data-animation="fadein" data-plugin="custommodal" data-overlayColor="#38414a"><i class="mdi mdi-plus-circle mr-1"></i> Agregar producto a la compra</a>
+                                          <a href="#custom-modal1" class="btn btn-light btn-rounded waves-effect btn-sm" style="width: 105%; right: 11px"  data-animation="fadein" data-plugin="custommodal" data-overlayColor="#38414a"><i class="mdi mdi-plus-circle mr-1"></i> Agregar producto a la compra</a>
 
                                         </div>
 
@@ -628,7 +628,18 @@
 
 @include('layouts.scripts')
 <script src="assets/libs/custombox/custombox.min.js"></script>
+<script>
 
+    $(document).ready(function() {
+        $('#bprodu').select2({
+         minimumInputLength: 3,
+    });
+      $("#bprodu").select2({
+        dropdownParent: $("#custom-modal1")
+      });
+    });
+
+    </script>
 <script>
 $(document).ready(function() {
     $.ajaxSetup({
@@ -640,6 +651,8 @@ $(document).ready(function() {
             $('#bpro').select2({
          minimumInputLength: 3,
     });
+
+
     $('#bpro').change(function(){
            var prov = $(this).val();
            $.ajax({
