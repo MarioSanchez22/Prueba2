@@ -1,6 +1,6 @@
+
+
 @php
-
-
 @endphp
 
 <!DOCTYPE html>
@@ -9,11 +9,12 @@
         <meta charset="utf-8" />
         <title>UBold - Responsive Admin Dashboard Template</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        <meta name="csrf-token" content="{{csrf_token()}}"/>
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        @include('layouts.estilos')
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+       @include('layouts.estilos')
         <link href="assets/libs/custombox/custombox.min.css" rel="stylesheet">
 
     </head>
@@ -22,7 +23,7 @@
  <style>
  .custom-modal-title {
     background-color:#dbdfe2d1;
-    color: #757d85;
+    color:#6c757d;
  }</style>
         <!-- Begin page -->
         <div id="wrapper">
@@ -74,24 +75,24 @@
                                         <div class="form-group">
                                       <label for="">Dias de credito:</label> &nbsp;
 
-                                        <input  class=" col-md-3 form-control form-control-sm" type="number"  min="1" name="" value="1">
+                                        <input  class=" col-md-3 form-control form-control-sm" type="number"  id="PROVE_dias" name="PROVE_dias" min="1" name="" >
                                      </div>
                                     </div>
                                        </div>
                                     </div>
                                     </div>
                                      <!-- Modal -->
-                                  <div id="modal-prov" class="modal-demo"  role="dialog" style="width: 1000px!important;bottom: 40px;">
+                                  <div id="modal-prov" class="modal-demo"  role="dialog" style="width: 900px!important;bottom: 40px;">
                                     <button type="button" class="close" onclick="Custombox.modal.close();" style="top:10px">
-                                        <span>&times;</span><span class="sr-only" style="color:#757d85" >Close</span>
+                                        <span style="color:#6c757d">&times;</span><span class="sr-only" style="color:#6c757d" >Close</span>
                                     </button>
                                     <h5 class="custom-modal-title" style="padding: 10px; font-size: 15px">Registro rapido de proveedor</h5>
-                                    <div class="custom-modal-text text-left" style="background: ##526f8c; padding-bottom: 0px;    padding-top: 10px;">
+                                    <div class="custom-modal-text text-left" style="background: ##526f8c; padding-bottom: 0px; zoom:95%;   padding-top: 10px;">
                                     <div class="row">
 
 
                                     <div class="card-box col-md-12" style="background: #fff; padding-top: 10px;
-                                    margin-bottom: 10px; border: 2px solid #e8e8e8;">
+                                    margin-bottom: 10px; border: 2px solid #e8e8e8; ">
                                     <div class="row">
                                         <div class=" col-md-4 ">
 
@@ -187,167 +188,187 @@
                                   </div></div>
                                 </div>
                                    <!-- Modal -->
-                                  <div id="custom-modal" class="modal-demo"  role="dialog" style="width: 1000px!important;bottom: 40px;">
+                                  <div id="custom-modal1" class="modal-demo"  role="dialog" style="width: 1000px!important;">
                                     <button type="button" class="close" onclick="Custombox.modal.close();" style="top:10px">
-                                        <span>&times;</span><span class="sr-only" style="color:#757d85" >Close</span>
+                                        <span style="color:#6c757d">&times;</span><span class="sr-only" style="color:#6c757d" >Close</span>
                                     </button>
                                     <h5 class="custom-modal-title" style="padding: 10px; font-size: 15px">Agregar producto a la compra</h5>
-                                    <div class="custom-modal-text text-left" style="background: ##526f8c; padding-bottom: 0px;    padding-top: 10px;">
-                                       <div class="row">
-                                           <div class="card-box col-md-7" style="background: #fff;left: 20px; padding-top: 10px;
-                                           margin-bottom: 10px; border: 2px solid #e8e8e8;bottom: 0px;margin-bottom: 7px; padding-bottom: 0px">
-
-                                              <h5 style="font-size: 16px!important">Datos de articulo</h5>
-                                              <div class="row">
-
-                                                    <div class="col-md-7 mb-2">
-                                                        <div class="form-inline">
-                                                            <label class="control-label">Codigo: </label>&nbsp;&nbsp;&nbsp;&nbsp;
-                                                            <div class="input-group">
-
-                                                            <input type="text" class="col-md-6 form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion">
-                                                            <div class="input-group-prepend ">
-                                                                <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="fe-search"></i></span>
-                                                            </div>
-
-                                                        </div>
-                                                         </div>
-                                                       </div>
-                                                    <div class="col-md-3 mb-2"  style="left:26px">
-                                                        <button type="button" class="btn btn-block btn-light btn-sm" ><span class=" fa fa-plus-square"> </span> Nuevo</button></div>
-
-                                                        <div class="col-md-12 mb-2">
-                                                            <div class="form-inline">
-
-
-                                                                <label class="" >Nombre:</label>&nbsp;&nbsp;&nbsp;
+                                    <div class="custom-modal-text text-left" style=" padding-bottom: 0px;   zoom: 95%; padding-top: 10px;">
 
 
 
 
-                                                                    <input type="text" style="background: #f2f3f5;" class="col-md-9 form-control form-control-sm" disabled>
+
+                                              <div class="wrapper">
+                                                  <div class="container-fluid">
 
 
 
 
 
 
-                                                             </div>
-                                                            </div>
-                                                            <div class="col-md-6 mb-2">
-                                                                <div class="form-inline">
-                                                                    <label for="">Cantidad: </label>&nbsp;&nbsp;
-                                                                    <input type="text" class="col-md-8 form-control form-control-sm">
+                                                      <div class="row">
+                                                          <div class="col-md-8" >
+                                                            <div class="card-box" style="border: 2px solid #e8e8e8;">
+                                                              <h4 class="header-title mb-2">Datos de articulo</h4>
+
+                                                              <div class="row">
+                                                                <div class="col-md-10 mb-2">
+                                                                    <div class="input-group ">
+                                                                       <select id="bprodu" name="bprodu" class="form-control" data-toggle="select2">
+                                                                           <option value="0" >         [Busque articulo ]        </option>
+                                                                           @foreach ($producto as $productos)
+                                                                   <option value="{{$productos->PRO_id}}">{{$productos->PRO_id}} - {{$productos->PRO_nombre}}</option>
+                                                                     @endforeach
+                                                                         </select>
+                                                                       <span class="input-group-append">
+                                                                           <span class="input-group-text " id="basic-addon1" style="color:#a9a9a9"><i class="fe-search"></i></span>
+                                                                       </span>
+                                                                     </div>
+                                                                   </div>
+                                                              <div class="col-md-2 mb-2">
+                                                                  <button type="button" class="btn btn-block btn-light btn-sm" ><span class=" fa fa-plus-square"> </span> Nuevo</button></div>
+
+                                                                  <div class="col-md-12 mb-2">
+                                                                      <div class="form-inline">
+
+
+                                                                          <label class="" >Nombre:</label>&nbsp;&nbsp;&nbsp;
+
+
+
+
+                                                                              <input type="text" style="background: #f2f3f5;" class="col-md-9 form-control form-control-sm" disabled>
+
+
+
+
+
+
+                                                                       </div>
+                                                                      </div>
+                                                                      <div class="col-md-6 mb-2">
+                                                                          <div class="form-inline">
+                                                                              <label for="">Cantidad: </label>&nbsp;&nbsp;
+                                                                              <input type="text" class="col-md-8 form-control form-control-sm">
+                                                                          </div>
+                                                                      </div>
+                                                                      <div class="col-md-6 mb-2">
+                                                                          <div class="form-inline">
+                                                                              <label for="">Garantia: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                              <input type="text" class="col-md-6 form-control form-control-sm">&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                              <label for="">mes(es)</label>
+                                                                          </div>
+                                                                      </div>
+                                                                      <div class="col-md-6 mb-2">
+                                                                          <div class="form-inline">
+                                                                              <label for="">Costo: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                              <input type="text" class="col-md-7 form-control form-control-sm">
+                                                                          </div>
+                                                                      </div>
+                                                                      <div class="col-md-6 mb-2">
+                                                                          <div class="form-inline">
+                                                                              <label for="">Descuento: </label>&nbsp;&nbsp;
+                                                                              <input type="text" class="col-md-5 form-control form-control-sm">&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                              <select class="form-control form-control-sm" name="" id="">&nbsp;
+                                                                                  <option value="">%</option>
+                                                                                  <option value="">S/</option>
+                                                                                  <option value="">$</option>
+                                                                              </select>
+                                                                          </div>
+                                                                      </div>
+                                                                      <br>
+                                                                      <div class="col-md-12"><h4 class="header-title mb-2">Ubicacion de existencias</h4></div>
+
+                                                                        <div class="col-md-4 mb-2" >
+                                                                          <div class="form-group">
+                                                                              <label for="">Almacen: </label>
+                                                                              <select class="form-control form-control-sm" name="" id="">
+                                                                                  <option value="">Principal1</option>
+                                                                                </select>
+                                                                          </div>
+                                                                      </div>
+                                                                      <div class="col-md-5 mb-2" >
+                                                                          <div class="form-group">
+                                                                              <label class="control-label">Ubicacion: </label>
+                                                                              <div class="form-inline">
+                                                                              <input type="text" class="col-md-8 form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion"> &nbsp;&nbsp;
+                                                                              <button type="button" class="btn  btn-light btn-sm" ><span class=" fa fa-plus-square"> </span></button></div>
+                                                                              </div>
+                                                                          </div>
+                                                                          <div class="col-md-3 mb-2">
+                                                                              <div class="form-group">
+                                                                                  <label class="control-label">Cantidad: </label>
+                                                                                  <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion">
+                                                                                  </div>
+                                                                              </div>
+
+                                                              </div>
+
+
+                                                            </div> <!-- end card-box-->
+                                                          </div> <!-- end col -->
+
+                                                          <div class="col-md-4">
+                                                              <div class="card-box" style="border: 2px solid #e8e8e8;">
+                                                                <h4 class="header-title mb-2 text-center">Informacion de articulo</h4>
+                                                                <div class="col-md-12 mb-2 text-center">
+                                                                  <div class="form-inline text-center">
+
+                                                                      <label for="">Categoria: </label>&nbsp;
+                                                                      <input type="text" style="background: #f2f3f5;" disabled class="col-md-8 form-control form-control-sm">
+                                                                  </div>
+                                                              </div>
+                                                              <div class="col-md-12 mb-2 text-center">
+                                                                  <div class="form-inline text-center">
+                                                                      <label class="text-center" for="">Marca: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                      <input type="text" style="background: #f2f3f5;" disabled class="col-md-8 form-control form-control-sm text-center">
+                                                                  </div>
+                                                              </div>
+                                                              <div class="col-md-12 mb-2 text-center">
+                                                                  <div class="form-inline text-center">
+                                                                      <label class="text-center" for="">Modelo: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                      <input type="text" style="background: #f2f3f5;" disabled class="col-md-8 form-control form-control-sm text-center">
+                                                                  </div>
+                                                              </div>
+                                                              <br><br>
+                                                              <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="">Existencia</label>
+                                                                        <input type="text" class="form-control form-control-sm">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-md-6 mb-2">
-                                                                <div class="form-inline">
-                                                                    <label for="">Garantia: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                    <input type="text" class="col-md-5 form-control form-control-sm">&nbsp;&nbsp;
-                                                                    <label for="">mes(es)</label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-5 mb-2">
-                                                                <div class="form-inline">
-                                                                    <label for="">Costo: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                    <input type="text" class="col-md-7 form-control form-control-sm">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-7 mb-2">
-                                                                <div class="form-inline">
-                                                                    <label for="">Descuento: </label>&nbsp;&nbsp;
-                                                                    <input type="text" class="col-md-6 form-control form-control-sm">
-                                                                    <select class="form-control form-control-sm" name="" id="">&nbsp;
-                                                                        <option value="">%</option>
-                                                                        <option value="">S/</option>
-                                                                        <option value="">$</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
+                                                                <div class="col-md-6">
+                                                                  <div class="form-group">
+                                                                      <label for="">Disponible</label>
+                                                                      <input type="text" class="form-control form-control-sm">
+                                                                  </div>
+                                                              </div>
+                                                              </div>
+                                                              </div> <!-- end card-box-->
+                                                          </div> <!-- end col -->
 
-                                                    </div>
-                                           </div>
-                                           <div class="card-box col-md-4" style="background: #fff;left: 60px;padding-top: 10px; margin-bottom: 10px;border: 2px solid #e8e8e8; margin-bottom: 7px; padding-bottom: 0px">
-                                            <h5 style="font-size: 16px!important" class="text-center">Informacion de articulo</h5><br>
-                                            <div class="col-md-12 mb-2 text-center">
-                                              <div class="form-inline text-center">
+                                                      </div>
+                                                      <!-- end row -->
 
-                                                  <label for="">Categoria: </label>&nbsp;
-                                                  <input type="text" style="background: #f2f3f5;" disabled class="col-md-8 form-control form-control-sm">
+                                                  </div> <!-- end container -->
                                               </div>
-                                          </div>
-                                          <div class="col-md-12 mb-2 text-center">
-                                              <div class="form-inline text-center">
-                                                  <label class="text-center" for="">Marca: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                  <input type="text" style="background: #f2f3f5;" disabled class="col-md-8 form-control form-control-sm text-center">
-                                              </div>
-                                          </div>
-                                          <div class="col-md-12 mb-2 text-center">
-                                              <div class="form-inline text-center">
-                                                  <label class="text-center" for="">Modelo: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                  <input type="text" style="background: #f2f3f5;" disabled class="col-md-8 form-control form-control-sm text-center">
-                                              </div>
-                                          </div>
+                                              <!-- end wrapper -->
 
-                                          <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="">Existencia</label>
-                                                    <input type="text" class="form-control form-control-sm">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                              <div class="form-group">
-                                                  <label for="">Disponible</label>
-                                                  <input type="text" class="form-control form-control-sm">
-                                              </div>
-                                          </div>
-                                          </div>
-
-                                           </div>
-                                    <div class="card-box col-md-10" style="background: #fff;left: 20px; padding-top: 10px;
-                                    margin-bottom: 10px; border: 2px solid #e8e8e8;">
-
-                                        <h5 style="font-size: 16px!important">Ubicacion de existencias</h5>
-                                        <div class="row">
-                                            <div class="col-md-4 mb-2">
-                                                <div class="form-inline">
-                                                    <label for="">Almacen: </label>&nbsp;&nbsp;
-
-                                                    <select class="form-control form-control-sm" name="" id="">&nbsp;
-                                                        <option value="">Principal1</option>
-
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 mb-2">
-                                                <div class="form-inline">
-                                                    <label class="control-label">Ubicacion: </label>&nbsp;
-
-
-                                                    <input type="text" class="col-md-6 form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion">&nbsp;&nbsp;
-                                                    <button type="button" class="btn  btn-light btn-sm" ><span class=" fa fa-plus-square"> </span></button>
-
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 mb-2">
-                                                    <div class="form-inline">
-                                                        <label class="control-label">Cantidad: </label>&nbsp;
-
-
-                                                        <input type="text" class="col-md-6 form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion">&nbsp;&nbsp;
-
-
-                                                        </div>
-                                                    </div>
+                                              <!-- ============================================================== -->
+                                              <!-- End Page content -->
+                                              <!-- ============================================================== -->
 
 
 
-                                            </div>
-                                    </div>
 
-                                        </div>
+
+
+
+
+
+
                                     </div>
                                     <div class="modal-footer" style="padding: 6px">
                                     <div class="text-right">
@@ -356,7 +377,7 @@
 
                                   </div></div>
                                 </div>
-                                    <div class="card-body" style=" zoom:95%; padding-bottom: 10px;padding-top: 12px;border-right: solid 1px #dee2e6;border-left: solid 1px #dee2e6;border-bottom: solid 1px #dee2e6;  ">
+                                <div class="card-body" style="font-size: 12.8px;padding-bottom: 10px;padding-top: 12px;border-right: solid 1px #dee2e6;border-left: solid 1px #dee2e6;border-bottom: solid 1px #dee2e6;  ">
                                         <div class="row">
 
                                              <div class="col-md-10 mb-2">
@@ -366,14 +387,19 @@
                                                 <label class="not-bold">Proveedor:</label> &nbsp;
 
 
-                                                <div class="col-md-8">
-                                                 <div class="input-group input-group-sm">
-                                                    <input type="text" class="form-control form-control-sm">
-                                                    <span class="input-group-append">
-                                                      <button type="button" class="btn btn-info btn-flat btn-sm"><span class=" fa fa-search"> </span></button>
-                                                    </span>
-                                                  </div>
-                                                </div>
+                                                <div class="col-md-9">
+                                                    <div class="input-group input-group-sm">
+                                                       <select name="bpro" id="bpro" class=" col-md-10 form-control input-sm" data-toggle="select2">
+                                                           <option value="0" >[Busque proveedor]</option>
+                                                           @foreach ($proveedor as $proveedores)
+                                                   <option value="{{$proveedores->PROVE_id}}">{{$proveedores->PROVE_ruc}} - {{$proveedores->PROVE_razon_social}}</option>
+                                                     @endforeach
+                                                         </select>
+                                                       <span class="input-group-append">
+                                                           <span class="input-group-text " id="basic-addon1" style="color:#a9a9a9"><i class="fe-search"></i></span>
+                                                       </span>
+                                                     </div>
+                                                   </div>
 
 
 
@@ -398,7 +424,7 @@
                                                   <div class="input-group-prepend">
                                                     <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                                   </div>
-                                                  <input type="text" class="form-control form-control-sm " data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" im-insert="false">
+                                                  <input class="form-control form-control-sm" data-date-format="dd/mm/yyyy" id="datepicker">
                                                 </div>
                                               </div>
                                             </div>
@@ -418,7 +444,7 @@
                                                   <div class="input-group-prepend">
                                                     <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                                   </div>
-                                                  <input type="text" class="form-control form-control-sm" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" im-insert="false">
+                                                  <input class="form-control form-control-sm" data-date-format="dd/mm/yyyy" id="datepicker1">
                                                 </div>
                                               </div>
                                             </div>
@@ -441,7 +467,7 @@
                                                   </div>
                                               </div>
                                         </div>
-                                        <div class="col-md-6 mb-2" style="left: 100px">
+                                        <div class="col-md-5 mb-2" style="left: 100px">
                                             <div class="form-inline">
 
                                                   <label class="not-bold">Moneda: </label> &nbsp;&nbsp;&nbsp;&nbsp;
@@ -457,8 +483,8 @@
                                                   </div>
                                               </div>
                                         </div>
-                                        <div class="col-md-3 mb-2">
-                                          <a href="#custom-modal" class="btn btn-light btn-rounded waves-effect btn-sm" style="width: 105%; right: 11px"  data-animation="fadein" data-plugin="custommodal" data-overlayColor="#38414a"><i class="mdi mdi-plus-circle mr-1"></i> Agregar producto a la compra</a>
+                                        <div class="col-md-4 mb-2">
+                                          <a href="#custom-modal1" class="btn btn-light btn-rounded waves-effect btn-sm" style="width: 105%; right: 11px"  data-animation="fadein" data-plugin="custommodal" data-overlayColor="#38414a"><i class="mdi mdi-plus-circle mr-1"></i> Agregar producto a la compra</a>
 
                                         </div>
 
@@ -602,9 +628,44 @@
 
 @include('layouts.scripts')
 <script src="assets/libs/custombox/custombox.min.js"></script>
-
 <script>
-          $(document).ready(function() {
+
+    $(document).ready(function() {
+        $('#bprodu').select2({
+         minimumInputLength: 3,
+    });
+      $("#bprodu").select2({
+        dropdownParent: $("#custom-modal1")
+      });
+    });
+
+    </script>
+<script>
+$(document).ready(function() {
+    $.ajaxSetup({
+        headers:{
+            'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+            $('#bpro').select2({
+         minimumInputLength: 3,
+    });
+
+
+    $('#bpro').change(function(){
+           var prov = $(this).val();
+           $.ajax({
+                    url:"{{route('comprasShowp')}}",
+                    method:"POST",
+                    data:{
+                        prov:prov,
+                    },
+                success:function(data){
+                   $('#PROVE_dias').val(data.PROVE_dias_credito);
+                }
+           });
+      });
         //Llenar div de datos al inicio
         $(".bt_plus").each(function (el){
             $(this).bind("click",addField);
@@ -648,9 +709,32 @@
 	        });
 //Llenar div de pais al cambiar
         })
-
 </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+
+
+<script type="text/javascript">
+    $('#datepicker').datepicker({
+        weekStart: 1,
+        daysOfWeekHighlighted: "6,0",
+        autoclose: true,
+        todayHighlight: true,
+    });
+    $('#datepicker').datepicker("setDate", new Date());
+
+</script>
+<script type="text/javascript">
+    $('#datepicker1').datepicker({
+        weekStart: 1,
+        daysOfWeekHighlighted: "6,0",
+        autoclose: true,
+        todayHighlight: true,
+    });
+    $('#datepicker1').datepicker("setDate", new Date());
+
+</script>
+</body>
 
     </body>
 </html>
