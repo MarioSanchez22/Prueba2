@@ -20,6 +20,11 @@
     </head>
 
     <body>
+        <div id="preloader">
+            <div id="status">
+                <div class="spinner">Loading...</div>
+            </div>
+        </div>
  <style>
  .custom-modal-title {
     background-color:#dbdfe2d1;
@@ -198,7 +203,7 @@
                                         <span style="color:#6c757d">&times;</span><span class="sr-only" style="color:#6c757d" >Close</span>
                                     </button>
                                     <h5 class="custom-modal-title" style="padding: 10px; font-size: 15px">Agregar producto a la compra</h5>
-                                    <div class="custom-modal-text text-left" style=" padding-bottom: 0px;   zoom: 95%; padding-top: 10px;">
+                                    <div class="custom-modal-text text-left" style=" padding-bottom: 0px;   zoom: 95%; padding-top: 10px; margin-bottom: -50px">
 
 
 
@@ -236,82 +241,64 @@
 
                                                                   <div class="col-md-12 mb-2">
                                                                       <div class="form-inline">
-
-
                                                                           <label class="" >Nombre:</label>&nbsp;&nbsp;&nbsp;
-
-
-
-
                                                                               <input type="text" style="background: #f2f3f5;" id="PRO_nombre" class="col-md-9 form-control form-control-sm" disabled>
-
-
-
-
-
-
                                                                        </div>
                                                                       </div>
-                                                                      <div class="col-md-6 mb-2">
+                                                                      <div class="col-md-5 mb-2">
+                                                                        <div class="form-inline">
+                                                                            <label for="">Garantia: </label>&nbsp;&nbsp;
+                                                                            <input type="text" id="garantia" class="col-md-4 form-control form-control-sm">&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                            <label for="">mes(es)</label>
+                                                                        </div>
+                                                                    </div>
+                                                                      <div class="col-md-7 mb-2">
+                                                                        <div class="form-inline">
+                                                                            <label for="">Descuento: </label>&nbsp;&nbsp;
+                                                                            <div class="input-group">
+
+                                                                              <input type="number" class="col-md-8 form-control form-control-sm" id="CATPRO_precio1"  name="CATPRO_precio1" min="0" max="99">
+                                                                              <div class="input-group-prepend ">
+                                                                                <span class="col-md-9 input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9; padding-left: 4px">%</span>
+                                                                            </div> </div> &nbsp;
+                                                                            <input type="number" class="col-md-3 form-control form-control-sm" id="CATPRO_precio1"  name="CATPRO_precio1" min="0" >
+
+                                                                            <select class="form-control form-control-sm" name="" id="">&nbsp;
+
+                                                                                <option value="">S/</option>
+                                                                                <option value="">$</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                      <div class="col-md-4 mb-2">
+                                                                        <div class="form-inline">
+                                                                            <label class="" >medida:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                                <input type="text" style="background: #f2f3f5;" id="UME_id" class="col-md-6 form-control form-control-sm" disabled>
+                                                                         </div>
+                                                                        </div>
+                                                                      <div class="col-md-4 mb-2">
+                                                                        <div class="form-inline">
+                                                                            <label for="">Costo: </label>&nbsp;&nbsp;
+                                                                            <input type="text" id="cantidad" class="col-md-7 form-control form-control-sm">
+                                                                        </div>
+                                                                    </div>
+                                                                      <div class="col-md-4 mb-2">
                                                                           <div class="form-inline">
                                                                               <label for="">Cantidad: </label>&nbsp;&nbsp;
-                                                                              <input type="text" id="cantidad" class="col-md-8 form-control form-control-sm">
-                                                                          </div>
-                                                                      </div>
-                                                                      <div class="col-md-6 mb-2">
-                                                                          <div class="form-inline">
-                                                                              <label for="">Garantia: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                              <input type="text" id="garantia" class="col-md-6 form-control form-control-sm">&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                              <label for="">mes(es)</label>
-                                                                          </div>
-                                                                      </div>
-                                                                      <div class="col-md-6 mb-2">
-                                                                          <div class="form-inline">
-                                                                              <label for="">Costo: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                               <input type="text" id="costo" class="col-md-7 form-control form-control-sm">
                                                                           </div>
                                                                       </div>
-                                                                      <div class="col-md-6 mb-2">
-                                                                          <div class="form-inline">
-                                                                              <label for="">Descuento: </label>&nbsp;&nbsp;
-                                                                              <input type="text" class="col-md-5 form-control form-control-sm">&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                              <select class="form-control form-control-sm" name="" id="">&nbsp;
-                                                                                  <option value="">%</option>
-                                                                                  <option value="">S/</option>
-                                                                                  <option value="">$</option>
-                                                                              </select>
-                                                                          </div>
-                                                                      </div>
-                                                                      <br>
-                                                                      <div class="col-md-12"><h4 class="header-title mb-2">Ubicacion de existencias</h4></div>
 
-                                                                        <div class="col-md-4 mb-2" >
-                                                                          <div class="form-group">
-                                                                              <label for="">Almacen: </label>
-                                                                              <select class="form-control form-control-sm" name="" id="">
-                                                                                  <option value="">Principal1</option>
-                                                                                </select>
-                                                                          </div>
-                                                                      </div>
-                                                                      <div class="col-md-5 mb-2" >
-                                                                          <div class="form-group">
-                                                                              <label class="control-label">Ubicacion: </label>
-                                                                              <div class="form-inline">
-                                                                              <input type="text" class="col-md-8 form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion"> &nbsp;&nbsp;
-                                                                              <button type="button" class="btn  btn-light btn-sm" ><span class=" fa fa-plus-square"> </span></button></div>
-                                                                              </div>
-                                                                          </div>
-                                                                          <div class="col-md-3 mb-2">
-                                                                              <div class="form-group">
-                                                                                  <label class="control-label">Cantidad: </label>
-                                                                                  <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion">
-                                                                                  </div>
-                                                                              </div>
+
+                                                                      <br>
+
 
                                                               </div>
 
 
                                                             </div> <!-- end card-box-->
+
                                                           </div> <!-- end col -->
 
                                                           <div class="col-md-4">
@@ -336,6 +323,7 @@
                                                                       <input type="text" style="background: #f2f3f5;" id="PRO_modelo" disabled class="col-md-8 form-control form-control-sm text-center">
                                                                   </div>
                                                               </div>
+                                                              <input type="hidden" id="PRO_codigo">
                                                               <br><br>
                                                               <div class="row">
                                                                 <div class="col-md-6">
@@ -353,25 +341,40 @@
                                                               </div>
                                                               </div> <!-- end card-box-->
                                                           </div> <!-- end col -->
-
+                                                          <div class="col-md-8" style="top: -80px; bottom: 20px">
+                                                              <div class="card-box" style="border: 2px solid #e8e8e8; margin-bottom: 0px">
+                                                                <div class="col-md-12"><h4 class="header-title mb-2">Ubicacion de existencias</h4></div>
+                                                                <div class="row">
+                                                                <div class="col-md-4 mb-2" >
+                                                                  <div class="form-group">
+                                                                      <label for="">Almacen: </label>
+                                                                      <select class="form-control form-control-sm" name="" id="">
+                                                                          <option value="">Principal1</option>
+                                                                        </select>
+                                                                  </div>
+                                                              </div>
+                                                              <div class="col-md-5 mb-2" >
+                                                                  <div class="form-group">
+                                                                      <label class="control-label">Ubicacion: </label>
+                                                                      <div class="form-inline">
+                                                                      <input type="text" class="col-md-8 form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion"> &nbsp;&nbsp;
+                                                                      <button type="button" class="btn  btn-light btn-sm" ><span class=" fa fa-plus-square"> </span></button></div>
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class="col-md-3 mb-2">
+                                                                      <div class="form-group">
+                                                                          <label class="control-label">Cantidad: </label>
+                                                                          <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion">
+                                                                          </div>
+                                                                      </div>
+                                                                </div>
+                                                              </div>
+                                                          </div>
                                                       </div>
                                                       <!-- end row -->
 
                                                   </div> <!-- end container -->
                                               </div>
-                                              <!-- end wrapper -->
-
-                                              <!-- ============================================================== -->
-                                              <!-- End Page content -->
-                                              <!-- ============================================================== -->
-
-
-
-
-
-
-
-
 
 
                                     </div>
@@ -642,8 +645,10 @@
 var nombre = $('#PRO_nombre').val();
 var cantidad = $('#cantidad').val();
 var costo =$('#costo').val();
+var codigo=$('#PRO_codigo').val();
+var medida=$('#UME_id').val();
 
-$('#tabA tbody').append('<tr><td class="align-middle" style="padding: 4px;"></td><td class="align-middle" style="padding: 4px;">' + nombre + '</td><td class="align-middle" style="padding: 4px;">' + cantidad + '</td><td class="align-middle" style="padding: 4px;">' + costo + '</td><td class="align-middle" style="padding: 4px;"></td><td class="align-middle" style="padding: 4px;">' + costo*cantidad +'</td><td class="align-middle" style="padding: 4px;"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a></td></tr>');
+$('#tabA tbody').append('<tr><td class="align-middle" style="padding: 4px;">'+codigo+'</td><td class="align-middle" style="padding: 4px;">' + nombre + '</td><td class="align-middle" style="padding: 4px;">' + cantidad + '</td><td class="align-middle" style="padding: 4px;">' + costo + '</td><td class="align-middle" style="padding: 4px;">'+medida+'</td><td class="align-middle" style="padding: 4px;">' + costo*cantidad +'</td><td class="align-middle" style="padding: 4px;"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a></td></tr>');
 Custombox.modal.close();
 
 });
@@ -660,10 +665,12 @@ Custombox.modal.close();
                         producto:producto,
                     },
                 success:function(data){
+                    $('#PRO_codigo').val(data[0].PRO_id);
                    $('#PRO_nombre').val(data[0].PRO_nombre);
                    $('#CATPRO_id').val(data[1].CATPRO_descripcion);
                    $('#MARCA_id').val(data[2].MARCA_descripcion);
                    $('#PRO_modelo').val(data[0].PRO_modelo);
+                   $('#UME_id').val(data[3].UME_descripcion);
                 }
            });
       });

@@ -97,14 +97,14 @@
                                                                 <option value="">Laptop</option>
                                                               </select>
                                                           </div>
-                                                          <div class="col-md-4">
+                                                          <div class="col-md-2" style="margin-left: 170px;">
                                                             <div class="form-group">
                                                               <label class="control-label">Estado: </label>
 
-                                                              <input type="text" class="form-control form-control-sm border border-warning"  disabled value="En transito">
+                                                              <input type="text" class="form-control form-control-sm border border-light"  disabled value="Activo">
                                                            </div></div>
 
-                                                          <div class="col-md-4">
+                                                          <div class="col-md-5">
                                                             <div class="form-group">
                                                               <label class="control-label">Nombre: </label>
                                                               <div class="input-group">
@@ -113,7 +113,7 @@
                                                                 </div>
                                                               <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion"> </div>
                                                            </div></div>
-                                                           <div class="col-md-4">
+                                                           <div class="col-md-3">
                                                             <label for="">Marca</label>
                                                               <select class=" form-control  form-control-sm"  id="PROVE_origen" name="PROVE_origen">
                                                                 <option value="">HP</option>
@@ -136,7 +136,11 @@
                                                                 <div class="input-group-prepend ">
                                                                     <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class=" mdi mdi-border-color"></i></span>
                                                                 </div>
-                                                              <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion"> </div>
+                                                                <select class="form-control  form-control-sm" data-style="btn-light" id="PROVE_origen" name="PROVE_origen">
+
+                                                                    <option value="">Unidad</option>
+                                                                    <option value="">Litros</option>
+                                                                  </select> </div>
                                                            </div></div>
                                                            <div class="col-md-4">
                                                             <label for="">¿Utiliza numero de serie?</label><br>
@@ -158,7 +162,10 @@
                                                                 <div class="input-group-prepend ">
                                                                     <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class=" mdi mdi-border-color"></i></span>
                                                                 </div>
-                                                              <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion"> </div>
+                                                                <select class="form-control  form-control-sm" data-style="btn-light" id="PROVE_origen" name="PROVE_origen">
+                                                                    <option value="">Nacional</option>
+                                                                    <option value="">Importado</option>
+                                                                  </select> </div>
                                                            </div></div>
                                                            <div class="col-md-6">
                                                             <h5>Existencia: </h5>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\producto;
-
+use App\umedidas;
 use App\categoria_producto;
 use App\marca;
 class productoController extends Controller
@@ -12,6 +12,7 @@ class productoController extends Controller
     $producto=producto::all();
     $categoria_producto=categoria_producto::all();
     $marca=marca::all();
+   $medida=umedidas::all();
     //dd($proveedor);
        return view('productos.index',['producto'=>$producto, 'categoria_producto'=>$categoria_producto,'marca'=>$marca]);
     }
