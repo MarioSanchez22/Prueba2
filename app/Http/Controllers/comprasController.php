@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\region;
 use App\proveedor;
 use App\tipo_proveedor;
+use App\categoria_producto;
+use App\marca;
 
 class comprasController extends Controller
 {
@@ -23,5 +25,12 @@ class comprasController extends Controller
 
     $prove=proveedor::find($request->get('prov'));
     return $prove;
+}
+public function showart(Request $request){
+
+    $producto=producto::find($request->get('producto'));
+    $categoria=categoria_producto::where('CATPRO_id','=',$producto->CATPRO_id)->first();
+    $marca=marca::where('MARCA_id','=',$producto->MARCA_id)->first();
+    return [$producto,$categoria,$marca];
 }
 }

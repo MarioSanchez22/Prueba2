@@ -25,6 +25,11 @@
     background-color:#dbdfe2d1;
     color:#6c757d;
  }</style>
+ <style>
+     .select2-container {
+         width: 81%!important;
+     }
+ </style>
         <!-- Begin page -->
         <div id="wrapper">
 
@@ -188,7 +193,7 @@
                                   </div></div>
                                 </div>
                                    <!-- Modal -->
-                                  <div id="custom-modal1" class="modal-demo"  role="dialog" style="width: 1000px!important;">
+                                  <div id="custom-modal1" class="modal-demo kk"  role="dialog" style="width: 1000px!important; " >
                                     <button type="button" class="close" onclick="Custombox.modal.close();" style="top:10px">
                                         <span style="color:#6c757d">&times;</span><span class="sr-only" style="color:#6c757d" >Close</span>
                                     </button>
@@ -213,12 +218,12 @@
                                                               <h4 class="header-title mb-2">Datos de articulo</h4>
 
                                                               <div class="row">
-                                                                <div class="col-md-10 mb-2">
+                                                                <div class="col-md-9 mb-2">
                                                                     <div class="input-group ">
                                                                        <select id="bprodu" name="bprodu" class="form-control" data-toggle="select2">
                                                                            <option value="0" >         [Busque articulo ]        </option>
                                                                            @foreach ($producto as $productos)
-                                                                   <option value="{{$productos->PRO_id}}">{{$productos->PRO_id}} - {{$productos->PRO_nombre}}</option>
+                                                                   <option  value="{{$productos->PRO_id}}">{{$productos->PRO_id}} - {{$productos->PRO_nombre}}</option>
                                                                      @endforeach
                                                                          </select>
                                                                        <span class="input-group-append">
@@ -226,8 +231,8 @@
                                                                        </span>
                                                                      </div>
                                                                    </div>
-                                                              <div class="col-md-2 mb-2">
-                                                                  <button type="button" class="btn btn-block btn-light btn-sm" ><span class=" fa fa-plus-square"> </span> Nuevo</button></div>
+                                                              <div class="col-md-3 mb-2" style="right:40px">
+                                                                  <button type="button" class="btn  btn-light " ><span class=" fa fa-plus-square"> </span> Nuevo</button></div>
 
                                                                   <div class="col-md-12 mb-2">
                                                                       <div class="form-inline">
@@ -238,7 +243,7 @@
 
 
 
-                                                                              <input type="text" style="background: #f2f3f5;" class="col-md-9 form-control form-control-sm" disabled>
+                                                                              <input type="text" style="background: #f2f3f5;" id="PRO_nombre" class="col-md-9 form-control form-control-sm" disabled>
 
 
 
@@ -250,20 +255,20 @@
                                                                       <div class="col-md-6 mb-2">
                                                                           <div class="form-inline">
                                                                               <label for="">Cantidad: </label>&nbsp;&nbsp;
-                                                                              <input type="text" class="col-md-8 form-control form-control-sm">
+                                                                              <input type="text" id="cantidad" class="col-md-8 form-control form-control-sm">
                                                                           </div>
                                                                       </div>
                                                                       <div class="col-md-6 mb-2">
                                                                           <div class="form-inline">
                                                                               <label for="">Garantia: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                              <input type="text" class="col-md-6 form-control form-control-sm">&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                              <input type="text" id="garantia" class="col-md-6 form-control form-control-sm">&nbsp;&nbsp;&nbsp;&nbsp;
                                                                               <label for="">mes(es)</label>
                                                                           </div>
                                                                       </div>
                                                                       <div class="col-md-6 mb-2">
                                                                           <div class="form-inline">
                                                                               <label for="">Costo: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                              <input type="text" class="col-md-7 form-control form-control-sm">
+                                                                              <input type="text" id="costo" class="col-md-7 form-control form-control-sm">
                                                                           </div>
                                                                       </div>
                                                                       <div class="col-md-6 mb-2">
@@ -316,19 +321,19 @@
                                                                   <div class="form-inline text-center">
 
                                                                       <label for="">Categoria: </label>&nbsp;
-                                                                      <input type="text" style="background: #f2f3f5;" disabled class="col-md-8 form-control form-control-sm">
+                                                                      <input type="text" style="background: #f2f3f5;" id="CATPRO_id" disabled class="col-md-8 form-control form-control-sm text-center">
                                                                   </div>
                                                               </div>
                                                               <div class="col-md-12 mb-2 text-center">
                                                                   <div class="form-inline text-center">
                                                                       <label class="text-center" for="">Marca: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                      <input type="text" style="background: #f2f3f5;" disabled class="col-md-8 form-control form-control-sm text-center">
+                                                                      <input type="text" style="background: #f2f3f5;" id="MARCA_id" disabled class="col-md-8 form-control form-control-sm text-center">
                                                                   </div>
                                                               </div>
                                                               <div class="col-md-12 mb-2 text-center">
                                                                   <div class="form-inline text-center">
                                                                       <label class="text-center" for="">Modelo: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                      <input type="text" style="background: #f2f3f5;" disabled class="col-md-8 form-control form-control-sm text-center">
+                                                                      <input type="text" style="background: #f2f3f5;" id="PRO_modelo" disabled class="col-md-8 form-control form-control-sm text-center">
                                                                   </div>
                                                               </div>
                                                               <br><br>
@@ -373,7 +378,7 @@
                                     <div class="modal-footer" style="padding: 6px">
                                     <div class="text-right">
                                         <button type="button" class="btn btn-light waves-effect waves-light btn-sm" onclick="Custombox.close();">Cancel</button>
-                                      <button type="submit" class="btn btn-blue waves-effect waves-light btn-sm">Guardar</button>
+                                      <button type="submit" id="guardarAr"  class="btn btn-blue waves-effect waves-light btn-sm">Guardar</button>
 
                                   </div></div>
                                 </div>
@@ -388,8 +393,8 @@
 
 
                                                 <div class="col-md-9">
-                                                    <div class="input-group input-group-sm">
-                                                       <select name="bpro" id="bpro" class=" col-md-10 form-control input-sm" data-toggle="select2">
+                                                    <div class="input-group">
+                                                       <select name="bpro" id="bpro" style="width: 200px!important" class=" col-md-12 form-control" data-toggle="select2">
                                                            <option value="0" >[Busque proveedor]</option>
                                                            @foreach ($proveedor as $proveedores)
                                                    <option value="{{$proveedores->PROVE_id}}">{{$proveedores->PROVE_ruc}} - {{$proveedores->PROVE_razon_social}}</option>
@@ -490,22 +495,23 @@
 
 
                                         <div class="col-md-12">
-                                      <table class="table table-bordered table-sm">
+                                      <table id="tabA" class="table table-bordered table-sm">
                                         <thead>
                                           <tr style="background: #ebececc9;">
-                                             <th >#</th>
+
                                             <th>Codigo</th>
                                             <th>Nombre</th>
                                             <th>Cantidad</th>
-                                            <th>Unidad</th>
                                             <th>Costo U.</th>
+                                            <th>Unidad</th>
+
                                             <th>Total</th>
                                             <th >Opciones</th>
                                           </tr>
                                         </thead>
                                         <tbody>
                                           <tr >
-                                            <td  class="align-middle" style="padding: 4px;">1.</td>
+
                                             <td  class="align-middle" style="padding: 4px;">013232323</td>
                                             <td   class="align-middle" style="padding: 4px;">Update softwerwrwrwrvwaresdsd
                                             </td>
@@ -631,13 +637,37 @@
 <script>
 
     $(document).ready(function() {
-        $('#bprodu').select2({
-         minimumInputLength: 3,
-    });
+        $('#guardarAr').click(function () {
+
+var nombre = $('#PRO_nombre').val();
+var cantidad = $('#cantidad').val();
+var costo =$('#costo').val();
+
+$('#tabA tbody').append('<tr><td class="align-middle" style="padding: 4px;"></td><td class="align-middle" style="padding: 4px;">' + nombre + '</td><td class="align-middle" style="padding: 4px;">' + cantidad + '</td><td class="align-middle" style="padding: 4px;">' + costo + '</td><td class="align-middle" style="padding: 4px;"></td><td class="align-middle" style="padding: 4px;">' + costo*cantidad +'</td><td class="align-middle" style="padding: 4px;"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a></td></tr>');
+Custombox.modal.close();
+
+});
       $("#bprodu").select2({
+        minimumInputLength: 3,
         dropdownParent: $("#custom-modal1")
       });
-    });
+      $('#bprodu').change(function(){
+           var producto = $(this).val();
+           $.ajax({
+                    url:"{{route('comprasShowart')}}",
+                    method:"POST",
+                    data:{
+                        producto:producto,
+                    },
+                success:function(data){
+                   $('#PRO_nombre').val(data[0].PRO_nombre);
+                   $('#CATPRO_id').val(data[1].CATPRO_descripcion);
+                   $('#MARCA_id').val(data[2].MARCA_descripcion);
+                   $('#PRO_modelo').val(data[0].PRO_modelo);
+                }
+           });
+      });
+    })
 
     </script>
 <script>
