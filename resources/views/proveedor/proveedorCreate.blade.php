@@ -271,7 +271,7 @@
                                             </div>
                                                 <br>
                                         <div class="modal-footer d-flex" style="background:#f5f5f5">
-                                        <button type="submit" class="btn btn-primary" style="background-color: #446e8c;">Save changes</button>
+                                        <button type="submit" class="btn btn-primary" id="guardaP" style="background-color: #446e8c;">Save changes</button>
                                       </div>
                                         </div> <!-- end card-box-->
                                     </form>
@@ -319,6 +319,18 @@
         <!-- Vendor js -->
         @include('layouts.scripts')
     <script>
+
+          $('#guardaP').click(function(){
+
+
+           $.ajax({
+
+                success:function(data){
+                   ;
+                    alert('se registro');
+                }
+           });
+      });
         $(document).ready(function() {
         //Llenar div de datos al inicio
         $(".bt_plus").each(function (el){
@@ -361,6 +373,7 @@
                     }
                 });
 	        });
+
 //Llenar div de pais al cambiar
         });
         function addField(){
