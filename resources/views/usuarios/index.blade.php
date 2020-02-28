@@ -3,6 +3,7 @@
   use App\rol;
   use App\sucursal;
   use App\empresa;
+  use App\empleado;
 @endphp
 
 <!DOCTYPE html>
@@ -74,36 +75,40 @@
                       <div class="card-box " style="padding-bottom: 8px; padding-top: 8px; margin-bottom: 0px; background: #566675; color:#fff">
 
                         <div class="row">
-                        <div class="col-md-3">
-                            <form action="" class="form-inline">
-                            <div class="form-group">
-                            <label class="control-label" >DNI:   </label>&nbsp&nbsp
-                             <input type="text"  id="PROVE_ruc" name="PROVE_ruc" class="form-control form-control-sm">
-                            </div>
-                            </form>
-                        </div>
-                        <div class="col-md-4">
-                            <form action="" class="form-inline">
-                            <div class="form-group">
-                            <label class="control-label" >Nombre usuario: </label>&nbsp&nbsp
-                            <input type="text" id="PROVE_razon_social" name="PROVE_razon_social" class="form-control form-control-sm">
-                            </div>
-                        </form>
-                        </div>
-                        <div class="col-md-3">
-                            <form action="" class="form-inline">
-                            <div class="form-group">
-                            <label class="control-label" >Email: </label> &nbsp&nbsp
-                             <input type="text" id="PROVE_etiqueta" name="PROVE_etiqueta" class="form-control form-control-sm">
-                            </div>
-                            </form>
-                        </div>
-                        <div class="col-md-2" style="padding-left: 10%" >
-                             <button class="btn  btn-blue btn-sm"  id="buscar" name="buscar"><i class="fe-search" style="font-size:16px"></i>  </button>
 
+                            <div class="col-md-3">
+                                <form action="" class="form-inline">
+                                <div class="form-group">
+                                <label class="control-label" >Usuario: </label>&nbsp&nbsp
+                                <input type="text" id="email" name="email" class="form-control form-control-sm">
+                                </div>
+                            </form>
                             </div>
-                        </div>
-
+                            <div class="col-md-3">
+                                <form action="" class="form-inline">
+                                <div class="form-group">
+                                <label class="control-label" >DNI:   </label>&nbsp&nbsp
+                                <input type="text"  id="PERSONA_identificador" name="PERSONA_identificador" class="form-control form-control-sm">
+                                </div>
+                                </form>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="row ">
+                                    <div class="col-2 form-inline"><label class="control-label">Rol:</label></div>
+                                    <div class="col-10">
+                                        <select  class="form-control  form-control-sm " name="ROL_id" id="ROL_id">
+                                            <option value="">Rol</option>
+                                            @foreach ($roles as $rol)
+                                            <option value="{{$rol->ROL_id}}">{{$rol->ROL_descripcion}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3" style="padding-left: 10%" >
+                                <button class="btn  btn-blue btn-sm"  id="buscar" name="buscar"><i class="fe-search" style="font-size:16px"></i>  </button>
+                                </div>
+                            </div>
                       </div>
 
                           <div class="card">
@@ -120,11 +125,11 @@
                                 <thead class="thead-light">
                                 <tr>
                                 <th data-field="state" >#</th>
-                                <th data-field="id" data-switchable="false">Nombre Usuario</th>
                                 <th data-field="name">Usuario</th>
-                                <th data-field="email">Email</th>
+                                <th data-field="id" data-switchable="false">Nombre Usuario</th>
+                                <th data-field="email">Documento de identidad</th>
                                 <th data-field="perfil">Perfil</th>
-                                <th data-field="venta">PtoVenta</th>
+
                                 <th data-field="estado">Estado</th>
                                 <th data-field="opciones">Opciones</th>
                                 </tr>
@@ -134,40 +139,29 @@
                                     @php
                                     $persona=persona::where('PERSONA_id','=',$usuario->PERSONA_id)->first();
                                     $rol=rol::where('ROL_id','=',$usuario->ROL_id)->first();
-                                    $sucursal=sucursal::where('SUCURSAL_id','=',$persona->SUCURSAL_id)->first();
-                                    $empresa=empresa::where('EMPRESA_id','=',$sucursal->EMPRESA_id)->first();
                                     @endphp
                                         <tr>
                                                 <td>{{$loop->index+1}}</td>
-                                                <td>{{$persona->PERSONA_nombres}}</td>
                                                 <td>{{$usuario->email}}</td>
-                                                <td>{{$usuario->USER_nick}}</td>
+                                                <td>{{$persona->PERSONA_nombres}}</td>
+                                                <td>{{$persona->PERSONA_identificador}}</td>
                                                 <td>{{$rol->ROL_descripcion}}</td>
-                                        <td>{{$sucursal->SUCURSAL_nombre}} - {{$empresa->EMPRESA_nombre}}</td>
                                                 <td>
                                                     @if($usuario->USER_estado==1)
-                                                    <span class="badge bg-soft-success text-success shadow-none">Activo</span>
+                                                        <span class="badge bg-soft-success text-success shadow-none">Activo</span>
                                                     @else
                                                         <span class="badge bg-soft-danger text-danger shadow-none">Bloqueado</span>
                                                     @endif
                                                 </td>
                                                     <td>
-                                                        <div class="dropdown float-right">
-                                                            <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
-                                                                <i class=" mdi mdi-settings m-0 text-muted h3"></i>
-                                                            </a>
-                                                            <div class="dropdown-menu dropdown-menu-right">
-                                                                <a href="#" class="dropdown-item" title="Ver"> <i class="mdi mdi-eye"></i> Ver</a>
-                                                                 <a href="#" class="dropdown-item" title="Editar"> <i class="mdi mdi-square-edit-outline"></i> Editar</a>
-                                                                 <a data-toggle="modal" href="#modal" class="dropdown-item" > <i class="mdi mdi-plus"></i> Agregar contacto</a>
-                                                            </div>
-                                                        </div>
-                                                        @if ($usuario->USER_estado==1)
-                                                        <a href="#" class="action-icon" title="Bloquear"> <i class="mdi mdi-block-helper"></i></a></td>
+                                                        <a href="#" class="action-icon" title="Ver"> <i class="mdi mdi-eye"></i></a>
+                                                        <a href="#" class="action-icon" title="Editar"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                        @if($usuario->USER_estado==1)
+                                                            <a href="#" class="action-icon" title="Bloquear"> <i class="mdi mdi-block-helper"></i></a>
                                                         @else
-                                                        <a href="#" class="action-icon" title="Activar"> <i class="mdi mdi-transfer-up"></i></a></td>
+                                                            <a href="#" class="action-icon" title="Activar"> <i class="mdi mdi-transfer-up"></i></a>
                                                         @endif
-
+                                                    </td>
                                                 </tr>
                                     @endforeach
                                     </tbody>
@@ -306,21 +300,21 @@
 @include('layouts.scripts')
 <script>
      $('#buscar').click(function(){
-        var ruc=$('#PROVE_ruc').val();
-        var razon=$('#PROVE_razon_social').val();
-        var etiqueta=$('#PROVE_etiqueta').val();
+        var email=$('#email').val();
+        var PERSONA_identificador=$('#PERSONA_identificador').val();
+        var ROL_id=$('#ROL_id').val();
         $('#tablageneral').hide();
-        if(ruc==''){
-            ruc='0';
+        if(email==''){
+            email='0';
         }
-        if(razon==''){
-            razon='0';
+        if(PERSONA_identificador==''){
+            PERSONA_identificador='0';
         }
-        if(etiqueta==''){
-            etiqueta='0';
+        if(ROL_id==''){
+            ROL_id='0';
         }
     $.ajax({
-    url:"proveedor/buscar/"+ruc+"/"+razon+"/"+etiqueta,
+    url:"usuarios/buscar/"+email+"/"+PERSONA_identificador+"/"+ROL_id,
     method:"GET",
     success:function(data1){
         $('#tabla1').html(data1);

@@ -5,17 +5,17 @@
 <div class="col-md-5">
     <div class="form-group">
     <label class="control-label" for="PROVE_razon_social">
-       Razon social
+       Razón social
     </label><div class="input-group">
-    <input type="text" class="form-control form-control-sm" required  placeholder="Razon social" id="PROVE_razon_social" name="PROVE_razon_social"> </div>
+    <input type="text" class="form-control form-control-sm" required  placeholder="Razón social" id="PROVE_razon_social" name="PROVE_razon_social"> </div>
 </div></div>
 
    <div class="col-md-5">
     <div class="form-group">
-      <label class="control-label">Razon comercial: </label>
+      <label class="control-label">Razón comercial: </label>
       <div class="input-group">
 
-      <input type="text" class="form-control form-control-sm" placeholder="Razon comercial" name="PROVE_razon_comercial" id="PROVE_razon_comercial"> </div>
+      <input type="text" class="form-control form-control-sm" placeholder="Razón comercial" name="PROVE_razon_comercial" id="PROVE_razon_comercial"> </div>
    </div></div>
 @endif
 @if($tipoPr==2)
@@ -51,36 +51,32 @@
 @endif
 <div class="col-md-2">
     <div class="form-group">
-      <label class="control-label">Dias de crédito: </label>
+      <label class="control-label">Días de crédito: </label>
       <div class="input-group">
 
-      <input type="number" class="form-control form-control-sm" required min="1" placeholder="Dias " name="PROVE_dias_credito"> </div>
+      <input type="number" class="form-control form-control-sm" required min="1" placeholder="Días " name="PROVE_dias_credito"> </div>
    </div></div>
 
    <script>
       $(document).ready(function(){
         $('#cargarDni').hide();
-
           $("#PROVE_dni").keyup(function(){
      var numdni= $("#PROVE_dni").val();
      if(numdni.length == 8){
      consultadatosSUNAT2(numdni);
-
-
      }
+     else{
+        $("#PROVE_razon_social").val('');
+        $("#PROVE_ruc").val('');
+    }
    });
-
-
     function consultadatosSUNAT2(PROVE_dni){
         $('#cargarDni').show();
-
       var dni=$('#PROVE_dni').val();
-
           $.ajax({
                 method:'GET',
                 url: "http://siempreaqui.com/json-sunat/consulta.php",
                 data:'nruc='+dni,
-
               success:function(data){
                   $('#cargarDni').hide();
                   var dataObject = jQuery.parseJSON(data);
@@ -94,7 +90,6 @@
                            // $("#rs_dni").val(dataObject.result.DNI); No devuelve DNI
                            }
                            else{
-
       var token='?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFsaWNpYXJvZHJpZ3VlejEzMUBnbWFpbC5jb20ifQ.a3lvPXVhSwXBw-I8VQ9gS7WS-HZMAzMTMCcFLW3V1eE';
           $.ajax({
               method:'GET',

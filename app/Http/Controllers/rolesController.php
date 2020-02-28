@@ -132,6 +132,8 @@ class rolesController extends Controller
                                         }
                                     }
                                 }
+                            }else{
+                                $plantilla->PLANTILLA_crear=0;
                             }
                             if($editar!=null){
                                 if(in_array($submenuDefectos->SUBMENU_descripcion,$editar)==false){
@@ -144,6 +146,9 @@ class rolesController extends Controller
                                     }
                                 }
                             }
+                            else{
+                                $plantilla->PLANTILLA_editar=0;
+                            }
                             if($eliminar!=null){
                                 if(in_array($submenuDefectos->SUBMENU_descripcion,$eliminar)==false){
                                     $plantilla->PLANTILLA_eliminar=0;
@@ -154,6 +159,9 @@ class rolesController extends Controller
                                         }
                                     }
                                 }
+                            }
+                            else{
+                                $plantilla->PLANTILLA_eliminar=0;
                             }
                         }
                         $plantilla->save();

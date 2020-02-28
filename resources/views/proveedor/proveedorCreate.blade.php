@@ -73,11 +73,7 @@
                                                         <i class="mdi mdi-database-edit"></i> Datos de Proveedor
                                                     </a>
                                                 </li>
-                                                <li class="nav-item">
-                                                    <a href="#profile" data-toggle="tab" aria-expanded="true" class="nav-link ">
-                                                        <i class="mdi mdi-checkbox-multiple-blank-outline"></i>  Expediente de Proveedor
-                                                    </a>
-                                                </li>
+
                                                 <li class="nav-item">
                                                     <a href="#messages" data-toggle="tab" aria-expanded="false" class="nav-link">
                                                         <i class="mdi mdi-contacts"></i>     Contacto de Proveedor
@@ -86,6 +82,11 @@
                                                 <li class="nav-item">
                                                     <a href="#cuentas" data-toggle="tab" aria-expanded="false" class="nav-link">
                                                         <i class="mdi mdi-account-card-details"></i>     Cuentas de Proveedor
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="#profile" data-toggle="tab" aria-expanded="true" class="nav-link ">
+                                                        <i class="mdi mdi-checkbox-multiple-blank-outline"></i>  Expediente de Proveedor
                                                     </a>
                                                 </li>
                                             </ul>
@@ -146,20 +147,20 @@
                                                         </div></div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                              <label class="control-label">Direccion: </label>
+                                                              <label class="control-label">Dirección: </label>
                                                               <div class="input-group">
                                                                 <div class="input-group-prepend ">
                                                                     <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-bank-transfer-in"></i></span>
                                                                 </div>
-                                                              <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion"> </div>
+                                                              <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion" placeholder="Dirección"> </div>
                                                            </div></div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                              <label class="control-label" for="PROVE_telefono">Telefono: </label>
+                                                              <label class="control-label" for="PROVE_telefono">Teléfono: </label>
                                                               <div class="input-group">
                                                                 <div class="input-group-prepend ">
                                                                     <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-phone mr-1"></i></span>
-                                                                </div> <input type="text" class="form-control form-control-sm" required placeholder="Telefono" name="PROVE_telefono"> </div>
+                                                                </div> <input type="text" class="form-control form-control-sm" required placeholder="Telefono" name="PROVE_telefono" placeholder="Teléfono"> </div>
                                                            </div></div>
                                                         <div class="col-md-6">
                                                             <div class="form-group">
@@ -167,7 +168,7 @@
                                                               <div class="input-group">
                                                                 <div class="input-group-prepend ">
                                                                     <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-web mr-1"></i></span>
-                                                                </div> <input type="text" class="form-control form-control-sm"  placeholder="Direccion web" name="PROVE_web"> </div>
+                                                                </div> <input type="text" class="form-control form-control-sm"  placeholder="Dirección web" name="PROVE_web"> </div>
                                                            </div></div>
                                                            <div class="col-md-6">
                                                             <div class="form-group">
@@ -452,14 +453,16 @@
 
 <script>
     $(document).ready(function(){
-
-
         $("#PROVE_ruc").keyup(function(){
 	var numruc = $("#PROVE_ruc").val();
 	if(numruc.length == 11){
 	consultadatosSUNAT(numruc);
-
 	}
+    else{
+        $("#PROVE_razon_social").val('');
+        $("#PROVE_dni").val('');
+
+    }
  });
 
 
@@ -472,7 +475,6 @@
             method:'GET',
            url: "http://siempreaqui.com/json-sunat/consulta.php",
 			data:'nruc='+ruc,
-
             success:function(data){
                 $('#cargarRuc').hide();
                 var dataObject = jQuery.parseJSON(data);

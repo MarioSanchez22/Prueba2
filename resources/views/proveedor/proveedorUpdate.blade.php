@@ -234,11 +234,12 @@
                                                             </thead>
 
                                                             <tbody>
-                                                            <form action="{{route('proveedorContactosUpdate')}}" method="POST">
+                                                            <form action="{{route('contactoProveedorUpdate',[$proveedor])}}" method="POST">
                                                                     {{csrf_field()}}
                                                                     @foreach ($contactoPro as $contactos)
                                                                     <tr>
                                                                         <th>{{$loop->index+1}}</th>
+                                                                        <th style="display:none;"><input type="text"    name="PROVECONT_id[]" class="form-control form-control-sm" style="margin-left: 2%;" value="{{$contactos->PROVECONT_id}}"></th>
                                                                         <th><input type="text"    name="PROVECONT_descripcion[]" class="form-control form-control-sm" style="margin-left: 2%;" value="{{$contactos->PROVECONT_descripcion}}"></th>
                                                                         <th><input type="text"    name="PROVECONT_nombre[]" class="form-control form-control-sm" value="{{$contactos->PROVECONT_nombre}}"></th>
                                                                         <th><input type="number"  name="PROVECONT_telefono[]" class="form-control form-control-sm"  value="{{$contactos->PROVECONT_telefono}}"></th>
@@ -246,14 +247,14 @@
                                                                         <!--<input class="btn btn-primary bt_plus" id="100" type="button" value="+">-->
                                                                         <th><button type="button" class="btn btn-danger btn-xs waves-effect waves-light" ><i class="mdi mdi-trash-can-outline"></i></button></th>
                                                                             </tr>
-                                                                        @endforeach
+                                                                    @endforeach
 
-                                                                </form>
                                                             </tbody>
                                                         </table>
-                                                            <div class="col-md-12" style="background:#f5f5f5">
-                                                                <button type="submit" style="margin-left: 91%" class="btn btn-primary" style="background-color: #446e8c;">Guardar</button>
-                                                            </div>
+                                                        <div class="col-md-12" style="background:#f5f5f5">
+                                                            <button type="submit" style="margin-left: 91%" class="btn btn-primary" style="background-color: #446e8c;">Guardar</button>
+                                                        </div>
+                                                    </form>
                                                     </div> <!-- end .table-responsive-->
                                                     <div class="row" id="divmsg" style="display:none" class="alert alert-primary" role="alert "></div>
                                                         <!--  Modal content for the above example -->
