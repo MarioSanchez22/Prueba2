@@ -97,7 +97,7 @@ use App\categoria_producto;
                                                         <div class="input-group-prepend ">
                                                             <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-barcode"></i></span>
                                                         </div>
-                                                      <input type="text" class="form-control form-control-sm" value=" {{$id_ultimo }}"  id="codigo" name="codigo" disabled style="background: #e9ecef"> </div>
+                                                      <input type="text" class="form-control form-control-sm" value=" {{$ultimoid}}"  id="codigo" name="codigo" disabled style="background: #e9ecef"> </div>
                                                   </div>
                                                 </div>
                                                 <div class="col-md-6">

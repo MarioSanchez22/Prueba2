@@ -204,7 +204,7 @@
                                                 <h5 class="modal-title" id="full-width-modalLabel" style="color:#6c757d">Agregar producto a la compra</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                             </div>
-                                            <div class="modal-body" style=" padding-bottom: 0px;   zoom: 95%; padding-top: 10px; margin-bottom: -50px">
+                                            <div class="modal-body" id="modalbo" style=" padding-bottom: 0px;   zoom: 95%; padding-top: 10px; margin-bottom: -50px">
 
                                                 <div class="wrapper">
                                                 <div class="container-fluid">
@@ -222,10 +222,10 @@
                                                             <div class="row">
                                                               <div class="col-md-9 mb-2">
                                                                   <div class="input-group ">
-                                                                     <select id="bprodu" name="bprodu" class="form-control" data-toggle="select2">
+                                                                     <select id="bprodu" name="bprodu" class="form-control" data-toggle="select2" >
                                                                          <option value="0" >         [Busque articulo ]        </option>
                                                                          @foreach ($producto as $productos)
-                                                                 <option  value="{{$productos->PRO_id}}">{{$productos->PRO_codigo}} - {{$productos->PRO_nombre}}</option>
+                                                                 <option   value="{{$productos->PRO_id}}">{{$productos->PRO_codigo}} - {{$productos->PRO_nombre}}</option>
                                                                    @endforeach
                                                                        </select>
                                                                      <span class="input-group-append">
@@ -405,7 +405,8 @@
 
                                                                                         <br>
                                                                                       <div class="row">
-                                                                                          <div class="col-md-3">
+                                                                                          <div class="col-md-4">
+                                                                                              <input type="hidden" value=" {{$ultimoid}}" id="id_ultimoP">
                                                                                               <div class="form-group">
                                                                                                 <label class="control-label">Codigo: </label>
                                                                                                 <div class="input-group">
@@ -414,15 +415,8 @@
                                                                                                   </div>
                                                                                                 <input type="text" class="form-control form-control-sm"  name="PRO_rcodigo"  id="PRO_rcodigo"> </div>
                                                                                              </div></div>
-                                                                                             <div class="col-md-3">
-                                                                                              <label for="">Categoria</label>
-                                                                                                <select class="selectpicker form-control  form-control-sm" data-style="btn-light" id="PRO_rcategoria" name="PRO_rcategoria">
-                                                                                                  @foreach ($categoria_pr as $categorias_pr)
-                                                                                                <option value="{{$categorias_pr->CATPRO_id}}">{{$categorias_pr->CATPRO_descripcion}}</option>
-                                                                                                  @endforeach
-                                                                                                </select>
-                                                                                            </div>
-                                                                                            <div class="col-md-2" >
+
+                                                                                            <div class="col-md-4" >
                                                                                               <div class="form-group">
                                                                                                 <label class="control-label">Estado: </label>
 
@@ -451,7 +445,15 @@
                                                                                                   </div>
                                                                                                 <input type="text" class="form-control form-control-sm"  name="PRO_rnombre"  id="PRO_rnombre"> </div>
                                                                                              </div></div>
-                                                                                             <div class="col-md-2">
+                                                                                             <div class="col-md-4">
+                                                                                              <label for="">Categoria</label>
+                                                                                                <select class="selectpicker form-control  form-control-sm" data-style="btn-light" id="PRO_rcategoria" name="PRO_rcategoria">
+                                                                                                  @foreach ($categoria_pr as $categorias_pr)
+                                                                                                <option value="{{$categorias_pr->CATPRO_id}}">{{$categorias_pr->CATPRO_descripcion}}</option>
+                                                                                                  @endforeach
+                                                                                                </select>
+                                                                                            </div>
+                                                                                             <div class="col-md-4">
                                                                                               <label for="">Marca</label>
                                                                                                 <select class=" form-control  form-control-sm"  id="PRO_rmarca" name="PRO_rmarca">
                                                                                                   @foreach ($marcap as $marcas_p)
@@ -459,7 +461,7 @@
                                                                                                     @endforeach
                                                                                                 </select>
                                                                                             </div>
-                                                                                            <div class="col-md-3">
+                                                                                            <div class="col-md-4">
                                                                                               <div class="form-group">
                                                                                                 <label class="control-label">Modelo: </label>
                                                                                                 <div class="input-group">
@@ -468,7 +470,17 @@
                                                                                                   </div>
                                                                                                 <input type="text" class="form-control form-control-sm"  name="PRO_rmodelo"  id="PRO_rmodelo"> </div>
                                                                                              </div></div>
-                                                                                             <div class="col-md-3">
+                                                                                             <div class="col-md-4">
+                                                                                              <div class="form-group">
+                                                                                                <label class="control-label">Detalle: </label>
+                                                                                                <div class="input-group">
+                                                                                                  <div class="input-group-prepend ">
+                                                                                                      <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class=" mdi mdi-border-color"></i></span>
+                                                                                                  </div>
+                                                                                                <input type="text" class="form-control form-control-sm"  name="PRO_rdetalle"  id="PRO_rdetalle"> </div>
+                                                                                             </div></div>
+
+                                                                                             <div class="col-md-4">
                                                                                               <div class="form-group">
                                                                                                 <label class="control-label">Unidad predeterminada: </label>
                                                                                                 <div class="input-group">
@@ -824,8 +836,9 @@ $('#agregarArti').modal('hide');
         minimumInputLength: 3,
         dropdownParent: $("#agregarArti")
       });
-      $('#bprodu').change(function(){
-           var producto = $(this).val();
+      $('#bprodu').change(function(selectPro){
+          selectPro=$('#bprodu').val();
+           var producto = selectPro;
            $.ajax({
                     url:"{{route('comprasShowart')}}",
                     method:"POST",
@@ -942,12 +955,12 @@ $(document).ready(function() {
 
 <script>
   $(document).ready(function() {
-          
- 
+
+
          $('#guardarPr').each(function (el){
              $(this).bind("click",saveProducto);
          });
- 
+
          function saveProducto(){
              var codigo= $('#PRO_rcodigo').val();
              var categoria=$('#PRO_rcategoria').val();
@@ -955,11 +968,14 @@ $(document).ready(function() {
              var nombre=$('#PRO_rnombre').val();
              var marca=$('#PRO_rmarca').val();
              var modelo=$('#PRO_rmodelo').val();
+             var detalle=$('#PRO_rdetalle').val();
              var unidad=$('#PRO_runi').val();
              var gmin=$('#PRO_rmin').val();
              var gmax=$('#PRO_rmax').val();
              var dcomprar=$('#PRO_rcomprar').val();
              var dvender=$('#PRO_rvender').val();
+             var ultimo=$('#id_ultimoP').val();
+             var $example = $("#bprodu").select2();
                  $.ajax({
                      url:"{{route('rProductoStore')}}",
                      method:"POST",
@@ -970,6 +986,7 @@ $(document).ready(function() {
                       nombre,
                       marca,
                       modelo,
+                      detalle,
                       unidad,
                       gmin,
                       gmax,
@@ -977,12 +994,13 @@ $(document).ready(function() {
                       dvender
                      },
                  success:function(data){
- 
-                  
-                    
-                    //  limpiarFormCategoria();
                      $("#agregarArticulo").modal("hide");
- 
+
+$example.append($('<option>', { //agrego los valores que obtengo de una base de datos
+                        value: data.PRO_id,
+                        text: data.PRO_codigo+' - '+data.PRO_nombre
+                       }));
+$example.val(data.PRO_id).trigger("change"); //lo selecciona
                  }
              });
          }
