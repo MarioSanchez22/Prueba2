@@ -197,6 +197,357 @@
 
                                   </div></div>
                                 </div>
+                                <div id="agregarArti" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="full-width-modalLabel" aria-hidden="true" style="display: none;">
+                                    <div class="modal-dialog modal-full" style="width: 78%">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="padding: 9px; background-color:#dbdfe2d1;">
+                                                <h5 class="modal-title" id="full-width-modalLabel" style="color:#6c757d">Agregar producto a la compra</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            </div>
+                                            <div class="modal-body" style=" padding-bottom: 0px;   zoom: 95%; padding-top: 10px; margin-bottom: -50px">
+
+                                                <div class="wrapper">
+                                                <div class="container-fluid">
+
+
+
+
+
+
+                                                    <div class="row">
+                                                        <div class="col-md-8" >
+                                                          <div class="card-box" style="border: 2px solid #e8e8e8;">
+                                                            <h4 class="header-title mb-2">Datos de articulo</h4>
+
+                                                            <div class="row">
+                                                              <div class="col-md-9 mb-2">
+                                                                  <div class="input-group ">
+                                                                     <select id="bprodu" name="bprodu" class="form-control" data-toggle="select2">
+                                                                         <option value="0" >         [Busque articulo ]        </option>
+                                                                         @foreach ($producto as $productos)
+                                                                 <option  value="{{$productos->PRO_id}}">{{$productos->PRO_id}} - {{$productos->PRO_nombre}}</option>
+                                                                   @endforeach
+                                                                       </select>
+                                                                     <span class="input-group-append">
+                                                                         <span class="input-group-text " id="basic-addon1" style="color:#a9a9a9"><i class="fe-search"></i></span>
+                                                                     </span>
+                                                                   </div>
+                                                                 </div>
+                                                            <div class="col-md-3 mb-2" style="right:40px">
+                                                                <button type="button" class="btn  btn-light " data-toggle="modal"      data-target="#agregarArticulo"><span class=" fa fa-plus-square"> </span> Nuevo</button></div>
+
+                                                                <div class="col-md-12 mb-2">
+                                                                    <div class="form-inline">
+                                                                        <label class="" >Nombre:</label>&nbsp;&nbsp;&nbsp;
+                                                                            <input type="text" style="background: #f2f3f5;" id="PRO_nombre" class="col-md-9 form-control form-control-sm" disabled>
+                                                                     </div>
+                                                                    </div>
+                                                                    <div class="col-md-5 mb-2">
+                                                                      <div class="form-inline">
+                                                                          <label for="">Garantia: </label>&nbsp;&nbsp;
+                                                                          <input type="text" id="garantia" class="col-md-4 form-control form-control-sm">&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                          <label for="">días</label>
+                                                                      </div>
+                                                                  </div>
+                                                                    <div class="col-md-7 mb-2">
+                                                                      <div class="form-inline">
+                                                                          <label for="">Descuento: </label>&nbsp;&nbsp;
+                                                                          <div class="input-group">
+
+                                                                            <input type="number" class="col-md-8 form-control form-control-sm" id="CATPRO_precio1"  name="CATPRO_precio1" min="0" max="99">
+                                                                            <div class="input-group-prepend ">
+                                                                              <span class="col-md-9 input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9; padding-left: 4px">%</span>
+                                                                          </div> </div> &nbsp;
+                                                                          <input type="number" class="col-md-3 form-control form-control-sm" id="CATPRO_precio1"  name="CATPRO_precio1" min="0" >
+
+                                                                          <select class="form-control form-control-sm" name="" id="">&nbsp;
+
+                                                                              <option value="">S/</option>
+                                                                              <option value="">$</option>
+                                                                          </select>
+                                                                      </div>
+                                                                  </div>
+
+                                                                    <div class="col-md-4 mb-2">
+                                                                      <div class="form-inline">
+                                                                          <label class="" >medida:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                              <input type="text" style="background: #f2f3f5;" id="UME_id" class="col-md-6 form-control form-control-sm" disabled>
+                                                                       </div>
+                                                                      </div>
+                                                                    <div class="col-md-4 mb-2">
+                                                                      <div class="form-inline">
+                                                                          <label for="">Costo: </label>&nbsp;&nbsp;
+                                                                          <input type="text" id="cantidad" class="col-md-7 form-control form-control-sm">
+                                                                      </div>
+                                                                  </div>
+                                                                    <div class="col-md-4 mb-2">
+                                                                        <div class="form-inline">
+                                                                            <label for="">Cantidad: </label>&nbsp;&nbsp;
+                                                                            <input type="text" id="costo" class="col-md-7 form-control form-control-sm">
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <br>
+
+
+                                                            </div>
+
+
+                                                          </div> <!-- end card-box-->
+
+                                                        </div> <!-- end col -->
+
+                                                        <div class="col-md-4">
+                                                            <div class="card-box" style="border: 2px solid #e8e8e8;">
+                                                              <h4 class="header-title mb-2 text-center">Informacion de articulo</h4>
+                                                              <div class="col-md-12 mb-2 text-center">
+                                                                <div class="form-inline text-center">
+
+                                                                    <label for="">Categoria: </label>&nbsp;
+                                                                    <input type="text" style="background: #f2f3f5;" id="CATPRO_id" disabled class="col-md-8 form-control form-control-sm text-center">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 mb-2 text-center">
+                                                                <div class="form-inline text-center">
+                                                                    <label class="text-center" for="">Marca: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                    <input type="text" style="background: #f2f3f5;" id="MARCA_id" disabled class="col-md-8 form-control form-control-sm text-center">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 mb-2 text-center">
+                                                                <div class="form-inline text-center">
+                                                                    <label class="text-center" for="">Modelo: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                    <input type="text" style="background: #f2f3f5;" id="PRO_modelo" disabled class="col-md-8 form-control form-control-sm text-center">
+                                                                </div>
+                                                            </div>
+                                                            <input type="hidden" id="PRO_codigo">
+                                                            <br><br>
+                                                            <div class="row">
+                                                              <div class="col-md-6">
+                                                                  <div class="form-group">
+                                                                      <label for="">Existencia</label>
+                                                                      <input type="text" class="form-control form-control-sm">
+                                                                  </div>
+                                                              </div>
+                                                              <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="">Disponible</label>
+                                                                    <input type="text" class="form-control form-control-sm">
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                            </div> <!-- end card-box-->
+                                                        </div> <!-- end col -->
+                                                        <div class="col-md-8" style="top: -80px; bottom: 20px">
+                                                            <div class="card-box" style="border: 2px solid #e8e8e8; margin-bottom: 0px">
+                                                              <div class="col-md-12"><h4 class="header-title mb-2">Ubicacion de existencias</h4></div>
+                                                              <div class="row">
+                                                              <div class="col-md-4 mb-2" >
+                                                                <div class="form-group">
+                                                                    <label for="">Almacen: </label>
+                                                                    <select class="form-control form-control-sm" name="" id="">
+                                                                        <option value="">Principal1</option>
+                                                                      </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-5 mb-2" >
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Ubicacion: </label>
+                                                                    <div class="form-inline">
+                                                                    <input type="text" class="col-md-8 form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion"> &nbsp;&nbsp;
+                                                                    <button type="button" class="btn  btn-light btn-sm" ><span class=" fa fa-plus-square"> </span></button></div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 mb-2">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">Cantidad: </label>
+                                                                        <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion">
+                                                                        </div>
+                                                                    </div>
+                                                              </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- end row -->
+
+                                                </div> <!-- end container -->
+                                            </div>
+
+
+                                             </div>
+                                            <div class="modal-footer" style="padding: 6px">
+                                                <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
+                                                <button type="button"id="guardarAr"  class="btn btn-primary waves-effect waves-light">Save changes</button>
+                                            </div>
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-dialog -->
+                                </div><!-- /.modal -->
+                                <div id="agregarArticulo" class="modal fade">
+                                    <div class="modal-dialog modal-full modal-dialog-centered" style="width: 70%">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="padding: 9px; background-color:#dbdfe2d1;">
+                                                <h5 class="modal-title" id="full-width-modalLabel" style="color:#6c757d">Registrar nuevo producto </h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            </div>
+                                            <div class="modal-body">
+
+
+                                                            <div class="card" style=" margin-bottom: 0px;   ">
+
+                                                              <!-- /.card-header -->
+
+                                                                          <div class="card-box " style=" padding-top: 0px; margin-bottom: 0px;padding-bottom: 5px; zoom:90%;border: 2px solid #e8e8e8;" >
+
+
+                                                                          <label for="" class="header-title mb-2">  <i class="mdi mdi-database-edit"></i> Datos de Producto</label>
+
+
+
+                                                                                        <br>
+                                                                                      <div class="row">
+                                                                                          <div class="col-md-3">
+                                                                                              <div class="form-group">
+                                                                                                <label class="control-label">Codigo: </label>
+                                                                                                <div class="input-group">
+                                                                                                  <div class="input-group-prepend ">
+                                                                                                      <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-barcode"></i></span>
+                                                                                                  </div>
+                                                                                                <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion"> </div>
+                                                                                             </div></div>
+                                                                                             <div class="col-md-3">
+                                                                                              <label for="">Categoria</label>
+                                                                                                <select class="selectpicker form-control  form-control-sm" data-style="btn-light" id="PROVE_origen" name="PROVE_origen">
+                                                                                                  <option value="">Laptop</option>
+                                                                                                </select>
+                                                                                            </div>
+                                                                                            <div class="col-md-2" >
+                                                                                              <div class="form-group">
+                                                                                                <label class="control-label">Estado: </label>
+
+                                                                                                <input type="text" class="form-control form-control-sm border border-light"  disabled value="Activo">
+                                                                                             </div></div>
+                                                                                             <div class="col-md-4">
+                                                                                                <label for="">¿Utiliza numero de serie?</label><br>
+                                                                                                <div style="margin-left: 23%; margin-top: 5%;">
+                                                                                                <div class="radio radio-info form-check-inline">
+                                                                                                    <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked>
+                                                                                                    <label for="inlineRadio1"> No </label>
+                                                                                                </div>
+                                                                                                <div class="radio radio-info form-check-inline">
+                                                                                                    <input type="radio" id="inlineRadio2" value="option2" name="radioInline">
+                                                                                                    <label for="inlineRadio2"> Si </label>
+                                                                                                </div>
+                                                                                               </div>
+                                                                                              </div>
+
+                                                                                            <div class="col-md-4">
+                                                                                              <div class="form-group">
+                                                                                                <label class="control-label">Nombre: </label>
+                                                                                                <div class="input-group">
+                                                                                                  <div class="input-group-prepend ">
+                                                                                                      <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class=" mdi mdi-border-color"></i></span>
+                                                                                                  </div>
+                                                                                                <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion"> </div>
+                                                                                             </div></div>
+                                                                                             <div class="col-md-2">
+                                                                                              <label for="">Marca</label>
+                                                                                                <select class=" form-control  form-control-sm"  id="PROVE_origen" name="PROVE_origen">
+                                                                                                  <option value="">HP</option>
+                                                                                                  <option value="">Lenovo</option>
+                                                                                                </select>
+                                                                                            </div>
+                                                                                            <div class="col-md-3">
+                                                                                              <div class="form-group">
+                                                                                                <label class="control-label">Modelo: </label>
+                                                                                                <div class="input-group">
+                                                                                                  <div class="input-group-prepend ">
+                                                                                                      <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class=" mdi mdi-border-color"></i></span>
+                                                                                                  </div>
+                                                                                                <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion"> </div>
+                                                                                             </div></div>
+                                                                                             <div class="col-md-3">
+                                                                                              <div class="form-group">
+                                                                                                <label class="control-label">Unidad predeterminada: </label>
+                                                                                                <div class="input-group">
+                                                                                                  <div class="input-group-prepend ">
+                                                                                                      <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class=" mdi mdi-border-color"></i></span>
+                                                                                                  </div>
+                                                                                                  <select class="form-control  form-control-sm" data-style="btn-light" id="PROVE_origen" name="PROVE_origen">
+
+                                                                                                      <option value="">Unidad</option>
+                                                                                                      <option value="">Litros</option>
+                                                                                                    </select> </div>
+                                                                                             </div></div>
+
+
+                                                                                             <div class="col-md-6">
+                                                                                              <h5>Existencia: </h5>
+                                                                                             </div>
+                                                                                             <div class="col-md-6">
+                                                                                              <h5>Dias de garantia: </h5>
+                                                                                             </div>
+                                                                                             <div class="col-md-3">
+                                                                                              <div class="form-group">
+                                                                                                  <label class="control-label">Minima: </label>
+                                                                                                  <div class="input-group">
+                                                                                                    <div class="input-group-prepend ">
+                                                                                                        <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class=" mdi mdi-server-minus"></i></span>
+                                                                                                    </div>
+                                                                                                  <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion"> </div>
+                                                                                               </div>
+                                                                                             </div>
+                                                                                             <div class="col-md-3">
+                                                                                              <div class="form-group">
+                                                                                                  <label class="control-label">Maxima: </label>
+                                                                                                  <div class="input-group">
+                                                                                                    <div class="input-group-prepend ">
+                                                                                                        <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-server-plus"></i></span>
+                                                                                                    </div>
+                                                                                                  <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion"> </div>
+                                                                                               </div>
+                                                                                             </div>
+                                                                                             <div class="col-md-3">
+                                                                                              <div class="form-group">
+                                                                                                  <label class="control-label">Al comprar: </label>
+                                                                                                  <div class="input-group">
+                                                                                                    <div class="input-group-prepend ">
+                                                                                                        <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-timetable"></i></span>
+                                                                                                    </div>
+                                                                                                  <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion"> </div>
+                                                                                               </div>
+                                                                                             </div>
+                                                                                             <div class="col-md-3">
+                                                                                              <div class="form-group">
+                                                                                                  <label class="control-label">Al vender: </label>
+                                                                                                  <div class="input-group">
+                                                                                                    <div class="input-group-prepend ">
+                                                                                                        <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-timetable"></i></span>
+                                                                                                    </div>
+                                                                                                  <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion"> </div>
+                                                                                               </div>
+                                                                                             </div>
+                                                                                  </div>
+
+                                                                                  <br>
+
+                                                                          </div> <!-- end card-box-->
+
+                                                              <!-- /.card-body -->
+                                                            </div>
+
+
+                                                          <!-- /.col -->
+
+
+                                            </div>
+                                            <div class="modal-footer" style="padding: 6px">
+                                                <button type="button" class="btn btn-light waves-effect btn-sm" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-light waves-effect waves-light btn-sm">Save changes</button>
+                                            </div>
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-dialog -->
+                                </div><!-- /.modal -->
+
                                    <!-- Modal -->
                                   <div id="custom-modal1" class="modal-demo kk"  role="dialog" style="width: 1000px!important; " >
                                     <button type="button" class="close" onclick="Custombox.modal.close();" style="top:10px">
@@ -237,7 +588,7 @@
                                                                      </div>
                                                                    </div>
                                                               <div class="col-md-3 mb-2" style="right:40px">
-                                                                  <button type="button" class="btn  btn-light " ><span class=" fa fa-plus-square"> </span> Nuevo</button></div>
+                                                                  <button type="button" class="btn  btn-light " data-toggle="modal"      data-target="#agregarArticulo"><span class=" fa fa-plus-square"> </span> Nuevo</button></div>
 
                                                                   <div class="col-md-12 mb-2">
                                                                       <div class="form-inline">
@@ -381,7 +732,7 @@
                                     <div class="modal-footer" style="padding: 6px">
                                     <div class="text-right">
                                         <button type="button" class="btn btn-light waves-effect waves-light btn-sm" onclick="Custombox.close();">Cancel</button>
-                                      <button type="submit" id="guardarAr"  class="btn btn-blue waves-effect waves-light btn-sm">Guardar</button>
+                                      <button type="submit" id="guardarAr1"  class="btn btn-blue waves-effect waves-light btn-sm">Guardar</button>
 
                                   </div></div>
                                 </div>
@@ -492,8 +843,8 @@
                                               </div>
                                         </div>
                                         <div class="col-md-4 mb-2">
-                                          <a href="#custom-modal1" class="btn btn-light btn-rounded waves-effect btn-sm" style="width: 105%; right: 11px"  data-animation="fadein" data-plugin="custommodal" data-overlayColor="#38414a"><i class="mdi mdi-plus-circle mr-1"></i> Agregar producto a la compra</a>
-
+                                            {{-- <a href="#custom-modal1" class="btn btn-light btn-rounded waves-effect btn-sm" style="width: 105%; right: 11px"  data-animation="fadein" data-plugin="custommodal" data-overlayColor="#38414a"><i class="mdi mdi-plus-circle mr-1"></i> Agregar producto a la compra</a> --}}
+                                          <button type="button" class="btn btn-light btn-rounded waves-effect btn-sm" data-toggle="modal"   style="width: 100%; right: 8px"   data-target="#agregarArti"><span class=" fa fa-plus-square"> </span> Agregar producto a la compra</button></div>
                                         </div>
 
 
@@ -649,12 +1000,13 @@ var codigo=$('#PRO_codigo').val();
 var medida=$('#UME_id').val();
 
 $('#tabA tbody').append('<tr><td class="align-middle" style="padding: 4px;">'+codigo+'</td><td class="align-middle" style="padding: 4px;">' + nombre + '</td><td class="align-middle" style="padding: 4px;">' + cantidad + '</td><td class="align-middle" style="padding: 4px;">' + costo + '</td><td class="align-middle" style="padding: 4px;">'+medida+'</td><td class="align-middle" style="padding: 4px;">' + costo*cantidad +'</td><td class="align-middle" style="padding: 4px;"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a></td></tr>');
-Custombox.modal.close();
+$('#agregarArti').modal('hide');
+
 
 });
       $("#bprodu").select2({
         minimumInputLength: 3,
-        dropdownParent: $("#custom-modal1")
+        dropdownParent: $("#agregarArti")
       });
       $('#bprodu').change(function(){
            var producto = $(this).val();
