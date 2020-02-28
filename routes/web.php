@@ -116,3 +116,4 @@ Route::POST('marca/create', 'marcaController@store')->name('marcaStore');
 Route::get('/compras', 'comprasController@index')->name('comprasIndex');
 Route::POST('compras/showp', 'comprasController@showp')->name('comprasShowp');
 Route::POST('compras/showart', 'comprasController@showart')->name('comprasShowart');
+Route::POST('/compras/rproducto', 'comprasController@rproductostore')->name('rProductoStore');
