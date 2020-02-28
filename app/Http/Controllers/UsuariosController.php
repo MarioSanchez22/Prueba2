@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\area;
+use App\empleado;
 use App\origen_proveedor;
+use App\permiso;
+use App\persona;
+use App\plantilla;
 use App\proveedor_documento;
 use App\rol;
+use App\sucursal;
 use App\tipo_proveedor;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UsuariosController extends Controller
 {
@@ -25,7 +32,8 @@ class UsuariosController extends Controller
     {
         //return view('usuarios');
         $usuarios =User::all();
-        return view('usuarios.index',['usuarios'=>$usuarios]);
+        $roles=rol::all();
+        return view('usuarios.index',['usuarios'=>$usuarios,'roles'=>$roles]);
     }
 
     /**
@@ -38,8 +46,128 @@ class UsuariosController extends Controller
         $documento=proveedor_documento::all();
         $tipo=tipo_proveedor::all();
         $rol=rol::all();
-
-        return view('usuarios.usuarioCreate',['tipo'=>$tipo,'documento'=>$documento,'rol'=>$rol]);
+        $area=area::all();
+        $sucursal=sucursal::all();
+        return view('usuarios.usuarioCreate',['tipo'=>$tipo,'documento'=>$documento,'rol'=>$rol,'area'=>$area,'sucursal'=>$sucursal]);
     }
+    public function store(Request $request)
+    {
+        $venta=$request->get('PERSONA_venta');
+        $nombre=$request->get('name');
+        $cargo=$request->get('EMPLEADO_cargo');
 
+        $persona=new persona();
+        $persona->PROVEDOC_id=$request->get('PROVEDOC_descripcion');
+        $persona->PERSONA_identificador=$request->get('PERSONA_identificador');
+        $persona->PERSONA_nombres=$request->get('PERSONA_nombres');
+        $persona->PERSONA_direccion=$request->get('PERSONA_direccion');
+        $persona->PERSONA_email=$request->get('PERSONA_email');
+        $persona->PERSONA_celular=$request->get('PERSONA_celular');
+        $persona->PERSONA_telefono=$request->get('PERSONA_telefono');
+        $f1 = explode("/", $request->get('PERSONA_nacimiento'));
+        $fechaI = $f1[2]."-".$f1[1]."-".$f1[0];
+        $persona->PERSONA_nacimiento=$fechaI;
+        if (!is_null($venta)) {
+            $persona->PERSONA_venta=1;
+        }
+        else{
+            $persona->PERSONA_venta=0;
+        }
+        $persona->save();
+
+
+        if($nombre!=null){
+            $usuario=new User();
+            $usuario->email=$nombre;
+            $usuario->USER_nick=$persona->PERSONA_email;
+            $usuario->password=bcrypt($request->get('password'));
+            $usuario->clave=$request->get('password');
+            $usuario->updated_at=null;
+            $usuario->USER_estado=1;
+            $usuario->ROL_id=$request->get('ROL_id');
+            $usuario->PERSONA_id=$persona->PERSONA_id;
+            $usuario->save();
+
+            $plantilla=plantilla::where('ROL_id','=',$usuario->ROL_id)->get();
+            foreach ($plantilla as $plantillas) {
+                $permiso=new permiso();
+                $permiso->PERMISO_estado=$plantillas->PLANTILLA_estado;
+                $permiso->PERMISO_crear=$plantillas->PLANTILLA_crear;
+                $permiso->PERMISO_editar=$plantillas->PLANTILLA_editar;
+                $permiso->PERMISO_eliminar=$plantillas->PLANTILLA_eliminar;
+                $permiso->PERMISO_descripcion='Privilegio'.' '.$usuario->email;
+                $permiso->SUBMENU_id=$plantillas->SUBMENU_id;
+                $permiso->id=$usuario->id;
+                $permiso->created_at=now();
+                $permiso->updated_at=null;
+                $permiso->save();
+            }
+        }else{
+            if($cargo!=null){
+                $empleado=new empleado();
+                $empleado->EMPLEADO_cargo=$cargo;
+                $empleado->PERSONA_id=$persona->PERSONA_id;
+                $f1 = explode("/", $request->get('EMPLEADO_fecha_incorporacion'));
+                $fechaI = $f1[2]."-".$f1[1]."-".$f1[0];
+                $empleado->EMPLEADO_fecha_incorporacion=$fechaI;
+                $empleado->AREA_id=$request->get('AREA_id');
+                $empleado->SUCURSAL_id=$request->get('SUCURSAL_id');
+                $empleado->updated_at=null;
+                $empleado->save();
+            }
+        }
+            return redirect(route('usuariosIndex'));
+        }
+
+        public function buscar($email2,$PERSONA_identificador2,$ROL_id2){
+            $email=$email2;
+            $PERSONA_identificador=$PERSONA_identificador2;
+            $ROL_id=$ROL_id2;
+
+            if($email=='0'){
+                if($PERSONA_identificador=='0'){
+                    if($ROL_id=='0'){
+                        $usuario=User::all();
+                    }else{
+                        $usuario=User::where('ROL_id','=',$ROL_id)->get();
+                    }
+                }else{
+                    if($ROL_id=='0'){
+                        $usuario=DB::table('users')->join('persona','persona.PERSONA_id','=','users.PERSONA_id')
+                        ->where('persona.PERSONA_identificador','LIKE','%'.$PERSONA_identificador.'%')->get();
+
+                    }else{
+                        $usuario=DB::table('users')->join('persona','persona.PERSONA_id','=','users.PERSONA_id')
+                        ->where('users.ROL_id','=',$ROL_id)
+                        ->where('persona.PERSONA_identificador','LIKE','%'.$PERSONA_identificador.'%')
+                        ->get();
+                    }
+                }
+            }else{
+                if($PERSONA_identificador=='0'){
+                    if($ROL_id=='0'){
+                        $usuario=User::where('email','LIKE','%'.$email.'%')->get();
+                    }else{
+                        $usuario=User::where('email','LIKE','%'.$email.'%')
+                        ->where('ROL_id','=',$ROL_id)->get();
+                    }
+                }else{
+                    if($ROL_id=='0'){
+                        $usuario=DB::table('users')->join('persona','persona.PERSONA_id','=','users.PERSONA_id')
+                        ->where('users.email','LIKE','%'.$email.'%')
+                        ->where('persona.PERSONA_identificador','LIKE','%'.$PERSONA_identificador.'%')
+                        ->get();
+
+
+                    }else{
+                        $usuario=DB::table('users')->join('persona','persona.PERSONA_id','=','users.PERSONA_id')
+                        ->where('users.email','LIKE','%'.$email.'%')
+                        ->where('users.ROL_id','=',$ROL_id)
+                        ->where('persona.PERSONA_identificador','LIKE','%'.$PERSONA_identificador.'%')
+                        ->get();
+                    }
+                }
+            }
+            return view('usuarios.buscarUser',['usuarios'=>$usuario]);
+        }
 }

@@ -121,19 +121,13 @@
                                                   <div  id="cargarRuc" style="display:none"> <button class="btn btn-info btn-sm" type="button"  >
                                                   <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="sr-only"></span>
                                               </button></div>
-
-
                                               </div>
                                               </div>
                                              </div>
-
                                           <div class=" row col-md-12" id="verD"  style=" padding: 0;  margin: 0;  ">
-
                                           </div>
-
                                           <div class="col-md-6">
                                             <label for="">Región</label>
-
                                             <select class="form-control  form-control-sm" id="region" name="CLIE_region" >
                                             <option value="0">[Seleccionar]</option>
                                                 @foreach ($region as $regiones)

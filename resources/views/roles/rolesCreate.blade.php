@@ -96,12 +96,11 @@ use App\plantilla;
                                                             {{ csrf_field()}}
                                                         <table class="table table-bordered">
                                                             <thead>
-                                                                <tr>
+                                                                <tr style="background-color: #446e8c;color: white;">
                                                                 <th colspan="2"  style="vertical-align: middle;"> <input type="text" class="form-control form-control-sm"  name="ROL_descripcion"  id="PROVE_direccion" placeholder="Rol*" required> </div> </th>
                                                                     <th colspan="3" class="text-center" style="vertical-align: middle;">Privilegios</th>
                                                                 </tr>
-                                                                <tr>
-
+                                                                <tr style="background-color: #446e8c;color: white;">
                                                                     <th><div class="switchery-demo  text-center">Vistas</div></th>
                                                                     <th><div class="switchery-demo  text-center">Permisos</div></th>
                                                                     <th><div class="switchery-demo  text-center">Crear</div></th>
@@ -112,21 +111,71 @@ use App\plantilla;
                                                             </thead>
                                                             <tbody>
                                                                 @foreach ($menu as $menus)
-                                                                <tr>
+                                                                <tr style="background-color: #c6ced8a1; color: #343a40;">
                                                                     <th>{{$menus->MENU_descripcion}} </th>
-                                                                    <td>  <div class="switchery-demo  text-center">  <input type="checkbox" checked data-plugin="switchery" id="PANTILLA_vista_crear[]" data-color="#1bb99a" data-size="small"/> </div></td>
-                                                                    <td><div class="switchery-demo  text-center">  <input type="checkbox" checked data-plugin="switchery" data-color="#1bb99a" data-size="small" id="PANTILLA_vista_crear[]"/> </div></td>
-                                                                    <td><div class="switchery-demo  text-center">  <input type="checkbox" checked data-plugin="switchery" id="PANTILLA_vista_crear[]" data-color="#1bb99a" data-size="small"/> </div></td>
-                                                                    <td><div class="switchery-demo  text-center">  <input type="checkbox" checked data-plugin="switchery" id="PANTILLA_vista_crear[]"  data-color="#1bb99a" data-size="small"/> </div></td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-switch" style="">
+                                                                        <input type="checkbox" class="custom-control-input" id="MENU-{{$menus->MENU_id}}" checked>
+                                                                        <label class="custom-control-label" for="MENU-{{$menus->MENU_id}}" style="margin:0 50%;"
+                                                                        onclick="ver({{$menus->MENU_id}})"></label>
+
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-switch">
+                                                                        <input type="checkbox" class="custom-control-input" id="MENU-{{$menus->MENU_id}}-CREAR" checked>
+                                                                        <label class="custom-control-label" for="MENU-{{$menus->MENU_id}}-CREAR" onclick="crear({{$menus->MENU_id}})" style="margin:0 50%;"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-switch">
+                                                                        <input type="checkbox" class="custom-control-input" id="MENU-{{$menus->MENU_id}}-EDITAR" checked>
+                                                                        <label class="custom-control-label" for="MENU-{{$menus->MENU_id}}-EDITAR" onclick="editar({{$menus->MENU_id}})" style="margin:0 50%;"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-switch">
+                                                                        <input type="checkbox" class="custom-control-input" id="MENU-{{$menus->MENU_id}}-ELIMINAR" checked>
+                                                                        <label class="custom-control-label" for="MENU-{{$menus->MENU_id}}-ELIMINAR" onclick="eliminar({{$menus->MENU_id}})" style="margin:0 50%;"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
                                                                     @foreach ($submenu as $submenus)
                                                                     @if ($menus->MENU_id==$submenus->MENU_id)
-                                                                    <tr>
-                                                                    <td ><span style="margin-left: 4%;">{{$submenus->SUBMENU_descripcion}}</span></td>
-                                                                    <td >  <div class="switchery-demo text-center">  <input type="checkbox" checked data-plugin="switchery" data-color="#64b0f2" data-size="small" name="SUBMENU_id[]" value="{{$submenus->SUBMENU_descripcion}}"/> </div></td>
+                                                                <tr>
+                                                                    <td ><span style="margin-left: 10%;">{{$submenus->SUBMENU_descripcion}}</span></td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-switch">
+                                                                        <input type="checkbox" class="custom-control-input SUBMENU-{{$menus->MENU_id}}" id="SUBMENU-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}" name="SUBMENU_id[]" value="{{$submenus->SUBMENU_descripcion}}"checked>
+                                                                        <label class="custom-control-label" for="SUBMENU-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}" style="margin:0 50%;"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-switch">
+                                                                        <input type="checkbox" class="custom-control-input SUBMENU-CREAR-{{$menus->MENU_id}}" id="SUBMENU-CREAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}} "  name="PLANTILLA_crear[]" value="{{$submenus->SUBMENU_descripcion}}"checked>
+                                                                        <label class="custom-control-label" for="SUBMENU-CREAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}} " style="margin:0 50%;"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-switch">
+                                                                        <input type="checkbox" class="custom-control-input SUBMENU-EDITAR-{{$menus->MENU_id}}" id="SUBMENU-EDITAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}} "  name="PLANTILLA_editar[]" value="{{$submenus->SUBMENU_descripcion}}"checked>
+                                                                        <label class="custom-control-label" for="SUBMENU-EDITAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}} " style="margin:0 50%;"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-switch">
+                                                                        <input type="checkbox" class="custom-control-input SUBMENU-ELIMINAR-{{$menus->MENU_id}}" id="SUBMENU-ELIMINAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}} "  name="PLANTILLA_eliminar[]" value="{{$submenus->SUBMENU_descripcion}}"checked>
+                                                                        <label class="custom-control-label" for="SUBMENU-ELIMINAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}} " style="margin:0 50%;""></label>
+                                                                        </div>
+                                                                    </td>
+
+
+                                                                    <!--<td > <div class="switchery-demo text-center">  <input type="checkbox" checked data-plugin="switchery" data-color="#64b0f2" data-size="small" name="SUBMENU_id[]" value="{{$submenus->SUBMENU_descripcion}}"/> </div></td>
                                                                         <td><div class="switchery-demo  text-center">  <input type="checkbox" checked data-plugin="switchery" data-color="#64b0f2" data-size="small" name="PLANTILLA_crear[]" value="{{$submenus->SUBMENU_descripcion}}"/> </div></td>
                                                                         <td><div class="switchery-demo  text-center">  <input type="checkbox" checked data-plugin="switchery" data-color="#64b0f2" data-size="small" name="PLANTILLA_editar[]" value="{{$submenus->SUBMENU_descripcion}}"/> </div></td>
                                                                         <td><div class="switchery-demo  text-center">  <input type="checkbox" checked data-plugin="switchery" data-color="#64b0f2" data-size="small" name="PLANTILLA_eliminar[]" value="{{$submenus->SUBMENU_descripcion}}"/> </div></td>
-                                                                    </tr>
+                                                                    -->
+                                                                </tr>
                                                                     @endif
                                                                 @endforeach
                                                                 </tr>
@@ -342,6 +391,98 @@ use App\plantilla;
 });
 
 </script>
+<script>
+    function ver(menu){
+            $('#MENU-'+menu+'').on('change',function(){
+            if ($(this).is(':checked')) {
+            var a=$('.switchery ');
+            console.log(a);
+                $('#MENU-'+menu+'-CREAR').prop('checked',true);
+                $('#MENU-'+menu+'-EDITAR').prop('checked',true);
+                $('#MENU-'+menu+'-ELIMINAR').prop('checked',true);
+                $('#MENU-'+menu+'-CREAR').prop('disabled',false);
+                $('#MENU-'+menu+'-EDITAR').prop('disabled',false);
+                $('#MENU-'+menu+'-ELIMINAR').prop('disabled',false);
+
+
+                $('.SUBMENU-'+menu).prop('checked',true);
+                $('.SUBMENU-'+menu).prop('disabled',false);
+
+                $('.SUBMENU-CREAR-'+menu).prop('checked',true);
+                $('.SUBMENU-CREAR-'+menu).prop('disabled',false);
+
+                $('.SUBMENU-EDITAR-'+menu).prop('checked',true);
+                $('.SUBMENU-EDITAR-'+menu).prop('disabled',false);
+
+                $('.SUBMENU-ELIMINAR-'+menu).prop('checked',true);
+                $('.SUBMENU-ELIMINAR-'+menu).prop('disabled',false);
+            }else{
+                $('#MENU-'+menu+'-CREAR').prop('checked',false);
+                $('#MENU-'+menu+'-EDITAR').prop('checked',false);
+                $('#MENU-'+menu+'-ELIMINAR').prop('checked',false);
+                $('#MENU-'+menu+'-CREAR').prop('disabled',true);
+                $('#MENU-'+menu+'-EDITAR').prop('disabled',true);
+                $('#MENU-'+menu+'-ELIMINAR').prop('disabled',true);
+
+
+                $('.SUBMENU-'+menu).prop('checked',false);
+                $('.SUBMENU-'+menu).prop('disabled',true);
+
+                $('.SUBMENU-CREAR-'+menu).prop('checked',false);
+                $('.SUBMENU-CREAR-'+menu).prop('disabled',true);
+
+                $('.SUBMENU-EDITAR-'+menu).prop('checked',false);
+                $('.SUBMENU-EDITAR-'+menu).prop('disabled',true);
+
+                $('.SUBMENU-ELIMINAR-'+menu).prop('checked',false);
+                $('.SUBMENU-ELIMINAR-'+menu).prop('disabled',true);
+            }
+        });
+    }
+</script>
+<script>
+    function crear(menu){
+
+            $('#MENU-'+menu+'-CREAR').on('change',function(){
+            if ($(this).is(':checked')) {
+                $('.SUBMENU-CREAR-'+menu).prop('checked',true);
+                $('.SUBMENU-CREAR-'+menu).prop('disabled',false);
+            }else{
+                $('.SUBMENU-CREAR-'+menu).prop('checked',false);
+                $('.SUBMENU-CREAR-'+menu).prop('disabled',true);
+            }
+        });
+    }
+</script>
+<script>
+    function editar(menu){
+
+            $('#MENU-'+menu+'-EDITAR').on('change',function(){
+            if ($(this).is(':checked')) {
+                $('.SUBMENU-EDITAR-'+menu).prop('checked',true);
+                $('.SUBMENU-EDITAR-'+menu).prop('disabled',false);
+            }else{
+                $('.SUBMENU-EDITAR-'+menu).prop('checked',false);
+                $('.SUBMENU-EDITAR-'+menu).prop('disabled',true);
+            }
+        });
+    }
+</script>
+<script>
+    function eliminar(menu){
+
+            $('#MENU-'+menu+'-ELIMINAR').on('change',function(){
+            if ($(this).is(':checked')) {
+                $('.SUBMENU-ELIMINAR-'+menu).prop('checked',true);
+                $('.SUBMENU-ELIMINAR-'+menu).prop('disabled',false);
+            }else{
+                $('.SUBMENU-ELIMINAR-'+menu).prop('checked',false);
+                $('.SUBMENU-ELIMINAR-'+menu).prop('disabled',true);
+            }
+        });
+    }
+</script>
+
 
     </body>
 </html>

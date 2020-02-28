@@ -40,7 +40,7 @@
                                         <li class="breadcrumb-item active">Calendar</li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">REGISTRO DE USUARIOS</h4>
+                                <h4 class="page-title">REGISTRO DE PERSONAL</h4>
                             </div>
                         </div>
                     </div>
@@ -52,13 +52,13 @@
                             <!-- /.card-header -->
                             <div class="card-body col-md-12" style="padding-left: 0px; padding-right: 0px;">
                                 <div class="row" >
-                                    <form action=" # " method="POST" enctype="multipart/form-data" class="col-md-12">
+                                    <form action="{{route('usuariosStore')}}" method="POST"  class="col-md-12" id="form_usuario">
                                     {{ csrf_field()}}
                                         <div class="card-box " style=" padding-top: 0px; margin-bottom: 0px;padding-bottom: 5px;">
                                             <ul class="nav nav-tabs" style="background:#f5f5f5">
                                                 <li class="nav-item">
                                                     <a href="#home" data-toggle="tab" aria-expanded="false" class="nav-link active">
-                                                        <i class="mdi mdi-database-edit"></i> Datos de Proveedor
+                                                        <i class="mdi mdi-database-edit"></i> Datos de Personal
                                                     </a>
                                                 </li>
                                             </ul>
@@ -76,61 +76,75 @@
                                                                   </select>
                                                                </div>
                                                             </div>
-                                                            <div class="col-md-4">
-                                                                <label class="control-label" for="PROVE_dni">
+                                                            <div class="col-md-3">
+                                                                <label class="control-label" for="PERSONA_identificador">
                                                                    Documento
                                                                  </label>
                                                                  <div class="input-group">
-                                                                <input type="text" class="form-control form-control-sm" required  placeholder="Documento" id="PROVE_dni" name="PROVE_dni">
+                                                                <input type="text" class="form-control form-control-sm" required  placeholder="Documento" id="PROVE_dni" name="PERSONA_identificador">
                                                                 <div  id="cargarDni" style="display:none"> <button class="btn btn-info btn-sm" type="button"  >
                                                                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="sr-only">f</span>
                                                                 </button></div>
                                                             </div>
                                                             </div>
-                                                            <div class="col-md-5">
+                                                            <div class="col-md-4">
                                                                 <div class="form-group">
-                                                                <label class="control-label" for="PROVE_razon_social" >
+                                                                <label class="control-label" for="PERSONA_nombres" >
                                                                    Nombre
                                                                 </label>
                                                                 <div class="input-group">
-                                                                    <input type="text" class="form-control form-control-sm" required  placeholder="Nombre" name="PROVE_razon_social"  id="PROVE_razon_social"> </div>
+                                                                    <input type="text" class="form-control form-control-sm" required  placeholder="Nombre" name="PERSONA_nombres"  id="PROVE_razon_social"> </div>
                                                             </div></div>
+
+                                                            <div class="col-md-2" style="margin-top: 25px;">
+                                                                <div class="custom-control custom-checkbox form-check">
+                                                                    <input type="checkbox" class="custom-control-input" id="invalidCheck" name="PERSONA_venta">
+                                                                    <label class="custom-control-label" for="invalidCheck">Vendedor</label>
+                                                                </div>
+                                                            </div>
                                                         </div>
-
-
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-3">
+                                                            <label class="control-label" for="PERSONA_nacimiento">Fecha de Incorporación: </label>
+                                                            <div class="input-group">
+                                                              <div class="input-group-prepend">
+                                                                <span class="input-group-text"><i class="far fa-calendar-alt "></i></span>
+                                                              </div>
+                                                              <input class="form-control form-control-sm " data-date-format="dd/mm/yyyy" id="datepicker" name="PERSONA_nacimiento">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5">
                                                             <div class="form-group">
                                                               <label class="control-label">Direccion: </label>
                                                               <div class="input-group">
                                                                 <div class="input-group-prepend ">
                                                                     <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-bank-transfer-in"></i></span>
                                                                 </div>
-                                                              <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion"> </div>
+                                                              <input type="text" class="form-control form-control-sm"  name="PERSONA_direccion"  id="PERSONA_direccion"> </div>
                                                            </div></div>
-                                                           <div class="col-md-6">
+                                                           <div class="col-md-4">
                                                             <div class="form-group">
-                                                              <label class="control-label" for="PROVE_email" >Email: </label>
+                                                              <label class="control-label" for="USER_nick" >Email: </label>
                                                               <div class="input-group">
                                                                 <div class="input-group-prepend ">
                                                                     <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-email mr-1"></i></span>
-                                                                </div>  <input type="text" class="form-control form-control-sm" required  placeholder="Email" name="PROVE_email"> </div>
+                                                                </div>  <input type="text" class="form-control form-control-sm"   placeholder="Email" name="PERSONA_email" required> </div>
                                                            </div></div>
 
                                                            <div class="col-md-6">
                                                             <div class="form-group">
-                                                              <label class="control-label" for="PROVE_telefono">Teléfono 1: </label>
+                                                              <label class="control-label" for="PERSONA_celular">Teléfono 1: </label>
                                                               <div class="input-group">
                                                                 <div class="input-group-prepend ">
                                                                     <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-phone mr-1"></i></span>
-                                                                </div> <input type="text" class="form-control form-control-sm" required placeholder="Telefono" name="PROVE_telefono"> </div>
+                                                                </div> <input type="text" class="form-control form-control-sm" placeholder="Teléfono" name="PERSONA_celular" required> </div>
                                                            </div></div>
                                                            <div class="col-md-6">
                                                             <div class="form-group">
-                                                              <label class="control-label" for="PROVE_telefono">Telefono 2: </label>
+                                                              <label class="control-label" for="PERSONA_telefono">Telefono 2: </label>
                                                               <div class="input-group">
                                                                 <div class="input-group-prepend ">
                                                                     <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-phone mr-1"></i></span>
-                                                                </div> <input type="text" class="form-control form-control-sm" required placeholder="Telefono" name="PROVE_telefono"> </div>
+                                                                </div> <input type="text" class="form-control form-control-sm" placeholder="Teléfono" name="PERSONA_telefono"> </div>
                                                            </div></div>
 
                                                            <div class="col-lg-12">
@@ -140,31 +154,47 @@
                                                                     <div class="card-widgets">
                                                                         <a data-toggle="collapse" href="#cardCollpase2" role="button" aria-expanded="false" aria-controls="cardCollpase2" class="collapsed"><i class="mdi mdi-minus"></i></a>
                                                                     </div>
-                                                                    <h5 class="card-title mb-0">Usuario:</h5>
+                                                                    <div class="form-inline">
+                                                                        <div class="form-check">
+
+                                                                            <h5 class="card-title mb-0">Usuario:</h5> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                          </div>
+                                                                        </div>
+
                                                                     <div id="cardCollpase2" class="pt-3 collapse">
                                                                         <div class="row">
-                                                                            <div class="col-md-4">
+                                                                            <div class="col-md-3">
                                                                                 <div class="form-group">
-                                                                                    <label class="control-label" for="PROVE_telefono">Username: </label>
+                                                                                    <label class="control-label" for="name">Username: </label>
                                                                                 <div class="input-group">
                                                                                 <div class="input-group-prepend ">
                                                                                     <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="fas fa-user"></i></span>
-                                                                                    </div> <input type="text" class="form-control form-control-sm" required placeholder="Usuario" name="PROVE_telefono"> </div>
+                                                                                    </div> <input type="text" class="form-control form-control-sm iterar"  placeholder="Usuario" name="name" id="USER_name"  onkeyup="activaboton()"> </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-md-4">
+                                                                            <div class="col-md-3">
                                                                                 <div class="form-group">
-                                                                                <label class="control-label" for="PROVE_telefono">Contraseña: </label>
+                                                                                <label class="control-label" for="password">Contraseña: </label>
                                                                                 <div class="input-group">
                                                                                     <div class="input-group-prepend ">
-                                                                                        <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="fas fa-key"></i></span>
-                                                                                    </div> <input type="password" class="form-control form-control-sm" required placeholder="Contraseña" name="PROVE_telefono"> </div>
+                                                                                        <span class="input-group-text form-control-sm " id="basic-addon1" style="color:#a9a9a9"><i class="fas fa-key"></i></span>
+                                                                                    </div> <input type="password" class="form-control form-control-sm iterar"  placeholder="Contraseña" id="USER_password" name="password"> </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-md-4">
+                                                                            <div class="col-md-3">
+                                                                                <div class="form-group">
+                                                                                <label class="control-label" for="password_confirm">Confirmar contraseña: </label>
+                                                                                <div class="input-group">
+                                                                                    <div class="input-group-prepend ">
+                                                                                        <span class="input-group-text form-control-sm " id="basic-addon1" style="color:#a9a9a9"><i class="fas fa-key"></i></span>
+                                                                                    </div> <input type="password" class="form-control form-control-sm iterar"  placeholder="Contraseña" id="password_confirm" name="password_confirm"> </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                   <label class="control-label">Rol:</label>
-                                                                                  <select  class="form-control  form-control-sm" name="ROL_id" id="">
+                                                                                  <select  class="form-control  form-control-sm " name="ROL_id" id="ROL_id">
+                                                                                    <option value="">Rol</option>
                                                                                   @foreach($rol as $roles)
                                                                                   <option value="{{$roles->ROL_id}}">{{$roles->ROL_descripcion}}</option>
                                                                                   @endforeach
@@ -183,34 +213,51 @@
                                                                     <div class="card-widgets">
                                                                         <a data-toggle="collapse" href="#cardCollpase1" role="button" aria-expanded="false" aria-controls="cardCollpase1" class="collapsed"><i class="mdi mdi-minus"></i></a>
                                                                     </div>
-                                                                    <h5 class="card-title mb-0">Empleado:</h5>
+                                                                    <div class="form-inline">
+                                                                    <div class="form-check">
+                                                                        <h5 class="card-title mb-0">Empleado:</h5> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                      </div>
+                                                                    </div>
                                                                     <div id="cardCollpase1" class="pt-3 collapse">
                                                                         <div class="row">
-                                                                            <div class="col-md-4">
+                                                                            <div class="col-md-3">
                                                                                 <div class="form-group">
-                                                                                    <label class="control-label" for="PROVE_telefono">Fecha de Incorporación: </label>
-                                                                                <div class="input-group">
-                                                                                <div class="input-group-prepend ">
-                                                                                    <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="fas fa-user"></i></span>
-                                                                                    </div> <input type="text" class="form-control form-control-sm" required placeholder="Telefono" name="PROVE_telefono"> </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-4">
-                                                                                <div class="form-group">
-                                                                                <label class="control-label" for="PROVE_telefono">Cargo: </label>
+                                                                                <label class="control-label iterar" for="EMPLEADO_cargo">Cargo: </label>
                                                                                 <div class="input-group">
                                                                                     <div class="input-group-prepend ">
                                                                                         <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="fas fa-key"></i></span>
-                                                                                    </div> <input type="password" class="form-control form-control-sm" required placeholder="Telefono" name="PROVE_telefono"> </div>
+                                                                                    </div> <input type="text" class="form-control form-control-sm iterar" placeholder="Cargo" name="EMPLEADO_cargo" id="EMPLEADO_cargo" onkeyup="activaboton()"> </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-md-4">
+                                                                            <div class="col-md-3">
+                                                                                <label class="control-label" for="EMPLEADO_fecha_incorporacion">Fecha de Incorporación: </label>
+                                                                                <div class="input-group">
+                                                                                  <div class="input-group-prepend">
+                                                                                    <span class="input-group-text"><i class="far fa-calendar-alt "></i></span>
+                                                                                  </div>
+                                                                                  <input class="form-control form-control-sm " data-date-format="dd/mm/yyyy" id="datepicker2" name="EMPLEADO_fecha_incorporacion">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-3">
                                                                                 <div class="form-group">
-                                                                                  <label class="control-label">Rol:</label>
-                                                                                  <select  class="form-control  form-control-sm" name="ROL_id" id="">
-                                                                                  @foreach($rol as $roles)
-                                                                                  <option value="{{$roles->ROL_id}}">{{$roles->ROL_descripcion}}</option>
-                                                                                  @endforeach
+                                                                                  <label class="control-label">Sucursal:</label>
+                                                                                  <select  class="form-control  form-control-sm " name="SUCURSAL_id" id="SUCURSAL_id">
+                                                                                    <option value="">Sucursal</option>
+                                                                                    @foreach($sucursal as $sucursales)
+                                                                                        <option value="{{$sucursales->SUCURSAL_id}}">{{$sucursales->SUCURSAL_nombre}}</option>
+                                                                                    @endforeach
+                                                                                  </select>
+                                                                               </div>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <div class="form-group">
+                                                                                  <label class="control-label">Área:</label>
+
+                                                                                  <select  class="form-control  form-control-sm " name="AREA_id" id="AREA_id">
+                                                                                    <option value="">Área</option>
+                                                                                    @foreach($area as $areas)
+                                                                                        <option value="{{$areas->AREA_id}}">{{$areas->AREA_descripcion}}</option>
+                                                                                    @endforeach
                                                                                   </select>
                                                                                </div>
                                                                             </div>
@@ -221,9 +268,8 @@
                                                         </div><!-- end col -->
                                                 </div>
                                                 </div>
-
                                         <div class="modal-footer d-flex" style="background:#f5f5f5">
-                                        <button type="submit" class="btn btn-primary" style="background-color: #446e8c;">Save changes</button>
+                                        <button type="submit" class="btn btn-primary" style="background-color: #446e8c;" id="btnguarda" disabled>Save changes</button>
                                       </div>
                                         </div> <!-- end card-box-->
                                     </form>
@@ -232,15 +278,10 @@
                             </div>
                             <!-- /.card-body -->
                           </div>
-
-
                         <!-- /.col -->
                       </div>
-
                     </div> <!-- container -->
-
                 </div> <!-- content -->
-
                 <!-- Footer Start -->
                 <footer class="footer">
                     <div class="container-fluid">
@@ -270,7 +311,7 @@
 
         <!-- Vendor js -->
         @include('layouts.scripts')
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
         <script>
             $(document).ready(function(){
               $('#cargarDni').hide();
@@ -279,12 +320,8 @@
            var numdni= $("#PROVE_dni").val();
            if(numdni.length == 8){
            consultadatosSUNAT2(numdni);
-
-
            }
          });
-
-
           function consultadatosSUNAT2(PROVE_dni){
               $('#cargarDni').show();
 
@@ -302,6 +339,66 @@
                                  }
 
                 });
+
+        </script>
+
+    <script type="text/javascript">
+    function activaboton(){
+        var EMPLEADO_cargo=$('#EMPLEADO_cargo').val();
+        var usuario=$('#USER_name').val();
+            if((EMPLEADO_cargo!=null)&&(EMPLEADO_cargo!='')){
+                $('#btnguarda').prop('disabled',false);
+                $('#EMPLEADO_cargo').prop('required',true);
+                $('#EMPLEADO_fecha_incorporacion').prop('required',true);
+                $('#AREA_id').prop('required',true);
+                $('#SUCURSAL_id').prop('required',true);
+            }
+            else{
+                if ((usuario!=null)&&(usuario!='')) {
+                    $('#btnguarda').prop('disabled',false);
+                    $('#USER_name').prop('required',true);
+                    $('#USER_password').prop('required',true);
+                    $('#password_confirm').prop('required',true);
+                    $('#ROL_id').prop('required',true);
+                }
+                else{
+                    $('#ROL_id').prop('required',false);
+                    $('#btnguarda').prop('disabled',true);
+                    $('#USER_password').prop('required',false);
+                    $('#password_confirm').prop('required',false);
+                    $('#AREA_id').prop('required',false);
+                    $('#SUCURSAL_id').prop('required',false);
+                    $('#EMPLEADO_fecha_incorporacion').prop('required',false);
+
+                    $('#USER_password').val('');
+                    $('#password_confirm').val('');
+                    $('#ROL_id').val('')
+                    $('#AREA_id').val('')
+                    $('#SUCURSAL_id').val('')
+
+                }
+            }
+    }
+    </script>
+
+    <script type="text/javascript">
+            $('#datepicker').datepicker({
+                weekStart: 1,
+                daysOfWeekHighlighted: "6,0",
+                autoclose: true,
+                todayHighlight: true,
+            });
+            $('#datepicker').datepicker("setDate", new Date());
+
+        </script>
+        <script type="text/javascript">
+            $('#datepicker2').datepicker({
+                weekStart: 1,
+                daysOfWeekHighlighted: "6,0",
+                autoclose: true,
+                todayHighlight: true,
+            });
+            $('#datepicker2').datepicker("setDate", new Date());
 
         </script>
     </body>

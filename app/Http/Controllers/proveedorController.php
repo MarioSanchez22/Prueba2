@@ -254,17 +254,17 @@ public function datos($id){
 
             return response()->download($file,''.$expediente->PROEXP_descripcion.'.'.$expediente->PROEXP_extension,$header);
       }
-        public function darBaja($proveedor){
-            $proveedor2=proveedor::find($proveedor);
-            $proveedor2->PROVE_estado=0;
-            $proveedor2->save();
-            return back();
+        public function darBaja(Request $request ){
+            $proveedor=proveedor::find($request->get('PROVE_id'));
+            $proveedor->PROVE_estado=0;
+            $proveedor->save();
+            return $proveedor->PROVE_id;
         }
-        public function darAlta($proveedor){
-            $proveedor2=proveedor::find($proveedor);
-            $proveedor2->PROVE_estado=1;
-            $proveedor2->save();
-            return back();
+        public function darAlta(Request $request ){
+            $proveedor=proveedor::find($request->get('PROVE_id'));
+            $proveedor->PROVE_estado=1;
+            $proveedor->save();
+            return $proveedor->PROVE_id;
         }
         public function contactoStore($proveedor,Request $request){
 
@@ -279,5 +279,21 @@ public function datos($id){
             $contactoPro->save();
             $contacto=proveedor_contacto::where('PROVE_id','=',$proveedor)->get();
             return 0;
+        }
+        public function contactoUpdate($proveedor,Request $request){
+            $PROVECONT_id=$request->get('PROVECONT_id');
+            $PROVECONT_descripcion=$request->get('PROVECONT_descripcion');
+            $PROVECONT_nombre=$request->get('PROVECONT_nombre');
+            $PROVECONT_telefono=$request->get('PROVECONT_telefono');
+            $PROVECONT_email=$request->get('PROVECONT_email');
+            for ($i=0; $i <sizeof($PROVECONT_id) ; $i++) {
+                $contacto=proveedor_contacto::find($PROVECONT_id[$i]);
+                $contacto->PROVECONT_descripcion= $PROVECONT_descripcion[$i];
+                $contacto->PROVECONT_nombre= $PROVECONT_nombre[$i];
+                $contacto->PROVECONT_telefono= $PROVECONT_telefono[$i];
+                $contacto->PROVECONT_email= $PROVECONT_email[$i];
+                $contacto->save();
+            }
+            return back();
         }
     }

@@ -38,20 +38,24 @@ Route::name('Dashboard')->get('dashboard','HomeController@index');
 Route::get('/compras', function () {
     return view('compras');
 })->name('compras');
-
-
 //Usuarios
 Route::get('usuarios', 'UsuariosController@index')->name('usuariosIndex');
 Route::get('usuarios/registrar', 'UsuariosController@create')->name('usuariosCreate');
+Route::POST('usuarios/create', 'UsuariosController@store')->name('usuariosStore');
 
+Route::get('usuarios/buscar/{email}/{PERSONA_identificador}/{ROL_id}', 'UsuariosController@buscar')->name('usuarioBuscar');
+////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////Permisos/////////////////////////////////////////
+Route::get('privilegios', 'permisoController@index')->name('privilegiosIndex');
+Route::get('privilegios/{usuario}', 'permisoController@editar')->name('privilegiosEdit');
+Route::POST('privilegios/update/{usuario}','permisoController@update')->name('privilegiosUpdate');
 
+Route::get('privilegios/buscar/{email}/{PERSONA_identificador}/{ROL_id}', 'permisoController@buscar')->name('privilegiosBuscar');
+///////////////////////////////////////////////////////////////
 /////////////////////////
 //LOGISTICA
 //POVEEDOR
-
 Route::get('proveedor', 'proveedorController@index')->name('proveedorIndex');
-
-
 Route::get('proveedor/registrar','proveedorController@create')->name('proveedorCreate');
 Route::get('proveedor/editar/{proveedor}','proveedorController@editar')->name('proveedorEdit');
 Route::POST('proveedor/create', 'proveedorController@store')->name('proveedorStore');
@@ -59,8 +63,8 @@ Route::POST('proveedor/update/{proveedor}', 'proveedorController@update')->name(
 
     Route::get('proveedor/datos/{id}', 'proveedorController@datos')->name('datos');
 Route::get('proveedor/show/{proveedor}', 'proveedorController@show')->name('proveedorShow');
-    Route::get('proveedor/darBaja/{proveedor}', 'proveedorController@darBaja')->name('proveedorDarBaja');
-    Route::get('proveedor/darAlta/{proveedor}', 'proveedorController@darAlta')->name('proveedorDarAlta');
+    Route::POST('proveedor/darBaja', 'proveedorController@darBaja')->name('proveedorDarBaja');
+    Route::POST('proveedor/darAlta', 'proveedorController@darAlta')->name('proveedorDarAlta');
     Route::get('sunat/consulta', 'proveedorController@sunat')->name('sunat');
     Route::get('proveedor/origen/{id}', 'proveedorController@origen')->name('origen');
     Route::get('proveedor/pais/{id}', 'proveedorController@pais')->name('pais');
@@ -70,7 +74,7 @@ Route::get('proveedor/buscar/{ruc}/{razon}/{etiqueta}', 'proveedorController@bus
     //Expediente Proveedor
     Route::name('proveedorExpedienteDownload')->get('/proveedor/expediente/{expediente}/download','proveedorController@download');
     //Contacto Proveedor
-    Route::POST('proveedor/{proveedor}/contacto/update', 'proveedorController@contactoStore')->name('contactoProveedorUpdate');
+    Route::POST('proveedor/{proveedor}/contacto/update', 'proveedorController@contactoUpdate')->name('contactoProveedorUpdate');
     Route::POST('proveedor/{proveedor}/contacto/create', 'proveedorController@contactoStore')->name('contactoProveedorCreate');
     Route::get('contactos/proveedor', 'contactosProvController@index')->name('contactosProvIndex');
     Route::get('contactos/buscar/{nombre}/{razon}/{etiqueta}', 'contactosProvController@buscar')->name('contactoProveedorBuscar');
