@@ -14,6 +14,7 @@ use App\sucursal;
 use App\tipo_proveedor;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class UsuariosController extends Controller
@@ -30,12 +31,12 @@ class UsuariosController extends Controller
 
     public function index()
     {
+        $user_global=Auth::user();
         //return view('usuarios');
-        $usuarios =User::all();
+        $usuarios =User::where('EMPRESA_id','=',$user_global->EMPRESA_id)->get();
         $roles=rol::all();
         return view('usuarios.index',['usuarios'=>$usuarios,'roles'=>$roles]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -52,6 +53,7 @@ class UsuariosController extends Controller
     }
     public function store(Request $request)
     {
+        $empresa=Auth::user()->EMPRESA_id;
         $venta=$request->get('PERSONA_venta');
         $nombre=$request->get('name');
         $cargo=$request->get('EMPLEADO_cargo');
@@ -84,6 +86,7 @@ class UsuariosController extends Controller
             $usuario->clave=$request->get('password');
             $usuario->updated_at=null;
             $usuario->USER_estado=1;
+            $usuario->EMPRESA_id=$empresa;
             $usuario->ROL_id=$request->get('ROL_id');
             $usuario->PERSONA_id=$persona->PERSONA_id;
             $usuario->save();

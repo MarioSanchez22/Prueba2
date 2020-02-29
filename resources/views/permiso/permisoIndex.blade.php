@@ -60,7 +60,7 @@
                                     <div class="col-sm-7 col-md-7 col-lg-4" style="font-size: 19px;font-weight: bold;padding-top: 5px; padding-left: 0px">
                                         <i class="mdi mdi-24px mdi-home-city" style=" margin-right: -6px;color:#373f5f"></i> PRIVILEGIOS Y PERMISOS
                                     </div>
-                                    
+
                             </div>
                         </div>
 
@@ -153,7 +153,7 @@
                                                 </td>
                                                     <td>
                                                         <a href="#" class="action-icon" title="Ver"> <i class="mdi mdi-eye"></i></a>
-                                                        <a href="#" class="action-icon" title="Editar"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                    <a href="{{route('privilegiosEdit',[$usuario->id])}}" class="action-icon" title="Editar"> <i class="mdi mdi-square-edit-outline"></i></a>
                                                         @if($usuario->USER_estado==1)
                                                             <a href="#" class="action-icon" title="Bloquear"> <i class="mdi mdi-block-helper"></i></a>
                                                         @else
