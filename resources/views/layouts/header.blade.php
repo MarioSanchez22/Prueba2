@@ -1,4 +1,8 @@
-            <!-- Topbar Start -->
+          @php
+          $usuario=Auth::user();
+          @endphp
+
+          <!-- Topbar Start -->
             <div class="navbar-custom" style="background-color:#2e4965">
                 <ul class="list-unstyled topnav-menu float-right mb-0">
 
@@ -165,8 +169,13 @@
                 <div class="logo-box">
                     <a href="index.html" class="logo text-center">
                         <span class="logo-lg">
-                            <img src="{{asset('assets/images/logo-light.png')}}" alt="" height="18">
-                            <!-- <span class="logo-lg-text-light">UBold</span> -->
+                            @if ($usuario->EMPRESA_id==1)
+                            <h3 style="margin-top: 9%; color:white;">MACROchips</h3>
+                            @else
+                            <h3 style="margin-top: 9%; color:white;">NeptComputer</h3>
+                            @endif
+                            <!--<img src="{{asset('assets/images/logo-light.png')}}" alt="" height="18">
+                             <span class="logo-lg-text-light">UBold</span> -->
                         </span>
                         <span class="logo-sm">
                             <!-- <span class="logo-sm-text-dark">U</span> -->

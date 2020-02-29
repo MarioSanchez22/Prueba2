@@ -29,14 +29,9 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8 col-lg-6 col-xl-5">
                         <div class="card bg-pattern">
-
                             <div class="card-body p-2">
-
                                 <div class="text-center w-75 m-auto">
-
                                         <span><img src="{{asset('assets/usuario.png')}}" alt="" height="120"></span>
-
-
                                 </div>
 
                                 <form action="{{route('login')}}" method="POST" style="margin:40px">
@@ -51,6 +46,17 @@
                                         <label for="password">Password</label>
                                         <input class="form-control" type="password" name="password" placeholder="Ingresa  tu contraseña" required>
                                     </div>
+
+                                    <div class="form-group mb-3">
+
+                                        <select class="form-control" data-style="btn-light" name="EMPRESA_id">
+                                            @foreach ($empresa as $empresas)
+                                                <option class="form-control" value="{{$empresas->EMPRESA_id}}">{{$empresas->EMPRESA_nombre}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+
 
 
 
