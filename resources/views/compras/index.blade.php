@@ -270,13 +270,13 @@
                                                                       </div>
                                                                     <div class="col-md-4 mb-2">
                                                                       <div class="form-inline">
-                                                                          <label for="">Costo: </label>&nbsp;&nbsp;
+                                                                          <label for="">Cantidad: </label>&nbsp;&nbsp;
                                                                           <input type="text" id="cantidad" class="col-md-7 form-control form-control-sm">
                                                                       </div>
                                                                   </div>
                                                                     <div class="col-md-4 mb-2">
                                                                         <div class="form-inline">
-                                                                            <label for="">Cantidad: </label>&nbsp;&nbsp;
+                                                                            <label for="">Costo: </label>&nbsp;&nbsp;
                                                                             <input type="text" id="costo" class="col-md-7 form-control form-control-sm">
                                                                         </div>
                                                                     </div>
@@ -686,7 +686,7 @@
                                           </tr>
                                         </thead>
                                         <tbody>
-                                          <tr >
+                                          {{-- <tr >
 
                                             <td  class="align-middle" style="padding: 4px;">013232323</td>
                                             <td   class="align-middle" style="padding: 4px;">Update softwerwrwrwrvwaresdsd
@@ -698,7 +698,7 @@
                                             <td   class="align-middle"style="padding: 4px;"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
                                                 <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a></td>
                                           </tr>
-
+ --}}
 
                                         </tbody>
                                       </table>
@@ -710,7 +710,7 @@
                                       <div class="col-md-3 mb-1 text-right" style="padding-right: 0px;">
 
 
-                                         <input class=" form-control form-control-sm" type="text" >
+                                         <input class=" form-control form-control-sm text-right" type="text" id="subT" style="color: #131177;">
 
 
                                         </div>
@@ -723,7 +723,7 @@
                                     <div class="col-md-3 mb-1 text-right" style="padding-right: 0px;">
 
 
-                                       <input class=" form-control form-control-sm" type="text" >
+                                       <input class=" form-control form-control-sm text-right" type="text" id="igvP" style="color: #5a0808;" >
 
 
                                       </div>
@@ -736,7 +736,7 @@
                                 <div class="col-md-3 mb-1 text-right" style="padding-right: 0px;">
 
 
-                                   <input class=" form-control form-control-sm" type="text" >
+                                   <input class=" form-control form-control-sm text-right" type="text" id="totalPr" style="font-weight:bold;"  >
 
 
                                   </div>
@@ -813,6 +813,11 @@
 <script>
 
     $(document).ready(function() {
+        var sum=0;
+$('.subtotal').each(function() {
+ sum += parseFloat(this);
+});
+$('#subT').val(sum);
         $('#guardarAr').click(function () {
 
 var nombre = $('#PRO_nombre').val();
@@ -820,9 +825,39 @@ var cantidad = $('#cantidad').val();
 var costo =$('#costo').val();
 var codigo=$('#PRO_codigo').val();
 var medida=$('#UME_id').val();
+var $example1 = $("#bprodu").select2();
+$('#tabA tbody').append('<tr><td class="align-middle" style="padding: 4px;">'+codigo+'</td><td class="align-middle" style="padding: 4px;">' + nombre + '</td><td class="align-middle" style="padding: 4px;">' + cantidad + '</td><td class="align-middle" style="padding: 4px;">' + costo + '</td><td class="align-middle" style="padding: 4px;">'+medida+'</td><td class="align-middle subtotal" style="padding: 4px;" >' + costo*cantidad +'</td><td class="align-middle" style="padding: 4px;"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a></td></tr>');
+$('#PRO_nombre').val('');
 
-$('#tabA tbody').append('<tr><td class="align-middle" style="padding: 4px;">'+codigo+'</td><td class="align-middle" style="padding: 4px;">' + nombre + '</td><td class="align-middle" style="padding: 4px;">' + cantidad + '</td><td class="align-middle" style="padding: 4px;">' + costo + '</td><td class="align-middle" style="padding: 4px;">'+medida+'</td><td class="align-middle" style="padding: 4px;">' + costo*cantidad +'</td><td class="align-middle" style="padding: 4px;"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a></td></tr>');
+$('#cantidad').val('');
+$('#costo').val('');
+$('#PRO_codigo').val('')
+$('#UME_id').val('');
+$('#CATPRO_id').val('');
+ $('#MARCA_id').val('');
+ $('#PRO_modelo').val('');
+ $example1.append($('<option>', { //agrego los valores que obtengo de una base de datos
+                        value: 0,
+                        text: '[Busque articulo]',
+                        selected: true
+                       }));
+$example1.val(0).trigger("change"); //lo selecciona
+$("#bprodu").select2({
+        minimumInputLength: 3,
+        dropdownParent: $("#agregarArti")
+      });
 $('#agregarArti').modal('hide');
+
+var sum=0;
+$('.subtotal').each(function() {
+    sum += parseFloat($(this).text().replace(/,/g, ''), 10);
+    porc=18*sum/100;
+    total=sum+porc;
+});
+;
+$('#subT').val(sum.toFixed(2));
+$('#igvP').val(porc.toFixed(2));
+$('#totalPr').val(total.toFixed(2));
 
 
 });
@@ -846,6 +881,7 @@ $('#agregarArti').modal('hide');
                    $('#MARCA_id').val(data[2].MARCA_descripcion);
                    $('#PRO_modelo').val(data[0].PRO_modelo);
                    $('#UME_id').val(data[3].UME_descripcion);
+
                 }
            });
       });
@@ -992,18 +1028,32 @@ $(document).ready(function() {
 
 $example.append($('<option>', { //agrego los valores que obtengo de una base de datos
                         value: data.PRO_id,
-                        text: data.PRO_codigo+' - '+data.PRO_nombre
+                        text: data.PRO_codigo+' - '+data.PRO_nombre,
+                        selected: true
                        }));
 $example.val(data.PRO_id).trigger("change"); //lo selecciona
+$("#bprodu").select2({
+        minimumInputLength: 3,
+        dropdownParent: $("#agregarArti")
+      });
+      limpiarFormPro();
                  }
              });
          }
-         function limpiarFormCategoria(){
-             $('#CATPRO_descripcion').val('');
-             $('#CATPRO_precio1').val('');
-             $('#CATPRO_precio2').val('');
-             $('#CATPRO_precio3').val('');
-             $('#CATPRO_descuento').val('');
+         function limpiarFormPro(){
+             $('#PRO_rcodigo').val('');
+             $('#PRO_rcategoria').val('1');
+             $('#PRO_rnombre').val('');
+             $('#PRO_rmarca').val('1');
+             $('#PRO_rmodelo').val('');
+             $('#PRO_rdetalle').val('');
+             $('#PRO_runi').val('1');
+             $('#PRO_rmin').val('');
+             $('#PRO_rmax').val('');
+             $('#PRO_rcomprar').val('');
+             $('#PRO_rvender').val('');
+             $('#id_ultimoP').val('');
+
          };
      })
  </script>
