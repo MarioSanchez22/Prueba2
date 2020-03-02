@@ -147,25 +147,25 @@ use App\plantilla;
                                                                     <td>
                                                                         <div class="custom-control custom-switch">
                                                                         <input type="checkbox" class="custom-control-input SUBMENU-{{$menus->MENU_id}}" id="SUBMENU-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}" name="SUBMENU_id[]" value="{{$submenus->SUBMENU_descripcion}}"checked>
-                                                                        <label class="custom-control-label" for="SUBMENU-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}" style="margin:0 50%;"></label>
+                                                                        <label class="custom-control-label" for="SUBMENU-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}" style="margin:0 50%;" onclick="vista({{$menus->MENU_id}},{{$submenus->SUBMENU_id}})" onclick="vista({{$menus->MENU_id}},{{$submenus->SUBMENU_id}})"></label>
                                                                         </div>
                                                                     </td>
                                                                     <td>
                                                                         <div class="custom-control custom-switch">
-                                                                        <input type="checkbox" class="custom-control-input SUBMENU-CREAR-{{$menus->MENU_id}}" id="SUBMENU-CREAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}} "  name="PLANTILLA_crear[]" value="{{$submenus->SUBMENU_descripcion}}"checked>
-                                                                        <label class="custom-control-label" for="SUBMENU-CREAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}} " style="margin:0 50%;"></label>
+                                                                        <input type="checkbox" class="custom-control-input SUBMENU-CREAR-{{$menus->MENU_id}}" id="SUBMENU-CREAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}"  name="PLANTILLA_crear[]" value="{{$submenus->SUBMENU_descripcion}}"checked>
+                                                                        <label class="custom-control-label" for="SUBMENU-CREAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}" style="margin:0 50%;"></label>
                                                                         </div>
                                                                     </td>
                                                                     <td>
                                                                         <div class="custom-control custom-switch">
-                                                                        <input type="checkbox" class="custom-control-input SUBMENU-EDITAR-{{$menus->MENU_id}}" id="SUBMENU-EDITAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}} "  name="PLANTILLA_editar[]" value="{{$submenus->SUBMENU_descripcion}}"checked>
-                                                                        <label class="custom-control-label" for="SUBMENU-EDITAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}} " style="margin:0 50%;"></label>
+                                                                        <input type="checkbox" class="custom-control-input SUBMENU-EDITAR-{{$menus->MENU_id}}" id="SUBMENU-EDITAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}"  name="PLANTILLA_editar[]" value="{{$submenus->SUBMENU_descripcion}}"checked>
+                                                                        <label class="custom-control-label" for="SUBMENU-EDITAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}" style="margin:0 50%;"></label>
                                                                         </div>
                                                                     </td>
                                                                     <td>
                                                                         <div class="custom-control custom-switch">
-                                                                        <input type="checkbox" class="custom-control-input SUBMENU-ELIMINAR-{{$menus->MENU_id}}" id="SUBMENU-ELIMINAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}} "  name="PLANTILLA_eliminar[]" value="{{$submenus->SUBMENU_descripcion}}"checked>
-                                                                        <label class="custom-control-label" for="SUBMENU-ELIMINAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}} " style="margin:0 50%;""></label>
+                                                                        <input type="checkbox" class="custom-control-input SUBMENU-ELIMINAR-{{$menus->MENU_id}}" id="SUBMENU-ELIMINAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}"  name="PLANTILLA_eliminar[]" value="{{$submenus->SUBMENU_descripcion}}"checked>
+                                                                        <label class="custom-control-label" for="SUBMENU-ELIMINAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}" style="margin:0 50%;""></label>
                                                                         </div>
                                                                     </td>
 
@@ -482,6 +482,33 @@ use App\plantilla;
         });
     }
 </script>
+<script>
+    function vista(menu,submenu){
+
+
+            $('#SUBMENU-'+menu+'-'+submenu+'').on('change',function(){
+                if ($(this).is(':checked')) {
+
+                    $('#SUBMENU-CREAR-'+menu+'-'+submenu+'').prop('checked',true);
+                    $('#SUBMENU-EDITAR-'+menu+'-'+submenu+'').prop('checked',true);
+                    $('#SUBMENU-ELIMINAR-'+menu+'-'+submenu+'').prop('checked',true);
+
+                    $('#SUBMENU-CREAR-'+menu+'-'+submenu+'').prop('disabled',false);
+                    $('#SUBMENU-EDITAR-'+menu+'-'+submenu+'').prop('disabled',false);
+                    $('#SUBMENU-ELIMINAR-'+menu+'-'+submenu+'').prop('disabled',false);
+                }else{
+                    $('#SUBMENU-CREAR-'+menu+'-'+submenu+'').prop('checked',false);
+                    $('#SUBMENU-EDITAR-'+menu+'-'+submenu+'').prop('checked',false);
+                    $('#SUBMENU-ELIMINAR-'+menu+'-'+submenu+'').prop('checked',false);
+
+                    $('#SUBMENU-CREAR-'+menu+'-'+submenu+'').prop('disabled',true);
+                    $('#SUBMENU-EDITAR-'+menu+'-'+submenu+'').prop('disabled',true);
+                    $('#SUBMENU-ELIMINAR-'+menu+'-'+submenu+'').prop('disabled',true);
+                }
+            });
+    }
+</script>
+
 
 
     </body>

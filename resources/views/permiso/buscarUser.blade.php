@@ -46,8 +46,7 @@
                     @endif
                 </td>
                 <td>
-                    <a href="#" class="action-icon" title="Ver"> <i class="mdi mdi-eye"></i></a>
-                    <a href="#" class="action-icon" title="Editar"> <i class="mdi mdi-square-edit-outline"></i></a>
+                    <a href="{{route('privilegiosEdit',[$usuario->id])}}" class="action-icon" title="Editar"> <i class="mdi mdi-square-edit-outline"></i></a>
                     @if($usuario->USER_estado==1)
                         <a href="#" class="action-icon" title="Bloquear"> <i class="mdi mdi-block-helper"></i></a>
                     @else

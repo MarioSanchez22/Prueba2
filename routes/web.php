@@ -53,7 +53,7 @@ Route::POST('privilegios/update/{usuario}','permisoController@update')->name('pr
 Route::get('privilegios/buscar/{email}/{PERSONA_identificador}/{ROL_id}', 'permisoController@buscar')->name('privilegiosBuscar');
 ///////////////////////////////////////////////////////////////
 /////////////////////////
-//LOGISTICA
+//LOGISTICA 
 //POVEEDOR
 Route::get('proveedor', 'proveedorController@index')->name('proveedorIndex');
 Route::get('proveedor/registrar','proveedorController@create')->name('proveedorCreate');
