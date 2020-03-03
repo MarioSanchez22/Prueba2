@@ -121,3 +121,4 @@ Route::get('/compras', 'comprasController@index')->name('comprasIndex');
 Route::POST('compras/showp', 'comprasController@showp')->name('comprasShowp');
 Route::POST('compras/showart', 'comprasController@showart')->name('comprasShowart');
 Route::POST('/compras/rproducto', 'comprasController@rproductostore')->name('rProductoStore');
+Route::POST('/compras/rproductoC', 'comprasController@rproductoCstore')->name('rProductoCStore');

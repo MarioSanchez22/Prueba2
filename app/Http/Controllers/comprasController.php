@@ -5,11 +5,17 @@ namespace App\Http\Controllers;
 use App\producto;
 use Illuminate\Http\Request;
 use App\region;
+use App\producto_comprado;
 use App\proveedor;
 use App\tipo_proveedor;
 use App\categoria_producto;
 use App\marca;
 use App\umedidas;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+
 class comprasController extends Controller
 {
     //
@@ -70,4 +76,39 @@ public function rproductostore(Request $request){
     return($productoreg);
 
 }
+ public function rproductoCstore(Request $request){
+    $productoregC=new producto_comprado();
+    $productoregC->PRO_id=$request->get('idprod');
+    $productoregC->PRO_garantia=$request->get('garantia');
+    $productoregC->PRO_costo=$request->get('costo');
+    $productoregC->PRO_cantidad=$request->get('cantidad');
+    $productoregC->USER_id=Auth::user()->id;
+
+    $productoregC->save();
+    return($productoregC);
+
+}
+/* public function rproductoCstore(Request $request){
+{
+    Schema::create('temp_message', function (Blueprint $table) {
+        $table->increments('id');
+        $table->integer('idprod');
+        $table->integer('garantia');
+        $table->integer('costo');
+        $table->integer('cantidad');
+
+        $table->timestamps();
+        $table->temporary();
+    });
+
+    DB::table('temp_message')->insert(['idprod'=>$request->get('idprod'),'garantia'=>$request->get('garantia'),'costo'=>$request->get('costo'),'cantidad'=>$request->get('cantidad')]);
+
+    $data = DB::table('temp_message')->get();
+
+        DD($data);
+    Schema::drop('temp_message');
+
+    return $data;
+    }
+    } */
 }

@@ -239,7 +239,7 @@
                                                                     <div class="col-md-5 mb-2">
                                                                       <div class="form-inline">
                                                                           <label for="">Garantia: </label>&nbsp;&nbsp;
-                                                                          <input type="text" id="garantia" class="col-md-4 form-control form-control-sm">&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                          <input type="text" id="PRO_garantia" class="col-md-4 form-control form-control-sm">&nbsp;&nbsp;&nbsp;&nbsp;
                                                                           <label for="">días</label>
                                                                       </div>
                                                                   </div>
@@ -248,7 +248,7 @@
                                                                           <label for="">Descuento: </label>&nbsp;&nbsp;
                                                                           <div class="input-group">
 
-                                                                            <input type="number" class="col-md-8 form-control form-control-sm" id="CATPRO_precio1"  name="CATPRO_precio1" min="0" max="99">
+                                                                            <input type="number" class="col-md-8 form-control form-control-sm" id="PRO_DESC"  name="CATPRO_precio1" min="0" max="99">
                                                                             <div class="input-group-prepend ">
                                                                               <span class="col-md-9 input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9; padding-left: 4px">%</span>
                                                                           </div> </div> &nbsp;
@@ -315,6 +315,7 @@
                                                                 </div>
                                                             </div>
                                                             <input type="hidden" id="PRO_codigo">
+                                                            <input type="hidden" id="PRO_id">
                                                             <br><br>
                                                             <div class="row">
                                                               <div class="col-md-6">
@@ -820,13 +821,26 @@ $('.subtotal').each(function() {
 $('#subT').val(sum);
         $('#guardarAr').click(function () {
 
+
 var nombre = $('#PRO_nombre').val();
 var cantidad = $('#cantidad').val();
 var costo =$('#costo').val();
 var codigo=$('#PRO_codigo').val();
+var idprod=$('#PRO_id').val();
 var medida=$('#UME_id').val();
 var $example1 = $("#bprodu").select2();
-$('#tabA tbody').append('<tr><td class="align-middle" style="padding: 4px;">'+codigo+'</td><td class="align-middle" style="padding: 4px;">' + nombre + '</td><td class="align-middle" style="padding: 4px;">' + cantidad + '</td><td class="align-middle" style="padding: 4px;">' + costo + '</td><td class="align-middle" style="padding: 4px;">'+medida+'</td><td class="align-middle subtotal" style="padding: 4px;" >' + costo*cantidad +'</td><td class="align-middle" style="padding: 4px;"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a></td></tr>');
+var garantia=$('#PRO_garantia').val();
+$.ajax({
+                     url:"{{route('rProductoCStore')}}",
+                     method:"POST",
+                     data:{
+                        idprod,
+                        garantia,
+                        costo,
+                        cantidad
+                     },
+                 success:function(data){
+                    $('#tabA tbody').append('<tr><td class="align-middle" style="padding: 4px;">'+codigo+'</td><td class="align-middle" style="padding: 4px;">' + nombre + '</td><td class="align-middle" style="padding: 4px;">' + cantidad + '</td><td class="align-middle" style="padding: 4px;">' + costo + '</td><td class="align-middle" style="padding: 4px;">'+medida+'</td><td class="align-middle subtotal" style="padding: 4px;" >' + costo*cantidad +'</td><td class="align-middle" style="padding: 4px;"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a></td></tr>');
 $('#PRO_nombre').val('');
 
 $('#cantidad').val('');
@@ -859,6 +873,12 @@ $('#subT').val(sum.toFixed(2));
 $('#igvP').val(porc.toFixed(2));
 $('#totalPr').val(total.toFixed(2));
 
+                 }
+             });
+
+
+
+
 
 });
       $("#bprodu").select2({
@@ -876,6 +896,7 @@ $('#totalPr').val(total.toFixed(2));
                     },
                 success:function(data){
                     $('#PRO_codigo').val(data[0].PRO_codigo);
+                    $('#PRO_id').val(data[0].PRO_id);
                    $('#PRO_nombre').val(data[0].PRO_nombre);
                    $('#CATPRO_id').val(data[1].CATPRO_descripcion);
                    $('#MARCA_id').val(data[2].MARCA_descripcion);
