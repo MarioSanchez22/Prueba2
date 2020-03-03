@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\area;
 use App\empleado;
 use App\origen_proveedor;
@@ -33,7 +31,9 @@ class UsuariosController extends Controller
     {
         $user_global=Auth::user();
         //return view('usuarios');
-        $usuarios =User::where('EMPRESA_id','=',$user_global->EMPRESA_id)->get();
+        $usuarios =User::where('EMPRESA_id','=',$user_global->EMPRESA_id)
+                    ->where('id','!=',$user_global->id)->get();
+
         $roles=rol::all();
         return view('usuarios.index',['usuarios'=>$usuarios,'roles'=>$roles]);
     }
@@ -123,6 +123,7 @@ class UsuariosController extends Controller
         }
 
         public function buscar($email2,$PERSONA_identificador2,$ROL_id2){
+            $user_global=Auth::user();
             $email=$email2;
             $PERSONA_identificador=$PERSONA_identificador2;
             $ROL_id=$ROL_id2;
@@ -130,18 +131,25 @@ class UsuariosController extends Controller
             if($email=='0'){
                 if($PERSONA_identificador=='0'){
                     if($ROL_id=='0'){
-                        $usuario=User::all();
+                        $usuario=User::where('EMPRESA_id','=',$user_global->EMPRESA_id)
+                                 ->where('id','!=',$user_global->id)->get();
                     }else{
-                        $usuario=User::where('ROL_id','=',$ROL_id)->get();
+                        $usuario=User::where('ROL_id','=',$ROL_id)
+                                 ->where('id','!=',$user_global->id)
+                                 ->where('EMPRESA_id','=',$user_global->EMPRESA_id)->get();
                     }
                 }else{
                     if($ROL_id=='0'){
                         $usuario=DB::table('users')->join('persona','persona.PERSONA_id','=','users.PERSONA_id')
+                        ->where('users.id','!=',$user_global->id)
+                        ->where('users.EMPRESA_id','=',$user_global->EMPRESA_id)
                         ->where('persona.PERSONA_identificador','LIKE','%'.$PERSONA_identificador.'%')->get();
 
                     }else{
                         $usuario=DB::table('users')->join('persona','persona.PERSONA_id','=','users.PERSONA_id')
+                        ->where('users.id','!=',$user_global->id)
                         ->where('users.ROL_id','=',$ROL_id)
+                        ->where('users.EMPRESA_id','=',$user_global->EMPRESA_id)
                         ->where('persona.PERSONA_identificador','LIKE','%'.$PERSONA_identificador.'%')
                         ->get();
                     }
@@ -149,14 +157,20 @@ class UsuariosController extends Controller
             }else{
                 if($PERSONA_identificador=='0'){
                     if($ROL_id=='0'){
-                        $usuario=User::where('email','LIKE','%'.$email.'%')->get();
+                        $usuario=User::where('email','LIKE','%'.$email.'%')
+                        ->where('id','!=',$user_global->id)
+                        ->where('EMPRESA_id','=',$user_global->EMPRESA_id)->get();
                     }else{
                         $usuario=User::where('email','LIKE','%'.$email.'%')
+                        ->where('id','!=',$user_global->id)
+                        ->where('EMPRESA_id','=',$user_global->EMPRESA_id)
                         ->where('ROL_id','=',$ROL_id)->get();
                     }
                 }else{
                     if($ROL_id=='0'){
                         $usuario=DB::table('users')->join('persona','persona.PERSONA_id','=','users.PERSONA_id')
+                        ->where('users.id','!=',$user_global->id)
+                        ->where('users.EMPRESA_id','=',$user_global->EMPRESA_id)
                         ->where('users.email','LIKE','%'.$email.'%')
                         ->where('persona.PERSONA_identificador','LIKE','%'.$PERSONA_identificador.'%')
                         ->get();
@@ -164,6 +178,8 @@ class UsuariosController extends Controller
 
                     }else{
                         $usuario=DB::table('users')->join('persona','persona.PERSONA_id','=','users.PERSONA_id')
+                        ->where('users.id','!=',$user_global->id)
+                        ->where('users.EMPRESA_id','=',$user_global->EMPRESA_id)
                         ->where('users.email','LIKE','%'.$email.'%')
                         ->where('users.ROL_id','=',$ROL_id)
                         ->where('persona.PERSONA_identificador','LIKE','%'.$PERSONA_identificador.'%')

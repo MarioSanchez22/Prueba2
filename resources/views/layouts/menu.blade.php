@@ -6,17 +6,20 @@ use App\permiso;
 use App\rol_usuario;
 use App\submenu;
 use App\empresa;
-
-
-$permiso_usuario=permiso::where('id','=',$usuario->id)->get();
+$permiso_usuario=permiso::where('id','=',$usuario->id)
+                        ->where('PERMISO_estado','=',1)->get();
+                        
 $menu=array();
 $submenu=array();
 if (! $permiso_usuario->isEmpty()) {
     for ($i=0; $i <sizeof($permiso_usuario) ; $i++) {
-        $valor2=submenu::where('SUBMENU_id','=',$permiso_usuario[$i]->SUBMENU_id)->first();
-        if (in_array($valor2,$submenu)==false) {
-            $submenu[$i]=$valor2;
+        if ($permiso_usuario[$i]->PERMISO_estado==1) {
+            $valor2=submenu::where('SUBMENU_id','=',$permiso_usuario[$i]->SUBMENU_id)->first();
+            if (in_array($valor2,$submenu)==false) {
+                $submenu[$i]=$valor2;
+            }
         }
+
     }
     if ( sizeof($submenu)>0) {
         for ($i=0; $i < sizeof($submenu); $i++) {

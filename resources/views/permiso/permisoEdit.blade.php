@@ -96,14 +96,15 @@ use App\permiso;
                                                                 {{ csrf_field()}}
                                                             <table class="table table-bordered">
                                                                 <thead>
-                                                                    <tr>
+
+                                                                    <tr style="background-color: #446e8c;color: white;">
                                                                         @php
                                                                             $permiso=permiso::where('id','=',$usuario->id)->first();
                                                                         @endphp
                                                                     <th colspan="2"  style="vertical-align: middle;"> <input type="text" class="form-control form-control-sm"  name="PERMISO_descripcion"  id="PROVE_direccion" placeholder="Rol*" value="{{$permiso->PERMISO_descripcion}}" required> </div> </th>
                                                                         <th colspan="3" class="text-center" style="vertical-align: middle;">Privilegios</th>
                                                                     </tr>
-                                                                    <tr>
+                                                                    <tr style="background-color: #446e8c;color: white;">
                                                                         <th><div class="switchery-demo  text-center">Vistas</div></th>
                                                                         <th><div class="switchery-demo  text-center">Permisos</div></th>
                                                                         <th><div class="switchery-demo  text-center">Crear</div></th>
@@ -113,12 +114,34 @@ use App\permiso;
                                                                 </thead>
                                                                 <tbody>
                                                                     @foreach ($menu as $menus)
-                                                                    <tr>
+                                                                    <tr style="background-color: #c6ced8a1; color: #343a40;">
                                                                         <th>{{$menus->MENU_descripcion}} </th>
-                                                                        <td>  <div class="switchery-demo  text-center">  <input type="checkbox" checked data-plugin="switchery" id="PANTILLA_vista_crear[]" data-color="#1bb99a" data-size="small"/> </div></td>
-                                                                        <td><div class="switchery-demo  text-center">  <input type="checkbox" checked data-plugin="switchery" data-color="#1bb99a" data-size="small" id="PANTILLA_vista_crear[]"/> </div></td>
-                                                                        <td><div class="switchery-demo  text-center">  <input type="checkbox" checked data-plugin="switchery" id="PANTILLA_vista_crear[]" data-color="#1bb99a" data-size="small"/> </div></td>
-                                                                        <td><div class="switchery-demo  text-center">  <input type="checkbox" checked data-plugin="switchery" id="PANTILLA_vista_crear[]"  data-color="#1bb99a" data-size="small"/> </div></td>
+                                                                        <td>
+                                                                            <div class="custom-control custom-switch" style="">
+                                                                            <input type="checkbox" class="custom-control-input" id="MENU-{{$menus->MENU_id}}" checked>
+                                                                            <label class="custom-control-label" for="MENU-{{$menus->MENU_id}}" style="margin:0 50%;"
+                                                                            onclick="ver({{$menus->MENU_id}})"></label>
+
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="custom-control custom-switch">
+                                                                            <input type="checkbox" class="custom-control-input" id="MENU-{{$menus->MENU_id}}-CREAR" checked>
+                                                                            <label class="custom-control-label" for="MENU-{{$menus->MENU_id}}-CREAR" onclick="crear({{$menus->MENU_id}})" style="margin:0 50%;"></label>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="custom-control custom-switch">
+                                                                            <input type="checkbox" class="custom-control-input" id="MENU-{{$menus->MENU_id}}-EDITAR" checked>
+                                                                            <label class="custom-control-label" for="MENU-{{$menus->MENU_id}}-EDITAR" onclick="editar({{$menus->MENU_id}})" style="margin:0 50%;"></label>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="custom-control custom-switch">
+                                                                            <input type="checkbox" class="custom-control-input" id="MENU-{{$menus->MENU_id}}-ELIMINAR" checked>
+                                                                            <label class="custom-control-label" for="MENU-{{$menus->MENU_id}}-ELIMINAR" onclick="eliminar({{$menus->MENU_id}})" style="margin:0 50%;"></label>
+                                                                            </div>
+                                                                        </td>
                                                                         @foreach ($submenu as $submenus)
                                                                         @if ($menus->MENU_id==$submenus->MENU_id)
                                                                             @php
@@ -126,28 +149,69 @@ use App\permiso;
                                                                                 ->where('SUBMENU_id','=',$submenus->SUBMENU_id)->first();
                                                                             @endphp
                                                                             <tr>
-                                                                                <td ><span style="margin-left: 4%;">{{$submenus->SUBMENU_descripcion}}</span></td>
+                                                                                <td ><span style="margin-left: 10%;">{{$submenus->SUBMENU_descripcion}}</span></td>
                                                                                 @if ($permiso != null)
                                                                                     @if ($permiso->PERMISO_estado ==1)
-                                                                                    <td ><div class="switchery-demo text-center">  <input type="checkbox" checked data-plugin="switchery" data-color="#64b0f2" data-size="small" name="SUBMENU_id[]" value="{{$submenus->SUBMENU_descripcion}}"/> </div></td>
+                                                                                    <td>
+                                                                                        <div class="custom-control custom-switch">
+                                                                                        <input type="checkbox" class="custom-control-input SUBMENU-{{$menus->MENU_id}}" id="SUBMENU-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}" name="SUBMENU_id[]" value="{{$submenus->SUBMENU_descripcion}}"checked>
+                                                                                        <label class="custom-control-label" for="SUBMENU-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}" style="margin:0 50%;" onclick="vista({{$menus->MENU_id}},{{$submenus->SUBMENU_id}})"></label>
+                                                                                        </div>
+                                                                                    </td>
                                                                                     @else
-                                                                                    <td ><div class="switchery-demo text-center">  <input type="checkbox"  data-plugin="switchery" data-color="#64b0f2" data-size="small" name="SUBMENU_id[]" value="{{$submenus->SUBMENU_descripcion}}"/> </div></td>
+                                                                                    <td>
+                                                                                        <div class="custom-control custom-switch">
+                                                                                        <input type="checkbox" class="custom-control-input SUBMENU-{{$menus->MENU_id}}" id="SUBMENU-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}" name="SUBMENU_id[]" value="{{$submenus->SUBMENU_descripcion}}">
+                                                                                        <label class="custom-control-label" for="SUBMENU-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}" style="margin:0 50%;" onclick="vista({{$menus->MENU_id}},{{$submenus->SUBMENU_id}})"></label>
+                                                                                        </div>
+                                                                                    </td>
                                                                                     @endif
 
                                                                                     @if ($permiso->PERMISO_crear ==1)
-                                                                                        <td><div class="switchery-demo  text-center">  <input type="checkbox" checked data-plugin="switchery" data-color="#64b0f2" data-size="small" name="PERMISO_crear[]" value="{{$submenus->SUBMENU_descripcion}}"/> </div></td>
+                                                                                    <td>
+                                                                                        <div class="custom-control custom-switch">
+                                                                                        <input type="checkbox" class="custom-control-input SUBMENU-CREAR-{{$menus->MENU_id}}" id="SUBMENU-CREAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}"  name="PERMISO_crear[]" value="{{$submenus->SUBMENU_descripcion}}"checked>
+                                                                                        <label class="custom-control-label" for="SUBMENU-CREAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}" style="margin:0 50%;"></label>
+                                                                                        </div>
+                                                                                    </td>
+
                                                                                     @else
-                                                                                        <td><div class="switchery-demo  text-center">  <input type="checkbox" data-plugin="switchery" data-color="#64b0f2" data-size="small" name="PERMISO_crear[]" value="{{$submenus->SUBMENU_descripcion}}"/> </div></td>
+                                                                                    <td>
+                                                                                        <div class="custom-control custom-switch">
+                                                                                        <input type="checkbox" class="custom-control-input SUBMENU-CREAR-{{$menus->MENU_id}}" id="SUBMENU-CREAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}"  name="PERMISO_crear[]" value="{{$submenus->SUBMENU_descripcion}}">
+                                                                                        <label class="custom-control-label" for="SUBMENU-CREAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}" style="margin:0 50%;"></label>
+                                                                                        </div>
+                                                                                    </td>
                                                                                     @endif
                                                                                     @if ($permiso->PERMISO_editar==1)
-                                                                                        <td><div class="switchery-demo  text-center">  <input type="checkbox" checked data-plugin="switchery" data-color="#64b0f2" data-size="small" name="PERMISO_editar[]" value="{{$submenus->SUBMENU_descripcion}}"/> </div></td>
+                                                                                    <td>
+                                                                                        <div class="custom-control custom-switch">
+                                                                                        <input type="checkbox" class="custom-control-input SUBMENU-EDITAR-{{$menus->MENU_id}}" id="SUBMENU-EDITAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}"  name="PERMISO_editar[]" value="{{$submenus->SUBMENU_descripcion}}"checked>
+                                                                                        <label class="custom-control-label" for="SUBMENU-EDITAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}" style="margin:0 50%;"></label>
+                                                                                        </div>
+                                                                                    </td>
                                                                                     @else
-                                                                                        <td><div class="switchery-demo  text-center">  <input type="checkbox"  data-plugin="switchery" data-color="#64b0f2" data-size="small" name="PERMISO_editar[]" value="{{$submenus->SUBMENU_descripcion}}"/> </div></td>
+                                                                                    <td>
+                                                                                        <div class="custom-control custom-switch">
+                                                                                        <input type="checkbox" class="custom-control-input SUBMENU-EDITAR-{{$menus->MENU_id}}" id="SUBMENU-EDITAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}"  name="PERMISO_editar[]" value="{{$submenus->SUBMENU_descripcion}}">
+                                                                                        <label class="custom-control-label" for="SUBMENU-EDITAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}" style="margin:0 50%;"></label>
+                                                                                        </div>
+                                                                                    </td>
                                                                                     @endif
                                                                                     @if ($permiso->PERMISO_eliminar ==1)
-                                                                                        <td><div class="switchery-demo  text-center">  <input type="checkbox" checked data-plugin="switchery" data-color="#64b0f2" data-size="small" name="PERMISO_eliminar[]" value="{{$submenus->SUBMENU_descripcion}}"/> </div></td>
+                                                                                    <td>
+                                                                                        <div class="custom-control custom-switch">
+                                                                                        <input type="checkbox" class="custom-control-input SUBMENU-ELIMINAR-{{$menus->MENU_id}}" id="SUBMENU-ELIMINAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}"  name="PERMISO_eliminar[]" value="{{$submenus->SUBMENU_descripcion}}"checked>
+                                                                                        <label class="custom-control-label" for="SUBMENU-ELIMINAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}" style="margin:0 50%;""></label>
+                                                                                        </div>
+                                                                                    </td>
                                                                                     @else
-                                                                                        <td><div class="switchery-demo  text-center">  <input type="checkbox"  data-plugin="switchery" data-color="#64b0f2" data-size="small" name="PERMISO_eliminar[]" value="{{$submenus->SUBMENU_descripcion}}"/> </div></td>
+                                                                                    <td>
+                                                                                        <div class="custom-control custom-switch">
+                                                                                        <input type="checkbox" class="custom-control-input SUBMENU-ELIMINAR-{{$menus->MENU_id}}" id="SUBMENU-ELIMINAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}"  name="PERMISO_eliminar[]" value="{{$submenus->SUBMENU_descripcion}}">
+                                                                                        <label class="custom-control-label" for="SUBMENU-ELIMINAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}" style="margin:0 50%;""></label>
+                                                                                        </div>
+                                                                                    </td>
                                                                                     @endif
                                                                                 @else
                                                                                 <td ><div class="switchery-demo text-center">  <input type="checkbox"  data-plugin="switchery" data-color="#64b0f2" data-size="small" name="SUBMENU_id[]" value="{{$submenus->SUBMENU_descripcion}}"/> </div></td>
@@ -373,6 +437,124 @@ use App\permiso;
 });
 });
 
+</script>
+<script>
+    function ver(menu){
+            $('#MENU-'+menu+'').on('change',function(){
+            if ($(this).is(':checked')) {
+            var a=$('.switchery ');
+            console.log(a);
+                $('#MENU-'+menu+'-CREAR').prop('checked',true);
+                $('#MENU-'+menu+'-EDITAR').prop('checked',true);
+                $('#MENU-'+menu+'-ELIMINAR').prop('checked',true);
+                $('#MENU-'+menu+'-CREAR').prop('disabled',false);
+                $('#MENU-'+menu+'-EDITAR').prop('disabled',false);
+                $('#MENU-'+menu+'-ELIMINAR').prop('disabled',false);
+
+
+                $('.SUBMENU-'+menu).prop('checked',true);
+                $('.SUBMENU-'+menu).prop('disabled',false);
+
+                $('.SUBMENU-CREAR-'+menu).prop('checked',true);
+                $('.SUBMENU-CREAR-'+menu).prop('disabled',false);
+
+                $('.SUBMENU-EDITAR-'+menu).prop('checked',true);
+                $('.SUBMENU-EDITAR-'+menu).prop('disabled',false);
+
+                $('.SUBMENU-ELIMINAR-'+menu).prop('checked',true);
+                $('.SUBMENU-ELIMINAR-'+menu).prop('disabled',false);
+            }else{
+                $('#MENU-'+menu+'-CREAR').prop('checked',false);
+                $('#MENU-'+menu+'-EDITAR').prop('checked',false);
+                $('#MENU-'+menu+'-ELIMINAR').prop('checked',false);
+                $('#MENU-'+menu+'-CREAR').prop('disabled',true);
+                $('#MENU-'+menu+'-EDITAR').prop('disabled',true);
+                $('#MENU-'+menu+'-ELIMINAR').prop('disabled',true);
+
+
+                $('.SUBMENU-'+menu).prop('checked',false);
+                $('.SUBMENU-'+menu).prop('disabled',true);
+
+                $('.SUBMENU-CREAR-'+menu).prop('checked',false);
+                $('.SUBMENU-CREAR-'+menu).prop('disabled',true);
+
+                $('.SUBMENU-EDITAR-'+menu).prop('checked',false);
+                $('.SUBMENU-EDITAR-'+menu).prop('disabled',true);
+
+                $('.SUBMENU-ELIMINAR-'+menu).prop('checked',false);
+                $('.SUBMENU-ELIMINAR-'+menu).prop('disabled',true);
+            }
+        });
+    }
+</script>
+<script>
+    function crear(menu){
+
+            $('#MENU-'+menu+'-CREAR').on('change',function(){
+            if ($(this).is(':checked')) {
+                $('.SUBMENU-CREAR-'+menu).prop('checked',true);
+                $('.SUBMENU-CREAR-'+menu).prop('disabled',false);
+            }else{
+                $('.SUBMENU-CREAR-'+menu).prop('checked',false);
+                $('.SUBMENU-CREAR-'+menu).prop('disabled',true);
+            }
+        });
+    }
+</script>
+<script>
+    function editar(menu){
+
+            $('#MENU-'+menu+'-EDITAR').on('change',function(){
+            if ($(this).is(':checked')) {
+                $('.SUBMENU-EDITAR-'+menu).prop('checked',true);
+                $('.SUBMENU-EDITAR-'+menu).prop('disabled',false);
+            }else{
+                $('.SUBMENU-EDITAR-'+menu).prop('checked',false);
+                $('.SUBMENU-EDITAR-'+menu).prop('disabled',true);
+            }
+        });
+    }
+</script>
+<script>
+    function eliminar(menu){
+
+            $('#MENU-'+menu+'-ELIMINAR').on('change',function(){
+            if ($(this).is(':checked')) {
+                $('.SUBMENU-ELIMINAR-'+menu).prop('checked',true);
+                $('.SUBMENU-ELIMINAR-'+menu).prop('disabled',false);
+            }else{
+                $('.SUBMENU-ELIMINAR-'+menu).prop('checked',false);
+                $('.SUBMENU-ELIMINAR-'+menu).prop('disabled',true);
+            }
+        });
+    }
+</script>
+
+<script>
+    function vista(menu,submenu){
+
+
+            $('#SUBMENU-'+menu+'-'+submenu+'').on('change',function(){
+                if ($(this).is(':checked')) {
+
+                    $('#SUBMENU-CREAR-'+menu+'-'+submenu+'').prop('checked',true);
+                    $('#SUBMENU-EDITAR-'+menu+'-'+submenu+'').prop('checked',true);
+                    $('#SUBMENU-ELIMINAR-'+menu+'-'+submenu+'').prop('checked',true);
+
+                    $('#SUBMENU-CREAR-'+menu+'-'+submenu+'').prop('disabled',false);
+                    $('#SUBMENU-EDITAR-'+menu+'-'+submenu+'').prop('disabled',false);
+                    $('#SUBMENU-ELIMINAR-'+menu+'-'+submenu+'').prop('disabled',false);
+                }else{
+                    $('#SUBMENU-CREAR-'+menu+'-'+submenu+'').prop('checked',false);
+                    $('#SUBMENU-EDITAR-'+menu+'-'+submenu+'').prop('checked',false);
+                    $('#SUBMENU-ELIMINAR-'+menu+'-'+submenu+'').prop('checked',false);
+
+                    $('#SUBMENU-CREAR-'+menu+'-'+submenu+'').prop('disabled',true);
+                    $('#SUBMENU-EDITAR-'+menu+'-'+submenu+'').prop('disabled',true);
+                    $('#SUBMENU-ELIMINAR-'+menu+'-'+submenu+'').prop('disabled',true);
+                }
+            });
+    }
 </script>
 
     </body>
