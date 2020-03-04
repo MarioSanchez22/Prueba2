@@ -1,5 +1,5 @@
 @php
-  use App\persona;
+  use App\User;
   use App\rol;
   use App\sucursal;
   use App\empresa;
@@ -58,10 +58,10 @@
 
                                 <div class="row icons-list-demo" style="color:#373f5f">
                                     <div class="col-sm-7 col-md-7 col-lg-4" style="font-size: 19px;font-weight: bold;padding-top: 5px; padding-left: 0px">
-                                        <i class="mdi mdi-24px mdi-home-city" style=" margin-right: -6px;color:#373f5f"></i> USUARIOS
+                                        <i class="mdi mdi-24px mdi-home-city" style=" margin-right: -6px;color:#373f5f"></i> PERSONAL
                                     </div>
                                     <div class="col-md-8" style="padding-top: 6px">
-                                        <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" onclick="location.href='{{route('usuariosCreate')}}'"><span class=" fa fa-user-plus"> </span>  Usuario</button>
+                                        <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" onclick="location.href='{{route('usuariosCreate')}}'"><span class=" fa fa-user-plus"> </span>  Personal</button>
                                     </div>
                             </div>
                         </div>
@@ -70,103 +70,148 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" style="margin-top: 10px;">
-                        <div class="col 12">
-                      <div class="card-box " style="padding-bottom: 8px; padding-top: 8px; margin-bottom: 0px; background: #566675; color:#fff">
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col 12">
+                        <div class="card-box " style="padding-bottom: 8px; padding-top: 8px; margin-bottom: 0px; background: #566675; color:#fff">
 
-                        <div class="row">
+                            <div class="row">
 
-                            <div class="col-md-3">
-                                <form action="" class="form-inline">
-                                <div class="form-group">
-                                <label class="control-label" >Usuario: </label>&nbsp&nbsp
-                                <input type="text" id="email" name="email" class="form-control form-control-sm">
-                                </div>
-                            </form>
-                            </div>
-                            <div class="col-md-3">
-                                <form action="" class="form-inline">
-                                <div class="form-group">
-                                <label class="control-label" >DNI:   </label>&nbsp&nbsp
-                                <input type="text"  id="PERSONA_identificador" name="PERSONA_identificador" class="form-control form-control-sm">
-                                </div>
+                                <div class="col-md-3">
+                                    <form action="" class="form-inline">
+                                    <div class="form-group">
+                                    <label class="control-label" >Usuario: </label>&nbsp&nbsp
+                                    <input type="text" id="email" name="email" class="form-control form-control-sm">
+                                    </div>
                                 </form>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="row ">
-                                    <div class="col-2 form-inline"><label class="control-label">Rol:</label></div>
-                                    <div class="col-10">
-                                        <select  class="form-control  form-control-sm " name="ROL_id" id="ROL_id">
-                                            <option value="">Rol</option>
-                                            @foreach ($roles as $rol)
-                                            <option value="{{$rol->ROL_id}}">{{$rol->ROL_descripcion}}</option>
-                                            @endforeach
-                                        </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <form action="" class="form-inline">
+                                    <div class="form-group">
+                                    <label class="control-label" >DNI:   </label>&nbsp&nbsp
+                                    <input type="text"  id="PERSONA_identificador" name="PERSONA_identificador" class="form-control form-control-sm">
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="row ">
+                                        <div class="col-2 form-inline"><label class="control-label">Rol:</label></div>
+                                        <div class="col-10">
+                                            <select  class="form-control  form-control-sm " name="ROL_id" id="ROL_id">
+                                                <option value="">Rol</option>
+                                                @foreach ($roles as $rol)
+                                                <option value="{{$rol->ROL_id}}">{{$rol->ROL_descripcion}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3" style="padding-left: 10%" >
+                                    <button class="btn  btn-blue btn-sm"  id="buscar" name="buscar"><i class="fe-search" style="font-size:16px"></i>  </button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3" style="padding-left: 10%" >
-                                <button class="btn  btn-blue btn-sm"  id="buscar" name="buscar"><i class="fe-search" style="font-size:16px"></i>  </button>
-                                </div>
-                            </div>
-                      </div>
-
-                          <div class="card">
-
+                    <div class="card">
                             <!-- /.card-header -->
-                            <div class="card-body" style="background:#fff">
+                    <div class="card-body" style="background:#fff">
                                 <!--  Modal content for the above example -->
-
+                        <div class="row">
+                            <div class="col-md-10">
                                 <div id="tablageneral" class="bounceInLeft animated">
-                                <table   data-toggle="table"
-                                data-page-size="6"
-                                data-buttons-class="xs btn-light"
-                                data-pagination="true" class="table-bordered ">
-                                <thead class="thead-light">
-                                <tr>
-                                <th data-field="state" >#</th>
-                                <th data-field="name">Usuario</th>
-                                <th data-field="id" data-switchable="false">Nombre Usuario</th>
-                                <th data-field="email">Documento de identidad</th>
-                                <th data-field="perfil">Perfil</th>
-
-                                <th data-field="estado">Estado</th>
-                                <th data-field="opciones">Opciones</th>
-                                </tr>
-                                </thead>
-                                    <tbody>
-                                    @foreach ($usuarios as $usuario)
-                                    @php
-                                    $persona=persona::where('PERSONA_id','=',$usuario->PERSONA_id)->first();
-                                    $rol=rol::where('ROL_id','=',$usuario->ROL_id)->first();
-                                    @endphp
+                                    <table   data-toggle="table"
+                                    data-page-size="6"
+                                    data-buttons-class="xs btn-light"
+                                    data-pagination="true" class="table-bordered " style="zoom: 88%; font-size:15px;">
+                                        <thead class="thead-light">
                                         <tr>
-                                                <td>{{$loop->index+1}}</td>
-                                                <td>{{$usuario->email}}</td>
-                                                <td>{{$persona->PERSONA_nombres}}</td>
-                                                <td>{{$persona->PERSONA_identificador}}</td>
-                                                <td>{{$rol->ROL_descripcion}}</td>
-                                                <td>
-                                                    @if($usuario->USER_estado==1)
-                                                        <span class="badge bg-soft-success text-success shadow-none">Activo</span>
-                                                    @else
-                                                        <span class="badge bg-soft-danger text-danger shadow-none">Bloqueado</span>
-                                                    @endif
-                                                </td>
-                                                    <td>
-                                                        <a href="#" class="action-icon" title="Ver"> <i class="mdi mdi-eye"></i></a>
-                                                        <a href="#" class="action-icon" title="Editar"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                                        @if($usuario->USER_estado==1)
-                                                            <a href="#" class="action-icon" title="Bloquear"> <i class="mdi mdi-block-helper"></i></a>
-                                                        @else
-                                                            <a href="#" class="action-icon" title="Activar"> <i class="mdi mdi-transfer-up"></i></a>
-                                                        @endif
-                                                    </td>
-                                                </tr>
-                                    @endforeach
-                                    </tbody>
-                                    </table>
+                                        <th data-field="state" >#</th>
+                                        <th data-field="name">Usuario</th>
+                                        <th data-field="id" data-switchable="false">Nombre Usuario</th>
+                                        <th data-field="email">Documento de identidad</th>
+                                        <th data-field="rol">Rol</th>
+                                        <th data-field="perfil">Perfil</th>
+                                        <th data-field="estado">Estado</th>
+                                        <th data-field="opciones">Opciones</th>
+                                        </tr>
+                                        </thead>
+                                            <tbody>
+                                                @foreach ($personal as $personals)
+                                                @php
+                                                $usuario=User::where('PERSONA_id','=',$personals->PERSONA_id)->first();
+                                                $empleado=empleado::where('PERSONA_id','=',$personals->PERSONA_id)->first();
+                                                    if ($usuario != null) {
+                                                        $rol=rol::where('ROL_id','=',$usuario->ROL_id)->first();
+                                                    }
+                                                @endphp
+                                                    <tr>
+                                                            <td>{{$loop->index+1}}</td>
+                                                            <td>
+                                                                @if ($usuario!=null)
+                                                                {{$usuario->email}}
+                                                                @endif
+                                                            </td>
+                                                            <td>{{$personals->PERSONA_nombres}}</td>
+                                                            <td>{{$personals->PERSONA_identificador}}</td>
+                                                            <td>
+                                                                @if ($usuario!=null)
+                                                                {{$rol->ROL_descripcion}}
+                                                                @endif
+                                                            </td>
+                                                            <td>
+                                                                @if ($personals->PERSONA_venta==1)
+                                                                    <i class="fe-dollar-sign" title="vendedor">
+                                                                @endif
+                                                                @if ($usuario!=null)
+                                                                    <i class=" fas fa-user" title="usuario">
+                                                                @endif
+                                                                @if ($empleado!=null)
+                                                                    <i class="fas fa-hand-holding-usd" title="empleado">
+                                                                @endif
+
+                                                            </td>
+                                                            <td>
+                                                                @if ($usuario!=null)
+                                                                    @if($usuario->USER_estado==1)
+                                                                        <span class="badge bg-soft-success text-success shadow-none">Activo</span>
+                                                                    @else
+                                                                        <span class="badge bg-soft-danger text-danger shadow-none">Bloqueado</span>
+                                                                    @endif
+                                                                @endif
+
+                                                            </td>
+                                                                <td class="text-center">
+                                                                    <div class="dropdown" >
+                                                                        <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
+                                                                            <i class=" mdi mdi-settings m-0 text-muted h3"></i>
+                                                                        </a>
+                                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                                            <a href="{{route('personalShow',[ $personals->PERSONA_id] )}}" class="dropdown-item" title="Ver"> <i class="mdi mdi-eye"></i> Ver</a>
+                                                                             <a href="#" class="dropdown-item" title="Editar"> <i class="mdi mdi-square-edit-outline"></i> Editar</a>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
+                                </div>
+                                @php
+                                $empresa=empresa::where('EMPRESA_id','=',Auth::user()->EMPRESA_id)->first();
+                            @endphp
+                               <div class="col-md-2">
+                                    <div class="card" >
+                                        <div class="card-body">
+                                            <h5 class="card-title">Leyenda</h5>
+                                            <h6 class="card-subtitle text-muted" style="margin-bottom: 5px;">Soporte {{$empresa->EMPRESA_nombre}}</h6>
+                                            <div class="form-inline" style="margin-bottom: 5px;"><i class="fas fa-user" style="margin-right: 12px;"></i>Usuario</div>
+                                            <div class="form-inline"><i class="fe-dollar-sign" style="margin-right: 12px;"></i>Vendedor</div>
+                                            <div class="form-inline"><i class="fas fa-hand-holding-usd" style="margin-right: 12px;"></i>Empleado</div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
      <!-- Bootstrap Tables js -->
                                 <div id ="tabla1" class="bounceInLeft animated">
                                 </div>

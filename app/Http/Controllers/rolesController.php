@@ -11,13 +11,14 @@ use App\empresa;
 use App\User;
 use App\plantilla;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth as FacadesAuth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class rolesController extends Controller
 {
     public function index(){
-        $rol=rol::all();
+        $empresa=Auth::user()->EMPRESA_id;
+        $rol=rol::where('EMPRESA_id','=',$empresa)->get();
         $usuario=User::all();
         $permiso=permiso::all();
         $menu=menu::all();
@@ -28,23 +29,25 @@ class rolesController extends Controller
     }
 
     public function create(){
-        $rol=rol::all();
         $menu=menu::all();
         $submenu=submenu::all();
-       return view('roles.rolesCreate',['rol'=>$rol,'menu'=>$menu,'submenu'=>$submenu]);
+       return view('roles.rolesCreate',['menu'=>$menu,'submenu'=>$submenu]);
     }
 
     public function store(Request $request){
+
         $submenu=$request->get('SUBMENU_id');
         $submenuDefecto=submenu::all();
         $crear=$request->get('PLANTILLA_crear');
         $editar=$request->get('PLANTILLA_editar');
         $eliminar=$request->get('PLANTILLA_eliminar');
         if ($submenu !=null){
+            $empresa=Auth::user()->EMPRESA_id;
             $rol= new rol();
             $rol->ROL_descripcion=$request->get('ROL_descripcion');
             $rol->ROL_estado=1;
             $rol->updated_at=null;
+            $rol->EMPRESA_id=$empresa;
             $rol->save();
             foreach($submenuDefecto as $submenuDefectos){
                 //dd($submenuDefectos->SUBMENU_descripcion);

@@ -98,8 +98,8 @@
 
                                                             <div class="col-md-2" style="margin-top: 25px;">
                                                                 <div class="custom-control custom-checkbox form-check">
-                                                                    <input type="checkbox" class="custom-control-input" id="invalidCheck" name="PERSONA_venta">
-                                                                    <label class="custom-control-label" for="invalidCheck">Vendedor</label>
+                                                                    <input type="checkbox" class="custom-control-input" id="PERSONA_venta" name="PERSONA_venta" >
+                                                                    <label class="custom-control-label" for="PERSONA_venta" onclick="vendedor()">Vendedor</label>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -344,8 +344,10 @@
 
     <script type="text/javascript">
     function activaboton(){
+
         var EMPLEADO_cargo=$('#EMPLEADO_cargo').val();
         var usuario=$('#USER_name').val();
+
             if((EMPLEADO_cargo!=null)&&(EMPLEADO_cargo!='')){
                 $('#btnguarda').prop('disabled',false);
                 $('#EMPLEADO_cargo').prop('required',true);
@@ -379,6 +381,19 @@
                 }
             }
     }
+    </script>
+    <script>
+        function vendedor(){
+
+            $('#PERSONA_venta').on('change',function(){
+                
+                if ($(this).is(':checked')) {
+                    $('#btnguarda').prop('disabled',false);
+                }else{
+                    $('#btnguarda').prop('disabled',true);
+                }
+            });
+        }
     </script>
 
     <script type="text/javascript">
