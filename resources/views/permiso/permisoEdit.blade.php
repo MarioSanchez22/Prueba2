@@ -36,20 +36,20 @@ use App\permiso;
 
     <body>
         <div  id="preloader">
-   
+
             <div id="status" >
-             
+
                 @php
                 $usuario=Auth::user();
                 @endphp
-      
+
                 <strong style="font-size: 20px; color:#2e4965">@if ($usuario->EMPRESA_id==1)
                  MACROchips
                   @else
                   NeptComputer
                   @endif</strong>
                   <div class="spinner-grow avatar-sm text-secondary m-2" role="status"></div>
-             
+
             </div>
         </div>
         <!-- Begin page -->
@@ -230,10 +230,30 @@ use App\permiso;
                                                                                     </td>
                                                                                     @endif
                                                                                 @else
-                                                                                <td ><div class="switchery-demo text-center">  <input type="checkbox"  data-plugin="switchery" data-color="#64b0f2" data-size="small" name="SUBMENU_id[]" value="{{$submenus->SUBMENU_descripcion}}"/> </div></td>
-                                                                                <td><div class="switchery-demo  text-center">  <input type="checkbox"  data-plugin="switchery" data-color="#64b0f2" data-size="small" name="PERMISO_crear[]" value="{{$submenus->SUBMENU_descripcion}}"/> </div></td>
-                                                                                <td><div class="switchery-demo  text-center">  <input type="checkbox"  data-plugin="switchery" data-color="#64b0f2" data-size="small" name="PERMISO_editar[]" value="{{$submenus->SUBMENU_descripcion}}"/> </div></td>
-                                                                                <td><div class="switchery-demo  text-center">  <input type="checkbox"  data-plugin="switchery" data-color="#64b0f2" data-size="small" name="PERMISO_eliminar[]" value="{{$submenus->SUBMENU_descripcion}}"/> </div></td>
+                                                                                <td>
+                                                                                    <div class="custom-control custom-switch">
+                                                                                    <input type="checkbox" class="custom-control-input SUBMENU-{{$menus->MENU_id}}" id="SUBMENU-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}" name="SUBMENU_id[]" value="{{$submenus->SUBMENU_descripcion}}">
+                                                                                    <label class="custom-control-label" for="SUBMENU-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}" style="margin:0 50%;"></label>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="custom-control custom-switch">
+                                                                                    <input type="checkbox" class="custom-control-input SUBMENU-CREAR-{{$menus->MENU_id}}" id="SUBMENU-CREAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}"  name="PERMISO_crear[]" value="{{$submenus->SUBMENU_descripcion}}">
+                                                                                    <label class="custom-control-label" for="SUBMENU-CREAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}" style="margin:0 50%;"></label>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="custom-control custom-switch">
+                                                                                    <input type="checkbox" class="custom-control-input SUBMENU-EDITAR-{{$menus->MENU_id}}" id="SUBMENU-EDITAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}"  name="PERMISO_editar[]" value="{{$submenus->SUBMENU_descripcion}}">
+                                                                                    <label class="custom-control-label" for="SUBMENU-EDITAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}" style="margin:0 50%;"></label>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="custom-control custom-switch">
+                                                                                    <input type="checkbox" class="custom-control-input SUBMENU-ELIMINAR-{{$menus->MENU_id}}" id="SUBMENU-ELIMINAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}"  name="PERMISO_eliminar[]" value="{{$submenus->SUBMENU_descripcion}}">
+                                                                                    <label class="custom-control-label" for="SUBMENU-ELIMINAR-{{$menus->MENU_id}}-{{$submenus->SUBMENU_id}}" style="margin:0 50%;""></label>
+                                                                                    </div>
+                                                                                </td>
                                                                                 @endif
                                                                             </tr>
 

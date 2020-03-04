@@ -53,7 +53,9 @@ Route::POST('privilegios/update/{usuario}','permisoController@update')->name('pr
 
 Route::get('privilegios/buscar/{email}/{PERSONA_identificador}/{ROL_id}', 'permisoController@buscar')->name('privilegiosBuscar');
 ///////////////////////////////////////////////////////////////
-/////////////////////////
+////////////////////////////EMPRESA/////////////////////////////////////
+Route::get('empresa','productoController@create')->name('empresaIndex');
+////////////////////////////////////////////////////////////////////////
 //LOGISTICA
 //POVEEDOR
 Route::get('proveedor', 'proveedorController@index')->name('proveedorIndex');
@@ -98,6 +100,8 @@ Route::get('/productos', 'productoController@index')->name('productosIndex');
 
 Route::POST('/producto/{id}/ajuste', 'productoController@ajuste')->name('productoAjuste');
 Route::get('producto/registrar','productoController@create')->name('productoCreate');
+
+
 
 Route::get('/categoria', 'categoriaController@index')->name('categoriaIndex');
 Route::POST('/categoria/store', 'categoriaController@store')->name('categoriaStore');

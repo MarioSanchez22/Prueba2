@@ -22,20 +22,20 @@
 
     <body>
         <div  id="preloader">
-   
+
             <div id="status" >
-             
+
                 @php
                 $usuario=Auth::user();
                 @endphp
-      
+
                 <strong style="font-size: 20px; color:#2e4965">@if ($usuario->EMPRESA_id==1)
                  MACROchips
                   @else
                   NeptComputer
                   @endif</strong>
                   <div class="spinner-grow avatar-sm text-secondary m-2" role="status"></div>
-             
+
             </div>
         </div>
         <!-- Begin page -->
@@ -136,17 +136,17 @@
                                     <table   data-toggle="table"
                                     data-page-size="6"
                                     data-buttons-class="xs btn-light"
-                                    data-pagination="true" class="table-bordered " style="zoom: 88%; font-size:15px;">
+                                    data-pagination="true" class="table-bordered " style="zoom: 84%; font-size:15px;">
                                         <thead class="thead-light">
                                         <tr>
-                                        <th data-field="state" >#</th>
-                                        <th data-field="name">Usuario</th>
-                                        <th data-field="id" data-switchable="false">Nombre Usuario</th>
-                                        <th data-field="email">Documento de identidad</th>
-                                        <th data-field="rol">Rol</th>
-                                        <th data-field="perfil">Perfil</th>
-                                        <th data-field="estado">Estado</th>
-                                        <th data-field="opciones">Opciones</th>
+                                            <th data-field="state" >#</th>
+                                            <th data-field="name">Usuario</th>
+                                            <th data-field="id" data-switchable="false">Nombre Usuario</th>
+                                            <th data-field="email">Documento de identidad</th>
+                                            <th data-field="rol">Rol</th>
+                                            <th data-field="perfil">Perfil</th>
+                                            <th data-field="estado">Estado</th>
+                                            <th data-field="opciones"></th>
                                         </tr>
                                         </thead>
                                             <tbody>

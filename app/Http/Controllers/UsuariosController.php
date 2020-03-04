@@ -127,6 +127,7 @@ class UsuariosController extends Controller
             $PERSONA_identificador=$PERSONA_identificador2;
             $ROL_id=$ROL_id2;
 
+
             if($email=='0'){
                 if($PERSONA_identificador=='0'){
                     if($ROL_id=='0'){
@@ -191,16 +192,22 @@ class UsuariosController extends Controller
 
         public function show($personal){
             $persona=persona::find($personal);
-            $provedoc=proveedor_documento::where('PROVEDOC_id','=',$persona->PROVEDOC_id)->get();
+            $usuarioP2=User::where('PERSONA_id','=',$personal)->first();
             $empresa=empresa::where('EMPRESA_id','=',$persona->EMPRESA_id)->first();
-            //dd($empresa);
-            $usuarioP=User::where('PERSONA_id','=',$personal)->first();
+            $empleado=null;
+            $usuarioP=null;
+            $sucursalp=null;
+            $areap=null;
+            $empleado2=empleado::where('PERSONA_id','=',$personal)->first();
+            if($empleado2!=null){
+                $empleado=$empleado2;
+                $sucursalp=sucursal::where('SUCURSAL_id','=',$empleado->SUCURSAL_id)->first();
+                $areap=area::where('AREA_id','=',$empleado->AREA_id)->first();
+            }
+            if($usuarioP2!=null){
+                $usuarioP=$usuarioP2;
+            }
 
-            $empleado=empleado::where('PERSONA_id','=',$personal)->first();
-          
-           $sucursalp=sucursal::where('SUCURSAL_id','=',$empleado->SUCURSAL_id)->first();
-          
-           $areap=area::where('AREA_id','=',$empleado->AREA_id)->first();
-            return view('usuarios.usuariosShow',['persona'=>$persona,'provedoc'=>$provedoc,'empresa'=>$empresa,'usuarioP'=>$usuarioP,'empleado'=>$empleado,'sucursalp'=> $sucursalp,'areap'=> $areap]);
+           return view('usuarios.usuariosShow',['persona'=>$persona,'sucursalp'=>$sucursalp,'areap'=>$areap,'usuarioP'=>$usuarioP,'empleado'=>$empleado,'empresa'=>$empresa]);
         }
 }
