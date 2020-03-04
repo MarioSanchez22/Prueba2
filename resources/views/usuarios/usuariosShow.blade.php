@@ -23,20 +23,20 @@
 
     <body style="color: #649198;">
         <div  id="preloader">
-   
+
             <div id="status" >
-             
+
                 @php
                 $usuario=Auth::user();
                 @endphp
-      
+
                 <strong style="font-size: 20px; color:#2e4965">@if ($usuario->EMPRESA_id==1)
                  MACROchips
                   @else
                   NeptComputer
                   @endif</strong>
                   <div class="spinner-grow avatar-sm text-secondary m-2" role="status"></div>
-             
+
             </div>
         </div>
         <!-- Begin page -->
@@ -97,13 +97,13 @@
 
                                         @if ($persona->PERSONA_venta==1)
                                         <button type="button" class="btn btn-success btn-xs waves-effect mb-2 waves-light">Vendedor</button>
-                                    @endif
-                                    @if ($usuarioP!=null)
-                                    <button type="button" class="btn btn-success btn-xs waves-effect mb-2 waves-light">Usuario</button>
-                                    @endif
-                                    @if ($empleado!=null)
-                                    <button type="button" class="btn btn-success btn-xs waves-effect mb-2 waves-light">Empleado</button>
-                                    @endif
+                                        @endif
+                                        @if ($usuarioP!=null)
+                                        <button type="button" class="btn btn-success btn-xs waves-effect mb-2 waves-light">Usuario</button>
+                                        @endif
+                                        @if ($empleado!=null)
+                                        <button type="button" class="btn btn-success btn-xs waves-effect mb-2 waves-light">Empleado</button>
+                                        @endif
                                     <p >DNI: {{$persona->PERSONA_identificador}}</p>
                                     <p >Fecha de nacimiento: {{$persona->PERSONA_nacimiento}}</p>
 
@@ -112,25 +112,21 @@
 
                                     <div class="text-center mt-3">
                                         <h4 class="font-13 text-uppercase text-center">Empresa :</h4> {{$empresa->EMPRESA_nombre}}
-
-
                                             <br><br>
-
                                         <p class="text-muted mb-1 font-13"><strong>Direccion principal :</strong> <br> <label class="ml-2">{{$persona->PERSONA_direccion}}</label></p>
-
                                     </div></div>
                             <div class="col-lg-5 col-xl-5">
                                     <div class="col-lg-12 col-xl-12" style="border-left: solid; border-color:#afbdca">
                                         <div class="form-group" style="    width: 160%;
                                         ">
                                             <label class="control-label" for="PROVE_telefono"><i class="mdi mdi-phone mr-1"></i>Telefono: </label>
-                                            <input type="text" readonly="" class=" form-control-plaintext form-control-sm "  required placeholder="Telefono" name="PROVE_telefono" value=" {{$persona->PERSONA_telefono }}"> </div>
+                                            <input type="text" readonly="" class=" form-control-plaintext form-control-sm "  required placeholder="Telefono" name="PROVE_telefono" value=" {{$persona->PERSONA_telefono }}" disabled> </div>
                                         </div> <br>
                                         <div class="col-lg-12 col-xl-12" style="border-left: solid; border-color:#afbdca">
                                             <div class="form-group" style="    width: 160%;
                                             ">
                                                 <label class="control-label" for="PROVE_telefono"><i class="mdi mdi-phone mr-1"></i>Celular: </label>
-                                                <input type="text" readonly="" class=" form-control-plaintext form-control-sm "  required placeholder="Telefono" name="PROVE_telefono" value=" {{$persona->PERSONA_celular }}"> </div>
+                                                <input type="text" readonly="" class=" form-control-plaintext form-control-sm "  required placeholder="Telefono" name="PROVE_telefono" value=" {{$persona->PERSONA_celular }}" disabled> </div>
                                             </div> <br>
 
 
@@ -139,7 +135,7 @@
                                         <div class="form-group" style="    width: 160%;
                                         ">
                                             <label class="control-label text-left" for="PROVE_email" > <i class="mdi mdi-email mr-1"></i>Email: </label>
-                                            <input type="text" creadonly="" class=" col-md-12 form-control-plaintext form-control-sm "  required  placeholder="Email" name="PROVE_email" value=" {{$persona->PERSONA_email }}"> </div>
+                                            <input type="text" creadonly="" class=" col-md-12 form-control-plaintext form-control-sm "  required  placeholder="Email" name="PROVE_email" value=" {{$persona->PERSONA_email }}" disabled> </div>
                                         </div>
                                         <br>
 
@@ -148,7 +144,7 @@
                                     <div class="form-group" style="    width: 160%;
                                     ">
                                         <label class="control-label text-left" for="PROVE_email" > <i class="mdi mdi-email mr-1"></i>creado por: </label>
-                                        <input type="text" creadonly="" class=" col-md-12 form-control-plaintext form-control-sm "  required  placeholder="Email" name="PROVE_email" value="123333 "> </div>
+                                        <input type="text" creadonly="" class=" col-md-12 form-control-plaintext form-control-sm "  required  placeholder="Email" name="PROVE_email" value="123333 " disabled> </div>
                                     </div>
 
                                 </div>
@@ -157,11 +153,7 @@
 
                                 </div>
 
-
-
                                 </div> <!-- end card-box -->
-
-
 
                             </div> <!-- end col-->
 
@@ -175,30 +167,30 @@
 
 
                     <form class="form-inline col-md-12" style="border-top: solid; padding-top:7px">
-                      
+
                         </form>
 
                         <div class="col-md-6">
                          <div class="form-group">
                          <label class="control-label" >Cargo: </label>
-                         <input type="text"   class="form-control-plaintext form-control-sm " id="PROVECONT_descripcion"    value="{{$empleado->EMPLEADO_cargo }}">
+                         <input type="text"   class="form-control-plaintext form-control-sm " id="PROVECONT_descripcion"    value="{{$empleado->EMPLEADO_cargo }}" disabled>
                         </div>
                         </div>
 
                         <div class="col-md-6">
-                        <div class="form-group"><label class="control-label">Fecha de incorporacion: </label>  <input type="text"    id="PROVECONT_telefono"  class="form-control-plaintext form-control-sm " value="{{$empleado->EMPLEADO_fecha_incorporacion}}"></div></div>
+                        <div class="form-group"><label class="control-label">Fecha de incorporacion: </label>  <input type="text"    id="PROVECONT_telefono"  class="form-control-plaintext form-control-sm " value="{{$empleado->EMPLEADO_fecha_incorporacion}}" disabled></div></div>
 
                         <div class="col-md-6">
                         <div class="form-group">
                         <label class="control-label">Sucursal: </label>
-                       
-                         <input type="email"  id="PROVECONT_email" class="form-control-plaintext form-control-sm " style="margin-right: 2%;" value="{{$sucursalp->SUCURSAL_nombre}}"></div>
-                        
+
+                         <input type="email"  id="PROVECONT_email" class="form-control-plaintext form-control-sm " style="margin-right: 2%;" value="{{$sucursalp->SUCURSAL_nombre}}" disabled></div>
+
                         </div>
                          <div class="col-md-6">
                             <div class="form-group">
                             <label class="control-label">Area: </label>
-                             <input type="email"  id="PROVECONT_email" class="form-control-plaintext form-control-sm " style="margin-right: 2%;" value="{{$areap->AREA_descripcion}}"></div>
+                             <input type="email"  id="PROVECONT_email" class="form-control-plaintext form-control-sm " style="margin-right: 2%;" value="{{$areap->AREA_descripcion}}" disabled></div>
                              </div>
 
 
@@ -217,19 +209,19 @@
 
                      <div class="col-md-12"><label for="" class="control-label"><i class="mdi mdi-briefcase-account mr-1"></i>Datos de usuario:</label> </div>
                      <form class="form-inline col-md-12" style="border-top: solid; padding-top:7px">
-                      
+
                     </form>
 
 
                         <div class="col-md-4">
                          <div class="form-group">
                          <label class="control-label" >Nick: </label>
-                         <input type="text"   class="form-control-plaintext form-control-sm " id="PROVECONT_descripcion"    value="{{$usuarioP->USER_nick}}">
+                         <input type="text"   class="form-control-plaintext form-control-sm " id="PROVECONT_descripcion"    value="{{$usuarioP->USER_nick}}" disabled>
                         </div>
                         </div>
 
                         <div class="col-md-3">
-                        <div class="form-group"><label class="control-label">Usuario: </label>  <input type="text"    id="PROVECONT_telefono"  class="form-control-plaintext form-control-sm " value="{{$usuarioP->email}}"></div></div>
+                        <div class="form-group"><label class="control-label">Usuario: </label>  <input type="text"    id="PROVECONT_telefono"  class="form-control-plaintext form-control-sm " value="{{$usuarioP->email}}" disabled></div></div>
 
                         <div class="col-md-4">
                         <div class="form-group">
@@ -250,7 +242,7 @@
               </div>      <!-- /.end row -->
                      </div>  <!-- /.end car box -->
                      @endif
-                  
+
 
                      </div>  <!-- /.end col lg6 -->
 
