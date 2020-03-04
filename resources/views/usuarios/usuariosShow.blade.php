@@ -22,7 +22,23 @@
     </head>
 
     <body style="color: #649198;">
-
+        <div  id="preloader">
+   
+            <div id="status" >
+             
+                @php
+                $usuario=Auth::user();
+                @endphp
+      
+                <strong style="font-size: 20px; color:#2e4965">@if ($usuario->EMPRESA_id==1)
+                 MACROchips
+                  @else
+                  NeptComputer
+                  @endif</strong>
+                  <div class="spinner-grow avatar-sm text-secondary m-2" role="status"></div>
+             
+            </div>
+        </div>
         <!-- Begin page -->
         <div id="wrapper">
 
@@ -82,7 +98,7 @@
                                         @if ($persona->PERSONA_venta==1)
                                         <button type="button" class="btn btn-success btn-xs waves-effect mb-2 waves-light">Vendedor</button>
                                     @endif
-                                    @if ($usuario!=null)
+                                    @if ($usuarioP!=null)
                                     <button type="button" class="btn btn-success btn-xs waves-effect mb-2 waves-light">Usuario</button>
                                     @endif
                                     @if ($empleado!=null)
@@ -152,30 +168,38 @@
                    <div class="col-lg-6 col-xl-6">
 
                     @if ($empleado!=null)
-                     <div class="card-box ">
+                     <div class="card-box" style="padding-bottom: 0px">
                      <div class="row">
 
                      <div class="col-md-12"><label for="" class="control-label"><i class="mdi mdi-briefcase-account mr-1"></i>Datos de empleado:</label> </div>
 
 
                     <form class="form-inline col-md-12" style="border-top: solid; padding-top:7px">
-                        <div class="form-group"><label class="control-label">Nombre: </label>  <input type="text"  id="PROVECONT_nombre"  class="form-control-plaintext form-control-sm "  value="7">
-                        </div></form>
+                      
+                        </form>
 
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                          <div class="form-group">
                          <label class="control-label" >Cargo: </label>
-                         <input type="text"   class="form-control-plaintext form-control-sm " id="PROVECONT_descripcion"    value="7">
+                         <input type="text"   class="form-control-plaintext form-control-sm " id="PROVECONT_descripcion"    value="{{$empleado->EMPLEADO_cargo }}">
                         </div>
                         </div>
 
-                        <div class="col-md-3">
-                        <div class="form-group"><label class="control-label">Número: </label>  <input type="text"    id="PROVECONT_telefono"  class="form-control-plaintext form-control-sm " value="5"></div></div>
+                        <div class="col-md-6">
+                        <div class="form-group"><label class="control-label">Fecha de incorporacion: </label>  <input type="text"    id="PROVECONT_telefono"  class="form-control-plaintext form-control-sm " value="{{$empleado->EMPLEADO_fecha_incorporacion}}"></div></div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                         <div class="form-group">
-                        <label class="control-label">Email: </label>
-                         <input type="email"  id="PROVECONT_email" class="form-control-plaintext form-control-sm " style="margin-right: 2%;" value="6"></div> </div>
+                        <label class="control-label">Sucursal: </label>
+                       
+                         <input type="email"  id="PROVECONT_email" class="form-control-plaintext form-control-sm " style="margin-right: 2%;" value="{{$sucursalp->SUCURSAL_nombre}}"></div>
+                        
+                        </div>
+                         <div class="col-md-6">
+                            <div class="form-group">
+                            <label class="control-label">Area: </label>
+                             <input type="email"  id="PROVECONT_email" class="form-control-plaintext form-control-sm " style="margin-right: 2%;" value="{{$areap->AREA_descripcion}}"></div>
+                             </div>
 
 
 
@@ -187,28 +211,30 @@
               </div>      <!-- /.end row -->
                      </div>  <!-- /.end car box -->
                      @endif
-                     @if ($usuario!=null)
-                     <div class="card-box ">
+                     @if ($usuarioP!=null)
+                     <div class="card-box" style="padding-bottom: 0px">
                      <div class="row">
 
                      <div class="col-md-12"><label for="" class="control-label"><i class="mdi mdi-briefcase-account mr-1"></i>Datos de usuario:</label> </div>
-
+                     <form class="form-inline col-md-12" style="border-top: solid; padding-top:7px">
+                      
+                    </form>
 
 
                         <div class="col-md-4">
                          <div class="form-group">
                          <label class="control-label" >Nick: </label>
-                         <input type="text"   class="form-control-plaintext form-control-sm " id="PROVECONT_descripcion"    value="{{$usuario->USER_nick}}">
+                         <input type="text"   class="form-control-plaintext form-control-sm " id="PROVECONT_descripcion"    value="{{$usuarioP->USER_nick}}">
                         </div>
                         </div>
 
                         <div class="col-md-3">
-                        <div class="form-group"><label class="control-label">Usuario: </label>  <input type="text"    id="PROVECONT_telefono"  class="form-control-plaintext form-control-sm " value="{{$usuario->email}}"></div></div>
+                        <div class="form-group"><label class="control-label">Usuario: </label>  <input type="text"    id="PROVECONT_telefono"  class="form-control-plaintext form-control-sm " value="{{$usuarioP->email}}"></div></div>
 
                         <div class="col-md-4">
                         <div class="form-group">
                         <label class="control-label">Estado: </label> <br>
-                        @if($usuario->USER_estado==1)
+                        @if($usuarioP->USER_estado==1)
                          <button type="button" class="btn btn-success btn-xs waves-effect mb-2 waves-light">Activo</button>
                         @else
                         <button type="button" class="btn btn-danger btn-xs waves-effect mb-2 waves-light">Bloqueado</button>
@@ -224,19 +250,7 @@
               </div>      <!-- /.end row -->
                      </div>  <!-- /.end car box -->
                      @endif
-                     <div class="card-box ">
-                        <div class="row">
-                            <div class="col-md-6" style="margin-left: 27%">
-                                <form action="" class="form-inline">
-                                <div class="form-group">
-                                <label class="control-label"  style="font-weight: bold;">Fecha y hora de creacion: </label> &nbsp&nbsp
-                                 <input type="text" value="" class="form-control form-control-sm" style="border-color: #fff; font-weight: bold;">
-                                </div>
-                                </form>
-                            </div>
-
-                 </div>      <!-- /.end row -->
-                        </div>  <!-- /.end car box -->
+                  
 
                      </div>  <!-- /.end col lg6 -->
 

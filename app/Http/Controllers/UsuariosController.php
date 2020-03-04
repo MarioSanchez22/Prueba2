@@ -194,10 +194,13 @@ class UsuariosController extends Controller
             $provedoc=proveedor_documento::where('PROVEDOC_id','=',$persona->PROVEDOC_id)->get();
             $empresa=empresa::where('EMPRESA_id','=',$persona->EMPRESA_id)->first();
             //dd($empresa);
-            $usuario=User::where('PERSONA_id','=',$personal)->first();
+            $usuarioP=User::where('PERSONA_id','=',$personal)->first();
 
             $empleado=empleado::where('PERSONA_id','=',$personal)->first();
-           
-            return view('usuarios.usuariosShow',['persona'=>$persona,'provedoc'=>$provedoc,'empresa'=>$empresa,'usuario'=>$usuario,'empleado'=>$empleado]);
+          
+           $sucursalp=sucursal::where('SUCURSAL_id','=',$empleado->SUCURSAL_id)->first();
+          
+           $areap=area::where('AREA_id','=',$empleado->AREA_id)->first();
+            return view('usuarios.usuariosShow',['persona'=>$persona,'provedoc'=>$provedoc,'empresa'=>$empresa,'usuarioP'=>$usuarioP,'empleado'=>$empleado,'sucursalp'=> $sucursalp,'areap'=> $areap]);
         }
 }

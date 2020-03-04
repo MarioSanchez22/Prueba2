@@ -18,6 +18,23 @@ use App\categoria_producto;
     </head>
 
     <body>
+        <div  id="preloader">
+   
+            <div id="status" >
+             
+                @php
+                $usuario=Auth::user();
+                @endphp
+      
+                <strong style="font-size: 20px; color:#2e4965">@if ($usuario->EMPRESA_id==1)
+                 MACROchips
+                  @else
+                  NeptComputer
+                  @endif</strong>
+                  <div class="spinner-grow avatar-sm text-secondary m-2" role="status"></div>
+             
+            </div>
+        </div>
         <style>
             .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
         color: #fff;
@@ -97,7 +114,7 @@ use App\categoria_producto;
                                                         <div class="input-group-prepend ">
                                                             <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-barcode"></i></span>
                                                         </div>
-                                                      <input type="text" class="form-control form-control-sm" value=" {{$ultimoid}}"  id="codigo" name="codigo" disabled style="background: #e9ecef"> </div>
+                                                      <input type="text" class="form-control form-control-sm" value=" {{$id_ultimo}}"  id="codigo" name="codigo" disabled style="background: #e9ecef"> </div>
                                                   </div>
                                                 </div>
                                                 <div class="col-md-6">
