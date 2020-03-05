@@ -23,20 +23,20 @@ use App\umedidas;
 
     <body>
         <div  id="preloader">
-   
+
             <div id="status" >
-             
+
                 @php
                 $usuario=Auth::user();
                 @endphp
-      
+
                 <strong style="font-size: 20px; color:#2e4965">@if ($usuario->EMPRESA_id==1)
                  MACROchips
                   @else
                   NeptComputer
                   @endif</strong>
                   <div class="spinner-grow avatar-sm text-secondary m-2" role="status"></div>
-             
+
             </div>
         </div>
  <style>
@@ -593,16 +593,16 @@ use App\umedidas;
                                                 <div class="form-inline">
 
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" checked="">
+                                                    <input class="form-check-input" type="checkbox" id="factura" onclick="activacompra()">
                                                     <label class=" not-bold">Factura: </label> &nbsp;
                                                 </div>
-                                                <div class="col-md-4"><input class="form-control form-control-sm" type="text"  name="COMPRO_factura"></div>
+                                                <div class="col-md-4"><input class="form-control form-control-sm" type="text"  name="COMPRO_factura" disabled></div>
                                                 <div class="col-md-4">
                                                     <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                                     </div>
-                                                    <input class="form-control form-control-sm" data-date-format="dd/mm/yyyy" id="datepicker" name="COMPRO_facturaF">
+                                                    <input class="form-control form-control-sm" data-date-format="dd/mm/yyyy" id="datepicker" name="COMPRO_facturaF" disabled>
                                                     </div>
                                                 </div>
                                             </div>
@@ -611,16 +611,16 @@ use App\umedidas;
                                             <div class="form-inline">
 
                                               <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" checked="">
+                                                <input class="form-check-input" type="checkbox" id="gria" onclick="activacompraG()">
                                                 <label class=" not-bold">GRIA: </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                               </div>
-                                             <div class="col-md-4"><input class="form-control form-control-sm" type="text" name="COMPRO_gria"></div>
+                                             <div class="col-md-4"><input class="form-control form-control-sm" type="text" name="COMPRO_gria" disabled></div>
                                               <div class="col-md-4">
                                                 <div class="input-group">
                                                   <div class="input-group-prepend">
                                                     <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                                   </div>
-                                                  <input class="form-control form-control-sm" data-date-format="dd/mm/yyyy" id="datepicker1" name="COMPRO_griaF">
+                                                  <input class="form-control form-control-sm" data-date-format="dd/mm/yyyy" id="datepicker1" name="COMPRO_griaF" disabled>
                                                 </div>
                                               </div>
                                             </div>
@@ -651,7 +651,7 @@ use App\umedidas;
                                         </div>
                                         <div class="col-md-4 mb-2">
                                             {{-- <a href="#custom-modal1" class="btn btn-light btn-rounded waves-effect btn-sm" style="width: 105%; right: 11px"  data-animation="fadein" data-plugin="custommodal" data-overlayColor="#38414a"><i class="mdi mdi-plus-circle mr-1"></i> Agregar producto a la compra</a> --}}
-                                          <button type="button" class="btn btn-light btn-rounded waves-effect btn-sm" data-toggle="modal"   style="width: 100%; right: 8px"   data-target="#agregarArti"><span class=" fa fa-plus-square"> </span> Agregar producto a la compra</button></div>
+                                          <button type="button"  id="guardarCompra" class="btn btn-light btn-rounded waves-effect btn-sm" data-toggle="modal"   style="width: 100%; right: 8px" disabled  data-target="#agregarArti"><span class=" fa fa-plus-square"> </span> Agregar producto a la compra</button></div>
                                         </div>
                                         <div class="col-md-12">
                                       <table id="tabA" class="table table-bordered table-sm">
@@ -736,7 +736,7 @@ use App\umedidas;
                                             <button type="button" class="btn btn-secondary waves-effect btn-sm" data-dismiss="modal">Close</button>
                                         </div>
                                         <div class="col-md-6 text-right">
-                                            <button type="submit"  class="btn btn-blue waves-effect waves-light btn-sm">Save changes</button></a>
+                                            <button type="submit" name="guardartodo"  class="btn btn-blue waves-effect waves-light btn-sm" disabled>Save changes</button></a>
                                         </div>
                                         </DIV>
 
@@ -786,15 +786,76 @@ use App\umedidas;
 @include('layouts.scripts')
 <script src="assets/libs/custombox/custombox.min.js"></script>
 <script>
-   $('#guardarCompra').click(function()
-   {
+    function activacompra(){
+        if ($('#factura').is(':checked')) {
+        $('input[name=COMPRO_factura]').prop('disabled',false);
+        $('input[name=COMPRO_facturaF]').prop('disabled',false);
+        $('button[name=guardartodo]').prop('disabled',false);
+        $('input[name=COMPRO_factura]').prop('required',true);
+        $('input[name=COMPRO_facturaF]').prop('required',true);
+        if ($('table#tabA tbody tr').length == 0){
+            $('button[name=guardartodo]').prop('disabled',true);
+        } else{
+            $('button[name=guardartodo]').prop('disabled',false);
+        }
+        }
+        else{
+            if ($('table#tabA tbody tr').length == 0){
+            $('button[name=guardartodo]').prop('disabled',true);
+        } else{
+            $('button[name=guardartodo]').prop('disabled',false);
+        }
+            $('input[name=COMPRO_factura]').prop('disabled',true);
+        $('input[name=COMPRO_facturaF]').prop('disabled',true);
+        $('input[name=COMPRO_factura]').prop('required',false);
+        $('input[name=COMPRO_facturaF]').prop('required',false);
+        $('button[name=guardartodo]').prop('disabled',true);
+        $('input[name=COMPRO_factura]').val('');
+        $('input[name=COMPRO_facturaF]').val('');
 
-   });
+        }
+
+    }
+    function activacompraG(){
+        if ($('#gria').is(':checked')) {
+        $('input[name=COMPRO_gria]').prop('disabled',false);
+        $('input[name=COMPRO_griaF]').prop('disabled',false);
+        $('button[name=guardartodo]').prop('disabled',false);
+        $('input[name=COMPRO_gria]').prop('required',true);
+        $('input[name=COMPRO_griaF]').prop('required',true);
+        if ($('table#tabA tbody tr').length == 0){
+            $('button[name=guardartodo]').prop('disabled',true);
+        }
+        else{
+            $('button[name=guardartodo]').prop('disabled',false);
+        }
+        }
+        else{
+            if ($('table#tabA tbody tr').length == 0){
+            $('button[name=guardartodo]').prop('disabled',true);
+        }
+        else{
+            $('button[name=guardartodo]').prop('disabled',false);
+        }
+        $('input[name=COMPRO_gria]').prop('disabled',true);
+        $('input[name=COMPRO_griaF]').prop('disabled',true);
+        $('button[name=guardartodo]').prop('disabled',true);
+        $('input[name=COMPRO_gria]').prop('required',false);
+        $('input[name=COMPRO_griaF]').prop('required',false);
+        $('input[name=COMPRO_gria]').val('');
+        $('input[name=COMPRO_griaF]').val('');
+
+        }
+
+    }
+
 </script>
 <script>
 
     $(document).ready(function() {
-
+        if ($('table#tabA tbody tr').length == 0){
+            $('button[name=guardartodo]').prop('disabled',true);
+        }
 $('.subtotal').each(function() {
  sum += parseFloat(this);
 });
@@ -870,6 +931,7 @@ $('#totalPr').val(total.toFixed(2)); */
       $('#bprodu').change(function(selectPro){
           selectPro=$('#bprodu').val();
            var producto = selectPro;
+
            $.ajax({
                     url:"{{route('comprasShowart')}}",
                     method:"POST",
@@ -904,8 +966,11 @@ $(document).ready(function() {
     });
 
 
+
+
     $('#bpro').change(function(){
            var prov = $(this).val();
+
            $.ajax({
                     url:"{{route('comprasShowp')}}",
                     method:"POST",
@@ -913,7 +978,9 @@ $(document).ready(function() {
                         prov:prov,
                     },
                 success:function(data){
+
                    $('#PROVE_dias').val(data.PROVE_dias_credito);
+                   $('#guardarCompra').prop('disabled',false);
                 }
            });
       });
@@ -972,7 +1039,7 @@ $(document).ready(function() {
         autoclose: true,
         todayHighlight: true,
     });
-    $('#datepicker').datepicker("setDate", new Date());
+    $('#datepicker').datepicker( new Date());
 
 </script>
 <script type="text/javascript">
@@ -982,7 +1049,8 @@ $(document).ready(function() {
         autoclose: true,
         todayHighlight: true,
     });
-    $('#datepicker1').datepicker("setDate", new Date());
+    // $('#datepicker1').datepicker("setDate", new Date());
+     $('#datepicker1').datepicker( new Date());
 
 </script>
 
