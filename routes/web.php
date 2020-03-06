@@ -55,9 +55,16 @@ Route::get('privilegios/buscar/{email}/{PERSONA_identificador}/{ROL_id}', 'permi
 ///////////////////////////////////////////////////////////////
 
 ////////////////////////////EMPRESA/////////////////////////////////////
-Route::get('empresa','productoController@create')->name('empresaIndex');
-////////////////////////////////////////////////////////////////////////
+Route::get('empresa','empresaController@show')->name('empresaShow');
+Route::POST('empresa/{empresa}','empresaController@update')->name('empresaUpdate');
 
+////////////////////////////SUCURSAL/////////////////////////////////////
+Route::POST('sucursal/create','empresaController@sucursalCreate')->name('sucursalCreate');
+
+////////////////////////////AREA////////////////////////////////////////
+Route::POST('area/create','empresaController@areaCreate')->name('areaCreate');
+
+////////////////////////////////////////////////////////////////////////
 //LOGISTICA
 //POVEEDOR
 Route::get('proveedor', 'proveedorController@index')->name('proveedorIndex');

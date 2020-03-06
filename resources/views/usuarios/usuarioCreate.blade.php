@@ -6,6 +6,7 @@
         <meta charset="utf-8" />
         <title>UBold - Responsive Admin Dashboard Template</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -14,20 +15,20 @@
     </head>
     <body>
         <div  id="preloader">
-   
+
             <div id="status" >
-             
+
                 @php
                 $usuario=Auth::user();
                 @endphp
-      
+
                 <strong style="font-size: 20px; color:#2e4965">@if ($usuario->EMPRESA_id==1)
                  MACROchips
                   @else
                   NeptComputer
                   @endif</strong>
                   <div class="spinner-grow avatar-sm text-secondary m-2" role="status"></div>
-             
+
             </div>
         </div>
         <!-- Begin page -->
@@ -259,7 +260,6 @@
                                                                                 <div class="form-group">
                                                                                   <label class="control-label">Sucursal:</label>
                                                                                   <select  class="form-control  form-control-sm " name="SUCURSAL_id" id="SUCURSAL_id">
-                                                                                    <option value="">Sucursal</option>
                                                                                     @foreach($sucursal as $sucursales)
                                                                                         <option value="{{$sucursales->SUCURSAL_id}}">{{$sucursales->SUCURSAL_nombre}}</option>
                                                                                     @endforeach
@@ -271,7 +271,6 @@
                                                                                   <label class="control-label">Área:</label>
 
                                                                                   <select  class="form-control  form-control-sm " name="AREA_id" id="AREA_id">
-                                                                                    <option value="">Área</option>
                                                                                     @foreach($area as $areas)
                                                                                         <option value="{{$areas->AREA_id}}">{{$areas->AREA_descripcion}}</option>
                                                                                     @endforeach
@@ -286,6 +285,7 @@
                                                 </div>
                                                 </div>
                                         <div class="modal-footer d-flex" style="background:#f5f5f5">
+                                        <a href="{{route('usuariosIndex')}}"><button  type="button" class="btn btn-primary" style="background-color: #bd3333;">Cancelar</button></a>
                                         <button type="submit" class="btn btn-primary" style="background-color: #446e8c;" id="btnguarda" disabled>Save changes</button>
                                       </div>
                                         </div> <!-- end card-box-->
@@ -352,11 +352,9 @@
                               var resultados=data;
                                   $('#PROVE_razon_social').val(data.apellidoPaterno+" "+data.apellidoMaterno+" "+ data.nombres);
                           }
+                        });
+                    }
                 });
-                                 }
-
-                });
-
         </script>
 
     <script type="text/javascript">
@@ -403,7 +401,7 @@
         function vendedor(){
 
             $('#PERSONA_venta').on('change',function(){
-                
+
                 if ($(this).is(':checked')) {
                     $('#btnguarda').prop('disabled',false);
                 }else{

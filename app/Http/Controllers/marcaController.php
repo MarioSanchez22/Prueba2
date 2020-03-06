@@ -8,18 +8,15 @@ class marcaController extends Controller
 {
     public function index(){
         $marca=marca::all();
-
         //dd($proveedor);
-           return view('marca.index',[ 'marca'=>$marca]);
-        }
-
-        public function store(Request $request){    //dd($request);
-            $marca=new marca();
-              $marca->fill($request->only('MARCA_descripcion'));
-                  $marca->MARCA_descripcion=$request->get('MARCA_descripcion');
-                $marca->save();
-        //dd($proveedor);
+        return view('marca.index',['marca'=>$marca]);
+    }
+    public function store(Request $request){    //dd($request);
+        $marca=new marca();
+        $marca->MARCA_descripcion=$request->get('MARCA_descripcion');
+        $marca->save();
         $marca2=marca::all();
-                   return view('marca.index',['marca'=>$marca2]);
-                }
+        //dd($marca2);
+        return view('marca._marcaNueva',['marca'=>$marca2]);
+    }
 }

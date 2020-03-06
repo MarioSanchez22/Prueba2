@@ -9,6 +9,7 @@ use App\categoria_producto;
         <meta charset="utf-8" />
         <title>UBold - Responsive Admin Dashboard Template</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="csrf-token" content="{{csrf_token()}}"/>
 
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
@@ -19,20 +20,20 @@ use App\categoria_producto;
 
     <body>
         <div  id="preloader">
-   
+
             <div id="status" >
-             
+
                 @php
                 $usuario=Auth::user();
                 @endphp
-      
+
                 <strong style="font-size: 20px; color:#2e4965">@if ($usuario->EMPRESA_id==1)
                  MACROchips
                   @else
                   NeptComputer
                   @endif</strong>
                   <div class="spinner-grow avatar-sm text-secondary m-2" role="status"></div>
-             
+
             </div>
         </div>
         <style>
@@ -65,78 +66,85 @@ use App\categoria_producto;
                     <!-- Start Content-->
                     <div class="container-fluid">
 
+                    <!--  Modal content for the above example -->
+                    <div class="modal fade bs-example-modal-lg" id="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                        <div class="modal-dialog modal-lg" style="margin-top: 10%;">
+                            <div class="modal-content" style="width: 50%; margin:auto;">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="myLargeModalLabel">Agregar Marca</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="">Marca:</label>
+                                                <input type="text" class="form-control form-control-sm" id="MARCA_descripcion" name="MARCA_descripcion" required>
+                                            </div>
+                                                <button type="button" id="MarcaRe"  class="btn btn-dark waves-effect waves-light" onclick="marcaRegistrar()">Registrar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
+
                     <!-- start page title -->
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box">
                                 <div class="page-title-right">
-
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
 
                                 <div class="row icons-list-demo" style="color:#373f5f">
                                     <div class="col-sm-7 col-md-7 col-lg-4" style="font-size: 19px;font-weight: bold;padding-top: 5px; padding-left: 0px">
-                                        <i class="mdi mdi-24px mdi-apps" style=" margin-right: -6px;color:#373f5f"></i> MARCAS
+                                        <i class="mdi mdi-24px mdi-apps" style="margin:0 6px;color:#373f5f"></i>MARCAS
                                     </div>
                                     <div class="col-md-8" style="padding-top: 6px">
-                                        <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" onclick="location.href='{{route('proveedorCreate')}}'"><span class=" fa fa-user-plus"> </span>  Producto</button>
+                                        <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" data-toggle="modal" data-target=".bs-example-modal-lg"><span class=" fa fa-user-plus"> </span>&nbsp; Marca</button>
                                     </div>
                             </div>
                         </div>
-
                     </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row" style="margin-top: 10px;">
-
+                    <div class="row" style="margin-top: 10px;" >
                         <div class="col 12 bounceInLeft animated">
                             <div class="card-box">
-                            <h4>Registro de marca</h4>
                             <div class="row">
-                              <div class="col-md-4">
-                               <div class="row">
-                                <form action=" {{route('marcaStore')}} " method="POST" enctype="multipart/form-data" class="col-md-12">
-                                    {{ csrf_field()}}
-                                  <div class="col-md-12">
-                                  <div class="form-group">
-                                    <label for="">Descripcion:</label>
-                                    <input type="text" class="form-control form-control-sm" id="MARCA_descripcion" name="MARCA_descripcion" required>
-
-                                  </div>
-                                   <button type="submit" id="btnS" name="btnS" class="btn btn-dark waves-effect waves-light">Registrar</button>
-                                  </div>
-                                </form>
-                               </div>
-                              </div>
-                              <div class="col-md-8" id="cat" name="cat">
-                                <table data-toggle="table"
-                                data-show-columns="false"
-                                data-page-list="[5, 10, 20]"
-                                data-page-size="5"
-                                data-buttons-class="xs btn-light"
-                                data-pagination="true" class="table-borderless">
-                             <thead class="thead-light">
-                                          <tr>
-                                          <th>#</th>
-                                          <th>Descripcion</th>
-                                          <th>Opciones</th>
-                                      </tr>
-                                      </thead>
-                                      <tbody>
-                                        <tr>
-                                        @foreach ($marca as $marca )
-                                        <td>{{$loop->index+1}}</td>
-                                        <td>{{$marca->MARCA_descripcion}}</td>
-                                        <td><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                            <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a></td></tr>
-                                        @endforeach
-                                    </tbody>
-                                  </table>
-                              </div>
-                          </div>
+                                <div class="col-md-10"  style="margin:0 auto;" id="listaMarcasNueva2">
+                                </div>
+                                <div class="col-md-10"  style="margin:0 auto;" id="listaMarcasNueva">
+                                    <table data-toggle="table"
+                                        data-page-size="5"
+                                        data-buttons-class="xs btn-light"
+                                        data-pagination="true" class="table-bordered " style="display: inline-table;">
+                                        <thead class="thead-light">
+                                                <th>#</th>
+                                                <th>Descripción</th>
+                                                <th>Opciones</th>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($marca as $marcas )
+                                            <tr>
+                                                <td>{{$loop->index+1}}</td>
+                                                <td>{{$marcas->MARCA_descripcion}}</td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                           <!-- /.card -->
                         </div>
@@ -264,24 +272,32 @@ use App\categoria_producto;
 
 @include('layouts.scripts')
 
+<script>
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers:{
+                'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    })
+</script>
 
 <script>
-     $('#btnS').click(function(){
-
-
-
-$.ajax({
-  type:"get",
-
-  success:function(data, status){
-
-
-     $('#cat').load(location.href+" #cat>*");
-
-
-}
-});
-});
+    function marcaRegistrar(){
+        var MARCA_descripcion= $('#MARCA_descripcion').val();
+        $.ajax({
+            url:"{{route('marcaStore')}}",
+            method:"POST",
+            data:{
+                MARCA_descripcion:MARCA_descripcion,
+            },
+                success:function(data){
+                $('#modal').modal("hide");
+                $('#listaMarcasNueva').hide();
+                $('#listaMarcasNueva2').html(data);
+            }
+        });
+    }
 </script>
 
 

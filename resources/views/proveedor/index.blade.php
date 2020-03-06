@@ -19,20 +19,20 @@
     </head>
     <body>
         <div  id="preloader">
-   
+
             <div id="status" >
-             
+
                 @php
                 $usuario=Auth::user();
                 @endphp
-      
+
                 <strong style="font-size: 20px; color:#2e4965">@if ($usuario->EMPRESA_id==1)
                  MACROchips
                   @else
                   NeptComputer
                   @endif</strong>
                   <div class="spinner-grow avatar-sm text-secondary m-2" role="status"></div>
-             
+
             </div>
         </div>
         <!-- Begin page -->
@@ -160,8 +160,6 @@
                                 <th data-field="state" >#</th>
                                 <th data-field="id" data-switchable="false">RUC</th>
                                 <th data-field="name">Razon social</th>
-
-
                                 <th data-field="amount">Email</th>
                                 <th data-field="amRount">Telefono</th>
                                 <th data-field="amTount">Etiqueta</th>
@@ -215,8 +213,6 @@
                                 <div id ="tabla1" class="bounceInLeft animated">
 
                                 </div>
-
-
                     </div>
                        <!-- /.card-body -->
                           </div>

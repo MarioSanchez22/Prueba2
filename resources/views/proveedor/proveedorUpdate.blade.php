@@ -14,20 +14,20 @@
 
     <body>
         <div  id="preloader">
-   
+
             <div id="status" >
-             
+
                 @php
                 $usuario=Auth::user();
                 @endphp
-      
+
                 <strong style="font-size: 20px; color:#2e4965">@if ($usuario->EMPRESA_id==1)
                  MACROchips
                   @else
                   NeptComputer
                   @endif</strong>
                   <div class="spinner-grow avatar-sm text-secondary m-2" role="status"></div>
-             
+
             </div>
         </div>
         <!-- Begin page -->
@@ -309,15 +309,6 @@
                                                                     </div><!-- /.modal-content -->
                                                                 </div><!-- /.modal-dialog -->
                                                             </div><!-- /.modal -->
-
-
-
-
-
-
-
-
-
                                                 </div> <br>
                                         </div>
                                         <!-- end card-box-->

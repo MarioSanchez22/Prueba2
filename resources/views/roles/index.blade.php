@@ -42,20 +42,20 @@ use App\User;
 
     <body>
         <div  id="preloader">
-   
+
             <div id="status" >
-             
+
                 @php
                 $usuario=Auth::user();
                 @endphp
-      
+
                 <strong style="font-size: 20px; color:#2e4965">@if ($usuario->EMPRESA_id==1)
                  MACROchips
                   @else
                   NeptComputer
                   @endif</strong>
                   <div class="spinner-grow avatar-sm text-secondary m-2" role="status"></div>
-             
+
             </div>
         </div>
         <!-- Begin page -->
@@ -95,18 +95,15 @@ use App\User;
                                     <div class="col-md-8" style="padding-top: 6px">
                                         <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" onclick="location.href='{{route('rolCreate')}}'"><span class=" fa fa-user-plus"> </span>  Rol</button>
                                     </div>
-
                             </div>
                         </div>
-
                     </div>
                             </div>
                         </div>
                     </div>
-
                     <div  class="row bounceInUp animated">
                         <div class="col-md-12">
-                          <div class="card" style=" margin-bottom: 0px;   ">
+                          <div class="card" style=" margin-bottom: 0px;">
                             <div class="card-body col-md-12" style="padding-left: 0px; padding-right: 0px;">
                                         <div class="card-box " style=" padding-top: 0px; margin-bottom: 0px;padding-bottom: 5px;">
                                             <ul class="nav nav-tabs" style="background:#f5f5f5">
@@ -116,11 +113,10 @@ use App\User;
                                                     </a>
                                                 </li>
                                             </ul>
-                                            <div class="tab-content ">
-                                                <div class="tab-pane show active " id="home">
+                                            <div class="tab-content">
+                                                <div class="tab-pane show active" id="home">
                                                     <div class="row">
                                                         <div class="col-lg-12">
-
                                                             <table   data-toggle="table"
                                                             data-page-size="6"
                                                             data-buttons-class="xs btn-light"
@@ -146,7 +142,7 @@ use App\User;
                                                                             @endif
                                                                         </td>
                                                                         <td>
-                                                                                <a href="{{route('rolEdit',[$roles->ROL_id])}}" class="action-icon" title="Editar"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                                            <a href="{{route('rolEdit',[$roles->ROL_id])}}" class="action-icon" title="Editar"> <i class="mdi mdi-square-edit-outline"></i></a>
                                                                         </td>
                                                                     </tr>
                                                                     @endforeach
@@ -156,14 +152,11 @@ use App\User;
                                                 </div>
                                                 </div>
                                         <div class="modal-footer d-flex" style="background:#f5f5f5">
-
                                       </div>
                                         <!-- end card-box-->
-
                                 </div>
                                 <!-- end row -->
                             </div>
-
                             <!-- /.card-body -->
                           </div>
                         <!-- /.col -->
