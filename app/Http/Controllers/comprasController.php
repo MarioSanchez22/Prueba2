@@ -17,6 +17,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use PhpParser\Node\Stmt\Else_;
 
 class comprasController extends Controller
 {
@@ -55,7 +56,9 @@ public function showart(Request $request){
     $categoria=categoria_producto::where('CATPRO_id','=',$producto->CATPRO_id)->first();
     $marca=marca::where('MARCA_id','=',$producto->MARCA_id)->first();
     $medida=umedidas::where('UME_id','=',$producto->UME_id)->first();
-    return [$producto,$categoria,$marca,$medida];
+    $ultimopre=compro_item::where('PRO_id','=',$producto->PRO_id)->get()->last();
+
+    return [$producto,$categoria,$marca,$medida,$ultimopre];
 }
 
 public function rproductostore(Request $request){
@@ -85,6 +88,25 @@ public function rproductoCstore(Request $request){
     $productoregC->PRO_garantia=$request->get('garantia');
     $productoregC->PRO_costo=$request->get('costo');
     $productoregC->PRO_cantidad=$request->get('cantidad');
+    $productoregC->PROCO_factura=$request->get('factura');
+    $fechaFact=$request->get('facturaF');
+    if($fechaFact!=NULL){
+        $f2 = explode("/", $fechaFact);
+        $productoregC->PROCO_facturaF = $f2[2]."-".$f2[1]."-".$f2[0];
+    }
+    else{
+        $productoregC->PROCO_facturaF =NULL;
+    }
+
+    $productoregC->PROCO_gria=$request->get('gria');
+    $fechaGr=$request->get('griaF');
+    if($fechaGr!=NULL){
+    $f3 = explode("/", $fechaGr);
+    $productoregC->PROCO_griaF = $f3[2]."-".$f3[1]."-".$f3[0];}
+    else{
+        $productoregC->PROCO_griaF =NULL;
+    }
+    $productoregC->PROV_id=$request->get('proveedor');
     $productoregC->USER_id=Auth::user()->id;
 
     $productoregC->save();
@@ -120,13 +142,22 @@ public function comprahecha(Request $request ){
 
         $compra_producto->COMPRO_factura=$request->get('COMPRO_factura');
             $fecha2=$request->get('COMPRO_facturaF');
-            $f2 = explode("/", $fecha2);
-        $compra_producto->COMPRO_facturaF = $f2[2]."-".$f2[1]."-".$f2[0];
-
+            if($fecha2!=NULL){
+                $f2 = explode("/", $fecha2);
+                $compra_producto->COMPRO_facturaF = $f2[2]."-".$f2[1]."-".$f2[0];
+            }
+            else{
+                $compra_producto->COMPRO_facturaF =NULL;
+            }
         $compra_producto->COMPRO_gria=$request->get('COMPRO_gria');
             $fecha1=$request->get('COMPRO_griaF');
-            $f1 = explode("/", $fecha1);
-        $compra_producto->COMPRO_griaF = $f1[2]."-".$f1[1]."-".$f1[0];
+            if($fecha1!=NULL)  {
+                $f1 = explode("/", $fecha1);
+                $compra_producto->COMPRO_griaF = $f1[2]."-".$f1[1]."-".$f1[0];
+            }
+            else{
+                $compra_producto->COMPRO_griaF =NULL;
+            }
 
         $compra_producto->COMPRO_almacen=$request->get('COMPRO_almacen');
         $compra_producto->COMPRO_moneda=$request->get('COMPRO_moneda');
@@ -150,5 +181,20 @@ public function comprahecha(Request $request ){
             $compra_elimina->delete();
         }
         return back();
+     }
+
+     public function datosTemp(){
+         $datosT=producto_comprado::all();
+         return($datosT);
+
+     }
+     public function eliminarta(){
+        DB::table('producto_comprado')->delete();
+
+     }
+     public function listacompras(){
+         $compra_p=compra_producto::all();
+
+         return view('compras.listaCompras',['compra_p'=> $compra_p]);
      }
 }
