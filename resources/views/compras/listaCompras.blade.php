@@ -1,6 +1,7 @@
 @php
   use App\cliente_contacto;
-  use App\cliente_direccion;
+  use App\proveedor;
+  use App\compro_item;
 @endphp
 
 <!DOCTYPE html>
@@ -66,7 +67,7 @@
                                 <div class="col-sm-7 col-md-7 col-lg-4" style="font-size: 19px;font-weight: bold;padding-top: 5px; padding-left: 0px">
                                     <i class="fas fas-24px fas fa-cart-plus" style=" margin-right: -6px;color:#373f5f"></i>Lista de Compras
                                 </div>
-                               
+
                         </div>
                         </div>
                     </div>
@@ -76,7 +77,7 @@
                           <div class="card">
 
                             <!-- /.card-header -->
-                            <div class="card-body bounceInDown animated"  >
+                            <div class="card-body"  >
                                 <div class="card">
 
                                     <div class="card-box " style="padding-bottom: 8px; padding-top: 8px; margin-bottom: 0px; background: #566675; color:#fff">
@@ -85,7 +86,7 @@
                                         <div class="col-md-3">
                                             <form action="" class="form-inline">
                                             <div class="form-group">
-                                            <label class="control-label" >RUC:   </label>&nbsp&nbsp
+                                            <label class="control-label" >Proveedor:   </label>&nbsp&nbsp
                                              <input type="text"  id="CLIE_ruc" name="CLIE_ruc" class="form-control form-control-sm">
                                             </div>
                                             </form>
@@ -93,7 +94,7 @@
                                         <div class="col-md-4">
                                             <form action="" class="form-inline">
                                             <div class="form-group">
-                                                &nbsp&nbsp&nbsp&nbsp<label class="control-label" >Tipo: </label>&nbsp&nbsp
+                                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<label class="control-label" >Almacen: </label>&nbsp&nbsp
                                            <select class="form-control  form-control-sm" name="TIPPROVE_id" id="TIPPROVE_id"> <option value="0">[seleccione]</option> <option value="1">Empresa</option> <option value="2">Persona Natural</option></select>
                                             </div>
                                         </form>
@@ -101,7 +102,7 @@
                                         <div class="col-md-3">
                                             <form action="" class="form-inline">
                                             <div class="form-group">
-                                            <label class="control-label" >Vendedor: </label> &nbsp&nbsp
+                                            <label class="control-label" >Producto: </label> &nbsp&nbsp
                                              <input type="text" id="USER_id" name="USER_id" class="form-control form-control-sm">
                                             </div>
                                             </form>
@@ -115,7 +116,7 @@
                                       </div>
                                 </div>
 
-                                <div id="tablageneral" class="bounceInLeft animated">
+                                <div id="tablageneral" class="">
                                 <table   data-toggle="table"
                                 data-page-size="4"
                                 data-buttons-class="xs btn-light"
@@ -123,49 +124,53 @@
                                 <thead class="thead-light">
                                 <tr>
                                 <th data-field="state" >#</th>
-                                <th data-field="id" data-switchable="false">RUC</th>
-                                <th data-field="iEd" data-switchable="false">DNI</th>
-                                <th data-field="name">Razon social</th>
+                                <th data-field="id">Proveedor</th>
+                                <th data-field="iEd" >Dias credito</th>
+                                <th data-field="name">Almacen</th>
 
-                                <th data-field="amRount">Telefono</th>
+                                <th data-field="amRount">Total</th>
 
-                                <th data-field="amuuTount">Vendedor</th>
+                                <th data-field="amuuTount">Productos</th>
                                 <th data-field="user-status">Estado</th>
                                 <th data-field="amouWnt">Opciones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                  {{--   @foreach ($cliente as $clientes)
+
+                                  @foreach ($compra_p as $compra_ps)
+                                  @php
+                                  $proveedor=proveedor::where('PROVE_id','=',$compra_ps->PROVE_id)->get();
+                                 $productoCom=compro_item::where('COMPRO_id','=',$compra_ps->COMPRO_id)->get();
+                                 //dd( $productoCom);
+                              @endphp
+
                                         <tr>
                                                 <td>{{$loop->index+1}}</td>
-                                                <td>{{($clientes->CLIE_ruc)}}
+                                                <td>{{$proveedor[0]->PROVE_razon_social}}
 
                                                 </td>
-                                                 <td> {{$clientes->CLIE_dni}}</td>
+                                                 <td> {{$compra_ps->COMPRO_diasC}}</td>
 
-                                                <td>{{$clientes->CLIE_razon_social}}</td>
+                                                <td>{{$compra_ps->COMPRO_almacen}}</td>
 
-                                                <td>{{$clientes->CLIE_telefono}}</td>
+                                                <td>{{$compra_ps->COMPRO_total}}</td>
 
 
-                                                <td>{{$clientes->USER_id}}</td>
+                                                <td>{{$productoCom[0]->COMPROI_id}}</td>
                                                 <td>
-                                                    @if($clientes->CLIE_estado==1)
-                                                        <span class="badge bg-soft-success text-success shadow-none">Activo</span>
-                                                    @else
-                                                        <span class="badge bg-soft-danger text-danger shadow-none">Bloqueado</span>
-                                                        @endif
-                                                    </td>
-                                                    <td>  <a href="{{route('clienteShow',[ $clientes->CLIE_id] )}}" class="action-icon" title="Ver"> <i class="mdi mdi-eye"></i></a>
-                                                        <a href="{{route('clienteEdit',[$clientes->CLIE_id])}}" class="action-icon" title="Editar"> <i class="mdi mdi-square-edit-outline"></i></a>
 
-                                                        @if($clientes->CLIE_estado==1)
-                                                        <a href="{{route('clienteDarBaja',[ $clientes->CLIE_id] )}}" class="action-icon" title="Bloquear"> <i class="mdi mdi-block-helper"></i></a></td>
-                                                        @else
-                                                        <a href="{{route('clienteDarAlta',[ $clientes->CLIE_id] )}}" class="action-icon" title="Activar"> <i class="mdi mdi-transfer-up"></i></a></td>
-                                                        @endif
+                                                        <span class="badge bg-soft-success text-success shadow-none">Activo</span>
+
+                                                    </td>
+                                                    <td>  <a  class="action-icon" title="Ver"> <i class="mdi mdi-eye"></i></a>
+                                                        <a class="action-icon" title="Editar"> <i class="mdi mdi-square-edit-outline"></i></a>
+
+
+                                                        <a class="action-icon" title="Bloquear"> <i class="mdi mdi-block-helper"></i></a></td>
+
+
                                                 </tr>
-                                    @endforeach --}}
+                                    @endforeach
                                     </tbody>
                                     </table>
                                     </div>

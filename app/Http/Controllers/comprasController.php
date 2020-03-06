@@ -56,7 +56,9 @@ public function showart(Request $request){
     $categoria=categoria_producto::where('CATPRO_id','=',$producto->CATPRO_id)->first();
     $marca=marca::where('MARCA_id','=',$producto->MARCA_id)->first();
     $medida=umedidas::where('UME_id','=',$producto->UME_id)->first();
-    return [$producto,$categoria,$marca,$medida];
+    $ultimopre=compro_item::where('PRO_id','=',$producto->PRO_id)->get()->last();
+
+    return [$producto,$categoria,$marca,$medida,$ultimopre];
 }
 
 public function rproductostore(Request $request){
@@ -191,6 +193,8 @@ public function comprahecha(Request $request ){
 
      }
      public function listacompras(){
-         return view('compras.listaCompras');
+         $compra_p=compra_producto::all();
+
+         return view('compras.listaCompras',['compra_p'=> $compra_p]);
      }
 }

@@ -153,7 +153,7 @@ use App\umedidas;
                                                     <div class="col-md-4 mb-2">
                                                         <div class="form-inline">
                                                             <label for="">Costo: </label>&nbsp;&nbsp;
-                                                            <input type="text" id="costo" class="col-md-7 form-control form-control-sm">
+                                                            <input type="number" id="costo" class="col-md-7 form-control form-control-sm">
                                                         </div>
                                                     </div>
                                                     <br>
@@ -183,6 +183,13 @@ use App\umedidas;
                                             <input type="text" style="background: #f2f3f5;" id="PRO_modelo" disabled class="col-md-8 form-control form-control-sm text-center">
                                         </div>
                                     </div>
+                                    <div class="col-md-12 mb-2 text-center">
+                                        <div class="form-inline text-center">
+                                            <label class="text-center" for="">Costo anterior:</label>
+
+                                            <input type="number" style="background: #f2f3f5;"  disabled class="col-md-5 form-control form-control-sm text-center" id="costoAnterior">
+                                        </div>
+                                    </div>
                                     <input type="hidden" id="PRO_codigo">
                                     <input type="hidden" id="PRO_id">
                                     <br><br>
@@ -199,6 +206,7 @@ use App\umedidas;
                                             <input type="text" class="form-control form-control-sm">
                                         </div>
                                     </div>
+
                                     </div>
                                     </div> <!-- end card-box-->
                                 </div> <!-- end col -->
@@ -909,6 +917,24 @@ function guardarmensaje(){
 <script>
 
     $(document).ready(function() {
+        $("#costo").blur(function(b){
+             //obtenemos el texto introducido en el campo
+             consulta = $('#costo').val();
+             costoA=$('#costoAnterior').val();
+             var n1 =parseInt(consulta);
+             var n2=parseInt(costoA);
+             //hace la búsqueda
+             $("#costo").delay(0).queue(function(n) {
+
+
+               if(n1>n2){
+                 alert('El costo subio');}
+
+
+             });
+
+
+      });
         if ($('table#tabA tbody tr').length == 0){
             $('button[name=guardartodo]').prop('disabled',true);
         }
@@ -952,6 +978,8 @@ var factura=$('input[name=COMPRO_factura]').val();
 var facturaF=$('input[name=COMPRO_facturaF]').val();
 var gria=$('input[name=COMPRO_gria]').val();
 var griaF=$('input[name=COMPRO_griaF]').val();
+var costoAr=$('#costoAnterior').val();
+
 $.ajax({
                      url:"{{route('rProductoCStore')}}",
                      method:"POST",
@@ -967,6 +995,16 @@ $.ajax({
                         proveedor
                      },
                  success:function(data){
+                    var n3 =parseInt(costo);
+             var n4=parseInt(costoAr);
+if(n3>n4){
+                    Swal.fire({
+  position: 'top',
+  type: 'warning',
+  title: 'El costo subio',
+  showConfirmButton: false,
+  timer: 1500
+})}
                     // $('#tabA tbody').append('<tr><td class="align-middle" style="padding: 4px;">'+codigo+'</td><td class="align-middle" style="padding: 4px;">' + nombre + '</td><td class="align-middle" style="padding: 4px;">' + cantidad + '</td><td class="align-middle" style="padding: 4px;">' + costo + '</td><td class="align-middle" style="padding: 4px;">'+medida+'</td><td class="align-middle subtotal" style="padding: 4px;" >' + costo*cantidad +'</td><td class="align-middle" style="padding: 4px;"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a></td></tr>');
 
 $('#PRO_nombre').val('');
@@ -1033,10 +1071,13 @@ $('#totalPr').val(total.toFixed(2)); */
                     $('#PRO_codigo').val(data[0].PRO_codigo);
                     $('#PRO_id').val(data[0].PRO_id);
                    $('#PRO_nombre').val(data[0].PRO_nombre);
+                   $('#PRO_garantia').val(data[0].PRO_gcomprar);
                    $('#CATPRO_id').val(data[1].CATPRO_descripcion);
                    $('#MARCA_id').val(data[2].MARCA_descripcion);
                    $('#PRO_modelo').val(data[0].PRO_modelo);
                    $('#UME_id').val(data[3].UME_descripcion);
+                   $('#costoAnterior').val(data[4].COMPROI_costo);
+
 
                 }
            });
