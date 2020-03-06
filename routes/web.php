@@ -129,3 +129,6 @@ Route::POST('/compras/rproducto', 'comprasController@rproductostore')->name('rPr
 Route::POST('/compras/rproductoC', 'comprasController@rproductoCstore')->name('rProductoCStore');
 Route::POST('/comprahecha', 'comprasController@comprahecha')->name('comprahecha');
 Route::get('/compras/listaCompras', 'comprasController@listacompras')->name('listaComprasIndex');
+Route::get('/compras/verdatos', 'comprasController@datosTemp')->name('datosTemp');
+Route::get('/compras/eliminarta', 'comprasController@eliminarta')->name('eliminarta');
+

@@ -64,11 +64,9 @@
                         <div class="col-12">
                             <div class="row icons-list-demo" style="color:#373f5f">
                                 <div class="col-sm-7 col-md-7 col-lg-4" style="font-size: 19px;font-weight: bold;padding-top: 5px; padding-left: 0px">
-                                    <i class="mdi mdi-24px mdi-account-card-details" style=" margin-right: -6px;color:#373f5f"></i>CLIENTES
+                                    <i class="fas fas-24px fas fa-cart-plus" style=" margin-right: -6px;color:#373f5f"></i>Lista de Compras
                                 </div>
-                                <div class="col-md-8" style="padding-top: 6px">
-                                    <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" onclick="location.href='{{route('clienteCreate')}}'"><span class=" fa fa-user-plus"> </span> Cliente</button>
-                                </div>
+                               
                         </div>
                         </div>
                     </div>
@@ -137,7 +135,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($cliente as $clientes)
+                                  {{--   @foreach ($cliente as $clientes)
                                         <tr>
                                                 <td>{{$loop->index+1}}</td>
                                                 <td>{{($clientes->CLIE_ruc)}}
@@ -167,7 +165,7 @@
                                                         <a href="{{route('clienteDarAlta',[ $clientes->CLIE_id] )}}" class="action-icon" title="Activar"> <i class="mdi mdi-transfer-up"></i></a></td>
                                                         @endif
                                                 </tr>
-                                    @endforeach
+                                    @endforeach --}}
                                     </tbody>
                                     </table>
                                     </div>
