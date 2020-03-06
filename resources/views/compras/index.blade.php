@@ -147,13 +147,13 @@ use App\umedidas;
                                                     <div class="col-md-4 mb-2">
                                                         <div class="form-inline">
                                                             <label for="">Cantidad: </label>&nbsp;&nbsp;
-                                                            <input type="text" id="cantidad" class="col-md-7 form-control form-control-sm">
+                                                            <input type="text" id="cantidad" class="col-md-7 form-control form-control-sm" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 mb-2">
                                                         <div class="form-inline">
                                                             <label for="">Costo: </label>&nbsp;&nbsp;
-                                                            <input type="number" id="costo" class="col-md-7 form-control form-control-sm">
+                                                            <input type="number" id="costo" class="col-md-7 form-control form-control-sm" required>
                                                         </div>
                                                     </div>
                                                     <br>
