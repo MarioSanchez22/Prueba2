@@ -57,7 +57,7 @@ public function showart(Request $request){
     $marca=marca::where('MARCA_id','=',$producto->MARCA_id)->first();
     $medida=umedidas::where('UME_id','=',$producto->UME_id)->first();
     $ultimopre=compro_item::where('PRO_id','=',$producto->PRO_id)->get()->last();
-
+ 
     return [$producto,$categoria,$marca,$medida,$ultimopre];
 }
 
