@@ -1143,6 +1143,7 @@ if(n3>n4)
     $('#estadocosto').html('<p style="font-size:17px; color:red">EL COSTO SUBIO</p>');
 } else{
     $('#iconoCosto').html('<i class="mdi mdi-48px mdi-arrow-down-circle" style="color:#cc5c39"></i>');
+    $('#estadocosto').html('<p style="font-size:17px; color:red">EL COSTO BAJO</p>');
 }
 }
                     // $('#tabA tbody').append('<tr><td class="align-middle" style="padding: 4px;">'+codigo+'</td><td class="align-middle" style="padding: 4px;">' + nombre + '</td><td class="align-middle" style="padding: 4px;">' + cantidad + '</td><td class="align-middle" style="padding: 4px;">' + costo + '</td><td class="align-middle" style="padding: 4px;">'+medida+'</td><td class="align-middle subtotal" style="padding: 4px;" >' + costo*cantidad +'</td><td class="align-middle" style="padding: 4px;"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a></td></tr>');
