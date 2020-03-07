@@ -304,7 +304,6 @@ use App\categoria_producto;
         });
     })
 </script>
-
 <script>
 function limpiarMarca(){
     $('#MARCA_descripcion').val('');
