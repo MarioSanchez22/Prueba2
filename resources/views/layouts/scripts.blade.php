@@ -13,7 +13,7 @@
    <script src="{{asset('assets/libs/flot-charts/jquery.flot.crosshair.js')}}"></script>
 
    <script src="{{asset('assets/libs/jquery-nice-select/jquery.nice-select.min.js')}}"></script>
-   
+
    <script src="{{asset('assets/libs/multiselect/jquery.multi-select.js')}}"></script>
     <script src="{{asset('assets/libs/switchery/switchery.min.js')}}"></script>
     <script src="{{asset('assets/js/pages/animation.init.js')}}"></script>
@@ -35,7 +35,7 @@
     <!-- Init js -->
     <script src="{{asset('assets/libs/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('assets/js/pages/bootstrap-tables.init.js')}}"></script>
-     <script src="{{asset('assets/libs/datatables/dataTables.bootstrap4.js')}}')}}"></script>
+     <script src="{{asset('assets/libs/datatables/dataTables.bootstrap4.js')}}"></script>
         <script src="{{asset('assets/libs/datatables/dataTables.responsive.min.js')}}"></script>
         <script src="{{asset('assets/libs/datatables/responsive.bootstrap4.min.js')}}"></script>
         <script src="{{asset('assets/libs/datatables/dataTables.buttons.min.js')}}"></script>
