@@ -810,35 +810,35 @@ use App\umedidas;
 
 $('#cancelarCompra').click(function () {
     Swal.fire({
-   title: 'Esta seguro que desea eliminar datos de esta compra?',
-
-   type: 'warning',
-   showCancelButton: true,
-   confirmButtonColor: '#1c2c3d',
-   cancelButtonColor: '#797979',
-   confirmButtonText: 'Si',
-   cancelButtonText: 'Cancelar'
- }).then((result) => {
-   if (result.value) {
-    $.get("{{route('eliminarta')}}",
-
-
-                       function (data, status) {
-                        location.reload();
-             });
-
-
-
-
-     Swal.fire(
-       'La compra fue eliminada!',
-
-
-     )
-   }
-
+        title: 'Esta seguro que desea eliminar datos de esta compra?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#1c2c3d',
+        cancelButtonColor: '#797979',
+        confirmButtonText: 'Si',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+    if (result.value) {
+        $.get("{{route('eliminarta')}}",
+                        function (data, status) {
+                            location.reload();
+                });
+        Swal.fire(
+        'La compra fue eliminada!',
+        )
+    }
  })
 });
+
+function guardarmensaje(){
+    Swal.fire({
+    position: 'top',
+    type: 'success',
+    title: 'Compra realizada',
+    showConfirmButton: false,
+    timer: 1500
+    })
+}
 
    /*        $('#cancelarCompra').click(function () {
 
@@ -875,15 +875,7 @@ $.ajax({
 
         }
 
-function guardarmensaje(){
-    Swal.fire({
-  position: 'top',
-  type: 'success',
-  title: 'Compra realizada',
-  showConfirmButton: false,
-  timer: 1500
-})
-}
+
 
     function activacompraG(){
         if ($('#gria').is(':checked')) {

@@ -65,7 +65,31 @@ use App\categoria_producto;
 
                     <!-- Start Content-->
                     <div class="container-fluid">
-
+                    <!--  Modal content for the above example -->
+                    <div class="modal fade bs-example-modal-lg2" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                        <div class="modal-dialog modal-lg" style="margin-top: 10%;">
+                            <div class="modal-content" style="width: 50%; margin:auto;">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="myLargeModalLabel">Editar Marca</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="">Marca: </label>
+                                                <input type="text" class="form-control form-control-sm" id="MARCA_descripcionE" name="MARCA_descripcionE">
+                                                <input type="text" class="form-control form-control-sm" id="MARCA_idE" name="MARCA_idE" style="display: none;">
+                                            </div>
+                                                <button type="button" class="btn btn-dark waves-effect waves-light" onclick="marcaEditar()" >Actualizar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div><!-- /.modal -->
                     <!--  Modal content for the above example -->
                     <div class="modal fade bs-example-modal-lg" id="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
                         <div class="modal-dialog modal-lg" style="margin-top: 10%;">
@@ -80,9 +104,9 @@ use App\categoria_producto;
                                             <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="">Marca:</label>
-                                                <input type="text" class="form-control form-control-sm" id="MARCA_descripcion" name="MARCA_descripcion" required>
+                                                <input type="text" class="form-control form-control-sm" id="MARCA_descripcion" name="MARCA_descripcion">
                                             </div>
-                                                <button type="button" id="MarcaRe"  class="btn btn-dark waves-effect waves-light" onclick="marcaRegistrar()">Registrar</button>
+                                                <button type="button"   class="btn btn-dark waves-effect waves-light" onclick="marcaRegistrar()" >Registrar</button>
                                             </div>
                                         </div>
                                     </div>
@@ -107,13 +131,12 @@ use App\categoria_producto;
                                     <div class="col-md-8" style="padding-top: 6px">
                                         <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" data-toggle="modal" data-target=".bs-example-modal-lg"><span class=" fa fa-user-plus"> </span>&nbsp; Marca</button>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
                             </div>
                         </div>
                     </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="row" style="margin-top: 10px;" >
                         <div class="col 12 bounceInLeft animated">
                             <div class="card-box">
@@ -132,26 +155,26 @@ use App\categoria_producto;
                                         </thead>
                                         <tbody>
                                             @foreach ($marca as $marcas )
-                                            <tr>
-                                                <td>{{$loop->index+1}}</td>
-                                                <td>{{$marcas->MARCA_descripcion}}</td>
-                                                <td>
-                                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                                    <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                                </td>
-                                            </tr>
+                                                <tr id="{{$marcas->MARCA_id}}">
+                                                    <td>{{$loop->index+1}}</td>
+                                                    <td >{{$marcas->MARCA_descripcion}}</td>
+                                                    <td>
+                                                        <a href="#" class="action-icon" data-toggle="modal" data-target=".bs-example-modal-lg2" title="Editar" onclick="MarcaBuscar({{$marcas->MARCA_id}})"><i class="mdi mdi-square-edit-outline"></i></a>
+                                                        <a href="javascript:void(0);" class="action-icon" title="Eliminar"><i class="mdi mdi-delete" onclick="MarcaEliminar({{$marcas->MARCA_id}})"></i></a>
+                                                    </td>
+                                                </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-                          <!-- /.card -->
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                    </div> <!-- container -->
-                </div> <!-- content -->
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </div> <!-- container -->
+            </div> <!-- content -->
                 <!-- Footer Start -->
                 <footer class="footer">
                     <div class="container-fluid">
@@ -283,16 +306,63 @@ use App\categoria_producto;
 </script>
 
 <script>
-    function marcaRegistrar(){
-        var MARCA_descripcion= $('#MARCA_descripcion').val();
+function limpiarMarca(){
+    $('#MARCA_descripcion').val('');
+    $('#MARCA_descripcionE').val('');
+};
+function marcaRegistrar(){
+    alert('Aqui estoy');
+    var MARCA_descripcion= $('#MARCA_descripcion').val();
+    $.ajax({
+        url:"{{route('marcaStore')}}",
+        method:"POST",
+        data:{
+            MARCA_descripcion:MARCA_descripcion,
+        },
+        success:function(data){
+            $('#modal').modal("hide");
+            limpiarMarca();
+            $('#listaMarcasNueva').hide();
+            $('#listaMarcasNueva2').html(data);
+        }
+    });
+}
+</script>
+
+<script>
+    function marcaEditar(){
+        $.ajaxSetup({
+            headers:{
+            'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var MARCA_idE= $('#MARCA_idE').val();
+        var MARCA_descripcion= $('#MARCA_descripcionE').val();
         $.ajax({
-            url:"{{route('marcaStore')}}",
+            url:"{{route('marcaUpdate')}}",
             method:"POST",
             data:{
-                MARCA_descripcion:MARCA_descripcion,
+                MARCA_idE:MARCA_idE,
+                MARCA_descripcionE:MARCA_descripcion
             },
                 success:function(data){
-                $('#modal').modal("hide");
+                $('#modal2').modal("hide");
+
+                $('#'+data.MARCA_id+'').load(location.href+" #"+data.MARCA_id+">*");
+                limpiarMarca();
+            }
+        });
+    }
+</script>
+<script>
+    function MarcaEliminar(Marca){
+        $.ajax({
+            url:"{{route('marcaDelete')}}",
+            method:"POST",
+            data:{
+                MARCA_id:Marca,
+            },
+                success:function(data){
                 $('#listaMarcasNueva').hide();
                 $('#listaMarcasNueva2').html(data);
             }
@@ -300,6 +370,37 @@ use App\categoria_producto;
     }
 </script>
 
+<script>
+    function activaRegistrar()
+    {
+        var MARCA_descripcion=$('#MARCA_descripcion').val();
+        if((MARCA_descripcion!=null)&&(MARCA_descripcion!='')){
+            $('#btnguarda').prop('disabled',false);
+        }else{
+            $('#btnguarda').prop('disabled',true);
+        }
 
+    };
+    function acttivaEditar()
+    {
+
+    }
+</script>
+<script>
+    function MarcaBuscar(Marca){
+        $.ajax({
+            url:"{{route('marcaBuscar')}}",
+            method:"POST",
+            data:{
+                MARCA_id:Marca
+            },
+            success:function(data){
+                limpiarMarca();
+                $('#MARCA_descripcionE').val(data.MARCA_descripcion);
+                $('#MARCA_idE').val(data.MARCA_id);
+            }
+        });
+    }
+</script>
     </body>
 </html>

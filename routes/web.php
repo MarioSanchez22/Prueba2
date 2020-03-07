@@ -110,12 +110,11 @@ Route::get('/productos', 'productoController@index')->name('productosIndex');
 Route::POST('/producto/{id}/ajuste', 'productoController@ajuste')->name('productoAjuste');
 Route::get('producto/registrar','productoController@create')->name('productoCreate');
 
-
-
+///////////////////////CATEGORIA////////////////////////////////
 Route::get('/categoria', 'categoriaController@index')->name('categoriaIndex');
 Route::POST('/categoria/store', 'categoriaController@store')->name('categoriaStore');
 Route::get('/categoria/delete/{categoria}', 'categoriaController@delete')->name('categoriaDelete');
-
+////////////////////////////////////////////////////////////////
 //CONFIGURACION ROLES
 //ROLES
 Route::name('rolesIndex')->get('roles','rolesController@index');
@@ -123,12 +122,16 @@ Route::get('roles/registrar','rolesController@create')->name('rolCreate');
 Route::POST('roles/create', 'rolesController@store')->name('rolStore');
 Route::get('roles/editar/{rol}','rolesController@editar')->name('rolEdit');
 Route::POST('roles/update/{rol}','rolesController@update')->name('rolUpdate');
-Route::get('/marca', 'marcaController@index')->name('marcaIndex');
+
 
 Route::get('/unidadMedida', 'umedidasController@index')->name('umedidaIndex');
 
 //MARCA
+Route::get('/marca', 'marcaController@index')->name('marcaIndex');
 Route::POST('marca/create', 'marcaController@store')->name('marcaStore');
+Route::POST('marca/buscar', 'marcaController@buscar')->name('marcaBuscar');
+Route::POST('marca/update', 'marcaController@update')->name('marcaUpdate');
+Route::POST('marca/delete', 'marcaController@delete')->name('marcaDelete');
 
 //COMPRAS
 Route::get('/compras', 'comprasController@index')->name('comprasIndex');

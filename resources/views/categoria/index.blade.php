@@ -19,20 +19,20 @@ use App\categoria_producto;
 
     <body>
         <div  id="preloader">
-   
+
             <div id="status" >
-             
+
                 @php
                 $usuario=Auth::user();
                 @endphp
-      
+
                 <strong style="font-size: 20px; color:#2e4965">@if ($usuario->EMPRESA_id==1)
                  MACROchips
                   @else
                   NeptComputer
                   @endif</strong>
                   <div class="spinner-grow avatar-sm text-secondary m-2" role="status"></div>
-             
+
             </div>
         </div>
         <style>
@@ -84,10 +84,8 @@ use App\categoria_producto;
                                     <div class="col-sm-7 col-md-7 col-lg-4" style="font-size: 19px;font-weight: bold;padding-top: 5px; padding-left: 0px">
                                         <i class="mdi mdi-24px mdi-apps" style=" margin-right: -6px;color:#373f5f"></i> CATEGORIAS
                                     </div>
-
                             </div>
                         </div>
-
                     </div>
                             </div>
                         </div>
@@ -210,16 +208,11 @@ use App\categoria_producto;
                                                 <th  style="padding: 4px; ">Precio 1</th>
                                                 <th style="padding: 4px;">Precio 2</th>
                                                 <th style="padding: 4px; ">Precio 3</th>
-
-
-
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($categoria_producto as $categoria)
                                             <tr style=" text-align: center; " >
-
-
                                                 <td class="align-middle"   style="padding: 2px;border-right: solid 1px #dee2e6;">{{$categoria->CATPRO_codigo}}</td>
                                                 <td class="align-middle" style="padding: 2px;">{{$categoria->CATPRO_descripcion}}</td>
                                                 <td class="align-middle" style="padding: 2px;border-left: solid 1px #dee2e6;">{{$categoria->CATPRO_precio1*100}} % </td>
@@ -228,7 +221,6 @@ use App\categoria_producto;
                                                 <td class="align-middle" style="padding: 2px;border-right: solid 1px #dee2e6;"> {{$categoria->CATPRO_descuento*100}} % </td>
                                                 <td class="align-middle" style="padding: 2px"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
                                                 <a href="{{route('categoriaDelete',[$categoria->CATPRO_id])}}" class="action-icon"> <i class="mdi mdi-delete"></i></a></td>
-
                                             </tr>
                                             @endforeach
 
