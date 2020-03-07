@@ -147,13 +147,13 @@ use App\umedidas;
                                                     <div class="col-md-4 mb-2">
                                                         <div class="form-inline">
                                                             <label for="">Cantidad: </label>&nbsp;&nbsp;
-                                                            <input type="text" id="cantidad" class="col-md-7 form-control form-control-sm">
+                                                            <input type="text" id="cantidad" class="col-md-7 form-control form-control-sm" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 mb-2">
                                                         <div class="form-inline">
                                                             <label for="">Costo: </label>&nbsp;&nbsp;
-                                                            <input type="number" id="costo" class="col-md-7 form-control form-control-sm">
+                                                            <input type="number" id="costo" class="col-md-7 form-control form-control-sm" required>
                                                         </div>
                                                     </div>
                                                     <br>
@@ -222,19 +222,22 @@ use App\umedidas;
                                               </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-5 mb-2" >
+                                    <div class="col-md-4 mb-2" >
                                         <div class="form-group">
                                             <label class="control-label">Ubicacion: </label>
                                             <div class="form-inline">
                                             <input type="text" class="col-md-8 form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion"> &nbsp;&nbsp;
-                                            <button type="button" class="btn  btn-light btn-sm" ><span class=" fa fa-plus-square"> </span></button></div>
+                                            </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-3 mb-2">
+                                        <div class="col-md-4 mb-2">
                                             <div class="form-group">
                                                 <label class="control-label">Cantidad: </label>
-                                                <input type="text" class="form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion">
-                                                </div>
+                                                <div class="form-inline">
+                                                <input type="text" class="col-md-5 form-control form-control-sm"  name="PROVE_direccion"  id="PROVE_direccion">
+                                                <button type="button" class="btn  btn-light btn-sm" ><span class=" fa fa-plus-square"> </span></button>
+                                            </div></div>
+
                                             </div>
                                       </div>
                                     </div>
@@ -806,6 +809,7 @@ use App\umedidas;
 
 <!-- Sweet alert init js-->
 <script src="assets/js/pages/sweet-alerts.init.js"></script>
+
 <script>
 
 $('#cancelarCompra').click(function () {
