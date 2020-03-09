@@ -1,5 +1,3 @@
-
-
 @php
 use App\producto;
 use App\umedidas;
@@ -75,7 +73,147 @@ use App\umedidas;
             <!-- ============================================================== -->
 
             <div class="content-page" >
+                <div id="ajustarprecio" class="modal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="background-color: rgba(33, 33, 33, 0.46);">
+                    <div class="modal-dialog modal-full modal-dialog-centered" style="width: 70%">
+                        <div class="modal-content">
+                            <div class="modal-header" style="padding: 0px; background-color:white;">
+                               <div class="col-md-12">
+                                <div class="row">
+                                   <div class="col-md-4" style=" background: #2d3640; color: white">
+                                    <div class="form-inline">
+                                    <label for="">NOMBRE:</label>&nbsp;&nbsp;&nbsp;
+                                    <input type="text"   class="col-md-4 form-control-plaintext form-control-sm " style="color:white;font-weight:bold;" id="nombreArti" >
+                                    </div>
+                                    <div class="form-inline">
+                                    <label for="">Existencias: </label> &nbsp;&nbsp;&nbsp;
+                                    <input type="text"   class="col-md-2 form-control-plaintext form-control-sm " style="color:white;font-weight:bold;" id=""  value="333">
+                                    <input type="text"  class="col-md-4 form-control-plaintext form-control-sm text-left" style="margin-left: -15px;color:white;font-weight:bold;" value="unidad(es)">
+                                        <label for="">Costo anterior: S/.</label>&nbsp;&nbsp;&nbsp;
+                                        <input type="text"   class="col-md-2 form-control-plaintext form-control-sm " style="color:white;font-weight:bold;" id="costoAnte" >
+                                        </div>
+                                    <div class="form-inline">
+                                   
+                                   </div>
+                                </div>
+                                   <div class="col-md-4" style="background:#4b6980d1;color:white">
+                                    <label style="margin-top: 20px; margin-bottom: 5px;" for="">INGRESANDO :</label>&nbsp;&nbsp;&nbsp;
+                                    <div class="form-inline" >
+                                    <input type="text"   class="col-md-2 form-control-plaintext form-control-sm text-left" style="color:white;font-weight:bold;"  id="cantidadProd" disabled >
+                                    <input type="text"  class="col-md-4 form-control-plaintext form-control-sm text-left" style="margin-left: -15px;color:white;font-weight:bold;" value="Producto(s)">
 
+
+                                  </div>
+                                   </div>
+                                   <div class="col-md-4" style=" background:#275677; color:white">
+                                       <DIV style="">
+                                       <label style="margin-top: 20px; margin-bottom: 5px;" for="">PROVEEDOR: </label>
+                                    <input type="text"   class="form-control-plaintext form-control-sm " style="color:white;font-weight:bold;" id="nombredeP" >
+                                </DIV> </div>
+                                  </div>
+                                </div>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            </div>
+                            <div class="modal-body">
+
+
+                                            <div class="card" style=" margin-bottom: 0px;">
+
+                                              <!-- /.card-header -->
+
+                                                          <div class="card-box " style=" padding-top: 0px; margin-bottom: 0px;padding-bottom: 5px;border: 2px solid #e8e8e8;" >
+
+
+                                                         <br>
+                                                                <div class="row">
+                                                                    <div class="col-md-4">
+                                                                      <div class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
+                                                                        <label class="custom-control-label" for="customCheck1">Ajuste automático</label>
+                                                                    </div>
+                                                                  </div>
+                                                                  <div class="col-md-4">
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" class="custom-control-input" id="customCheck2" checked>
+                                                                        <label class="custom-control-label" for="customCheck1">Precio venta con IGV</label>
+                                                                    </div>
+                                                                  </div>
+                                                                  <div class="col-md-4  text-right">
+                                                                    <div class="custom-control custom-switch">
+                                                                        <input type="checkbox" class="custom-control-input" id="customSwitch1" checked>
+                                                                        <label class="custom-control-label" for="customSwitch1">Redondear</label>
+                                                                    </div>
+                                                                  </div>
+                                                                 <div class="col-md-12" style="margin-bottom: 20px"></div>
+                                                                 <div class="col-md-1">
+                                                                     
+                                                                        <div class="" id="iconoCosto">
+
+                                                                        </div>  
+                                                                    
+                                                                   
+                                                                 </div>
+                                                                 <div class="col-md-3" style="left: -40px; margin-top: 13px;">
+                                                                     <div class="form-inline">
+                                                                         <div class="">          
+                                                                        <input type="text"   class="col-md-2 form-control-plaintext form-control-sm text-right" value="12" style="font-weight: bold" disabled >
+                                                                        <input type="text"   class="col-md-1 form-control-plaintext form-control-sm" value="%" style="font-weight: bold" disabled>   
+                                                                        </div> 
+                                                                      
+                                                                    </div>
+                                                                   
+                                                                 </div>
+                                                                
+                                                                 <div class="col-md-2">
+                                                                     <div class="form-group">
+                                                                         <label class="control-label" for="">Costo:</label>
+                                                                         <input type="text" class="form-control form-control-sm">
+                                                                     </div>
+
+                                                                 </div>
+                                                                 <div class="col-md-2">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label" for="">Precio 1:</label>
+                                                                        <input type="text" class="form-control form-control-sm">
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label" for="">Precio 2:</label>
+                                                                        <input type="text" class="form-control form-control-sm">
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label" for="">Precio 3:</label>
+                                                                        <input type="text" class="form-control form-control-sm">
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="col-md-2" id="estadocosto"></div>
+                                                                </div>
+
+
+                                                                  <br>
+
+                                                          </div> <!-- end card-box-->
+
+                                              <!-- /.card-body -->
+                                            </div>
+
+
+                                          <!-- /.col -->
+
+
+                            </div>
+                            <div class="modal-footer" style="padding: 6px">
+                                <button type="button" class="btn btn-light waves-effect btn-sm" data-dismiss="modal">Cerrar</button>
+                                <button type="button" id="" class="btn btn-light waves-effect waves-light btn-sm">Guardar</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
                 <div id="agregarArti" class="modal fade" aria-labelledby="full-width-modalLabel" aria-hidden="true" style="display: none;">
                     <div class="modal-dialog modal-full" style="width: 78%">
                         <div class="modal-content">
@@ -590,6 +728,7 @@ use App\umedidas;
                                                             <option value="0" >[Busque proveedor]</option>
                                                             @foreach ($proveedor as $proveedores)
                                                     <option value="{{$proveedores->PROVE_id}}">{{$proveedores->PROVE_ruc}} - {{$proveedores->PROVE_razon_social}}</option>
+
                                                         @endforeach
                                                             </select>
                                                         <span class="input-group-append">
@@ -597,7 +736,7 @@ use App\umedidas;
                                                         </span>
                                                         </div>
                                                     </div>
-
+                                                    <input type="hidden" id="inputse" >
 
 
                                                 </div>
@@ -975,6 +1114,7 @@ var facturaF=$('input[name=COMPRO_facturaF]').val();
 var gria=$('input[name=COMPRO_gria]').val();
 var griaF=$('input[name=COMPRO_griaF]').val();
 var costoAr=$('#costoAnterior').val();
+var nombreProvee=$('#inputse').val();
 
 $.ajax({
                      url:"{{route('rProductoCStore')}}",
@@ -994,13 +1134,29 @@ $.ajax({
                     var n3 =parseInt(costo);
              var n4=parseInt(costoAr);
 if(n3>n4){
-                    Swal.fire({
+/*                     Swal.fire({
   position: 'top',
   type: 'warning',
   title: 'El costo subio',
   showConfirmButton: false,
   timer: 1500
-})}
+}) */
+$("#ajustarprecio").modal("show");
+$('#nombreArti').val(nombre);
+$('#costoAnte').val(costoAr);
+$('#cantidadProd').val(cantidad);
+$('#nombredeP').val(nombreProvee);
+
+if(n3>n4)
+
+{
+    $('#iconoCosto').html('<i class="mdi mdi-36px mdi-arrow-up-circle" style="color:#c13434"></i>');
+    $('#estadocosto').html('<p style="font-size:14px; color:red">EL COSTO SUBIO</p>');
+} else{
+    $('#iconoCosto').html('<i class="mdi mdi-36px mdi-arrow-down-circle" style="color:#cc5c39"></i>');
+    $('#estadocosto').html('<p style="font-size:17px; color:red">EL COSTO BAJO</p>');
+}
+}
                     // $('#tabA tbody').append('<tr><td class="align-middle" style="padding: 4px;">'+codigo+'</td><td class="align-middle" style="padding: 4px;">' + nombre + '</td><td class="align-middle" style="padding: 4px;">' + cantidad + '</td><td class="align-middle" style="padding: 4px;">' + costo + '</td><td class="align-middle" style="padding: 4px;">'+medida+'</td><td class="align-middle subtotal" style="padding: 4px;" >' + costo*cantidad +'</td><td class="align-middle" style="padding: 4px;"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a></td></tr>');
 
 $('#PRO_nombre').val('');
@@ -1108,6 +1264,7 @@ $(document).ready(function() {
                 success:function(data){
 
                    $('#PROVE_dias').val(data.PROVE_dias_credito);
+                   $('#inputse').val(data.PROVE_razon_social);
                    $('#guardarCompra').prop('disabled',false);
                 }
            });

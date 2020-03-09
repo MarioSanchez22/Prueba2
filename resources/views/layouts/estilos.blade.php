@@ -1,10 +1,6 @@
    <!-- App favicon -->
    <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
 
-
-    <!-- App favicon -->
- <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
-
  <!-- Plugins css -->
  <link href="{{asset('assets/libs/flatpickr/flatpickr.min.css')}}" rel="stylesheet" type="text/css"  />
 
