@@ -18,6 +18,7 @@ use App\categoria_producto;
     </head>
 
     <body>
+
         <div  id="preloader">
 
             <div id="status" >
@@ -25,7 +26,6 @@ use App\categoria_producto;
                 @php
                 $usuario=Auth::user();
                 @endphp
-
                 <strong style="font-size: 20px; color:#2e4965">@if ($usuario->EMPRESA_id==1)
                  MACROchips
                   @else
@@ -92,22 +92,20 @@ use App\categoria_producto;
                     </div>
 
                     <div class="row" style="margin-top: 0px;">
-
                         <div class="col 12 ">
                             <div class="card-box">
-
                                 <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                     <div class="modal-dialog" style="max-width: 700px">
                                         <div class="modal-content">
-                                            <div class="modal-header" style="padding: 9px">
-                                                <h5 class="modal-title">Registro de categoria</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <div class="modal-header" style="padding: 9px; background-color:#697582;">
+                                                <h5 class="modal-title" style="color:white;">Registro de categoría</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color:white;">×</button>
                                             </div>
                                             <div class="modal-body p-2">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                   <div class="form-group">
-                                                      <label for="">Codigo:</label>
+                                                      <label for="">Código:</label>
                                                       <div class="input-group">
                                                         <div class="input-group-prepend ">
                                                             <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-barcode"></i></span>
@@ -117,12 +115,12 @@ use App\categoria_producto;
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="">Descripcion:</label>
+                                                        <label for="">Descripción:</label>
                                                         <div class="input-group">
                                                             <div class="input-group-prepend ">
                                                                 <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class=" mdi mdi-border-color"></i></span>
                                                             </div>
-                                                          <input type="text" class="form-control form-control-sm"  name="CATPRO_descripcion"  id="CATPRO_descripcion"> </div>
+                                                          <input type="text" class="form-control form-control-sm"  name="CATPRO_descripcion"  id="CATPRO_descripcion" onkeyup="activaboton()"> </div>
                                                     </div>
                                                   </div>
                                                   <div class="col-md-12">
@@ -136,7 +134,7 @@ use App\categoria_producto;
                                                           <label for="">Precio 1:</label>
                                                           <div class="input-group">
 
-                                                          <input type="number" class="form-control form-control-sm" id="CATPRO_precio1"  name="CATPRO_precio1" min="0" max="99">
+                                                          <input type="number" class="form-control form-control-sm" id="CATPRO_precio1"  name="CATPRO_precio1" onkeyup="activaboton()">
                                                           <div class="input-group-prepend ">
                                                             <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9">%</span>
                                                         </div> </div>
@@ -147,7 +145,7 @@ use App\categoria_producto;
                                                         <label for="">Precio 2:</label>
                                                         <div class="input-group">
 
-                                                            <input type="number" class="form-control form-control-sm" id="CATPRO_precio2"  name="CATPRO_precio2" min="0" max="99">
+                                                            <input type="number" class="form-control form-control-sm" id="CATPRO_precio2"  name="CATPRO_precio2" onkeyup="activaboton()">
                                                             <div class="input-group-prepend ">
                                                               <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9">%</span>
                                                           </div> </div>
@@ -158,7 +156,7 @@ use App\categoria_producto;
                                                         <label for="">Precio 3:</label>
                                                         <div class="input-group">
 
-                                                            <input type="number" class="form-control form-control-sm" id="CATPRO_precio3"  name="CATPRO_precio3" min="0" max="99">
+                                                            <input type="number" class="form-control form-control-sm" id="CATPRO_precio3"  name="CATPRO_precio3" onkeyup="activaboton()">
                                                             <div class="input-group-prepend ">
                                                               <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9">%</span>
                                                           </div> </div>
@@ -173,7 +171,7 @@ use App\categoria_producto;
                                                             <label for="">Descuento máximo: </label>&nbsp &nbsp
                                                             <div class="input-group col-md-5">
 
-                                                                <input type="number" class="form-control form-control-sm" id="CATPRO_descuento" name="CATPRO_descuento" max="99">
+                                                                <input type="number" class="form-control form-control-sm" id="CATPRO_descuento" name="CATPRO_descuento" onkeyup="activaboton()">
                                                                 <div class="input-group-prepend ">
                                                                   <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9">%</span>
                                                               </div> </div>
@@ -184,27 +182,121 @@ use App\categoria_producto;
 
                                             </div>
                                             <div class="modal-footer" style="padding: 10px;">
-                                                <button type="button" class="btn btn-light btn-sm waves-effect" data-dismiss="modal">Close</button>
-                                                <button type="submit"  id="bt_guarda" name="bt_guarda"  class="btn btn-blue btn-sm waves-effect waves-light bt_guarda">Save changes</button>
+                                                <button type="button" class="btn btn-light btn-sm waves-effect" data-dismiss="modal" onclick="limpiarFormCategoria()">Cancelar</button>
+                                                <button type="submit"  id="bt_guarda1" name="bt_guarda"  class="btn btn-blue btn-sm waves-effect waves-light bt_guarda1" disabled>Guardar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- /.modal -->
+                                <div id="con-close-modal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                    <div class="modal-dialog" style="max-width: 700px">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="padding: 9px; background-color:#697582;" >
+                                                <h5 class="modal-title" style="color: white;">Edición de categoría</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color:white;">×</button>
+                                            </div>
+                                            <div class="modal-body p-2">
+                                            <div class="row">
+                                                <input type="text" class="form-control form-control-sm" id="CATPRO_id" name="CATPRO_id" disabled style="background: #e9ecef; display: none;">
+                                                <div class="col-md-6">
+                                                  <div class="form-group">
+                                                      <label for="">Código:</label>
+                                                      <div class="input-group">
+                                                        <div class="input-group-prepend ">
+                                                            <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-barcode"></i></span>
+                                                        </div>
+                                                      <input type="text" class="form-control form-control-sm" id="CATPRO_codigoE" name="CATPRO_codigoE" disabled style="background: #e9ecef"> </div>
+
+                                                  </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Descripción:</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend ">
+                                                                <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class=" mdi mdi-border-color"></i></span>
+                                                            </div>
+                                                          <input type="text" class="form-control form-control-sm"  name="CATPRO_descripcionE"  id="CATPRO_descripcionE" onkeyup="activaboton2()"> </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="col-md-12">
+                                                    <hr style="border-top: 2px solid #f1f1f1; margin: 0px" />
+                                                  </div>
+                                                  <div class="col-md-12">
+                                                      <h5>Ganancia</h5>
+                                                  </div>
+                                                  <div class="col-md-4">
+                                                      <div class="form-group">
+                                                          <label for="">Precio 1:</label>
+                                                          <div class="input-group">
+
+                                                          <input type="number" class="form-control form-control-sm" id="CATPRO_precio1E"  name="CATPRO_precio1E" onkeyup="activaboton2()">
+                                                          <div class="input-group-prepend ">
+                                                            <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9">%</span>
+                                                        </div> </div>
+                                                      </div>
+                                                  </div>
+                                                  <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="">Precio 2:</label>
+                                                        <div class="input-group">
+                                                            <input type="number" class="form-control form-control-sm" id="CATPRO_precio2E"  name="CATPRO_precio2E" onkeyup="activaboton2()">
+                                                            <div class="input-group-prepend ">
+                                                              <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9">%</span>
+                                                          </div> </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="">Precio 3:</label>
+                                                        <div class="input-group">
+                                                            <input type="number" class="form-control form-control-sm" id="CATPRO_precio3E"  name="CATPRO_precio3E" onkeyup="activaboton2()">
+                                                            <div class="input-group-prepend ">
+                                                              <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9">%</span>
+                                                          </div> </div>
+                                                    </div>
+                                                </div><br>
+                                                <div class="col-md-12">
+                                                    <hr style="border-top: 2px solid #f1f1f1; margin: 0px" />
+                                                  </div><br>
+                                                <div class="col-md-6">
+                                                    <div class="form-inline">
+                                                        <div class="form-group">
+                                                            <label for="">Descuento máximo: </label>&nbsp &nbsp
+                                                            <div class="input-group col-md-5">
+                                                                <input type="number" class="form-control form-control-sm" id="CATPRO_descuentoE" name="CATPRO_descuentoE" onkeyup="activaboton2()">
+                                                                <div class="input-group-prepend ">
+                                                                  <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9">%</span>
+                                                              </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            <div class="modal-footer" style="padding: 10px;">
+                                                <button type="button" class="btn btn-light btn-sm waves-effect" data-dismiss="modal">Cancelar</button>
+                                                <button type="submit"   id="bt_guarda2"  class="btn btn-blue btn-sm waves-effect waves-light " onclick="categoriaEditar()">Actualizar</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div><!-- /.modal -->
                                 &nbsp <button type="button" class="btn btn-blue waves-effect waves-light btn-sm" data-toggle="modal" data-target="#con-close-modal">+ categoria</button>
                                 <br><br>
-                                <div class="col-md-12">
-                                    <table id="basic-datatable" class="table dt-responsive nowrap" style=" font-size: 13px; border-collapse: collapse;border-left: solid 1px #dee2e6;border-right: solid 1px #dee2e6;border-bottom:solid 1px #dee2e6 ">
+                                <div class="col-md-12" id="listaCategoriasNueva2">
+                                </div>
+                                <div class="col-md-12" id="listaCategoriasNueva">
+                                    <table id="basic-datatable" class="table dt-responsive nowrap"  style=" font-size: 13px; border-collapse: collapse;border-left: solid 1px #dee2e6;border-right: solid 1px #dee2e6;border-bottom:solid 1px #dee2e6 ">
                                         <thead class="thead-light">
                                             <tr  style=" text-align: center;">
-
-                                                <th rowspan="2"  class="align-middle" style="padding: 3px;border-right: solid 1px #dee2e6">Codigo</th>
-                                                <th rowspan="2" class="align-middle" style="padding: 3px;border-right: solid 1px #dee2e6" >Categoria</th>
+                                                <th rowspan="2"  class="align-middle" style="padding: 3px;border-right: solid 1px #dee2e6">#</th>
+                                                <th rowspan="2"  class="align-middle" style="padding: 3px;border-right: solid 1px #dee2e6">Código</th>
+                                                <th rowspan="2" class="align-middle" style="padding: 3px;border-right: solid 1px #dee2e6" >Categoría</th>
                                                 <th colspan="3"  style="padding: 3px;">Ganancia</th>
-                                                <th rowspan="2" class="align-middle" style="padding: 3px;border-left: solid 1px #dee2e6"> descuento max</th>
+                                                <th rowspan="2" class="align-middle" style="padding: 3px;border-left: solid 1px #dee2e6"> Descuento max</th>
                                                 <th rowspan="2" class="align-middle" style="padding: 3px;border-left: solid 1px #dee2e6">Opciones</th>
                                             </tr>
                                             <tr style="text-align: center">
-
                                                 <th  style="padding: 4px; ">Precio 1</th>
                                                 <th style="padding: 4px;">Precio 2</th>
                                                 <th style="padding: 4px; ">Precio 3</th>
@@ -212,36 +304,31 @@ use App\categoria_producto;
                                         </thead>
                                         <tbody>
                                             @foreach ($categoria_producto as $categoria)
-                                            <tr style=" text-align: center; " >
-                                                <td class="align-middle"   style="padding: 2px;border-right: solid 1px #dee2e6;">{{$categoria->CATPRO_codigo}}</td>
-                                                <td class="align-middle" style="padding: 2px;">{{$categoria->CATPRO_descripcion}}</td>
-                                                <td class="align-middle" style="padding: 2px;border-left: solid 1px #dee2e6;">{{$categoria->CATPRO_precio1*100}} % </td>
-                                                <td class="align-middle" style="padding: 2px;border-left: solid 1px #dee2e6;">{{$categoria->CATPRO_precio2*100}} % </td>
-                                                <td class="align-middle" style="padding: 2px;border-left: solid 1px #dee2e6;border-right: solid 1px #dee2e6; ">{{$categoria->CATPRO_precio2*100}} % </td>
-                                                <td class="align-middle" style="padding: 2px;border-right: solid 1px #dee2e6;"> {{$categoria->CATPRO_descuento*100}} % </td>
-                                                <td class="align-middle" style="padding: 2px"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                                <a href="{{route('categoriaDelete',[$categoria->CATPRO_id])}}" class="action-icon"> <i class="mdi mdi-delete"></i></a></td>
-                                            </tr>
+                                            <tr style=" text-align: center;" id="{{$categoria->CATPRO_id}}">
+                                                    <td class="align-middle" style="padding: 2px;border-right: solid 1px #dee2e6;">{{$loop->index +1}}</td>
+                                                    <td class="align-middle" style="padding: 2px;border-right: solid 1px #dee2e6;">{{$categoria->CATPRO_codigo}}</td>
+                                                    <td class="align-middle" style="padding: 2px;">{{$categoria->CATPRO_descripcion}}</td>
+                                                    <td class="align-middle" style="padding: 2px;border-left: solid 1px #dee2e6;">{{$categoria->CATPRO_precio1*100}} % </td>
+                                                    <td class="align-middle" style="padding: 2px;border-left: solid 1px #dee2e6;">{{$categoria->CATPRO_precio2*100}} % </td>
+                                                    <td class="align-middle" style="padding: 2px;border-left: solid 1px #dee2e6;border-right: solid 1px #dee2e6; ">{{$categoria->CATPRO_precio3*100}} % </td>
+                                                    <td class="align-middle" style="padding: 2px;border-right: solid 1px #dee2e6;"> {{$categoria->CATPRO_descuento*100}} % </td>
+                                                    <td class="align-middle" style="padding: 2px"><a href="#" data-toggle="modal" data-target="#con-close-modal2" class="action-icon" onclick="buscarCategoria({{$categoria->CATPRO_id}})" title="Editar"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                    <a href="#" class="action-icon" onclick="eliminarCategoria({{$categoria->CATPRO_id}})" title="Eliminar"> <i class="mdi mdi-delete"></i></a></td>
+                                                </tr>
                                             @endforeach
-
-
                                         </tbody>
-
                                     </table>
-
-                                  </div>
-
-                               </div>
-                              </div>
-
-                          </div>
+                                </div>
+                            </div>
                         </div>
-                          <!-- /.card -->
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                    </div> <!-- container -->
-                </div> <!-- content -->
+                    </div>
+                </div>
+            <!-- /.card -->
+            </div>
+        <!-- /.col -->
+        </div>
+    </div> <!-- container -->
+</div> <!-- content -->
                 <!-- Footer Start -->
                 <footer class="footer">
                     <div class="container-fluid">
@@ -261,9 +348,9 @@ use App\categoria_producto;
                 </footer>
                 <!-- end Footer -->
             </div>
-            <!-- ============================================================== -->
-            <!-- End Page content -->
-            <!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- End Page content -->
+<!-- ============================================================== -->
         </div>
         <!-- END wrapper -->
         <!-- Right Sidebar -->
@@ -361,16 +448,9 @@ use App\categoria_producto;
         <div class="rightbar-overlay"></div>
 
 <!-- Vendor js -->
-
 <script src="{{asset('assets/js/vendor.min.js')}}"></script>
-
 <!-- Plugins js-->
-
  <script src="{{asset('assets/js/pages/animation.init.js')}}"></script>
-
-
-
-
 <script src="{{asset('assets/libs/select2/select2.min.js')}}"></script>
 <script src="{{asset('assets/libs/bootstrap-select/bootstrap-select.min.js')}}"></script>
 <!-- Dashboar 1 init js-->
@@ -378,23 +458,13 @@ use App\categoria_producto;
 <script src="{{asset('assets/js/pages/form-advanced.init.js')}}"></script>
 <!-- App js-->
 <script src="{{asset('assets/js/app.min.js')}}"></script>
-
-<script src="assets/libs/datatables/jquery.dataTables.min.js"></script>
-<script src="assets/libs/datatables/dataTables.bootstrap4.js"></script>
-<script src="assets/libs/datatables/dataTables.responsive.min.js"></script>
-
-<script src="assets/libs/datatables/dataTables.buttons.min.js"></script>
-
-
-
+<script src="{{asset('assets/libs/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('assets/libs/datatables/dataTables.bootstrap4.js')}}"></script>
+<script src="{{asset('assets/libs/datatables/dataTables.responsive.min.js')}}"></script>
+<script src="{{asset('assets/libs/datatables/dataTables.buttons.min.js')}}"></script>
 <!-- third party js ends -->
-
 <!-- Datatables init -->
 <script src="assets/js/pages/datatables.init.js"></script>
-
-
-
-
 <script>
  $(document).ready(function() {
             $.ajaxSetup({
@@ -403,13 +473,13 @@ use App\categoria_producto;
                 }
             });
 //////////////////////////////////////////
-        //Llenar div de datos al inicio
-        $(".bt_guarda").each(function (el){
+///////////////////Llenar div de datos al inicio
+        $(".bt_guarda1").each(function (el){
             $(this).bind("click",saveCategoria);
         });
-
         function saveCategoria(){
-            var codigo= $('#codigo').val();
+            var codigo=parseInt($('#codigo').val());
+            var codigonuevo=codigo+1;
             var categoria=$('#CATPRO_descripcion').val();
             var precio1=$('#CATPRO_precio1').val();
             var precio2=$('#CATPRO_precio2').val();
@@ -427,24 +497,225 @@ use App\categoria_producto;
                         CATPRO_descuento: descuento/100
                     },
                 success:function(data){
-
-                    $('#basic-datatable').load(location.href+" #basic-datatable>*");
-                    $('#codigo').val(data);
-                    limpiarFormCategoria();
+                    $('#listaCategoriasNueva').hide();
+                    $('#listaCategoriasNueva2').html(data);
                     $("#con-close-modal").modal("hide");
-
+                    $('#codigo').val(codigonuevo);
+                    limpiarFormCategoria();
                 }
             });
         }
-        function limpiarFormCategoria(){
+
+    })
+</script>
+<script>
+    function limpiarFormCategoria(){
             $('#CATPRO_descripcion').val('');
             $('#CATPRO_precio1').val('');
             $('#CATPRO_precio2').val('');
             $('#CATPRO_precio3').val('');
             $('#CATPRO_descuento').val('');
+
+            $('#CATPRO_descripcionE').val('');
+            $('#CATPRO_precio1E').val('');
+            $('#CATPRO_precio2E').val('');
+            $('#CATPRO_precio3E').val('');
+            $('#CATPRO_descuentoE').val('');
+            $('#bt_guarda1').prop('disabled',true);
         };
-    })
+</script>
+<script>
+    function categoriaEditar(){
+        var CATPRO_id=$('#CATPRO_id').val();
+
+        var CATPRO_descripcion=$('#CATPRO_descripcionE').val();
+        var CATPRO_precio1=$('#CATPRO_precio1E').val();
+        var CATPRO_precio2=$('#CATPRO_precio2E').val();
+        var CATPRO_precio3=$('#CATPRO_precio3E').val();
+        var CATPRO_descuento=$('#CATPRO_descuentoE').val();
+        $.ajax({
+            url:"{{route('categoriaUpdate')}}",
+            method:"POST",
+            data:{
+                CATPRO_id:CATPRO_id,
+                CATPRO_descripcion:CATPRO_descripcion,
+                CATPRO_precio1: CATPRO_precio1/100,
+                CATPRO_precio2: CATPRO_precio2/100,
+                CATPRO_precio3: CATPRO_precio3/100,
+                CATPRO_descuento: CATPRO_descuento/100
+            },
+            success:function(data){
+                $("#con-close-modal2").modal("hide");
+                limpiarFormCategoria();
+                $('#'+data+'').load(location.href+" #"+data+">*");
+            }
+        });
+    }
+</script>
+<script>function codigoUltimo(){
+$.ajax({
+            url:"{{route('codigoUltimo')}}",
+            method:"POST",
+            success:function(data){
+                $('#codigo').val(data);
+            }
+        });
+}
+</script>
+<script>
+    function eliminarCategoria(categoria){
+            codigoUltimo();
+            $.ajax({
+                url:"{{route('categoriaDelete')}}",
+                method:"POST",
+                data:{
+                    CATPRO_id:categoria,
+                },
+                success:function(data){
+                    $('#listaCategoriasNueva').hide();
+                    $('#listaCategoriasNueva2').html(data);
+                }
+            });
+    }
 </script>
 
+<script>
+    function buscarCategoria(categoria){
+        $.ajax({
+            url:"{{route('categoriaBuscar')}}",
+            method:"POST",
+            data:{
+                CATEGORIA_id:categoria
+            },
+            success:function(data){
+                $('#CATPRO_codigoE').val(data.CATPRO_codigo);
+                $('#CATPRO_descripcionE').val(data.CATPRO_descripcion);
+                $('#CATPRO_precio1E').val(parseFloat(data.CATPRO_precio1)*100);
+                $('#CATPRO_precio2E').val(parseFloat(data.CATPRO_precio2)*100);
+                $('#CATPRO_precio3E').val(parseFloat(data.CATPRO_precio3)*100);
+                $('#CATPRO_descuentoE').val(parseFloat(data.CATPRO_descuento)*100);
+                $('#CATPRO_id').val(data.CATPRO_id);
+            }
+        });
+    }
+</script>
+
+<script>
+     function activaboton(){
+        var CATPRO_descripcion=$('#CATPRO_descripcion').val();
+        var CATPRO_precio1=$('#CATPRO_precio1').val();
+        var CATPRO_precio2=$('#CATPRO_precio2').val();
+        var CATPRO_precio3=$('#CATPRO_precio3').val();
+        var CATPRO_descuento=$('#CATPRO_descuento').val();
+
+        if((CATPRO_descripcion!=null)&&(CATPRO_descripcion!='')&&
+        (CATPRO_precio1!=null)&&(CATPRO_precio1!='')&&
+        (CATPRO_precio2!=null)&&(CATPRO_precio2!='')&&
+        (CATPRO_precio3!=null)&&(CATPRO_precio3!='')&&
+        (CATPRO_descuento!=null)&&(CATPRO_descuento!='')){
+            $('#bt_guarda1').prop('disabled',false);
+        }
+        else{
+            $('#bt_guarda1').prop('disabled',true);
+        }
+     }
+</script>
+
+<script>
+    function activaboton2(){
+       var CATPRO_descripcion=$('#CATPRO_descripcionE').val();
+       var CATPRO_precio1=$('#CATPRO_precio1E').val();
+       var CATPRO_precio2=$('#CATPRO_precio2E').val();
+       var CATPRO_precio3=$('#CATPRO_precio3E').val();
+       var CATPRO_descuento=$('#CATPRO_descuentoE').val();
+
+       if((CATPRO_descripcion!=null)&&(CATPRO_descripcion!='')&&
+       (CATPRO_precio1!=null)&&(CATPRO_precio1!='')&&
+       (CATPRO_precio2!=null)&&(CATPRO_precio2!='')&&
+       (CATPRO_precio3!=null)&&(CATPRO_precio3!='')&&
+       (CATPRO_descuento!=null)&&(CATPRO_descuento!='')){
+           $('#bt_guarda2').prop('disabled',false);
+       }
+       else{
+           $('#bt_guarda2').prop('disabled',true);
+       }
+    }
+</script>
+
+
+<script>
+    var input=  document.getElementById('CATPRO_precio1');
+        input.addEventListener('input',function(){
+            var val = this.value;
+            this.value = val.replace(/\D|\-/,'');
+        })
+        input.addEventListener('input',function(){
+            if (this.value.length > 2)
+                this.value = this.value.slice(0,2);
+        })
+    var input=  document.getElementById('CATPRO_precio2');
+        input.addEventListener('input',function(){
+            var val = this.value;
+            this.value = val.replace(/\D|\-/,'');
+        })
+        input.addEventListener('input',function(){
+            if (this.value.length > 2)
+                this.value = this.value.slice(0,2);
+        })
+    var input=  document.getElementById('CATPRO_precio3');
+        input.addEventListener('input',function(){
+            var val = this.value;
+            this.value = val.replace(/\D|\-/,'');
+        })
+        input.addEventListener('input',function(){
+            if (this.value.length > 2)
+                this.value = this.value.slice(0,2);
+        })
+    var input=  document.getElementById('CATPRO_descuento');
+        input.addEventListener('input',function(){
+            var val = this.value;
+            this.value = val.replace(/\D|\-/,'');
+        })
+        input.addEventListener('input',function(){
+            if (this.value.length > 2)
+                this.value = this.value.slice(0,2);
+        })
+    var input=  document.getElementById('CATPRO_precio1E');
+        input.addEventListener('input',function(){
+                var val = this.value;
+                this.value = val.replace(/\D|\-/,'');
+            })
+        input.addEventListener('input',function(){
+            if (this.value.length > 2)
+                this.value = this.value.slice(0,2);
+        })
+    var input=  document.getElementById('CATPRO_precio2E');
+        input.addEventListener('input',function(){
+            var val = this.value;
+            this.value = val.replace(/\D|\-/,'');
+        })
+        input.addEventListener('input',function(){
+            if (this.value.length > 2)
+                this.value = this.value.slice(0,2);
+        })
+    var input=  document.getElementById('CATPRO_precio3E');
+        input.addEventListener('input',function(){
+            var val = this.value;
+            this.value = val.replace(/\D|\-/,'');
+        })
+        input.addEventListener('input',function(){
+            if (this.value.length > 2)
+                this.value = this.value.slice(0,2);
+        })
+    var input=  document.getElementById('CATPRO_descuentoE');
+        input.addEventListener('input',function(){
+            var val = this.value;
+            this.value = val.replace(/\D|\-/,'');
+        })
+        input.addEventListener('input',function(){
+            if (this.value.length > 2)
+                this.value = this.value.slice(0,2);
+        })
+</script>
     </body>
 </html>

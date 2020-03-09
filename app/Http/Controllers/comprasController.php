@@ -25,10 +25,12 @@ class comprasController extends Controller
     public function prod_id(){
 
         $last_producto = producto::all()->last();
+        if($last_producto!=null){
         $id_ultimo= $last_producto->PRO_id +1;
-
-
-        return $id_ultimo;
+        return $id_ultimo;}
+        else{
+            return 0;
+        }
     }
    public function index(){
     $tipo=tipo_proveedor::all();
@@ -57,7 +59,7 @@ public function showart(Request $request){
     $marca=marca::where('MARCA_id','=',$producto->MARCA_id)->first();
     $medida=umedidas::where('UME_id','=',$producto->UME_id)->first();
     $ultimopre=compro_item::where('PRO_id','=',$producto->PRO_id)->get()->last();
- 
+
     return [$producto,$categoria,$marca,$medida,$ultimopre];
 }
 

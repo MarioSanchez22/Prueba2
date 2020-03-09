@@ -113,7 +113,10 @@ Route::get('producto/registrar','productoController@create')->name('productoCrea
 ///////////////////////CATEGORIA////////////////////////////////
 Route::get('/categoria', 'categoriaController@index')->name('categoriaIndex');
 Route::POST('/categoria/store', 'categoriaController@store')->name('categoriaStore');
-Route::get('/categoria/delete/{categoria}', 'categoriaController@delete')->name('categoriaDelete');
+Route::POST('/categoria/buscar', 'categoriaController@buscar')->name('categoriaBuscar');
+Route::POST('/categoria/update', 'categoriaController@update')->name('categoriaUpdate');
+Route::POST('/categoria/delete', 'categoriaController@delete')->name('categoriaDelete');
+Route::POST('/categoria/ultimo', 'categoriaController@ultimo')->name('codigoUltimo');
 ////////////////////////////////////////////////////////////////
 //CONFIGURACION ROLES
 //ROLES

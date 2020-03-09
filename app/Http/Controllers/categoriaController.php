@@ -9,8 +9,13 @@ use App\marca;
 class categoriaController extends Controller
 {
     public function ultimo(){
-        $last_categoria = categoria_producto::where('CATPRO_estado','=','1')->count();
-        $id_ultimo= $last_categoria +1;
+        $last_categoria = categoria_producto::where('CATPRO_estado','=','1')->get();
+        $ultimo=$last_categoria->last();
+        if($ultimo!=null){
+            $id_ultimo= $ultimo->CATPRO_codigo +1;}
+        else{
+            $id_ultimo=1;
+        }
         return $id_ultimo;
     }
     public function index(){
@@ -20,7 +25,6 @@ class categoriaController extends Controller
        return view('categoria.index',[ 'categoria_producto'=>$categoria_producto,'id_ultimo'=>$id_ultimo]);
     }
     public function store( Request $request){
-
         $categoria=new categoria_producto();
         $categoria->CATPRO_descripcion=$request->get('CATPRO_descripcion');
         if($request->get('CATPRO_codigo')>9){
@@ -36,18 +40,33 @@ class categoriaController extends Controller
         $categoria->CATPRO_descuento=$request->get('CATPRO_descuento');
         $categoria->updated_at=null;
         $categoria->save();
-
         $id_ultimo=$this->ultimo();
 
-        return $id_ultimo;
+        $categoria_producto=categoria_producto::where('CATPRO_estado','=','1')->get();
+        return view('categoria._categoriaNueva',['categoria_producto'=>$categoria_producto,'id_ultimo'=>$id_ultimo]);
     }
 
-    public function delete($categoria){
-       $cat=categoria_producto::find($categoria);
-       $cat->CATPRO_estado=0;
-       $cat->updated_at=now();
-       $cat->save();
-       return back();
+    public function buscar(Request $request){
+        $categoria=categoria_producto::find($request->get('CATEGORIA_id'));
+        return $categoria;
     }
+    public function update(Request $request){
+        $categoria=categoria_producto::find($request->get('CATPRO_id'));
+        $categoria->CATPRO_descripcion=$request->get('CATPRO_descripcion');
+        $categoria->CATPRO_precio1=$request->get('CATPRO_precio1');
+        $categoria->CATPRO_precio2=$request->get('CATPRO_precio2');
+        $categoria->CATPRO_precio3=$request->get('CATPRO_precio3');
+        $categoria->CATPRO_descuento=$request->get('CATPRO_descuento');
+        $categoria->save();
+        return $categoria->CATPRO_id;
+    }
+
+ public function delete(Request $request){
+        $categoria=categoria_producto::find($request->get('CATPRO_id'));
+        $categoria->CATPRO_estado=0;
+        $categoria->save();
+        $categoria_producto=categoria_producto::where('CATPRO_estado','=','1')->get();
+        return view('categoria._categoriaNueva',['categoria_producto'=>$categoria_producto]);
+}
 
 }

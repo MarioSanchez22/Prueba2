@@ -305,27 +305,27 @@ use App\categoria_producto;
     })
 </script>
 <script>
-function limpiarMarca(){
-    $('#MARCA_descripcion').val('');
-    $('#MARCA_descripcionE').val('');
-};
-function marcaRegistrar(){
-    alert('Aqui estoy');
-    var MARCA_descripcion= $('#MARCA_descripcion').val();
-    $.ajax({
-        url:"{{route('marcaStore')}}",
-        method:"POST",
-        data:{
-            MARCA_descripcion:MARCA_descripcion,
-        },
-        success:function(data){
-            $('#modal').modal("hide");
-            limpiarMarca();
-            $('#listaMarcasNueva').hide();
-            $('#listaMarcasNueva2').html(data);
-        }
-    });
-}
+    function limpiarMarca(){
+        $('#MARCA_descripcion').val('');
+        $('#MARCA_descripcionE').val('');
+    };
+    function marcaRegistrar(){
+        alert('Aqui estoy');
+        var MARCA_descripcion= $('#MARCA_descripcion').val();
+        $.ajax({
+            url:"{{route('marcaStore')}}",
+            method:"POST",
+            data:{
+                MARCA_descripcion:MARCA_descripcion,
+            },
+            success:function(data){
+                $('#modal').modal("hide");
+                limpiarMarca();
+                $('#listaMarcasNueva').hide();
+                $('#listaMarcasNueva2').html(data);
+            }
+        });
+    }
 </script>
 
 <script>
