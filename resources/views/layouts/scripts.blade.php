@@ -24,13 +24,13 @@
    <script src="{{asset('assets/libs/select2/select2.min.js')}}"></script>
    <script src="{{asset('assets/libs/bootstrap-select/bootstrap-select.min.js')}}"></script>
    <!-- Dashboar 1 init js-->
-   <script src="{{asset('assets/js/pages/dashboard-1.init.js')}}"></script>
-   <script src="{{asset('assets/js/pages/form-advanced.init.js')}}"></script>
+        <script src="{{asset('assets/js/pages/dashboard-1.init.js')}}"></script>
+        <script src="{{asset('assets/js/pages/form-advanced.init.js')}}"></script>
    <!-- App js-->
-   <script src="{{asset('assets/js/app.min.js')}}"></script>
+        <script src="{{asset('assets/js/app.min.js')}}"></script>
 
     <!-- Bootstrap Tables js -->
-    <script src="{{asset('assets/libs/bootstrap-table/bootstrap-table.min.js')}}"></script>
+        <script src="{{asset('assets/libs/bootstrap-table/bootstrap-table.min.js')}}"></script>
 
     <!-- Init js -->
     <script src="{{asset('assets/libs/datatables/jquery.dataTables.min.js')}}"></script>

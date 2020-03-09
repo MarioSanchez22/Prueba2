@@ -25,11 +25,12 @@ class comprasController extends Controller
     public function prod_id(){
 
         $last_producto = producto::all()->last();
-        if( $last_producto!=NULL){
+        if($last_producto!=null){
         $id_ultimo= $last_producto->PRO_id +1;
-
-
         return $id_ultimo;}
+        else{
+            return 0;
+        }
     }
    public function index(){
     $tipo=tipo_proveedor::all();

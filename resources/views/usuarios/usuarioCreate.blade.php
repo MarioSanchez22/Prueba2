@@ -359,7 +359,6 @@
 
     <script type="text/javascript">
     function activaboton(){
-
         var EMPLEADO_cargo=$('#EMPLEADO_cargo').val();
         var usuario=$('#USER_name').val();
 
