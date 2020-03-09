@@ -1,5 +1,3 @@
-
-
 @php
 use App\producto;
 use App\umedidas;
@@ -198,7 +196,7 @@ use App\umedidas;
                             </div>
                             <div class="modal-footer" style="padding: 6px">
                                 <button type="button" class="btn btn-light waves-effect btn-sm" data-dismiss="modal">Cerrar</button>
-                                <button type="button" id="guardarPr" class="btn btn-light waves-effect waves-light btn-sm">Guardar</button>
+                                <button type="button" id="" class="btn btn-light waves-effect waves-light btn-sm">Guardar</button>
                             </div>
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
