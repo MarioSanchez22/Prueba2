@@ -73,36 +73,40 @@ use App\umedidas;
             <!-- ============================================================== -->
 
             <div class="content-page" >
-                <div id="ajustarprecio" class="modal fade" style="background-color: rgba(33, 33, 33, 0.46);">
+                <div id="ajustarprecio" class="modal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="background-color: rgba(33, 33, 33, 0.46);">
                     <div class="modal-dialog modal-full modal-dialog-centered" style="width: 70%">
                         <div class="modal-content">
-                            <div class="modal-header" style="padding: 9px; background-color:white;">
+                            <div class="modal-header" style="padding: 0px; background-color:white;">
                                <div class="col-md-12">
                                 <div class="row">
                                    <div class="col-md-4" style=" background: #2d3640; color: white">
-                                    <input type="text"   class="form-control-plaintext form-control-sm " style="color:white;font-weight:bold;" id="nombreArti" >
+                                    <div class="form-inline">
+                                    <label for="">NOMBRE:</label>&nbsp;&nbsp;&nbsp;
+                                    <input type="text"   class="col-md-4 form-control-plaintext form-control-sm " style="color:white;font-weight:bold;" id="nombreArti" >
+                                    </div>
                                     <div class="form-inline">
                                     <label for="">Existencias: </label> &nbsp;&nbsp;&nbsp;
-                                    <input type="text"   class="col-md-6 form-control-plaintext form-control-sm " style="color:white;font-weight:bold;" id=""  value="333">
-                                    </div>
+                                    <input type="text"   class="col-md-2 form-control-plaintext form-control-sm " style="color:white;font-weight:bold;" id=""  value="333">
+                                    <input type="text"  class="col-md-4 form-control-plaintext form-control-sm text-left" style="margin-left: -15px;color:white;font-weight:bold;" value="unidad(es)">
+                                        <label for="">Costo anterior: S/.</label>&nbsp;&nbsp;&nbsp;
+                                        <input type="text"   class="col-md-2 form-control-plaintext form-control-sm " style="color:white;font-weight:bold;" id="costoAnte" >
+                                        </div>
                                     <div class="form-inline">
-                                    <div class="form-group">
-                                    <label for="">Costo ant:</label>&nbsp;&nbsp;&nbsp;
-                                    <input type="text"   class="col-md-6 form-control-plaintext form-control-sm " style="color:white;font-weight:bold;" id="costoAnte" >
-                                    </div>
+                                   
                                    </div>
                                 </div>
-                                   <div class="col-md-4" style="font-size: 16px; background:#4b6980d1;color:white">
-                                    <div class="form-inline" style="margin-top: 25px">
-                                    <label for="">INGRESANDO </label>&nbsp;&nbsp;&nbsp;
-                                    <input type="text"   class="col-md-2 form-control-plaintext form-control-sm " style="color:white;font-weight:bold;" id="cantidadProd" disabled >productos
+                                   <div class="col-md-4" style="background:#4b6980d1;color:white">
+                                    <label style="margin-top: 20px; margin-bottom: 5px;" for="">INGRESANDO :</label>&nbsp;&nbsp;&nbsp;
+                                    <div class="form-inline" >
+                                    <input type="text"   class="col-md-2 form-control-plaintext form-control-sm text-left" style="color:white;font-weight:bold;"  id="cantidadProd" disabled >
+                                    <input type="text"  class="col-md-4 form-control-plaintext form-control-sm text-left" style="margin-left: -15px;color:white;font-weight:bold;" value="Producto(s)">
 
 
                                   </div>
                                    </div>
                                    <div class="col-md-4" style=" background:#275677; color:white">
                                        <DIV style="">
-                                       <label for="">PROVEEDOR: </label>
+                                       <label style="margin-top: 20px; margin-bottom: 5px;" for="">PROVEEDOR: </label>
                                     <input type="text"   class="form-control-plaintext form-control-sm " style="color:white;font-weight:bold;" id="nombredeP" >
                                 </DIV> </div>
                                   </div>
@@ -122,15 +126,15 @@ use App\umedidas;
                                                          <br>
                                                                 <div class="row">
                                                                     <div class="col-md-4">
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="checkbox" >
-                                                                        <label class=" not-bold">Ajuste automático </label> &nbsp;
+                                                                      <div class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
+                                                                        <label class="custom-control-label" for="customCheck1">Ajuste automático</label>
                                                                     </div>
                                                                   </div>
                                                                   <div class="col-md-4">
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="checkbox">
-                                                                        <label class=" not-bold">Precio venta con IGV </label> &nbsp;
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" class="custom-control-input" id="customCheck2" checked>
+                                                                        <label class="custom-control-label" for="customCheck1">Precio venta con IGV</label>
                                                                     </div>
                                                                   </div>
                                                                   <div class="col-md-4  text-right">
@@ -139,18 +143,26 @@ use App\umedidas;
                                                                         <label class="custom-control-label" for="customSwitch1">Redondear</label>
                                                                     </div>
                                                                   </div>
-                                                                 <div class="col-md-12" style="margin-bottom: 8px"></div>
-                                                                 <div class="col-md-4">
-                                                                     <div class="col-md-12 form-inline">
-                                                                        <div class="col-md-3" id="iconoCosto">
+                                                                 <div class="col-md-12" style="margin-bottom: 20px"></div>
+                                                                 <div class="col-md-1">
+                                                                     
+                                                                        <div class="" id="iconoCosto">
 
-                                                                        </div>  &nbsp;&nbsp;&nbsp;&nbsp;
-
-                                                                    <input type="text"   class="col-md-2 form-control-plaintext form-control-sm text-right" value="12" style="font-weight: bold" disabled >
-                                                                    <input type="text"   class="col-md-1 form-control-plaintext form-control-sm" value="%" style="font-weight: bold" disabled>
-                                                                   </div>
-                                                                   <div id="estadocosto"></div>
+                                                                        </div>  
+                                                                    
+                                                                   
                                                                  </div>
+                                                                 <div class="col-md-3" style="left: -40px; margin-top: 13px;">
+                                                                     <div class="form-inline">
+                                                                         <div class="">          
+                                                                        <input type="text"   class="col-md-2 form-control-plaintext form-control-sm text-right" value="12" style="font-weight: bold" disabled >
+                                                                        <input type="text"   class="col-md-1 form-control-plaintext form-control-sm" value="%" style="font-weight: bold" disabled>   
+                                                                        </div> 
+                                                                      
+                                                                    </div>
+                                                                   
+                                                                 </div>
+                                                                
                                                                  <div class="col-md-2">
                                                                      <div class="form-group">
                                                                          <label class="control-label" for="">Costo:</label>
@@ -179,6 +191,7 @@ use App\umedidas;
                                                                     </div>
 
                                                                 </div>
+                                                                <div class="col-md-2" id="estadocosto"></div>
                                                                 </div>
 
 
@@ -1137,10 +1150,10 @@ $('#nombredeP').val(nombreProvee);
 if(n3>n4)
 
 {
-    $('#iconoCosto').html('<i class="mdi mdi-48px mdi-arrow-up-circle" style="color:#c13434"></i>');
-    $('#estadocosto').html('<p style="font-size:17px; color:red">EL COSTO SUBIO</p>');
+    $('#iconoCosto').html('<i class="mdi mdi-36px mdi-arrow-up-circle" style="color:#c13434"></i>');
+    $('#estadocosto').html('<p style="font-size:14px; color:red">EL COSTO SUBIO</p>');
 } else{
-    $('#iconoCosto').html('<i class="mdi mdi-48px mdi-arrow-down-circle" style="color:#cc5c39"></i>');
+    $('#iconoCosto').html('<i class="mdi mdi-36px mdi-arrow-down-circle" style="color:#cc5c39"></i>');
     $('#estadocosto').html('<p style="font-size:17px; color:red">EL COSTO BAJO</p>');
 }
 }
