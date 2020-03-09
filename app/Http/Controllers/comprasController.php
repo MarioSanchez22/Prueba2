@@ -25,10 +25,11 @@ class comprasController extends Controller
     public function prod_id(){
 
         $last_producto = producto::all()->last();
+        if( $last_producto!=NULL){
         $id_ultimo= $last_producto->PRO_id +1;
 
 
-        return $id_ultimo;
+        return $id_ultimo;}
     }
    public function index(){
     $tipo=tipo_proveedor::all();
@@ -57,7 +58,7 @@ public function showart(Request $request){
     $marca=marca::where('MARCA_id','=',$producto->MARCA_id)->first();
     $medida=umedidas::where('UME_id','=',$producto->UME_id)->first();
     $ultimopre=compro_item::where('PRO_id','=',$producto->PRO_id)->get()->last();
- 
+
     return [$producto,$categoria,$marca,$medida,$ultimopre];
 }
 
@@ -170,12 +171,17 @@ public function comprahecha(Request $request ){
         $compro_fantasma=producto_comprado::where('USER_id','=',Auth::user()->id)->get();
         foreach($compro_fantasma as $compro_fantasmas )
         {   $compro_item=new compro_item();
+            $producto=producto::where('PRO_id','=',$compro_fantasmas->PRO_id)->first();
+            $categoria=categoria_producto::where('CATPRO_id','=',$producto->CATPRO_id)->first();
             $compra_elimina=producto_comprado::find($compro_fantasmas->PROCO_id);
             $compro_item->PRO_id=$compro_fantasmas->PRO_id;
             $compro_item->COMPROI_garantia=$compro_fantasmas->PRO_garantia;
             $compro_item->COMPROI_costo=$compro_fantasmas->PRO_costo;
             $compro_item->COMPROI_cantidad=$compro_fantasmas->PRO_cantidad;
             $compro_item->COMPRO_id=$compra_producto->COMPRO_id;
+            $compro_item->COMPROI_precio1=$compro_fantasmas->PRO_costo*$categoria->CATPRO_precio1 +$compro_fantasmas->PRO_costo;
+            $compro_item->COMPROI_precio2=$compro_fantasmas->PRO_costo*$categoria->CATPRO_precio2 +$compro_fantasmas->PRO_costo;
+            $compro_item->COMPROI_precio3=$compro_fantasmas->PRO_costo*$categoria->CATPRO_precio3 +$compro_fantasmas->PRO_costo;
             $compro_item->updated_at=null;
             $compro_item->save();
             $compra_elimina->delete();
