@@ -57,10 +57,8 @@
 
             <div class="content-page">
                 <div class="content">
-
                     <!-- Start Content-->
                     <div class="container-fluid">
-
                     <!-- start page title -->
                     <div class="row">
                         <div class="col-12">
@@ -79,9 +77,7 @@
 
                     <div class="row">
                         <div class="col-md-12 bounceInDown animated">
-
                             <!-- /.card-header -->
-
                                 <div class="row" >
                                 <div class="col-lg-4 col-xl-4">
                                 <div class="card-box text-center">

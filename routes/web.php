@@ -112,8 +112,8 @@ Route::get('producto/registrar','productoController@create')->name('productoCrea
 Route::POST('producto/store','productoController@store')->name('productoStore');
 Route::get('producto/edit/{producto}','productoController@edit')->name('productoEdit');
 Route::POST('producto/update/{producto}','productoController@update')->name('productoUpdate');
-
-
+Route::POST('producto/darBaja','productoController@darBaja')->name('productoDarBaja');
+Route::POST('producto/darAlta','productoController@darAlta')->name('productoDarAlta');
 ///////////////////////CATEGORIA////////////////////////////////
 Route::get('/categoria', 'categoriaController@index')->name('categoriaIndex');
 Route::POST('/categoria/store', 'categoriaController@store')->name('categoriaStore');

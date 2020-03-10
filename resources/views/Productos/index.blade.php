@@ -9,6 +9,7 @@ use App\umedidas;
         <meta charset="utf-8" />
         <title>UBold - Responsive Admin Dashboard Template</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="csrf-token" content="{{csrf_token()}}"/>
 
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
@@ -114,7 +115,7 @@ use App\umedidas;
                                                                     $categoria=categoria_producto::where('CATPRO_id','=',$producto->CATPRO_id)->first();
                                                                     $marca=marca::where('MARCA_id','=',$producto->MARCA_id)->first();
                                                                 @endphp
-                                                                <tr>
+                                                                <tr id="{{$producto->PRO_id}}">
                                                                     <td>{{$producto->PRO_codigo}}</td>
                                                                 <td>{{$producto->PRO_nombre}}-{{$producto->PRO_modelo}}-{{$marca->MARCA_descripcion}}-{{$categoria->CATPRO_descripcion}}</td>
                                                                     <td>{{$unidad->UME_abreviatura}}</td>
@@ -131,9 +132,9 @@ use App\umedidas;
                                                                             <a href="{{route('productoShow',[$producto->PRO_id])}}" class="dropdown-item" title="Ver"> <i class="mdi mdi-eye"></i> Ver</a>
                                                                             <a href="{{route('productoEdit',[$producto->PRO_id])}}" class="dropdown-item" title="Editar"><i class="mdi mdi-square-edit-outline"></i>Editar</a>
                                                                             @if ($producto->PRO_estadoCrea==1)
-                                                                                <a href="#" class="dropdown-item" title="Editar"> <i class="mdi mdi-block-helper"></i> Bloquear</a>
+                                                                                <a href="#" class="dropdown-item" title="Editar" onclick="bloquear({{$producto->PRO_id}})"> <i class="mdi mdi-block-helper"></i> Bloquear</a>
                                                                             @else
-                                                                                <a href="#" class="dropdown-item" title="Editar"> <i class="mdi mdi-transfer-up"></i> Activar</a>
+                                                                                <a href="#" onclick="activar({{$producto->PRO_id}})" class="dropdown-item" title="Editar"> <i class="mdi mdi-transfer-up"></i> Activar</a>
                                                                             @endif
                                                                         </div>
                                                                     </div>
@@ -276,34 +277,43 @@ use App\umedidas;
         <div class="rightbar-overlay"></div>
 
 @include('layouts.scripts')
-
-
-
 <script>
-     $('#buscar').click(function(){
-        var ruc=$('#PROVE_ruc').val();
-        var razon=$('#PROVE_razon_social').val();
-        var etiqueta=$('#PROVE_etiqueta').val();
-        $('#tablageneral').hide();
-        if(ruc==''){
-            ruc='0';
-        }
-        if(razon==''){
-            razon='0';
-        }
-        if(etiqueta==''){
-            etiqueta='0';
-        }
-    $.ajax({
-    url:"proveedor/buscar/"+ruc+"/"+razon+"/"+etiqueta,
-    method:"GET",
-    success:function(data1){
-        $('#tabla1').html(data1);
-        }
-});
-});
+    function bloquear(producto){
+        $.ajaxSetup({
+            headers:{
+            'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url:"{{route('productoDarBaja')}}",
+            method:"POST",
+            data:{
+                PRO_id:producto
+            },
+            success:function(data){
+                $('#'+data+'').load(location.href+" #"+data+">*");
+            }
+        });
+    }
+    function activar(producto){
+        $.ajaxSetup({
+            headers:{
+            'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url:"{{route('productoDarAlta')}}",
+            method:"POST",
+            data:{
+                PRO_id:producto
+            },
+            success:function(data){
+                $('#'+data+'').load(location.href+" #"+data+">*");
+            }
+        });
+    }
 
-</script>
+   </script>
 
     </body>
 </html>
