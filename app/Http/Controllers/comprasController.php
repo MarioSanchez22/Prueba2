@@ -43,7 +43,6 @@ class comprasController extends Controller
     $region=region::where('ubicacionpaisid','=',89)->get();
     $id_ultimo=$this->prod_id();
 
-
        return view('compras.Index',['tipo'=>$tipo,'region'=>$region,'proveedor'=>$proveedor,'producto'=>$producto,'categoria_pr'=>$categoriap,'marcap'=>$marcap,'umedidasp'=>$umedidasp,'ultimoid'=>$id_ultimo,'productoCom'=>$productocom]);
    }
    public function showp(Request $request){

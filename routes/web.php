@@ -106,9 +106,13 @@ Route::get('cliente/darAlta/{cliente}', 'clienteController@darAlta')->name('clie
     Route::name('proveedorExpedienteDownload')->get('/proveedor/expediente/{expediente}/download','proveedorController@download');
 //PRODUCTO
 Route::get('/productos', 'productoController@index')->name('productosIndex');
-
+Route::get('producto/show/{producto}','productoController@show')->name('productoShow');
 Route::POST('/producto/{id}/ajuste', 'productoController@ajuste')->name('productoAjuste');
 Route::get('producto/registrar','productoController@create')->name('productoCreate');
+Route::POST('producto/store','productoController@store')->name('productoStore');
+Route::get('producto/edit/{producto}','productoController@edit')->name('productoEdit');
+Route::POST('producto/update/{producto}','productoController@update')->name('productoUpdate');
+
 
 ///////////////////////CATEGORIA////////////////////////////////
 Route::get('/categoria', 'categoriaController@index')->name('categoriaIndex');

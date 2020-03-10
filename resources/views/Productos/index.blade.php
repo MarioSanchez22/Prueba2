@@ -1,8 +1,8 @@
 @php
 use App\marca;
 use App\categoria_producto;
+use App\umedidas;
 @endphp
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -14,25 +14,19 @@ use App\categoria_producto;
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         @include('layouts.estilos')
-
     </head>
-
     <body>
         <div  id="preloader">
-   
             <div id="status" >
-             
                 @php
-                $usuario=Auth::user();
+                    $usu1=Auth::user();
                 @endphp
-      
-                <strong style="font-size: 20px; color:#2e4965">@if ($usuario->EMPRESA_id==1)
-                 MACROchips
-                  @else
-                  NeptComputer
-                  @endif</strong>
-                  <div class="spinner-grow avatar-sm text-secondary m-2" role="status"></div>
-             
+                <strong style="font-size: 20px; color:#2e4965">@if ($usu1->EMPRESA_id==1)
+                    MACROchips
+                @else
+                    NeptComputer
+                @endif</strong>
+                <div class="spinner-grow avatar-sm text-secondary m-2" role="status"></div>
             </div>
         </div>
         <style>
@@ -95,65 +89,59 @@ use App\categoria_producto;
                         <div class="col 12 bounceInLeft animated">
                             <div class="col-xl-12">
                                 <div class="card-box">
-
-
-                                    <ul class="nav nav-pills navtab-bg nav-justified">
-                                        <li class="nav-item">
-                                            <a href="#home1" data-toggle="tab" aria-expanded="true" class="nav-link active">
-                                                Lista de productos
-                                            </a>
-                                        </li>
-
-                                    </ul>
                                     <div class="tab-content">
                                         <div class="tab-pane show active" id="home1">
                                             <div id="tablageneral" class="bounceInLeft animated">
-                                                <table id="datatable-buttons" class="table table-striped dt-responsive nowrap">
-                                            <thead >
-                                            <tr>
-                                            <th  >#</th>
-                                            <th >Categoria</th>
-                                            <th >Marca</th>
-
-
-                                            <th>Modelo</th>
-                                            <th >Detalle</th>
-
-                                            <th >Opciones</th>
-                                            </tr>
-                                            </thead>
-                                                <tbody>
-                                                @foreach ($producto as $productos)
-                                                @php
-                                                $categoria=categoria_producto::where('CATPRO_id','=',$productos->CATPRO_id)->get();
-                                                $marca=marca::where('MARCA_id','=',$productos->MARCA_id)->get();
-                                                @endphp
+                                                <table   data-toggle="table"
+                                                    data-page-size="6"
+                                                    data-buttons-class="xs btn-light"
+                                                    data-pagination="true" class="table-bordered ">
+                                                    <thead class="thead-light">
                                                     <tr>
-                                                            <td>{{$loop->index+1}}</td>
-                                                            <td>{{$categoria[0]->CATPRO_descripcion}}</td>
-                                                            <td>{{$marca[0]->MARCA_descripcion}}</td>
-                                                            <td>{{$productos->PRO_modelo}}</td>
-                                                            <td>{{$productos->PRO_detalle}}</td>
-
+                                                        <th data-field="name">Código</th>
+                                                        <th data-field="amount">Producto</th>
+                                                        <th data-field="unidad">U. Med.</th>
+                                                        <th data-field="stack">Stack [min-max]</th>
+                                                        <th data-field="garantiac">Garantía compra</th>
+                                                        <th data-field="garantiav">Garantía venta</th>
+                                                        <th data-field="amouWnt">Opciones</th>
+                                                    </tr>
+                                                    </thead>
+                                                        <tbody>
+                                                            @foreach ($productos as $producto)
+                                                                @php
+                                                                    $unidad=umedidas::where('UME_id','=',$producto->UME_id)->first();
+                                                                    $categoria=categoria_producto::where('CATPRO_id','=',$producto->CATPRO_id)->first();
+                                                                    $marca=marca::where('MARCA_id','=',$producto->MARCA_id)->first();
+                                                                @endphp
+                                                                <tr>
+                                                                    <td>{{$producto->PRO_codigo}}</td>
+                                                                <td>{{$producto->PRO_nombre}}-{{$producto->PRO_modelo}}-{{$marca->MARCA_descripcion}}-{{$categoria->CATPRO_descripcion}}</td>
+                                                                    <td>{{$unidad->UME_abreviatura}}</td>
+                                                                    <td>[{{$producto->PRO_min}}-{{$producto->PRO_max}}]</td>
+                                                                    <td>{{$producto->PRO_gcomprar}} días</td>
+                                                                    <td>{{$producto->PRO_gvender}} días</td>
                                                                 <td>
+                                                                <span class="badge bg-soft-success text-success shadow-none">{{$producto->PRO_estado}}</span>
                                                                     <div class="dropdown float-right">
                                                                         <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
                                                                             <i class=" mdi mdi-settings m-0 text-muted h3"></i>
                                                                         </a>
                                                                         <div class="dropdown-menu dropdown-menu-right">
-
-                                                                            <a href="" class="dropdown-item" title="Ver"> <i class="mdi mdi-eye"></i> Ver</a>
-                                                                             <a href="" class="dropdown-item" title="Editar"> <i class="mdi mdi-square-edit-outline"></i> Editar</a>
-                                                                             <a   data-toggle="modal" href="#modal" class="dropdown-item" > <i class="mdi mdi-plus"></i> Agregar contacto</a>
-
+                                                                            <a href="{{route('productoShow',[$producto->PRO_id])}}" class="dropdown-item" title="Ver"> <i class="mdi mdi-eye"></i> Ver</a>
+                                                                            <a href="{{route('productoEdit',[$producto->PRO_id])}}" class="dropdown-item" title="Editar"><i class="mdi mdi-square-edit-outline"></i>Editar</a>
+                                                                            @if ($producto->PRO_estadoCrea==1)
+                                                                                <a href="#" class="dropdown-item" title="Editar"> <i class="mdi mdi-block-helper"></i> Bloquear</a>
+                                                                            @else
+                                                                                <a href="#" class="dropdown-item" title="Editar"> <i class="mdi mdi-transfer-up"></i> Activar</a>
+                                                                            @endif
                                                                         </div>
                                                                     </div>
-
-
-                                                            </tr>
-                                                @endforeach
-                                                </tbody>
-                                                </table>
+                                                                </td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                        </table>
                                                 </div>
                                         </div>
 
