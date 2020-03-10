@@ -176,21 +176,21 @@ use App\umedidas;
                                                                  <div class="col-md-2">
                                                                     <div class="form-group">
                                                                         <label class="control-label" for="">Precio 1:</label>
-                                                                        <input type="text" class="form-control form-control-sm" id="precio1ver">
+                                                                        <input type="number" class="form-control form-control-sm" id="precio1ver">
                                                                     </div>
 
                                                                 </div>
                                                                 <div class="col-md-2">
                                                                     <div class="form-group">
                                                                         <label class="control-label" for="">Precio 2:</label>
-                                                                        <input type="text" class="form-control form-control-sm" id="precio2ver">
+                                                                        <input type="number" class="form-control form-control-sm" id="precio2ver" step="0.01">
                                                                     </div>
 
                                                                 </div>
                                                                 <div class="col-md-2">
                                                                     <div class="form-group">
                                                                         <label class="control-label" for="">Precio 3:</label>
-                                                                        <input type="text" class="form-control form-control-sm" id="precio3ver">
+                                                                        <input type="number" class="form-control form-control-sm" id="precio3ver">
                                                                     </div>
 
                                                                 </div>
@@ -1192,29 +1192,31 @@ $('#cantidadProd').val(cantidad);
 $('#nombredeP').val(nombreProvee);
 
 $('#n3').val(n3);
-
-
+var precio1ver=n3/(1-precio1categoria);
+var precio2ver=n3/(1-precio2categoria);
+var precio3ver=n3/(1-precio3categoria);
 if(n3>n4)
 
 {
     $('#iconoCosto').html('<i class="mdi mdi-48px mdi-arrow-up-circle" style="color:#c13434"></i>');
     $('#estadocosto').html('<p style="font-size:14px; color:red">EL COSTO SUBIO</p>');
     $('#porcentaje').val(((n3 - n4)/n4)*100);
-    $('#precio1ver').val(n3/(1-precio1categoria));
-    $('#precio2ver').val(n3/(1-precio2categoria));
-    $('#precio3ver').val(n3/(1-precio3categoria));
+    $('#precio1ver').val(precio1ver.toFixed(2));
+    $('#precio2ver').val(precio2ver.toFixed(2));
+    $('#precio3ver').val(precio3ver.toFixed(2));
     var checkbox = document.getElementById('customCheck1');
 checkbox.addEventListener("change", validaCheckbox, false);
 
 function validaCheckbox(){
   var checked = checkbox.checked;
   if(checked){
-    $('#precio1ver').val(n3/(1-precio1categoria));
-    $('#precio2ver').val(n3/(1-precio2categoria));
-    $('#precio3ver').val(n3/(1-precio3categoria));
+    $('#precio1ver').val(precio1ver.toFixed(2));
+    $('#precio2ver').val(precio2ver.toFixed(2));
+    $('#precio3ver').val(precio3ver.toFixed(2));
+
   }
   else{
-       $('#precio1ver').val(precio1p);
+    $('#precio1ver').val(precio1p);
         $('#precio2ver').val(precio2p);
         $('#precio3ver').val(precio3p);
   }
@@ -1224,6 +1226,31 @@ function validaCheckbox(){
 } else{
     $('#iconoCosto').html('<i class="mdi mdi-48px mdi-arrow-down-circle" style="color:#cc5c39"></i>');
     $('#estadocosto').html('<p style="font-size:17px; color:red">EL COSTO BAJO</p>');
+    $('#porcentaje').val(((n4 - n3)/n4)*100);
+    $('#precio1ver').val(precio1ver.toFixed(2));
+    $('#precio2ver').val(precio2ver.toFixed(2));
+    $('#precio3ver').val(precio3ver.toFixed(2));
+
+    var checkbox = document.getElementById('customCheck1');
+checkbox.addEventListener("change", validaCheckbox1, false);
+
+function validaCheckbox1(){
+  var checked = checkbox.checked;
+  if(checked){
+    $('#precio1ver').val(precio1ver.toFixed(2));
+    $('#precio2ver').val(precio2ver.toFixed(2));
+    $('#precio3ver').val(precio3ver.toFixed(2));
+
+
+  }
+  else{
+       $('#precio1ver').val(precio1p);
+        $('#precio2ver').val(precio2p);
+        $('#precio3ver').val(precio3p);
+  }
+}
+
+
 }
 }
                     // $('#tabA tbody').append('<tr><td class="align-middle" style="padding: 4px;">'+codigo+'</td><td class="align-middle" style="padding: 4px;">' + nombre + '</td><td class="align-middle" style="padding: 4px;">' + cantidad + '</td><td class="align-middle" style="padding: 4px;">' + costo + '</td><td class="align-middle" style="padding: 4px;">'+medida+'</td><td class="align-middle subtotal" style="padding: 4px;" >' + costo*cantidad +'</td><td class="align-middle" style="padding: 4px;"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a></td></tr>');
