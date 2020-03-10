@@ -84,6 +84,9 @@ use App\categoria_producto;
                                     <div class="col-sm-7 col-md-7 col-lg-4" style="font-size: 19px;font-weight: bold;padding-top: 5px; padding-left: 0px">
                                         <i class="mdi mdi-24px mdi-apps" style=" margin-right: -6px;color:#373f5f"></i> CATEGORIAS
                                     </div>
+                                    <div class="col-md-8" style="padding-top: 6px">
+                                        <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" data-toggle="modal" data-target="#con-close-modal"><span class=" fa fa-user-plus"> </span> Categoría</button>
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -281,8 +284,7 @@ use App\categoria_producto;
                                         </div>
                                     </div>
                                 </div><!-- /.modal -->
-                                &nbsp <button type="button" class="btn btn-blue waves-effect waves-light btn-sm" data-toggle="modal" data-target="#con-close-modal">+ categoria</button>
-                                <br><br>
+
                                 <div class="col-md-12" id="listaCategoriasNueva2">
                                 </div>
                                 <div class="col-md-12" id="listaCategoriasNueva">

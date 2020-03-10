@@ -192,7 +192,6 @@
                                                                 <a href="{{route('proveedorShow',[ $proveedores->PROVE_id] )}}" class="dropdown-item" title="Ver"> <i class="mdi mdi-eye"></i> Ver</a>
                                                                  <a href="{{route('proveedorEdit',[$proveedores->PROVE_id])}}" class="dropdown-item" title="Editar"> <i class="mdi mdi-square-edit-outline"></i> Editar</a>
                                                                  <a   data-toggle="modal" href="#modal" class="dropdown-item" > <i class="mdi mdi-plus"></i> Agregar contacto</a>
-
                                                             </div>
                                                         </div>
 

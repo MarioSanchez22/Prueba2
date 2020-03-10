@@ -1,4 +1,8 @@
-
+@php
+    use App\marca;
+    use App\categoria_producto;
+    use App\umedidas;
+@endphp
 
 <!DOCTYPE html>
 <html lang="en">
@@ -68,19 +72,19 @@
                                         <li class="breadcrumb-item active">Calendar</li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">REGISTRO DE PRODUCTOS</h4>
+                            <h4 class="page-title">EDICIÓN DEL PRODUCTO: {{$producto->PRO_nombre}}</h4>
                             </div>
                         </div>
                     </div>
 
                     <div  class="row bounceInUp animated">
                         <div class="col-md-12">
-                          <div class="card" style=" margin-bottom: 0px;   ">
+                          <div class="card" style=" margin-bottom: 0px;">
 
                             <!-- /.card-header -->
                             <div class="card-body col-md-12" style="padding-left: 0px; padding-right: 0px;">
                                 <div class="row" >
-                                    <form action=" {{route('productoStore')}} " method="POST" enctype="multipart/form-data" class="col-md-12">
+                                    <form action="{{route('productoUpdate',[$producto->PRO_id])}} " method="POST" enctype="multipart/form-data" class="col-md-12">
                                     {{ csrf_field()}}
                                         <div class="card-box " style=" padding-top: 0px; margin-bottom: 0px;padding-bottom: 5px;">
                                             <ul class="nav nav-tabs" style="background:#f5f5f5">
@@ -100,12 +104,15 @@
                                                                 <div class="input-group-prepend ">
                                                                     <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-barcode"></i></span>
                                                                 </div>
-                                                              <input type="text" class="form-control form-control-sm"  name="PRO_codigo"  id="PRO_codigo" required> </div>
+                                                            <input type="text" class="form-control form-control-sm"  name="PRO_codigo"  id="PRO_codigo" required value="{{$producto->PRO_codigo}}"> </div>
                                                            </div></div>
                                                            <div class="col-md-4">
                                                             <label for="">Categoría</label>
                                                               <select class="selectpicker form-control  form-control-sm" data-style="btn-light" id="CATPRO_id" name="CATPRO_id" required>
-                                                                <option value="">Categoría</option>
+                                                                @php
+                                                                    $categoria2=categoria_producto::where('CATPRO_id','=',$producto->CATPRO_id)->first();
+                                                                @endphp
+                                                                <option value="{{$categoria2->CATPRO_id}}">{{$categoria2->CATPRO_descripcion}}</option>
                                                                 @foreach ($categorias as $categoria)
                                                                     <option value="{{$categoria->CATPRO_id}}">{{$categoria->CATPRO_descripcion}}</option>
                                                                 @endforeach
@@ -114,26 +121,31 @@
                                                           <div class="col-md-2" style="margin-left: 170px;">
                                                             <div class="form-group">
                                                               <label class="control-label">Estado:</label>
-                                                              <input type="text" class="form-control form-control-sm border border-light"  disabled value="Activo" id="PRO_estado" name="PRO_estado">
+                                                            <input type="text" class="form-control form-control-sm border border-light"  disabled value="{{$producto->PRO_estado}}" id="PRO_estado" name="PRO_estado">
                                                            </div></div>
 
                                                           <div class="col-md-5">
                                                             <div class="form-group">
                                                               <label class="control-label">Nombre: </label>
-                                                              <div class="input-group">
-                                                                <div class="input-group-prepend ">
-                                                                    <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class=" mdi mdi-border-color"></i></span>
+                                                                <div class="input-group">
+                                                                    <div class="input-group-prepend ">
+                                                                        <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class=" mdi mdi-border-color"></i></span>
+                                                                    </div>
+                                                                    <input type="text" class="form-control form-control-sm"  name="PRO_nombre"  id="PRO_nombre" value="{{$producto->PRO_nombre}}" required>
                                                                 </div>
-                                                              <input type="text" class="form-control form-control-sm"  name="PRO_nombre"  id="PRO_nombre" required> </div>
-                                                           </div></div>
-                                                           <div class="col-md-3">
-                                                            <label for="">Marca</label>
-                                                              <select class=" form-control  form-control-sm"  id="MARCA_id" name="MARCA_id" required>
-                                                                <option value="">Marca</option>
-                                                                @foreach ($marcas as $marca)
-                                                                    <option value="{{$marca->MARCA_id}}">{{$marca->MARCA_descripcion}}</option>
-                                                                @endforeach
-                                                              </select>
+                                                            </div>
+                                                        </div>
+                                                            <div class="col-md-3">
+                                                                <label for="">Marca</label>
+                                                                <select class=" form-control  form-control-sm"  id="MARCA_id" name="MARCA_id" required>
+                                                                    @php
+                                                                        $marca2=marca::where('MARCA_id','=',$producto->MARCA_id)->first();
+                                                                    @endphp
+                                                                    <option value="{{$marca2->MARCA_id}}">{{$marca2->MARCA_descripcion}}</option>
+                                                                    @foreach ($marcas as $marca)
+                                                                        <option value="{{$marca->MARCA_id}}">{{$marca->MARCA_descripcion}}</option>
+                                                                    @endforeach
+                                                                </select>
                                                           </div>
                                                           <div class="col-md-4">
                                                             <div class="form-group">
@@ -142,7 +154,7 @@
                                                                 <div class="input-group-prepend ">
                                                                     <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class=" mdi mdi-border-color"></i></span>
                                                                 </div>
-                                                              <input type="text" class="form-control form-control-sm"  name="PRO_modelo"  id="PRO_modelo" required> </div>
+                                                            <input type="text" class="form-control form-control-sm"  name="PRO_modelo"  id="PRO_modelo" required value="{{$producto->PRO_modelo}}"> </div>
                                                            </div></div>
                                                            <div class="col-md-4">
                                                             <div class="form-group">
@@ -151,8 +163,11 @@
                                                                 <div class="input-group-prepend ">
                                                                     <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class=" mdi mdi-border-color"></i></span>
                                                                 </div>
+                                                                @php
+                                                                    $unidad2=umedidas::where('UME_id','=',$producto->UME_id)->first();
+                                                                @endphp
                                                                 <select class="form-control  form-control-sm" data-style="btn-light" id="UME_id" name="UME_id" required>
-                                                                    <option value="">Unidad</option>
+                                                                    <option value="{{$unidad2->UME_id}}">{{$unidad2->UME_abreviatura}}</option>
                                                                     @foreach ($unidades as $unidad)
                                                                         <option value="{{$unidad->UME_id}}">{{$unidad->UME_abreviatura}}</option>
                                                                     @endforeach
@@ -199,7 +214,7 @@
                                                                 <div class="input-group-prepend ">
                                                                     <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class=" mdi mdi-server-minus"></i></span>
                                                                 </div>
-                                                                <input type="number" min="0" class="form-control form-control-sm"  name="PRO_min"  id="PRO_min" required>
+                                                                <input type="number" min="0" class="form-control form-control-sm"  name="PRO_min"  id="PRO_min" value="{{$producto->PRO_min}}" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -210,7 +225,7 @@
                                                                 <div class="input-group-prepend ">
                                                                     <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-server-plus"></i></span>
                                                                 </div>
-                                                                <input type="number" min="0" class="form-control form-control-sm"  name="PRO_max" id="PRO_max" required> </div>
+                                                                <input type="number" min="0" class="form-control form-control-sm"  name="PRO_max" id="PRO_max" value="{{$producto->PRO_max}}" required> </div>
                                                              </div>
                                                         </div>
                                                         <div class="col-md-3">
@@ -220,7 +235,7 @@
                                                                     <div class="input-group-prepend ">
                                                                         <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-timetable"></i></span>
                                                                     </div>
-                                                                    <input type="number" min="0" class="form-control form-control-sm"  name="PRO_gcomprar" id="PRO_gcomprar" required>
+                                                                <input type="number" min="0" class="form-control form-control-sm"  name="PRO_gcomprar" id="PRO_gcomprar" value="{{$producto->PRO_gcomprar}}" required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -231,7 +246,7 @@
                                                                   <div class="input-group-prepend ">
                                                                       <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-timetable"></i></span>
                                                                   </div>
-                                                                <input type="number" min="0" class="form-control form-control-sm"  name="PRO_gvender"  id="PRO_gvender">
+                                                                <input type="number" min="0" class="form-control form-control-sm"  name="PRO_gvender"  id="PRO_gvender" value="{{$producto->PRO_gvender}}">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -285,6 +300,5 @@
 
         <!-- Vendor js -->
         @include('layouts.scripts')
-    
     </body>
 </html>

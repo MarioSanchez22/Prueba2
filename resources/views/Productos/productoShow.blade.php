@@ -25,10 +25,10 @@
             <div id="status" >
 
                 @php
-                $usuario=Auth::user();
+                $usu1=Auth::user();
                 @endphp
 
-                <strong style="font-size: 20px; color:#2e4965">@if ($usuario->EMPRESA_id==1)
+                <strong style="font-size: 20px; color:#2e4965">@if ($usu1->EMPRESA_id==1)
                  MACROchips
                   @else
                   NeptComputer
@@ -72,7 +72,7 @@
                                         <li class="breadcrumb-item active">Calendar</li>
                                     </ol>
                                 </div>
-                            <h4 class="page-title">PROVEEDOR </h4>
+                            <h4 class="page-title">PRODUCTO </h4>
                             </div>
                         </div>
                     </div>  <!-- end row -->
@@ -88,16 +88,16 @@
                                     <img src="{{asset('proveedor.png')}}" class="rounded-circle avatar-lg img-thumbnail"
                                         alt="profile-image">
 
-                                    <h4 class="mb-0">{{$proveedor->PROVE_razon_social}}</h4> <BR>
-                                    <p >RUC: {{$proveedor->PROVE_ruc}}</p>
-                                    <p >DNI: {{$proveedor->PROVE_dni}}</p>
-                                    @if($proveedor->PROVE_estado==1)
+                                    <h4 class="mb-0">{{$producto->PRO_nombre}}</h4> <BR>
+                                    <p>CÓDIGO: {{$producto->PRO_codigo}}</p>
+                                    <p>CATEGORÍA: {{$categoria->CATPRO_descripcion}}</p>
+                                    <p>MARCA: {{$marca->CATPRO_descripcion}}</p>
+                                    <p>MODELO: {{$producto->PRO_modelo}}</p>
+                                    @if($producto->PRO_estado==1)
                                     <button type="button" class="btn btn-success btn-xs waves-effect mb-2 waves-light">Activo</button>
                                     @else
                                     <button type="button" class="btn btn-danger btn-xs waves-effect mb-2 waves-light">Bloqueado</button>
                                     @endif
-
-
 
                                     <div class="text-center mt-3">
                                         <h4 class="font-13 text-uppercase text-center">Ubicacion :</h4>

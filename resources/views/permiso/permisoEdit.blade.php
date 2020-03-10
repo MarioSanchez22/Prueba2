@@ -40,10 +40,10 @@ use App\permiso;
             <div id="status" >
 
                 @php
-                $usuario=Auth::user();
+                $usuario1=Auth::user();
                 @endphp
 
-                <strong style="font-size: 20px; color:#2e4965">@if ($usuario->EMPRESA_id==1)
+                <strong style="font-size: 20px; color:#2e4965">@if ($usuario1->EMPRESA_id==1)
                  MACROchips
                   @else
                   NeptComputer
