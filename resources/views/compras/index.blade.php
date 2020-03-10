@@ -127,19 +127,19 @@ use App\umedidas;
                                                                 <div class="row">
                                                                     <div class="col-md-4">
                                                                       <div class="custom-control custom-checkbox">
-                                                                        <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
+                                                                        <input type="checkbox" class="custom-control-input" id="customCheck1" checked >
                                                                         <label class="custom-control-label" for="customCheck1">Ajuste automático</label>
                                                                     </div>
                                                                   </div>
                                                                   <div class="col-md-4">
                                                                     <div class="custom-control custom-checkbox">
-                                                                        <input type="checkbox" class="custom-control-input" id="customCheck2" checked>
+                                                                        <input type="checkbox" class="custom-control-input" id="customCheck2" >
                                                                         <label class="custom-control-label" for="customCheck2">Precio venta con IGV</label>
                                                                     </div>
                                                                   </div>
                                                                   <div class="col-md-4  text-right">
                                                                     <div class="custom-control custom-switch">
-                                                                        <input type="checkbox" class="custom-control-input" id="customSwitch1" checked>
+                                                                        <input type="checkbox" class="custom-control-input" id="customSwitch1">
                                                                         <label class="custom-control-label" for="customSwitch1">Redondear</label>
                                                                     </div>
                                                                   </div>
@@ -176,21 +176,21 @@ use App\umedidas;
                                                                  <div class="col-md-2">
                                                                     <div class="form-group">
                                                                         <label class="control-label" for="">Precio 1:</label>
-                                                                        <input type="text" class="form-control form-control-sm">
+                                                                        <input type="text" class="form-control form-control-sm" id="precio1ver">
                                                                     </div>
 
                                                                 </div>
                                                                 <div class="col-md-2">
                                                                     <div class="form-group">
                                                                         <label class="control-label" for="">Precio 2:</label>
-                                                                        <input type="text" class="form-control form-control-sm">
+                                                                        <input type="text" class="form-control form-control-sm" id="precio2ver">
                                                                     </div>
 
                                                                 </div>
                                                                 <div class="col-md-2">
                                                                     <div class="form-group">
                                                                         <label class="control-label" for="">Precio 3:</label>
-                                                                        <input type="text" class="form-control form-control-sm">
+                                                                        <input type="text" class="form-control form-control-sm" id="precio3ver">
                                                                     </div>
 
                                                                 </div>
@@ -333,6 +333,12 @@ use App\umedidas;
                                     </div>
                                     <input type="hidden" id="PRO_codigo">
                                     <input type="hidden" id="PRO_id">
+                                    <input type="hidden" id="precio1Pro">
+                                    <input type="hidden" id="precio2Pro">
+                                    <input type="hidden" id="precio3Pro">
+                                    <input type="hidden" id="precio1deC">
+                                    <input type="hidden" id="precio2deC">
+                                    <input type="hidden" id="precio3deC">
                                     <br><br>
                                     <div class="row">
                                       <div class="col-md-6">
@@ -1056,15 +1062,36 @@ $.ajax({
     }
 
 </script>
+
+<script>
+
+
+</script>
+<script>
+   function ajustar(precio1categorias){
+    if ($('#customCheck1').is(':checked')) {
+        alert(precio1categorias);
+
+    }
+  /*   else{
+        $('#precio1ver').val(precio1p);
+        $('#precio2ver').val(precio2p);
+        $('#precio3ver').val(precio3p);
+    } */
+
+}
+</script>
 <script>
 
     $(document).ready(function() {
+
+
         $("#costo").blur(function(b){
              //obtenemos el texto introducido en el campo
              consulta = $('#costo').val();
              costoA=$('#costoAnterior').val();
-             var n1 =parseInt(consulta);
-             var n2=parseInt(costoA);
+             var n1 =parseFloat(consulta);
+             var n2=parseFloat(costoA);
              //hace la búsqueda
              $("#costo").delay(0).queue(function(n) {
 
@@ -1122,7 +1149,12 @@ var gria=$('input[name=COMPRO_gria]').val();
 var griaF=$('input[name=COMPRO_griaF]').val();
 var costoAr=$('#costoAnterior').val();
 var nombreProvee=$('#inputse').val();
-
+var precio1p=$('#precio1Pro').val();
+var precio2p=$('#precio2Pro').val();
+var precio3p=$('#precio3Pro').val();
+var precio1cate=$('#precio1deC').val();
+var precio2cate=$('#precio2deC').val();
+var precio3cate=$('#precio3deC').val();
 $.ajax({
                      url:"{{route('rProductoCStore')}}",
                      method:"POST",
@@ -1138,9 +1170,13 @@ $.ajax({
                         proveedor
                      },
                  success:function(data){
-                    var n3 =parseInt(costo);
-             var n4=parseInt(costoAr);
-if(n3>n4){
+                    var n3 =parseFloat(costo);
+               var  precio1categoria =parseFloat(precio1cate);
+               var  precio2categoria =parseFloat(precio2cate);
+               var  precio3categoria =parseFloat(precio3cate);
+             var n4=parseFloat(costoAr);
+
+if(n3!=n4){
 /*                     Swal.fire({
   position: 'top',
   type: 'warning',
@@ -1154,7 +1190,9 @@ $('#costoAnte').val(costoAr);
 
 $('#cantidadProd').val(cantidad);
 $('#nombredeP').val(nombreProvee);
+
 $('#n3').val(n3);
+
 
 if(n3>n4)
 
@@ -1162,8 +1200,25 @@ if(n3>n4)
     $('#iconoCosto').html('<i class="mdi mdi-48px mdi-arrow-up-circle" style="color:#c13434"></i>');
     $('#estadocosto').html('<p style="font-size:14px; color:red">EL COSTO SUBIO</p>');
     $('#porcentaje').val(((n3 - n4)/n4)*100);
+    $('#precio1ver').val(n3/(1-precio1categoria));
+    $('#precio2ver').val(n3/(1-precio2categoria));
+    $('#precio3ver').val(n3/(1-precio3categoria));
+    var checkbox = document.getElementById('customCheck1');
+checkbox.addEventListener("change", validaCheckbox, false);
 
-
+function validaCheckbox(){
+  var checked = checkbox.checked;
+  if(checked){
+    $('#precio1ver').val(n3/(1-precio1categoria));
+    $('#precio2ver').val(n3/(1-precio2categoria));
+    $('#precio3ver').val(n3/(1-precio3categoria));
+  }
+  else{
+       $('#precio1ver').val(precio1p);
+        $('#precio2ver').val(precio2p);
+        $('#precio3ver').val(precio3p);
+  }
+}
 
 
 } else{
@@ -1243,6 +1298,14 @@ $('#totalPr').val(total.toFixed(2)); */
                    $('#PRO_modelo').val(data[0].PRO_modelo);
                    $('#UME_id').val(data[3].UME_descripcion);
                    $('#costoAnterior').val(data[4].COMPROI_costo);
+                   $('#precio1Pro').val(data[4].COMPROI_precio1);
+                   $('#precio2Pro').val(data[4].COMPROI_precio2);
+                   $('#precio3Pro').val(data[4].COMPROI_precio3);
+                   $('#precio1deC').val(data[1].CATPRO_precio1);
+                   $('#precio2deC').val(data[1].CATPRO_precio2);
+                   $('#precio3deC').val(data[1].CATPRO_precio3);
+
+
 
 
                 }
