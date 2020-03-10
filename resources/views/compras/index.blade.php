@@ -154,7 +154,7 @@ use App\umedidas;
 
                                                                                 <div class="row">
                                                                                     <div class="form-inline">
-                                                                                        <input type="number" placeholder=""  id="porcentaje"  class="col-md-6 form-control-plaintext form-control-sm text-right" disabled style="font-weight:bold;">
+                                                                                        <input type="number" placeholder=""  id="porcentaje" style="font-size: 20px"class="col-md-6 form-control-plaintext form-control-sm text-right" disabled style="font-weight:bold;">
                                                                                         <label class="text-left" style="font-weight:bold;" for="">%</label>
                                                                                     </div>
 
