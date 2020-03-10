@@ -70,7 +70,7 @@ class productoController extends Controller
         $productoreg->CATPRO_id=$request->get('CATPRO_id');
         $productoreg->PRO_estado='Activo';
         if($request->get('serie')!=null){
-        $productoreg->PRO_serie=$request->get('serie');
+            $productoreg->PRO_serie=$request->get('serie');
         }
         else {
             $productoreg->PRO_serie=0;
@@ -88,5 +88,19 @@ class productoController extends Controller
         $productoreg->updated_at=NOW();
         $productoreg->save();
         return redirect(route('productosIndex'));
+    }
+
+    public function darBaja(Request $request ){
+        $producto2=producto::find($request->get('PRO_id'));
+        $producto2->PRO_estadoCrea=0;
+        $producto2->save();
+        return $producto2->PRO_id;
+    }
+
+    public function darAlta(Request $request ){
+        $producto2=producto::find($request->get('PRO_id'));
+        $producto2->PRO_estadoCrea=1;
+        $producto2->save();
+        return $producto2->PRO_id;
     }
 }
