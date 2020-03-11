@@ -10,29 +10,26 @@ use App\umedidas;
         <title>UBold - Responsive Admin Dashboard Template</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        <meta name="csrf-token" content="{{csrf_token()}}"/>
+        
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         @include('layouts.estilos')
-
     </head>
-
     <body>
         <div  id="preloader">
-   
             <div id="status" >
-             
                 @php
                 $usuario=Auth::user();
                 @endphp
-      
                 <strong style="font-size: 20px; color:#2e4965">@if ($usuario->EMPRESA_id==1)
                  MACROchips
                   @else
                   NeptComputer
                   @endif</strong>
                   <div class="spinner-grow avatar-sm text-secondary m-2" role="status"></div>
-             
+
             </div>
         </div>
         <style>
@@ -62,6 +59,30 @@ use App\umedidas;
             <div class="content-page">
                 <div class="content">
 
+                    <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                        <div class="modal-dialog" style="max-width: 700px">
+                            <div class="modal-content">
+                                <div class="modal-header" style="padding: 9px; background-color:#697582;">
+                                    <h5 class="modal-title" style="color:white;">Registro de unidad de medida</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color:white;">×</button>
+                                </div>
+                                <div class="modal-body p-2">
+                                    <div class="form-group">
+                                        <label for="">Descripción:</label>
+                                        <input type="text" class="form-control form-control-sm" id="MARCA_descripcion" name="MARCA_descripcion">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Abreviatura:</label>
+                                        <input type="text" class="form-control form-control-sm" id="MARCA_abreviatura" name="MARCA_abreviatura">
+                                    </div>
+                                </div>
+                                <div class="modal-footer" style="padding: 10px;">
+                                    <button type="button" class="btn btn-light btn-sm waves-effect" data-dismiss="modal" onclick="limpiarMarca()">Cancelar</button>
+                                    <button type="submit"  id="bt_guarda1" name="bt_guarda"  onclick="marcaGuarda()" class="btn btn-blue btn-sm waves-effect waves-light bt_guarda1" >Guardar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.modal -->
                     <!-- Start Content-->
                     <div class="container-fluid">
 
@@ -80,7 +101,7 @@ use App\umedidas;
                                         <i class="mdi mdi-24px mdi-led-strip" style=" margin-right: -6px;color:#373f5f"></i> UNIDAD DE MEDIDAS
                                     </div>
                                     <div class="col-md-8" style="padding-top: 6px">
-                                        <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" onclick="location.href='{{route('proveedorCreate')}}'"><span class=" fa fa-user-plus"> </span>  Producto</button>
+                                        <button type="button" class="btn  btn-primary btn-sm" style="margin-left:80%" data-toggle="modal" data-target="#con-close-modal"><span class=" fa fa-user-plus"> </span> Uni. medida</button>
                                     </div>
                             </div>
                         </div>
@@ -141,8 +162,6 @@ use App\umedidas;
                                 <div class="form-group">
                                     <label for="">Abreviatura:</label>
                                     <input type="text" class="form-control form-control-sm" id="marca" name="marca">
-
-
 
                                 </div>
                                 <div class="text-right">
@@ -277,8 +296,49 @@ use App\umedidas;
         <div class="rightbar-overlay"></div>
 
 @include('layouts.scripts')
-
-
+<script>
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers:{
+                'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+        }
+    });
+})
+</script>
+<script>
+    function marcaGuarda(){
+        var MARCA_abreviatura=$('#MARCA_abreviatura').val();
+        var MARCA_descripcion=$('#MARCA_descripcion').val();
+            $.ajax({
+                url:"{{route('umedidaStore')}}",
+                method:"POST",
+                data:{
+                    MARCA_abreviatura:MARCA_abreviatura,
+                    MARCA_descripcion: MARCA_descripcion,
+                },
+                success:function(data){
+                    $('#listaCategoriasNueva').hide();
+                    $('#listaCategoriasNueva2').html(data);
+                    $("#con-close-modal").modal("hide");
+                    $('#codigo').val(codigonuevo);
+                    limpiarFormCategoria();
+                        Swal.fire({
+                            title: "Categoría agregada Correctamente",
+                            type: "success",
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                    },error:function(){
+                        Swal.fire({
+                            title: "Hubo un error",
+                            type: 'warning',
+                            showConfirmButton: false,
+                            timer: 2000
+                    });
+                }
+            });
+        }
+</script>
 
 
 

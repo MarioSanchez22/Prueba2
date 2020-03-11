@@ -132,6 +132,7 @@ Route::POST('roles/update/{rol}','rolesController@update')->name('rolUpdate');
 
 
 Route::get('/unidadMedida', 'umedidasController@index')->name('umedidaIndex');
+Route::POST('unidadMedida/create', 'umedidasController@store')->name('umedidaStore');
 
 //MARCA
 Route::get('/marca', 'marcaController@index')->name('marcaIndex');

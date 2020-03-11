@@ -19,7 +19,11 @@ use App\umedidas;
         <link href="{{asset('assets/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
         <!-- Jquery Toast css -->
         <link href="assets/libs/jquery-toast/jquery.toast.min.css" rel="stylesheet" type="text/css" />
-
+        <style>
+            .swal2-modal{
+                zoom:70%;
+            }
+        </style>
 
     </head>
     <body>
@@ -38,9 +42,9 @@ use App\umedidas;
         </div>
         <style>
             .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
-        color: #fff;
-        background-color: #5e6696;
-    }
+                color: #fff;
+                background-color: #5e6696;
+            }
         </style>
         <!-- Begin page -->
         <div id="wrapper">
@@ -65,7 +69,6 @@ use App\umedidas;
 
                     <!-- Start Content-->
                     <div class="container-fluid">
-
                     <!-- start page title -->
                     <div class="row">
                         <div class="col-12">
@@ -335,7 +338,7 @@ use App\umedidas;
                     @endif
                     text: 'Producto bloqueado',
                     icon: 'error',
-                    position:'bottom-right',
+                    position:'top-right',
                     loader: true, // Change it to false to disable loader
                     loaderBg: '#f1556c' // To change the background
                 })
@@ -364,7 +367,7 @@ use App\umedidas;
                     @endif
                     text: 'Producto activado',
                     icon: 'success',
-                    position:'bottom-right',
+                    position:'top-right',
                     loader: true, // Change it to false to disable loader
                     loaderBg: '#1abc9c' // To change the background
                     })
