@@ -1170,12 +1170,14 @@ $.ajax({
                      },
                  success:function(data){
                     var n3 =parseFloat(costo);
-               var  precio1categoria =parseFloat(precio1cate);
-               var  precio2categoria =parseFloat(precio2cate);
-               var  precio3categoria =parseFloat(precio3cate);
-             var n4=parseFloat(costoAr);
+                    var  precio1categoria =parseFloat(precio1cate);
+                    var  precio2categoria =parseFloat(precio2cate);
+                    var  precio3categoria =parseFloat(precio3cate);
+                    var n4=parseFloat(costoAr);
 
-if(n3!=n4){
+
+
+    if(n3!=n4  ){
 /*                     Swal.fire({
   position: 'top',
   type: 'warning',
@@ -1249,6 +1251,8 @@ function validaCheckbox1(){
 
 }
 }
+
+
                     // $('#tabA tbody').append('<tr><td class="align-middle" style="padding: 4px;">'+codigo+'</td><td class="align-middle" style="padding: 4px;">' + nombre + '</td><td class="align-middle" style="padding: 4px;">' + cantidad + '</td><td class="align-middle" style="padding: 4px;">' + costo + '</td><td class="align-middle" style="padding: 4px;">'+medida+'</td><td class="align-middle subtotal" style="padding: 4px;" >' + costo*cantidad +'</td><td class="align-middle" style="padding: 4px;"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a></td></tr>');
 
 $('#PRO_nombre').val('');

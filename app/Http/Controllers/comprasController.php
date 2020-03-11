@@ -58,6 +58,12 @@ public function showart(Request $request){
     $marca=marca::where('MARCA_id','=',$producto->MARCA_id)->first();
     $medida=umedidas::where('UME_id','=',$producto->UME_id)->first();
     $ultimopre=compro_item::where('PRO_id','=',$producto->PRO_id)->get()->last();
+    if($ultimopre==null){
+        $ultimopre=['COMPROI_costo'=>0,'COMPROI_precio1'=>0,'COMPROI_precio2'=>0,'COMPROI_precio3'=>0];
+    }
+    else{
+        $ultimopre=compro_item::where('PRO_id','=',$producto->PRO_id)->get()->last();
+    }
 
     return [$producto,$categoria,$marca,$medida,$ultimopre];
 }

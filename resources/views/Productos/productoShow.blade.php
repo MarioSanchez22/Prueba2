@@ -82,7 +82,7 @@
                         <div class="col-md-12 bounceInDown animated">
                             <!-- /.card-header -->
                                 <div class="row" >
-                                <div class="col-lg-8 col-xl-8">
+                                <div class="col-lg-12 col-xl-12">
                                 <div class="card-box">
                                     <div class="row">
                                          <div class=col-md-3>
@@ -103,43 +103,85 @@
                                          <div class="col-md-9">
                                             <div class="row">
                                             <div class="col-md-3">
-                                                <p>CÓDIGO: {{$producto->PRO_codigo}}</p>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="">CÓDIGO:</label>
+                                                    <input type="text" readonly="" class="form-control-plaintext form-control-sm " value="{{$producto->PRO_codigo}}"  >
+                                                </div>
+
                                             </div>
                                             <div class="col-md-3">
-                                               <p>CATEGORÍA: {{$categoria->CATPRO_descripcion}}</p>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="">CATEGORÍA:</label>
+                                                    <input type="text" readonly="" class="form-control-plaintext form-control-sm " value="{{$categoria->CATPRO_descripcion}}"  >
+                                                </div>
+
                                             </div>
                                              <div class="col-md-3">
-                                               <p>MARCA: {{$marca->MARCA_descripcion}}</p>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="">MARCA:</label>
+                                                    <input type="text" readonly="" class="form-control-plaintext form-control-sm " value="{{$marca->MARCA_descripcion}}"  >
+                                                </div>
+
                                             </div>
                                             <div class="col-md-3">
-                                               <p>MODELO: {{$producto->PRO_modelo}}</p>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="">MODELO:</label>
+                                                    <input type="text" readonly="" class="form-control-plaintext form-control-sm " value="{{$producto->PRO_modelo}}"  >
+                                                </div>
                                             </div>
                                             <div class="col-md-3">
-                                                <p>MEDIDA: {{$unidad->UME_descripcion}}</p>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="">MEDIDA:</label>
+                                                    <input type="text" readonly="" class="form-control-plaintext form-control-sm " value="{{$unidad->UME_descripcion}}"  >
+                                                </div>
+
                                             </div>
                                             <div class="col-md-3">
-                                                <p>ESTADO: {{$producto->PRO_estado}}</p>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="">ESTADO:</label>
+                                                    <input type="text" readonly="" class="form-control-plaintext form-control-sm " value="{{$producto->PRO_estado}}"  >
+                                                </div>
+
                                             </div>
                                             <div class="col-md-3">
-                                                <p>Utiliza serie? :
+                                                <div class="form-group">
+                                                    <label class="control-label" for="">Utiliza serie?:</label>
                                                     @if ($producto->PRO_estado==1)
-                                                     SI
-                                                     @else
-                                                     NO
-                                                    @endif
-                                                    </p>
+                                                    <input type="text" readonly="" class="form-control-plaintext form-control-sm " value="SI">
+                                                    @else
+                                                    <input type="text" readonly="" class="form-control-plaintext form-control-sm " value="NO">
+                                                   @endif
+
+                                                </div>
+
                                             </div>
                                             <div class="col-md-3">
-                                                <p>STOCK MIN: {{$producto->PRO_min}}</p>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="">STOCK MIN:</label>
+                                                    <input type="text" readonly="" class="form-control-plaintext form-control-sm " value="{{$producto->PRO_min}}"  >
+                                                </div>
+
                                             </div>
                                             <div class="col-md-3">
-                                                <p>STOCK MAX: {{$producto->PRO_max}}</p>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="">STOCK MAX:</label>
+                                                    <input type="text" readonly="" class="form-control-plaintext form-control-sm " value="{{$producto->PRO_max}}"  >
+                                                </div>
+
                                             </div>
                                             <div class="col-md-3">
-                                                <p>dias: {{$producto->PRO_gcomprar}}</p>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="">dias de garantia al comprar:</label>
+                                                    <input type="text" readonly="" class="form-control-plaintext form-control-sm " value="{{$producto->PRO_gcomprar}}"  >
+                                                </div>
+
                                             </div>
                                             <div class="col-md-3">
-                                                <p>STOCK MAX: {{$producto->PRO_max}}</p>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="">dias de garantia al vender:</label>
+                                                    <input type="text" readonly="" class="form-control-plaintext form-control-sm " value="{{$producto->PRO_gvender}}"  >
+                                                </div>
+
                                             </div>
                                          </div>
                                         </div>
