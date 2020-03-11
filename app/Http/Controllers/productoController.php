@@ -46,7 +46,7 @@ class productoController extends Controller
         $productoreg-> PRO_estadoCrea=1;
         $productoreg->updated_at=null;
         $productoreg->save();
-        return redirect(route('productosIndex'));
+        return redirect(route('productosIndex'))->with('producto_success','Producto creado correctamente');
     }
     public function show($producto){
         $producto2=producto::find($producto);
@@ -86,9 +86,9 @@ class productoController extends Controller
         $productoreg->PRO_gvender=$request->get('PRO_gvender');
         $productoreg->updated_at=NOW();
         $productoreg->save();
-        return redirect(route('productosIndex'));
+        return redirect(route('productosIndex'))->with('producto_success','Producto editado correctamente');
     }
-
+    
     public function darBaja(Request $request ){
         $producto2=producto::find($request->get('PRO_id'));
         $producto2->PRO_estadoCrea=0;

@@ -45,7 +45,6 @@ class categoriaController extends Controller
         $categoria_producto=categoria_producto::where('CATPRO_estado','=','1')->get();
         return view('categoria._categoriaNueva',['categoria_producto'=>$categoria_producto,'id_ultimo'=>$id_ultimo ]);
     }
-
     public function buscar(Request $request){
         $categoria=categoria_producto::find($request->get('CATEGORIA_id'));
         return $categoria;

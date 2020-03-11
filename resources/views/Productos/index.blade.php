@@ -15,6 +15,12 @@ use App\umedidas;
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         @include('layouts.estilos')
+        <!-- Sweet Alert-->
+        <link href="{{asset('assets/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
+        <!-- Jquery Toast css -->
+        <link href="assets/libs/jquery-toast/jquery.toast.min.css" rel="stylesheet" type="text/css" />
+
+
     </head>
     <body>
         <div  id="preloader">
@@ -74,6 +80,7 @@ use App\umedidas;
                                     <div class="col-sm-7 col-md-7 col-lg-4" style="font-size: 19px;font-weight: bold;padding-top: 5px; padding-left: 0px">
                                         <i class="mdi mdi-24px mdi-apps" style=" margin-right: -6px;color:#373f5f"></i> PRODUCTOS
                                     </div>
+
                                     <div class="col-md-8" style="padding-top: 6px">
                                         <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" onclick="location.href='{{route('productoCreate')}}'"><span class=" fa fa-user-plus"> </span>  Producto</button>
                                     </div>
@@ -136,9 +143,9 @@ use App\umedidas;
                                                                             <a href="{{route('productoShow',[$producto->PRO_id])}}" class="dropdown-item" title="Ver"> <i class="mdi mdi-eye"></i> Ver</a>
                                                                             <a href="{{route('productoEdit',[$producto->PRO_id])}}" class="dropdown-item" title="Editar"><i class="mdi mdi-square-edit-outline"></i>Editar</a>
                                                                             @if ($producto->PRO_estadoCrea==1)
-                                                                                <a href="#" class="dropdown-item" title="Editar" onclick="bloquear({{$producto->PRO_id}})"> <i class="mdi mdi-block-helper"></i> Bloquear</a>
+                                                                                <a href="#" class="dropdown-item" title="Bloquear" onclick="bloquear({{$producto->PRO_id}})"> <i class="mdi mdi-block-helper"></i> Bloquear</a>
                                                                             @else
-                                                                                <a href="#" onclick="activar({{$producto->PRO_id}})" class="dropdown-item" title="Editar"> <i class="mdi mdi-transfer-up"></i> Activar</a>
+                                                                                <a href="#" onclick="activar({{$producto->PRO_id}})" id="toastr-three" class="dropdown-item" title="Activar"> <i class="mdi mdi-transfer-up"></i> Activar</a>
                                                                             @endif
                                                                         </div>
                                                                     </div>
@@ -280,7 +287,30 @@ use App\umedidas;
         <!-- Right bar overlay-->
         <div class="rightbar-overlay"></div>
 
+
+
 @include('layouts.scripts')
+
+<!-- Sweet alert init js-->
+<script src="{{asset('assets/libs/sweetalert2/sweetalert2.min.js')}}"></script>
+<script src="{{asset('assets/js/pages/sweet-alerts.init.js')}}"></script>
+
+
+<!-- Tost-->
+<script src="assets/libs/jquery-toast/jquery.toast.min.js"></script>
+<!-- toastr init js-->
+<script src="assets/js/pages/toastr.init.js"></script>
+
+<script>
+    @if (session('producto_success'))
+            Swal.fire({
+                title: "{{session('producto_success')}}",
+                type: "success",
+                showConfirmButton: false,
+                timer: 3000
+            });
+    @endif
+</script>
 
 <script>
     function bloquear(producto){
@@ -297,6 +327,18 @@ use App\umedidas;
             },
             success:function(data){
                 $('#'+data+'').load(location.href+" #"+data+">*");
+                $.toast({
+                    @if($usu1->EMPRESA_id==1)
+                        heading: 'Corporación MacroChip',
+                    @else
+                        heading: 'NepComputer SRL.',
+                    @endif
+                    text: 'Producto bloqueado',
+                    icon: 'error',
+                    position:'bottom-right',
+                    loader: true, // Change it to false to disable loader
+                    loaderBg: '#f1556c' // To change the background
+                })
             }
         });
     }
@@ -314,9 +356,21 @@ use App\umedidas;
             },
             success:function(data){
                 $('#'+data+'').load(location.href+" #"+data+">*");
-            }
-        });
-    }
+                $.toast({
+                    @if($usu1->EMPRESA_id==1)
+                        heading: 'Corporación MacroChip',
+                    @else
+                        heading: 'NepComputer SRL.',
+                    @endif
+                    text: 'Producto activado',
+                    icon: 'success',
+                    position:'bottom-right',
+                    loader: true, // Change it to false to disable loader
+                    loaderBg: '#1abc9c' // To change the background
+                    })
+                }
+            });
+        }
 </script>
     </body>
 </html>
