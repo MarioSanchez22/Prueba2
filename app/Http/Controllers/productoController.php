@@ -54,7 +54,7 @@ class productoController extends Controller
         $categoria=categoria_producto::where('CATPRO_id','=',$producto2->CATPRO_id)->first();
         $unidad=umedidas::where('UME_id','=',$producto2->UME_id)->first();
 
-        return view('Productos.productoShow',['producto'=>$producto2,'categoria'=>$categoria,'marca'=>$marca,'unidad'=>$unidad ]);
+        return view('Productos.productoShow',['producto'=>$producto2,'categoria'=>$categoria,'marca'=>$marca,'unidad'=>$unidad]);
     }
     public function edit($producto){
         $producto2=producto::find($producto);

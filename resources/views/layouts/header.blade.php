@@ -172,7 +172,7 @@
                             @if ($usuario->EMPRESA_id==1)
                             <h3 style="margin-top: 9%; color:white;">MACROchips</h3>
                             @else
-                            <h3 style="margin-top: 9%; color:white;">NeptComputer</h3>
+                           <img src="{{asset('nept.png')}}" alt="" class="rounded-circle">
                             @endif
                             <!--<img src="{{asset('assets/images/logo-light.png')}}" alt="" height="18">
                              <span class="logo-lg-text-light">UBold</span> -->
