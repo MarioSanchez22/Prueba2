@@ -1081,10 +1081,7 @@ $.ajax({
 }
 </script>
 <script>
-
     $(document).ready(function() {
-
-
         $("#costo").blur(function(b){
              //obtenemos el texto introducido en el campo
              consulta = $('#costo').val();
