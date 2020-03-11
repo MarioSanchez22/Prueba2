@@ -149,12 +149,12 @@ use App\umedidas;
                                                                         <div class="col-md-6" id="iconoCosto">
 
                                                                         </div>
-                                                                        <div class="col-md-6" style="padding-right: 0px;
+                                                                        <div class="col-md-6" style="padding-right: 12px;padding-left: 5px;
                                                                         margin-top: 20px;">
 
                                                                                 <div class="row">
                                                                                     <div class="form-inline">
-                                                                                        <input type="number" placeholder=""  id="porcentaje" style="font-size: 20px"class="col-md-6 form-control-plaintext form-control-sm text-right" disabled style="font-weight:bold;">
+                                                                                        <input type="number" placeholder=""  id="porcentaje" style="font-size: 20px"class="col-md-10 form-control-plaintext form-control-sm text-right" disabled style="font-weight:bold;">
                                                                                         <label class="text-left" style="font-weight:bold;" for="">%</label>
                                                                                     </div>
 
@@ -859,7 +859,7 @@ use App\umedidas;
                                             <td  class="align-middle" style="padding: 4px;">{{$productoComs->PRO_costo}}</td>
                                             <td  class="align-middle" style="padding: 4px;" >{{$unidadProd->UME_descripcion}}</td>
                                             <td  class="align-middle" style="padding: 4px;">{{$productoComs->PRO_cantidad * $productoComs->PRO_costo}}</td>
-                                            <td   class="align-middle"style="padding: 4px;"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                            <td class="align-middle"style="padding: 4px;"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
                                                 <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a></td>
                                           </tr>
 
@@ -1172,9 +1172,43 @@ $.ajax({
                     var  precio3categoria =parseFloat(precio3cate);
                     var n4=parseFloat(costoAr);
 
+if(n4==0)
+{ alert('www');
+$("#ajustarprecio").modal("show");
+$('#nombreArti').val(nombre);
+$('#costoAnte').val(costoAr);
+
+$('#cantidadProd').val(cantidad);
+$('#nombredeP').val(nombreProvee);
+
+$('#n3').val(n3);
+var precio1ver=n3/(1-precio1categoria);
+var precio2ver=n3/(1-precio2categoria);
+var precio3ver=n3/(1-precio3categoria);
 
 
-    if(n3!=n4  ){
+    $('#precio1ver').val(precio1ver.toFixed(2));
+    $('#precio2ver').val(precio2ver.toFixed(2));
+    $('#precio3ver').val(precio3ver.toFixed(2));
+    var checkbox = document.getElementById('customCheck1');
+checkbox.addEventListener("change", validaCheckbox, false);
+
+function validaCheckbox(){
+  var checked = checkbox.checked;
+  if(checked){
+    $('#precio1ver').val(precio1ver.toFixed(2));
+    $('#precio2ver').val(precio2ver.toFixed(2));
+    $('#precio3ver').val(precio3ver.toFixed(2));
+
+  }
+  else{
+    $('#precio1ver').val(precio1p);
+        $('#precio2ver').val(precio2p);
+        $('#precio3ver').val(precio3p);
+  }
+
+}
+else if(n3!=n4){
 /*                     Swal.fire({
   position: 'top',
   type: 'warning',
