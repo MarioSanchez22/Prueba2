@@ -139,7 +139,7 @@
                                                 <p>dias: {{$producto->PRO_gcomprar}}</p>
                                             </div>
                                             <div class="col-md-3">
-                                                <p>STOCK MAX: {{$producto->PRO_max}}</p>
+                                                <p>STOCK MAX: {{$producto->PRO_gvender}}</p>
                                             </div>
                                          </div>
                                         </div>
