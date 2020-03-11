@@ -40,10 +40,10 @@ class categoriaController extends Controller
         $categoria->CATPRO_descuento=$request->get('CATPRO_descuento');
         $categoria->updated_at=null;
         $categoria->save();
-        $id_ultimo=$this->ultimo();
 
+        $id_ultimo=$this->ultimo();
         $categoria_producto=categoria_producto::where('CATPRO_estado','=','1')->get();
-        return view('categoria._categoriaNueva',['categoria_producto'=>$categoria_producto,'id_ultimo'=>$id_ultimo]);
+        return view('categoria._categoriaNueva',['categoria_producto'=>$categoria_producto,'id_ultimo'=>$id_ultimo ]);
     }
 
     public function buscar(Request $request){

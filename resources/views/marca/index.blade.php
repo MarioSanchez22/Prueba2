@@ -15,19 +15,23 @@ use App\categoria_producto;
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         @include('layouts.estilos')
-
+        <!-- Sweet Alert-->
+        <link href="{{asset('assets/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
     </head>
-
+    <style>
+        .swal2-modal{
+            zoom:70%;
+        }
+    </style>
     <body>
         <div  id="preloader">
-
             <div id="status" >
 
                 @php
-                $usuario=Auth::user();
+                $usu1=Auth::user();
                 @endphp
 
-                <strong style="font-size: 20px; color:#2e4965">@if ($usuario->EMPRESA_id==1)
+                <strong style="font-size: 20px; color:#2e4965">@if ($usu1->EMPRESA_id==1)
                  MACROchips
                   @else
                   NeptComputer
@@ -295,6 +299,12 @@ use App\categoria_producto;
 
 @include('layouts.scripts')
 
+<script src="{{asset('assets/libs/sweetalert2/sweetalert2.min.js')}}"></script>
+
+<!-- Sweet alert init js-->
+<script src="{{asset('assets/js/pages/sweet-alerts.init.js')}}"></script>
+
+
 <script>
     $(document).ready(function() {
         $.ajaxSetup({
@@ -310,7 +320,6 @@ use App\categoria_producto;
         $('#MARCA_descripcionE').val('');
     };
     function marcaRegistrar(){
-        alert('Aqui estoy');
         var MARCA_descripcion= $('#MARCA_descripcion').val();
         $.ajax({
             url:"{{route('marcaStore')}}",
@@ -323,16 +332,29 @@ use App\categoria_producto;
                 limpiarMarca();
                 $('#listaMarcasNueva').hide();
                 $('#listaMarcasNueva2').html(data);
-            }
-        });
-    }
+                    Swal.fire({
+                        title:"Marca llenada correctamente",
+                        type: 'success',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                },error:function(){
+                    Swal.fire({
+                        title: "Hubo un error",
+                        type: 'warning',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                }
+            });
+        }
 </script>
 
 <script>
     function marcaEditar(){
         $.ajaxSetup({
             headers:{
-            'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+                'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
             }
         });
         var MARCA_idE= $('#MARCA_idE').val();
@@ -344,28 +366,55 @@ use App\categoria_producto;
                 MARCA_idE:MARCA_idE,
                 MARCA_descripcionE:MARCA_descripcion
             },
-                success:function(data){
+            success:function(data){
                 $('#modal2').modal("hide");
-
                 $('#'+data.MARCA_id+'').load(location.href+" #"+data.MARCA_id+">*");
                 limpiarMarca();
-            }
-        });
-    }
+                    Swal.fire({
+                        title:"Marca editada correctamente",
+                        type: 'success',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                },error:function(){
+                    Swal.fire({
+                        title: "Hubo un error",
+                        type: 'warning',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                }
+            });
+        }
 </script>
 <script>
     function MarcaEliminar(Marca){
-        $.ajax({
-            url:"{{route('marcaDelete')}}",
-            method:"POST",
-            data:{
-                MARCA_id:Marca,
-            },
-                success:function(data){
-                $('#listaMarcasNueva').hide();
-                $('#listaMarcasNueva2').html(data);
+        Swal.fire({
+        title: '¿Está seguro que desea eliminar la marca?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#1c2c3d',
+        cancelButtonColor: '#797979',
+        confirmButtonText: 'Si',
+        cancelButtonText: 'Cancelar'
+            }).then((result) =>{
+            if (result.value) {
+                $.ajax({
+                        url:"{{route('marcaDelete')}}",
+                        method:"POST",
+                        data:{
+                            MARCA_id:Marca,
+                        },
+                            success:function(data){
+                            $('#listaMarcasNueva').hide();
+                            $('#listaMarcasNueva2').html(data);
+                        }
+                    });
+            Swal.fire(
+                'La compra fue eliminada!',
+                )
             }
-        });
+        })
     }
 </script>
 

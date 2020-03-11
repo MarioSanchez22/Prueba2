@@ -84,7 +84,6 @@ class productoController extends Controller
         $productoreg->PRO_max=$request->get('PRO_max');
         $productoreg->PRO_gcomprar=$request->get('PRO_gcomprar');
         $productoreg->PRO_gvender=$request->get('PRO_gvender');
-        $productoreg-> PRO_estadoCrea=1;
         $productoreg->updated_at=NOW();
         $productoreg->save();
         return redirect(route('productosIndex'));

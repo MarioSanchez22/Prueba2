@@ -963,7 +963,6 @@ use App\umedidas;
 <script src="{{asset('assets/js/pages/sweet-alerts.init.js')}}"></script>
 
 <script>
-
 $('#cancelarCompra').click(function () {
     Swal.fire({
         title: 'Esta seguro que desea eliminar datos de esta compra?',
@@ -1221,8 +1220,6 @@ function validaCheckbox(){
         $('#precio3ver').val(precio3p);
   }
 }
-
-
 } else{
     $('#iconoCosto').html('<i class="mdi mdi-48px mdi-arrow-down-circle" style="color:#cc5c39"></i>');
     $('#estadocosto').html('<p style="font-size:17px; color:red">EL COSTO BAJO</p>');
@@ -1230,9 +1227,8 @@ function validaCheckbox(){
     $('#precio1ver').val(precio1ver.toFixed(2));
     $('#precio2ver').val(precio2ver.toFixed(2));
     $('#precio3ver').val(precio3ver.toFixed(2));
-
     var checkbox = document.getElementById('customCheck1');
-checkbox.addEventListener("change", validaCheckbox1, false);
+    checkbox.addEventListener("change", validaCheckbox1, false);
 
 function validaCheckbox1(){
   var checked = checkbox.checked;
@@ -1265,10 +1261,10 @@ $('#CATPRO_id').val('');
  $('#MARCA_id').val('');
  $('#PRO_modelo').val('');
 $example1.append($('<option>', { //agrego los valores que obtengo de una base de datos
-                         value: 0,
-                       text: '[Busque articulo]',
-                      selected: true
-                      }));
+        value: 0,
+        text: '[Busque articulo]',
+        selected: true
+        }));
 $example1.val(0).trigger("change"); //lo selecciona
 $("#bprodu").select2({
         minimumInputLength: 3,
@@ -1331,10 +1327,6 @@ $('#totalPr').val(total.toFixed(2)); */
                    $('#precio1deC').val(data[1].CATPRO_precio1);
                    $('#precio2deC').val(data[1].CATPRO_precio2);
                    $('#precio3deC').val(data[1].CATPRO_precio3);
-
-
-
-
                 }
            });
       });
@@ -1348,9 +1340,8 @@ $(document).ready(function() {
             'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
         }
     });
-
             $('#bpro').select2({
-         minimumInputLength: 3,
+            minimumInputLength: 3,
     });
 
 
@@ -1366,7 +1357,6 @@ $(document).ready(function() {
                         prov:prov,
                     },
                 success:function(data){
-
                    $('#PROVE_dias').val(data.PROVE_dias_credito);
                    $('#inputse').val(data.PROVE_razon_social);
                    $('#guardarCompra').prop('disabled',false);
@@ -1445,12 +1435,9 @@ $(document).ready(function() {
 
 <script>
   $(document).ready(function() {
-
-
          $('#guardarPr').each(function (el){
              $(this).bind("click",saveProducto);
          });
-
          function saveProducto(){
              var codigo= $('#PRO_rcodigo').val();
              var categoria=$('#PRO_rcategoria').val();
@@ -1485,7 +1472,6 @@ $(document).ready(function() {
                      },
                  success:function(data){
                      $("#agregarArticulo").modal("hide");
-
 $example.append($('<option>', { //agrego los valores que obtengo de una base de datos
                         value: data.PRO_id,
                         text: data.PRO_codigo+' - '+data.PRO_nombre,
@@ -1513,7 +1499,6 @@ $("#bprodu").select2({
              $('#PRO_rcomprar').val('');
              $('#PRO_rvender').val('');
              $('#id_ultimoP').val('');
-
          };
      })
  </script>
