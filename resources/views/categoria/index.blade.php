@@ -14,9 +14,14 @@ use App\categoria_producto;
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         @include('layouts.estilos')
-
+        <!-- Sweet Alert-->
+        <link href="{{asset('assets/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
     </head>
-
+    <style>
+        .swal2-modal{
+            zoom:70%;
+        }
+    </style>
     <body>
 
         <div  id="preloader">
@@ -458,6 +463,12 @@ use App\categoria_producto;
 <!-- Dashboar 1 init js-->
 <script src="{{asset('assets/js/pages/dashboard-1.init.js')}}"></script>
 <script src="{{asset('assets/js/pages/form-advanced.init.js')}}"></script>
+
+<!-- Sweet alert init js-->
+<script src="{{asset('assets/libs/sweetalert2/sweetalert2.min.js')}}"></script>
+<script src="{{asset('assets/js/pages/sweet-alerts.init.js')}}"></script>
+
+
 <!-- App js-->
 <script src="{{asset('assets/js/app.min.js')}}"></script>
 <script src="{{asset('assets/libs/datatables/jquery.dataTables.min.js')}}"></script>
@@ -468,46 +479,58 @@ use App\categoria_producto;
 <!-- Datatables init -->
 <script src="assets/js/pages/datatables.init.js"></script>
 <script>
- $(document).ready(function() {
-            $.ajaxSetup({
-                headers:{
-                    'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
-                }
-            });
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers:{
+                'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+        }
+    });
 //////////////////////////////////////////
 ///////////////////Llenar div de datos al inicio
-        $(".bt_guarda1").each(function (el){
-            $(this).bind("click",saveCategoria);
-        });
-        function saveCategoria(){
-            var codigo=parseInt($('#codigo').val());
-            var codigonuevo=codigo+1;
-            var categoria=$('#CATPRO_descripcion').val();
-            var precio1=$('#CATPRO_precio1').val();
-            var precio2=$('#CATPRO_precio2').val();
-            var precio3=$('#CATPRO_precio3').val();
-            var descuento=$('#CATPRO_descuento').val();
-                $.ajax({
-                    url:"{{route('categoriaStore')}}",
-                    method:"POST",
-                    data:{
-                        CATPRO_codigo:codigo,
-                        CATPRO_descripcion:categoria,
-                        CATPRO_precio1: precio1/100,
-                        CATPRO_precio2: precio2/100,
-                        CATPRO_precio3: precio3/100,
-                        CATPRO_descuento: descuento/100
-                    },
+    $(".bt_guarda1").each(function (el){
+        $(this).bind("click",saveCategoria);
+    });
+    function saveCategoria(){
+        var codigo=parseInt($('#codigo').val());
+        var codigonuevo=codigo+1;
+        var categoria=$('#CATPRO_descripcion').val();
+        var precio1=$('#CATPRO_precio1').val();
+        var precio2=$('#CATPRO_precio2').val();
+        var precio3=$('#CATPRO_precio3').val();
+        var descuento=$('#CATPRO_descuento').val();
+            $.ajax({
+                url:"{{route('categoriaStore')}}",
+                method:"POST",
+                data:{
+                    CATPRO_codigo:codigo,
+                    CATPRO_descripcion:categoria,
+                    CATPRO_precio1: precio1/100,
+                    CATPRO_precio2: precio2/100,
+                    CATPRO_precio3: precio3/100,
+                    CATPRO_descuento: descuento/100
+                },
                 success:function(data){
                     $('#listaCategoriasNueva').hide();
                     $('#listaCategoriasNueva2').html(data);
                     $("#con-close-modal").modal("hide");
                     $('#codigo').val(codigonuevo);
                     limpiarFormCategoria();
+                        Swal.fire({
+                            title: "Categoría agregada Correctamente",
+                            type: "success",
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                    },error:function(){
+                        Swal.fire({
+                            title: "Hubo un error",
+                            type: 'warning',
+                            showConfirmButton: false,
+                            timer: 2000
+                    });
                 }
             });
         }
-
     })
 </script>
 <script>
@@ -550,7 +573,20 @@ use App\categoria_producto;
                 $("#con-close-modal2").modal("hide");
                 limpiarFormCategoria();
                 $('#'+data+'').load(location.href+" #"+data+">*");
-            }
+                    Swal.fire({
+                        title:"Categoría editada correctamente",
+                        type: 'success',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                },error:function(){
+                    Swal.fire({
+                        title: "Hubo un error",
+                        type: 'warning',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                }
         });
     }
 </script>
@@ -566,18 +602,36 @@ $.ajax({
 </script>
 <script>
     function eliminarCategoria(categoria){
-            codigoUltimo();
-            $.ajax({
-                url:"{{route('categoriaDelete')}}",
-                method:"POST",
-                data:{
-                    CATPRO_id:categoria,
-                },
-                success:function(data){
-                    $('#listaCategoriasNueva').hide();
-                    $('#listaCategoriasNueva2').html(data);
-                }
-            });
+        Swal.fire({
+        title: '¿Está seguro que desea eliminar la categoría?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#1c2c3d',
+        cancelButtonColor: '#797979',
+        confirmButtonText: 'Si',
+        cancelButtonText: 'Cancelar'
+            }).then((result) =>{
+            if (result.value) {
+                codigoUltimo();
+                $.ajax({
+                    url:"{{route('categoriaDelete')}}",
+                    method:"POST",
+                    data:{
+                        CATPRO_id:categoria,
+                    },
+                    success:function(data){
+                        $('#listaCategoriasNueva').hide();
+                        $('#listaCategoriasNueva2').html(data);
+                    }
+                });
+            Swal.fire(
+                'La categoría fue eliminada!',
+                )
+            }
+        })
+
+
+
     }
 </script>
 

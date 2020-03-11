@@ -17,6 +17,8 @@ class marcaController extends Controller
         $marca->save();
         $marca2=marca::all();
         //dd($marca2);
+
+
         return view('marca._marcaNueva',['marca'=>$marca2]);
     }
     public function buscar(Request $request){

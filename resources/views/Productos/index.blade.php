@@ -13,7 +13,7 @@ use App\umedidas;
 
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         @include('layouts.estilos')
     </head>
     <body>
@@ -123,7 +123,11 @@ use App\umedidas;
                                                                     <td>{{$producto->PRO_gcomprar}} días</td>
                                                                     <td>{{$producto->PRO_gvender}} días</td>
                                                                 <td>
-                                                                <span class="badge bg-soft-success text-success shadow-none">{{$producto->PRO_estado}}</span>
+                                                                    @if ($producto->PRO_estadoCrea==1)
+                                                                        <span class="badge bg-soft-success text-success shadow-none">Activo</span>
+                                                                    @else
+                                                                        <span class="badge bg-soft-danger text-danger shadow-none">Bloqueado</span>
+                                                                    @endif
                                                                     <div class="dropdown float-right">
                                                                         <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
                                                                             <i class=" mdi mdi-settings m-0 text-muted h3"></i>
@@ -277,6 +281,7 @@ use App\umedidas;
         <div class="rightbar-overlay"></div>
 
 @include('layouts.scripts')
+
 <script>
     function bloquear(producto){
         $.ajaxSetup({
@@ -312,8 +317,6 @@ use App\umedidas;
             }
         });
     }
-
-   </script>
-
+</script>
     </body>
 </html>
