@@ -149,18 +149,8 @@ use App\umedidas;
                                                                         <div class="col-md-6" id="iconoCosto">
 
                                                                         </div>
-                                                                        <div class="col-md-6" style="padding-right: 12px;padding-left: 5px;
-                                                                        margin-top: 20px;">
+                                                                        <div id="mostrarporcentaje"></div>
 
-                                                                                <div class="row">
-                                                                                    <div class="form-inline">
-                                                                                        <input type="number" placeholder=""  id="porcentaje" style="font-size: 20px"class="col-md-10 form-control-plaintext form-control-sm text-right" disabled style="font-weight:bold;">
-                                                                                        <label class="text-left" style="font-weight:bold;" for="">%</label>
-                                                                                    </div>
-
-                                                                                </div>
-
-                                                                        </div>
                                                                     </div>
 
                                                                  </div>
@@ -1186,9 +1176,29 @@ var precio1ver=n3/(1-precio1categoria);
 var precio2ver=n3/(1-precio2categoria);
 var precio3ver=n3/(1-precio3categoria);
 
-}
+
+    $('#precio1ver').val(precio1ver.toFixed(2));
+    $('#precio2ver').val(precio2ver.toFixed(2));
+    $('#precio3ver').val(precio3ver.toFixed(2));
+    var checkbox = document.getElementById('customCheck1');
+checkbox.addEventListener("change", validaCheckbox, false);
+
+function validaCheckbox(){
+  var checked = checkbox.checked;
+  if(checked){
+    $('#precio1ver').val(precio1ver.toFixed(2));
+    $('#precio2ver').val(precio2ver.toFixed(2));
+    $('#precio3ver').val(precio3ver.toFixed(2));
+
+  }
+  else{
+    $('#precio1ver').val(precio1p);
+        $('#precio2ver').val(precio2p);
+        $('#precio3ver').val(precio3p);
+  }
+}}
 else if(n3!=n4){
-/*                     Swal.fire({
+/*  Swal.fire({
   position: 'top',
   type: 'warning',
   title: 'El costo subio',
@@ -1305,11 +1315,6 @@ $('#totalPr').val(total.toFixed(2)); */
 
                  }
              });
-
-
-
-
-
 });
       $("#bprodu").select2({
         minimumInputLength: 3,
