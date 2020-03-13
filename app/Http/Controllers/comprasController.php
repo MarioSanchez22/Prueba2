@@ -170,7 +170,7 @@ public function comprahecha(Request $request ){
 
         $compra_producto->COMPRO_almacen=$request->get('COMPRO_almacen');
         $compra_producto->COMPRO_moneda=$request->get('COMPRO_moneda');
-        $compra_producto->COMPRO_igv=$request->get('COMPRO_igv');
+        $compra_producto->COMPRO_igv=$request->get('COMPRO_igv')/100;
         $compra_producto->COMPRO_subtotal=$request->get('COMPRO_subtotal');
         $compra_producto->COMPRO_igvSub=$request->get('COMPRO_igvSub');
         $compra_producto->COMPRO_total=$request->get('COMPRO_total');
