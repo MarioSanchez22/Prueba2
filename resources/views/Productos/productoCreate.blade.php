@@ -235,14 +235,47 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                    <!--Precio al vender:-->
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Precio1: </label>
+                                                                <div class="input-group">
+                                                                    <div class="input-group-prepend ">
+                                                                        <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-server-plus"></i></span>
+                                                                    </div>
+                                                                    <input type="number" min="0" class="form-control form-control-sm"  name="PREC_precio1" id="PREC_precio1" required> </div>
+                                                                 </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Precio2: </label>
+                                                                    <div class="input-group">
+                                                                        <div class="input-group-prepend ">
+                                                                            <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-timetable"></i></span>
+                                                                        </div>
+                                                                        <input type="number" min="0" class="form-control form-control-sm"  name="PREC_precio2" id="PREC_precio2" required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Precio3: </label>
+                                                                    <div class="input-group">
+                                                                      <div class="input-group-prepend ">
+                                                                          <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-timetable"></i></span>
+                                                                      </div>
+                                                                    <input type="number" min="0" class="form-control form-control-sm"  name="PREC_precio1"  id="PREC_precio1">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
                                                 <br>
                                         <div class="modal-footer d-flex" style="background:#f5f5f5">
                                             <a href="{{route('productosIndex')}}"><button type="button" class="btn btn-primary" style="background-color: #bd3333;border-color:#bd3333; ">Cancelar</button></a>
                                             <button type="submit" class="btn btn-primary" style="background-color: #446e8c;">Guardar</button>
                                         </div>
-                                        </div> <!-- end card-box-->
+                                    </div> <!-- end card-box-->
                                     </form>
                                 </div>
                                 <!-- end row -->
@@ -285,6 +318,6 @@
 
         <!-- Vendor js -->
         @include('layouts.scripts')
-    
+
     </body>
 </html>

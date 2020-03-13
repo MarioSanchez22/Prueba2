@@ -155,25 +155,19 @@ $igv=0;
                                                                         </div>
                                                                         <div class="col-md-7" id="mostrarporcentaje" style="padding-right: 12px;padding-left: 5px;
                                                                         margin-top: 20px;"></div>
-
                                                                     </div>
-
                                                                  </div>
-
-
                                                                  <div class="col-md-4">
                                                                      <div class="form-group">
                                                                          <label class="control-label" for="">Costo:</label>
                                                                          <input type="text" id="n3" class="form-control form-control-sm">
                                                                      </div>
-
                                                                  </div>
                                                                  <div class="col-md-2">
                                                                     <div class="form-group">
                                                                         <label class="control-label" for="">Precio 1:</label>
                                                                         <input type="number" class="form-control form-control-sm" id="precio1ver">
                                                                     </div>
-
                                                                 </div>
                                                                 <div class="col-md-2">
                                                                     <div class="form-group">
@@ -1539,36 +1533,36 @@ $("#igvCambiante").on("keyup", function() {
                      url:"{{route('rProductoStore')}}",
                      method:"POST",
                      data:{
-                      codigo,
-                      categoria,
-                      serie,
-                      nombre,
-                      marca,
-                      modelo,
-                      detalle,
-                      unidad,
-                      gmin,
-                      gmax,
-                      dcomprar,
-                      dvender
+                        codigo,
+                        categoria,
+                        serie,
+                        nombre,
+                        marca,
+                        modelo,
+                        detalle,
+                        unidad,
+                        gmin,
+                        gmax,
+                        dcomprar,
+                        dvender
                      },
                  success:function(data){
-                     $("#agregarArticulo").modal("hide");
-$example.append($('<option>', { //agrego los valores que obtengo de una base de datos
+                    $("#agregarArticulo").modal("hide");
+                        $example.append($('<option>', { //agrego los valores que obtengo de una base de datos
                         value: data.PRO_id,
                         text: data.PRO_codigo+' - '+data.PRO_nombre,
                         selected: true
                        }));
-$example.val(data.PRO_id).trigger("change"); //lo selecciona
-$("#bprodu").select2({
-        minimumInputLength: 3,
-        dropdownParent: $("#agregarArti")
-      });
-      limpiarFormPro();
-                 }
-             });
-         }
-         function limpiarFormPro(){
+                    $example.val(data.PRO_id).trigger("change"); //lo selecciona
+                    $("#bprodu").select2({
+                            minimumInputLength: 3,
+                            dropdownParent: $("#agregarArti")
+                        });
+                    limpiarFormPro();
+                    }
+                });
+            }
+            function limpiarFormPro(){
              $('#PRO_rcodigo').val('');
              $('#PRO_rcategoria').val('1');
              $('#PRO_rnombre').val('');

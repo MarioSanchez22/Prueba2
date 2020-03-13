@@ -15,6 +15,7 @@ class productoController extends Controller
     //dd($proveedor);
        return view('productos.index',['productos'=>$productos]);
     }
+
     public function create()
     {
         $categorias=categoria_producto::all();
@@ -46,6 +47,8 @@ class productoController extends Controller
         $productoreg-> PRO_estadoCrea=1;
         $productoreg->updated_at=null;
         $productoreg->save();
+
+       
         return redirect(route('productosIndex'))->with('producto_success','Producto creado correctamente');
     }
     public function show($producto){
@@ -88,7 +91,7 @@ class productoController extends Controller
         $productoreg->save();
         return redirect(route('productosIndex'))->with('producto_success','Producto editado correctamente');
     }
-    
+
     public function darBaja(Request $request ){
         $producto2=producto::find($request->get('PRO_id'));
         $producto2->PRO_estadoCrea=0;
@@ -102,4 +105,5 @@ class productoController extends Controller
         $producto2->save();
         return $producto2->PRO_id;
     }
+
 }
