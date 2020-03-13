@@ -8,6 +8,6 @@ class producto_comprado extends Model
 {
     protected $table = 'producto_comprado';
     protected $primaryKey = 'PROCO_id';
-    protected $fillable = ['PROCO_id','PRO_id',	'PRO_garantia','PRO_costo',	'PRO_cantidad','USER_id','PROV_id','PROCO_factura','PROCO_facturaF','PROCO_gria','	PROCO_griaF','PROCO_igv'];
+    protected $fillable = ['PROCO_id','PRO_id',	'PRO_garantia','PRO_costo',	'PRO_cantidad','USER_id','PROV_id','PROCO_factura','PROCO_facturaF','PROCO_gria','	PROCO_griaF','PROCO_igv','PROCO_precio1','PROCO_precio2','PROCO_precio3'];
 
 }

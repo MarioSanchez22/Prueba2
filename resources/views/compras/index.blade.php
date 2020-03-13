@@ -201,7 +201,7 @@ $igv=0;
                             </div>
                             <div class="modal-footer" style="padding: 6px">
                                 <button type="button" class="btn btn-light waves-effect btn-sm" data-dismiss="modal">Cerrar</button>
-                                <button type="button" id="" class="btn btn-light waves-effect waves-light btn-sm">Guardar</button>
+                                <button type="button" id="guardarPreciosV" class="btn btn-light waves-effect waves-light btn-sm">Guardar</button>
                             </div>
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
@@ -1161,6 +1161,7 @@ var precio1cate=$('#precio1deC').val();
 var precio2cate=$('#precio2deC').val();
 var precio3cate=$('#precio3deC').val();
 var igvCam=$('#igvCambiante').val();
+
 $.ajax({
                      url:"{{route('rProductoCStore')}}",
                      method:"POST",
@@ -1348,6 +1349,36 @@ $('.subtotal').each(function() {
 $('#subT').val(sum.toFixed(2));
 $('#igvP').val(porc.toFixed(2));
 $('#totalPr').val(total.toFixed(2)); */
+
+                 }
+             });
+});
+$('#guardarPreciosV').click(function () {
+
+
+
+var idprod=$('#PRO_id').val();
+
+var precio1registrado=$('#precio1ver').val();
+var precio2registrado=$('#precio2ver').val();
+var precio3registrado=$('#precio3ver').val();
+$.ajax({
+                     url:"{{route('rPrecios')}}",
+                     method:"POST",
+                     data:{
+                        idprod,
+
+                        precio1registrado,
+                        precio2registrado,
+                        precio3registrado
+
+                     },
+                 success:function(data){
+                    $('#ajustarprecio').modal('hide');
+
+
+
+
 
                  }
              });
