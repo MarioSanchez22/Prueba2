@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\producto;
 use Illuminate\Http\Request;
 use App\region;
@@ -10,7 +8,7 @@ use App\proveedor;
 use App\tipo_proveedor;
 use App\categoria_producto;
 use App\compra_producto;
-use App\compro_item;
+use App\compro_item; 
 use App\marca;
 use App\umedidas;
 use App\precios;
@@ -22,9 +20,7 @@ use PhpParser\Node\Stmt\Else_;
 
 class comprasController extends Controller
 {
-    //
     public function prod_id(){
-
         $last_producto = producto::all()->last();
         if($last_producto!=null){
         $id_ultimo= $last_producto->PRO_id +1;
@@ -35,7 +31,6 @@ class comprasController extends Controller
     }
    public function index(){
     $usuario=Auth::user();
-
     $tipo=tipo_proveedor::all();
     $proveedor=proveedor::all();
     $producto=producto::all();
@@ -45,17 +40,14 @@ class comprasController extends Controller
    $productocom=producto_comprado::where('USER_id','=',$usuario->id)->get();
     $region=region::where('ubicacionpaisid','=',89)->get();
     $id_ultimo=$this->prod_id();
-
     return view('compras.Index',['tipo'=>$tipo,'region'=>$region,'proveedor'=>$proveedor,'producto'=>$producto,'categoria_pr'=>$categoriap,'marcap'=>$marcap,'umedidasp'=>$umedidasp,'ultimoid'=>$id_ultimo,'productoCom'=>$productocom]);
    }
    public function showp(Request $request){
-
     $prove=proveedor::find($request->get('prov'));
     return $prove;
-
 }
-public function showart(Request $request){
 
+public function showart(Request $request){
     $producto=producto::find($request->get('producto'));
     $categoria=categoria_producto::where('CATPRO_id','=',$producto->CATPRO_id)->first();
     $marca=marca::where('MARCA_id','=',$producto->MARCA_id)->first();
@@ -67,7 +59,6 @@ public function showart(Request $request){
     else{
         $ultimopre=compro_item::where('PRO_id','=',$producto->PRO_id)->get()->last();
     }
-
     return [$producto,$categoria,$marca,$medida,$ultimopre];
 }
 
@@ -90,7 +81,6 @@ public function rproductostore(Request $request){
 
     $productoreg->save();
     return($productoreg);
-
 }
 public function rproductoCstore(Request $request){
     $productoregC=new producto_comprado();
@@ -104,7 +94,6 @@ public function rproductoCstore(Request $request){
     $productoregC->PROCO_precio2=$request->get('precio2registrado');
     $productoregC->PROCO_precio3=$request->get('precio3registrado');
     $fechaFact=$request->get('facturaF');
-
     if($fechaFact!=NULL){
         $f2 = explode("/", $fechaFact);
         $productoregC->PROCO_facturaF = $f2[2]."-".$f2[1]."-".$f2[0];
@@ -112,7 +101,6 @@ public function rproductoCstore(Request $request){
     else{
         $productoregC->PROCO_facturaF =NULL;
     }
-
     $productoregC->PROCO_gria=$request->get('gria');
     $fechaGr=$request->get('griaF');
     if($fechaGr!=NULL){
