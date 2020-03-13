@@ -1184,9 +1184,10 @@ $.ajax({
                     var  precio2categoria =parseFloat(precio2cate);
                     var  precio3categoria =parseFloat(precio3cate);
                     var n4=parseFloat(costoAr);
+                    var igvact=igvCam/100;
 
 if(n4==0)
-{ alert('www');
+{ 
 $("#ajustarprecio").modal("show");
 $('#nombreArti').val(nombre);
 $('#costoAnte').val(costoAr);
@@ -1195,10 +1196,11 @@ $('#cantidadProd').val(cantidad);
 $('#nombredeP').val(nombreProvee);
 
 $('#n3').val(n3);
-var igvact=igvCam/100;
-var precio1ver=n3/(1-precio1categoria-);
-var precio2ver=n3/(1-precio2categoria);
-var precio3ver=n3/(1-precio3categoria);
+
+
+var precio1ver=n3/(1-precio1categoria-igvact);
+var precio2ver=n3/(1-precio2categoria-igvact);
+var precio3ver=n3/(1-precio3categoria-igvact);
 
 
     $('#precio1ver').val(precio1ver.toFixed(2));
@@ -1243,7 +1245,7 @@ var precio2ver=n3/(1-precio2categoria-igvact);
 var precio3ver=n3/(1-precio3categoria-igvact);
 if(n3>n4)
 
-{ alert(igvact);
+{ 
     $('#iconoCosto').html('<i class="mdi mdi-48px mdi-arrow-up-circle" style="color:#c13434"></i>');
     $('#estadocosto').html('<p style="font-size:14px; color:red">EL COSTO SUBIO</p>');
     $('#porcentaje').val(((n3 - n4)/n4)*100);
