@@ -10,7 +10,7 @@
         <title>UBold - Responsive Admin Dashboard Template</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="csrf-token" content="{{csrf_token()}}"/>
-        
+
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -196,7 +196,7 @@
                                                 <div class="col-lg-12 col-xl-12" style="border-left: solid; border-color:#afbdca">
                                                     <div class="form-group" style="width: 160%;">
                                                         <label class="control-label" for="EMPRESA_sunat_clave"><i class="mdi mdi-shield-account"></i> Registrado por: </label>
-                                                        <input type="text" readonly="" class=" form-control-plaintext form-control-sm "  required placeholder="clave" name="EMPRESA_sunat_clave" value="{{$usuarioRegistro->email}}" disabled>
+                                                        <input type="text" readonly="" class=" form-control-plaintext form-control-sm "  required placeholder="clave" name="EMPRESA_sunat_clave" value="Demo" disabled>
                                                     </div>
                                                 </div> <br>
                                             </div>

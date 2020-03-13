@@ -8,7 +8,7 @@ use App\proveedor;
 use App\tipo_proveedor;
 use App\categoria_producto;
 use App\compra_producto;
-use App\compro_item; 
+use App\compro_item;
 use App\marca;
 use App\umedidas;
 use App\precios;
@@ -46,10 +46,11 @@ class comprasController extends Controller
     $prove=proveedor::find($request->get('prov'));
     return $prove;
 }
-
 public function showart(Request $request){
     $producto=producto::find($request->get('producto'));
+
     $categoria=categoria_producto::where('CATPRO_id','=',$producto->CATPRO_id)->first();
+
     $marca=marca::where('MARCA_id','=',$producto->MARCA_id)->first();
     $medida=umedidas::where('UME_id','=',$producto->UME_id)->first();
     $ultimopre=compro_item::where('PRO_id','=',$producto->PRO_id)->get()->last();
@@ -90,9 +91,7 @@ public function rproductoCstore(Request $request){
     $productoregC->PRO_cantidad=$request->get('cantidad');
     $productoregC->PROCO_factura=$request->get('factura');
     $productoregC->PROCO_igv=$request->get('igvProd');
-    $productoregC->PROCO_precio1=$request->get('precio1registrado');
-    $productoregC->PROCO_precio2=$request->get('precio2registrado');
-    $productoregC->PROCO_precio3=$request->get('precio3registrado');
+
     $fechaFact=$request->get('facturaF');
     if($fechaFact!=NULL){
         $f2 = explode("/", $fechaFact);
