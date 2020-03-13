@@ -33,6 +33,7 @@ class comprasController extends Controller
         }
     }
    public function index(){
+
     $tipo=tipo_proveedor::all();
     $proveedor=proveedor::all();
     $producto=producto::all();
@@ -96,6 +97,7 @@ public function rproductoCstore(Request $request){
     $productoregC->PRO_costo=$request->get('costo');
     $productoregC->PRO_cantidad=$request->get('cantidad');
     $productoregC->PROCO_factura=$request->get('factura');
+    $productoregC->PROCO_igv=$request->get('igvProd');
     $fechaFact=$request->get('facturaF');
     if($fechaFact!=NULL){
         $f2 = explode("/", $fechaFact);
@@ -168,8 +170,9 @@ public function comprahecha(Request $request ){
 
         $compra_producto->COMPRO_almacen=$request->get('COMPRO_almacen');
         $compra_producto->COMPRO_moneda=$request->get('COMPRO_moneda');
-        $compra_producto->COMPRO_subtotal=$request->get('COMPRO_subtotal');
         $compra_producto->COMPRO_igv=$request->get('COMPRO_igv');
+        $compra_producto->COMPRO_subtotal=$request->get('COMPRO_subtotal');
+        $compra_producto->COMPRO_igvSub=$request->get('COMPRO_igvSub');
         $compra_producto->COMPRO_total=$request->get('COMPRO_total');
         $compra_producto->USER_id=Auth::user()->id;
         $compra_producto->updated_at=null;
@@ -197,7 +200,11 @@ public function comprahecha(Request $request ){
 
      public function datosTemp(){
          $datosT=producto_comprado::all();
-         return($datosT);
+
+         $ultimo=$datosT->last();
+         $igvUltimo=$ultimo->PROCO_igv;
+
+         return[$ultimo];
 
      }
      public function eliminarta(){

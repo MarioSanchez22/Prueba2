@@ -14,7 +14,16 @@ use App\umedidas;
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        @include('layouts.estilos')
+          <!-- App favicon -->
+   <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
+
+  
+   <!-- App css -->
+     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+     <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+     <link href="{{asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
+     <link href="{{asset('assets/libs/bootstrap-table/bootstrap-table.min.css')}}" rel="stylesheet" type="text/css" />
+     <link href="{{asset('assets/libs/datatables/buttons.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
         <!-- Sweet Alert-->
         <link href="{{asset('assets/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
         <!-- Jquery Toast css -->
@@ -292,7 +301,17 @@ use App\umedidas;
 
 
 
-@include('layouts.scripts')
+   <!-- Vendor js -->
+
+   <script src="{{asset('assets/js/vendor.min.js')}}"></script>
+ <!-- App js-->
+ <script src="{{asset('assets/js/app.min.js')}}"></script>
+
+ <!-- Bootstrap Tables js -->
+     <script src="{{asset('assets/libs/bootstrap-table/bootstrap-table.min.js')}}"></script>
+     <script src="{{asset('assets/libs/datatables/jquery.dataTables.min.js')}}"></script>
+     <script src="{{asset('assets/js/pages/bootstrap-tables.init.js')}}"></script>
+      <script src="{{asset('assets/libs/datatables/dataTables.bootstrap4.js')}}"></script>
 
 <!-- Sweet alert init js-->
 <script src="{{asset('assets/libs/sweetalert2/sweetalert2.min.js')}}"></script>
