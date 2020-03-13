@@ -264,7 +264,7 @@
                                                                       <div class="input-group-prepend ">
                                                                           <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-timetable"></i></span>
                                                                       </div>
-                                                                    <input type="number" min="0" class="form-control form-control-sm"  name="PREC_precio1"  id="PREC_precio1">
+                                                                    <input type="number" min="0" class="form-control form-control-sm"  name="PREC_precio3"  id="PREC_precio3">
                                                                     </div>
                                                                 </div>
                                                             </div>

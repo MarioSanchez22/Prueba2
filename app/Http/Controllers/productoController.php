@@ -5,7 +5,9 @@ use App\umedidas;
 use App\categoria_producto;
 use App\marca;
 use App\origen_proveedor;
+use App\precios;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class productoController extends Controller
 {
@@ -47,8 +49,17 @@ class productoController extends Controller
         $productoreg-> PRO_estadoCrea=1;
         $productoreg->updated_at=null;
         $productoreg->save();
-
-       
+//Usuario
+$usuarioEmpresa=Auth::user();
+//Precio
+       $precio=new precios();
+       $precio->PREC_precio1=$request->get('PREC_precio1');
+       $precio->PREC_precio2=$request->get('PREC_precio2');
+       $precio->PREC_precio3=$request->get('PREC_precio3');
+       $precio->PRO_id=$productoreg->PRO_id;
+       $precio->USER_id=$usuarioEmpresa->id;
+       $precio->updated_at=null;
+       $precio->save();
         return redirect(route('productosIndex'))->with('producto_success','Producto creado correctamente');
     }
     public function show($producto){
