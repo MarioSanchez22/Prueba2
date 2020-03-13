@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\producto;
 use Illuminate\Http\Request;
 use App\region;
@@ -22,7 +20,6 @@ use PhpParser\Node\Stmt\Else_;
 
 class comprasController extends Controller
 {
-    //
     public function prod_id(){
         $last_producto = producto::all()->last();
         if($last_producto!=null){
@@ -34,7 +31,6 @@ class comprasController extends Controller
     }
    public function index(){
     $usuario=Auth::user();
-
     $tipo=tipo_proveedor::all();
     $proveedor=proveedor::all();
     $producto=producto::all();
@@ -44,20 +40,17 @@ class comprasController extends Controller
    $productocom=producto_comprado::where('USER_id','=',$usuario->id)->get();
     $region=region::where('ubicacionpaisid','=',89)->get();
     $id_ultimo=$this->prod_id();
-
     return view('compras.Index',['tipo'=>$tipo,'region'=>$region,'proveedor'=>$proveedor,'producto'=>$producto,'categoria_pr'=>$categoriap,'marcap'=>$marcap,'umedidasp'=>$umedidasp,'ultimoid'=>$id_ultimo,'productoCom'=>$productocom]);
    }
    public function showp(Request $request){
-
     $prove=proveedor::find($request->get('prov'));
     return $prove;
-
 }
 public function showart(Request $request){
     $producto=producto::find($request->get('producto'));
 
     $categoria=categoria_producto::where('CATPRO_id','=',$producto->CATPRO_id)->first();
-    
+
     $marca=marca::where('MARCA_id','=',$producto->MARCA_id)->first();
     $medida=umedidas::where('UME_id','=',$producto->UME_id)->first();
     $ultimopre=compro_item::where('PRO_id','=',$producto->PRO_id)->get()->last();
@@ -67,7 +60,6 @@ public function showart(Request $request){
     else{
         $ultimopre=compro_item::where('PRO_id','=',$producto->PRO_id)->get()->last();
     }
-
     return [$producto,$categoria,$marca,$medida,$ultimopre];
 }
 
@@ -90,7 +82,6 @@ public function rproductostore(Request $request){
 
     $productoreg->save();
     return($productoreg);
-
 }
 public function rproductoCstore(Request $request){
     $productoregC=new producto_comprado();
@@ -100,9 +91,11 @@ public function rproductoCstore(Request $request){
     $productoregC->PRO_cantidad=$request->get('cantidad');
     $productoregC->PROCO_factura=$request->get('factura');
     $productoregC->PROCO_igv=$request->get('igvProd');
+    $productoregC->PROCO_precio1=$request->get('precio1registrado');
+    $productoregC->PROCO_precio2=$request->get('precio2registrado');
+    $productoregC->PROCO_precio3=$request->get('precio3registrado');
 
     $fechaFact=$request->get('facturaF');
-
     if($fechaFact!=NULL){
         $f2 = explode("/", $fechaFact);
         $productoregC->PROCO_facturaF = $f2[2]."-".$f2[1]."-".$f2[0];
@@ -110,7 +103,6 @@ public function rproductoCstore(Request $request){
     else{
         $productoregC->PROCO_facturaF =NULL;
     }
-
     $productoregC->PROCO_gria=$request->get('gria');
     $fechaGr=$request->get('griaF');
     if($fechaGr!=NULL){
@@ -204,9 +196,9 @@ public function comprahecha(Request $request ){
             $compro_item->COMPROI_costo=$compro_fantasmas->PRO_costo;
             $compro_item->COMPROI_cantidad=$compro_fantasmas->PRO_cantidad;
             $compro_item->COMPRO_id=$compra_producto->COMPRO_id;
-            $compro_item->COMPROI_precio1=$compro_fantasmas->PRO_costo/(1-$categoria->CATPRO_precio1);
-            $compro_item->COMPROI_precio2=$compro_fantasmas->PRO_costo/(1-$categoria->CATPRO_precio2);
-            $compro_item->COMPROI_precio3=$compro_fantasmas->PRO_costo/(1-$categoria->CATPRO_precio3);
+            $compro_item->COMPROI_precio1=$compro_fantasmas->PROCO_precio1;
+            $compro_item->COMPROI_precio2=$compro_fantasmas->PROCO_precio2;
+            $compro_item->COMPROI_precio3=$compro_fantasmas->PROCO_precio3;
             $compro_item->updated_at=null;
             $compro_item->save();
             $compra_elimina->delete();
