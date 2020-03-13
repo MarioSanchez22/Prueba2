@@ -91,6 +91,9 @@ public function rproductoCstore(Request $request){
     $productoregC->PRO_cantidad=$request->get('cantidad');
     $productoregC->PROCO_factura=$request->get('factura');
     $productoregC->PROCO_igv=$request->get('igvProd');
+    $productoregC->PROCO_precio1=$request->get('precio1registrado');
+    $productoregC->PROCO_precio2=$request->get('precio2registrado');
+    $productoregC->PROCO_precio3=$request->get('precio3registrado');
 
     $fechaFact=$request->get('facturaF');
     if($fechaFact!=NULL){
@@ -193,9 +196,9 @@ public function comprahecha(Request $request ){
             $compro_item->COMPROI_costo=$compro_fantasmas->PRO_costo;
             $compro_item->COMPROI_cantidad=$compro_fantasmas->PRO_cantidad;
             $compro_item->COMPRO_id=$compra_producto->COMPRO_id;
-            $compro_item->COMPROI_precio1=$compro_fantasmas->PRO_costo/(1-$categoria->CATPRO_precio1);
-            $compro_item->COMPROI_precio2=$compro_fantasmas->PRO_costo/(1-$categoria->CATPRO_precio2);
-            $compro_item->COMPROI_precio3=$compro_fantasmas->PRO_costo/(1-$categoria->CATPRO_precio3);
+            $compro_item->COMPROI_precio1=$compro_fantasmas->PROCO_precio1;
+            $compro_item->COMPROI_precio2=$compro_fantasmas->PROCO_precio2;
+            $compro_item->COMPROI_precio3=$compro_fantasmas->PROCO_precio3;
             $compro_item->updated_at=null;
             $compro_item->save();
             $compra_elimina->delete();
