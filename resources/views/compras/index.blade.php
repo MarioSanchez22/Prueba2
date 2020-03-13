@@ -388,7 +388,7 @@ $igv=0;
                      </div>
                     <div class="modal-footer" style="padding: 6px">
                         <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
-                        <button type="button"id="guardarAr"  class="btn btn-primary waves-effect waves-light">Save changes</button>
+                        <button type="button"id="guardarAr"   class="btn btn-primary waves-effect waves-light">Save changes</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
@@ -1116,7 +1116,8 @@ $.ajax({
 
 
 // cambios codigo reajuste de precios
-$("#ajustarprecio").modal("show");
+            $("#agregarArti").modal("hide");
+            $("#ajustarprecio").modal("show");
                 $('#nombreArti').val(nombre);
                 $('#costoAnte').val(costoAr);
                 $('#cantidadProd').val(cantidad);
@@ -1204,68 +1205,7 @@ $("#ajustarprecio").modal("show");
 //////////////////////////////////////////////////////////
 
 
-        $.ajax({
-            url:"{{route('rProductoCStore')}}",
-            method:"POST",
-            data:{
-            idprod,
-            garantia,
-            costo,
-            cantidad,
-            factura,
-            facturaF,
-            gria,
-            griaF,
-            proveedor,
-            igvProd
-        },
-            success:function(data){
 
-       // $('#tabA tbody').append('<tr><td class="align-middle" style="padding: 4px;">'+codigo+'</td><td class="align-middle" style="padding: 4px;">' + nombre + '</td><td class="align-middle" style="padding: 4px;">' + cantidad + '</td><td class="align-middle" style="padding: 4px;">' + costo + '</td><td class="align-middle" style="padding: 4px;">'+medida+'</td><td class="align-middle subtotal" style="padding: 4px;" >' + costo*cantidad +'</td><td class="align-middle" style="padding: 4px;"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a></td></tr>');
-        $('#PRO_nombre').val('');
-        $('#cantidad').val('');
-        $('#costo').val('');
-        $('#PRO_codigo').val('')
-        $('#UME_id').val('');
-        $('#CATPRO_id').val('');
-        $('#MARCA_id').val('');
-        $('#PRO_modelo').val('');
-        $example1.append($('<option>', { //agrego los valores que obtengo de una base de datos
-                value: 0,
-                text: '[Busque articulo]',
-                selected: true
-                }));
-        $example1.val(0).trigger("change"); //lo selecciona
-        $("#bprodu").select2({
-                minimumInputLength: 3,
-                dropdownParent: $("#agregarArti")
-            });
-        $('#agregarArti').modal('hide');
-        $('#calculos').load(location.href+" #calculos>*");
-        $('#tabA').load(location.href+" #tabA>*");
-
-/* $('#subT').val({{$subtotal}});
-var igvCam=$('#igvCambiante').val();
-    $('#igvP').val({{$subtotal}}*igvCam/100);
-    $('#totalPr').val({{$subtotal+$subtotal*18/100}}); */
-if( $('#factura').is(':checked') ||  $('#gria').is(':checked')){
-        $('button[name=guardartodo]').prop('disabled',false);}
-        else{
-            $('button[name=guardartodo]').prop('disabled',true);}
-/*
-var sum=0;
-$('.subtotal').each(function() {
-    sum += parseFloat($(this).text().replace(/,/g, ''), 10);
-    porc=18*sum/100;
-    total=sum+porc;
-});
-;
-$('#subT').val(sum.toFixed(2));
-$('#igvP').val(porc.toFixed(2));
-$('#totalPr').val(total.toFixed(2)); */
-
-                 }
-             });
 });
 
 
@@ -1275,11 +1215,21 @@ $('#guardarPreciosV').click(function () {
             var precio2registrado=$('#precio2ver').val();
             var precio3registrado=$('#precio3ver').val();
             $.ajax({
-                     url:"{{route('rPrecios')}}",
+                     url:"{{route('rProductoCStore')}}",
                      method:"POST",
                      data:{
                         idprod,
-
+                        garantia,
+///////////////////////////////////////////////
+                        costo,
+                        cantidad,
+                        factura,
+                        facturaF,
+                        gria,
+                        griaF,
+                        proveedor,
+                        igvProd,
+///////////////////////////////////////////////////
                         precio1registrado,
                         precio2registrado,
                         precio3registrado
