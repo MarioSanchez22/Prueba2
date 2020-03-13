@@ -13,6 +13,7 @@ use App\compra_producto;
 use App\compro_item;
 use App\marca;
 use App\umedidas;
+use App\precios;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -98,7 +99,11 @@ public function rproductoCstore(Request $request){
     $productoregC->PRO_cantidad=$request->get('cantidad');
     $productoregC->PROCO_factura=$request->get('factura');
     $productoregC->PROCO_igv=$request->get('igvProd');
+    $productoregC->PROCO_precio1=$request->get('precio1registrado');
+    $productoregC->PROCO_precio2=$request->get('precio2registrado');
+    $productoregC->PROCO_precio3=$request->get('precio3registrado');
     $fechaFact=$request->get('facturaF');
+
     if($fechaFact!=NULL){
         $f2 = explode("/", $fechaFact);
         $productoregC->PROCO_facturaF = $f2[2]."-".$f2[1]."-".$f2[0];
@@ -120,6 +125,18 @@ public function rproductoCstore(Request $request){
 
     $productoregC->save();
     return($productoregC);
+}
+public function rprecios(Request $request){
+    $precios=new precios();
+    $precios->PRO_id=$request->get('idprod');
+    $precios->PREC_precio1=$request->get('precio1registrado');
+    $precios->PREC_precio2=$request->get('precio2registrado');
+    $precios->PREC_precio3=$request->get('precio3registrado');
+
+    $precios->USER_id=Auth::user()->id;
+
+    $precios->save();
+    return( $precios);
 }
 /* public function rproductoCstore(Request $request){
 {
