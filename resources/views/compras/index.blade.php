@@ -1,6 +1,10 @@
 @php
 use App\producto;
 use App\umedidas;
+
+$subtotal=0;
+$igv=0;
+
 @endphp
 
 <!DOCTYPE html>
@@ -694,8 +698,20 @@ use App\umedidas;
                                     <div class="card ">
                                         <div class="card-header" style="padding: 5px">
                                             <div class="row">
-                                                <div class=" form-inline col-md-9" style="padding-left: 3%">
+                                                <div class=" form-inline col-md-5" style="padding-left: 3%">
                                                     <label for="">INGRESO DE COMPRAS</label>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-inline">
+                                                    <label for="">IGV: </label>&nbsp;
+                                                    <div class="input-group">
+
+                                                    <input type="" value="18" id="igvCambiante" name="COMPRO_igv" class="col-md-4 form-control form-control-sm">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text form-control-sm">%</span>
+                                                    </div>
+                                                    </div>
+                                                    </div>
                                                 </div>
                                                 <div class="col-md-3" style="padding-left: 5%">
                                                     <div class="form-inline">
@@ -825,15 +841,13 @@ use App\umedidas;
                                             <th >Opciones</th>
                                           </tr>
                                         </thead>
-                                        @php
-                                            $subtotal=0;
-                                        @endphp
+
                                         <tbody>
                                          @foreach ($productoCom as $productoComs)
                                          @php
 
                                             $subtotal=$subtotal+$productoComs->PRO_costo*$productoComs->PRO_cantidad;
-
+                                            $igv=$productoComs->PROCO_igv;
 
                                          $producto=producto::where('PRO_id','=',$productoComs->PRO_id)->first();
 
@@ -863,17 +877,22 @@ use App\umedidas;
                                             <label class="" style="margin-left: 87%;">SUB TOTAL</label>
                                           </div>
                                       <div class="col-md-3 mb-1 text-right" style="padding-right: 0px;">
-                                      <input class=" form-control form-control-sm text-right" type="text" id="subT" style="color: #131177;" name="COMPRO_subtotal" value="{{$subtotal}}" >
+                                      <input class=" form-control form-control-sm text-right" type="text" id="subT" style="color: #131177;" name="COMPRO_subtotal" value="{{$subtotal-$subtotal*$igv/100}}" >
                                         </div>
 
                                     </div>
                                     <div class=" col-md-12 form-inline">
                                         <div class="col-md-9 mb-1 ">
-                                          <label class="" style="margin-left: 87%;">IGV(18%)</label>
+                                          <label class="" style="margin-left: 87%;" id="labelIgv">IGV</label>
                                         </div>
                                     <div class="col-md-3 mb-1 text-right" style="padding-right: 0px;">
-                                       <input class=" form-control form-control-sm text-right" type="text" id="igvP" style="color: #5a0808;" name="COMPRO_igv" value="{{$subtotal*0.18}}" >
-                                      </div>
+                                        @if ($igv==null)
+                                        <input class=" form-control form-control-sm text-right" type="text" id="igvP" style="color: #5a0808;" name="COMPRO_igvSub" value="0">
+                                       @else
+                                        <input class=" form-control form-control-sm text-right" type="text" id="igvP" style="color: #5a0808;" name="COMPRO_igvSub" value="{{$subtotal*$igv/100}}">
+                                    @endif
+
+                                </div>
 
                                   </div>
                                   <div class=" col-md-12 form-inline">
@@ -881,7 +900,7 @@ use App\umedidas;
                                       <label class="" style="margin-left: 87%;">  TOTAL</label>
                                     </div>
                                 <div class="col-md-3 mb-1 text-right" style="padding-right: 0px;">
-                                   <input class=" form-control form-control-sm text-right" type="text" id="totalPr" style="font-weight:bold;" name="COMPRO_total" value="{{$subtotal+$subtotal*18/100}}" >
+                                   <input class=" form-control form-control-sm text-right" type="text" id="totalPr" style="font-weight:bold;" name="COMPRO_total"  value="{{$subtotal}}">
                                   </div>
                               </div>
                             </div>
@@ -1072,6 +1091,7 @@ $.ajax({
 </script>
 <script>
     $(document).ready(function() {
+
         $("#costo").blur(function(b){
              //obtenemos el texto introducido en el campo
              consulta = $('#costo').val();
@@ -1100,7 +1120,7 @@ $.ajax({
                     method:"get",
 
                 success:function(data){
-
+                    $('#igvCambiante').val(data[0].PROCO_igv);
                  $prov.val(data[0].PROV_id).trigger("change"); //lo selecciona
                  $("#bpro").select2({
         minimumInputLength: 3,
@@ -1135,12 +1155,14 @@ var gria=$('input[name=COMPRO_gria]').val();
 var griaF=$('input[name=COMPRO_griaF]').val();
 var costoAr=$('#costoAnterior').val();
 var nombreProvee=$('#inputse').val();
+var igvProd=$('#igvCambiante').val();
 var precio1p=$('#precio1Pro').val();
 var precio2p=$('#precio2Pro').val();
 var precio3p=$('#precio3Pro').val();
 var precio1cate=$('#precio1deC').val();
 var precio2cate=$('#precio2deC').val();
 var precio3cate=$('#precio3deC').val();
+var igvCam=$('#igvCambiante').val();
 $.ajax({
                      url:"{{route('rProductoCStore')}}",
                      method:"POST",
@@ -1153,7 +1175,8 @@ $.ajax({
                         facturaF,
                         gria,
                         griaF,
-                        proveedor
+                        proveedor,
+                        igvProd
                      },
                  success:function(data){
                     var n3 =parseFloat(costo);
@@ -1172,7 +1195,8 @@ $('#cantidadProd').val(cantidad);
 $('#nombredeP').val(nombreProvee);
 
 $('#n3').val(n3);
-var precio1ver=n3/(1-precio1categoria);
+var igvact=igvCam/100;
+var precio1ver=n3/(1-precio1categoria-);
 var precio2ver=n3/(1-precio2categoria);
 var precio3ver=n3/(1-precio3categoria);
 
@@ -1211,14 +1235,15 @@ $('#costoAnte').val(costoAr);
 
 $('#cantidadProd').val(cantidad);
 $('#nombredeP').val(nombreProvee);
+var igvact=igvCam/100;
 
 $('#n3').val(n3);
-var precio1ver=n3/(1-precio1categoria);
-var precio2ver=n3/(1-precio2categoria);
-var precio3ver=n3/(1-precio3categoria);
+var precio1ver=n3/(1-precio1categoria-igvact);
+var precio2ver=n3/(1-precio2categoria-igvact);
+var precio3ver=n3/(1-precio3categoria-igvact);
 if(n3>n4)
 
-{
+{ alert(igvact);
     $('#iconoCosto').html('<i class="mdi mdi-48px mdi-arrow-up-circle" style="color:#c13434"></i>');
     $('#estadocosto').html('<p style="font-size:14px; color:red">EL COSTO SUBIO</p>');
     $('#porcentaje').val(((n3 - n4)/n4)*100);
@@ -1295,8 +1320,15 @@ $("#bprodu").select2({
         dropdownParent: $("#agregarArti")
       });
 $('#agregarArti').modal('hide');
-$('#tabA').load(location.href+" #tabA>*");
 $('#calculos').load(location.href+" #calculos>*");
+$('#tabA').load(location.href+" #tabA>*");
+
+
+
+/* $('#subT').val({{$subtotal}});
+var igvCam=$('#igvCambiante').val();
+    $('#igvP').val({{$subtotal}}*igvCam/100);
+    $('#totalPr').val({{$subtotal+$subtotal*18/100}}); */
 if( $('#factura').is(':checked') ||  $('#gria').is(':checked')){
         $('button[name=guardartodo]').prop('disabled',false);}
         else{
@@ -1354,6 +1386,33 @@ $('#totalPr').val(total.toFixed(2)); */
     </script>
 <script>
 $(document).ready(function() {
+
+  /*   var igvCam=$('#igvCambiante').val();
+    var subtotal=$('#subT').val();
+
+    $('#igvP').val(subtotal*igvCam/100); */
+
+    var controladorTiempo = "";
+
+function codigoAJAX() {
+    var igvCam=$('#igvCambiante').val();
+    var total=$('#totalPr').val();
+    // llamada AJAX
+
+
+    $('#igvP').val(total*igvCam/100);
+    $('#subT').val(total-(total*igvCam/100));
+
+
+
+
+}
+
+$("#igvCambiante").on("keyup", function() {
+    clearTimeout(controladorTiempo);
+    controladorTiempo = setTimeout(codigoAJAX, 800);
+});
+
     $.ajaxSetup({
         headers:{
             'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
