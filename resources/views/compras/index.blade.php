@@ -137,7 +137,7 @@ $igv=0;
                                                                   </div>
                                                                   <div class="col-md-4">
                                                                     <div class="custom-control custom-checkbox">
-                                                                        <input type="checkbox" class="custom-control-input" id="customCheck2" >
+                                                                        <input type="checkbox" class="custom-control-input" id="customCheck2" checked>
                                                                         <label class="custom-control-label" for="customCheck2">Precio venta con IGV</label>
                                                                     </div>
                                                                   </div>
@@ -150,10 +150,11 @@ $igv=0;
                                                                  <div class="col-md-12" style="margin-bottom: 20px"></div>
                                                                  <div class="col-md-2" style="margin-top: 10px">
                                                                     <div class="row">
-                                                                        <div class="col-md-6" id="iconoCosto">
+                                                                        <div class="col-md-5" id="iconoCosto">
 
                                                                         </div>
-                                                                        <div id="mostrarporcentaje"></div>
+                                                                        <div class="col-md-7" id="mostrarporcentaje" style="padding-right: 12px;padding-left: 5px;
+                                                                        margin-top: 20px;"></div>
 
                                                                     </div>
 
@@ -995,6 +996,9 @@ $('#cancelarCompra').click(function () {
 });
 
 function guardarmensaje(){
+
+
+
     Swal.fire({
     position: 'top',
     type: 'success',
@@ -1187,7 +1191,7 @@ $.ajax({
                     var igvact=igvCam/100;
 
 if(n4==0)
-{ 
+{
 $("#ajustarprecio").modal("show");
 $('#nombreArti').val(nombre);
 $('#costoAnte').val(costoAr);
@@ -1202,7 +1206,9 @@ var precio1ver=n3/(1-precio1categoria-igvact);
 var precio2ver=n3/(1-precio2categoria-igvact);
 var precio3ver=n3/(1-precio3categoria-igvact);
 
-
+$('#mostrarporcentaje').html('');
+$('#iconoCosto').html('<i class="mdi mdi-48px mdi mdi-shuffle-disabled" style="color:green"></i>');
+    $('#estadocosto').html('<p style="font-size:14px; color:green">COSTO NUEVO</p>');
     $('#precio1ver').val(precio1ver.toFixed(2));
     $('#precio2ver').val(precio2ver.toFixed(2));
     $('#precio3ver').val(precio3ver.toFixed(2));
@@ -1245,10 +1251,11 @@ var precio2ver=n3/(1-precio2categoria-igvact);
 var precio3ver=n3/(1-precio3categoria-igvact);
 if(n3>n4)
 
-{ 
+{
     $('#iconoCosto').html('<i class="mdi mdi-48px mdi-arrow-up-circle" style="color:#c13434"></i>');
     $('#estadocosto').html('<p style="font-size:14px; color:red">EL COSTO SUBIO</p>');
-    $('#porcentaje').val(((n3 - n4)/n4)*100);
+    $('#mostrarporcentaje').html(' <div class="row"><div class="form-inline"> <input type="number" placeholder=""  id="porcentaje" style="font-size: 14px"class="col-md-10 form-control-plaintext form-control-sm text-right" disabled style="font-weight:bold;"><label class="text-left" style="font-weight:bold;" for="">%</label></div></div>');
+    $('#porcentaje').val((((n3 - n4)/n4)*100).toFixed(2));
     $('#precio1ver').val(precio1ver.toFixed(2));
     $('#precio2ver').val(precio2ver.toFixed(2));
     $('#precio3ver').val(precio3ver.toFixed(2));
@@ -1272,7 +1279,8 @@ function validaCheckbox(){
 } else{
     $('#iconoCosto').html('<i class="mdi mdi-48px mdi-arrow-down-circle" style="color:#cc5c39"></i>');
     $('#estadocosto').html('<p style="font-size:17px; color:red">EL COSTO BAJO</p>');
-    $('#porcentaje').val(((n4 - n3)/n4)*100);
+    $('#mostrarporcentaje').html(' <div class="row"><div class="form-inline"> <input type="number" placeholder=""  id="porcentaje" style="font-size: 14px"class="col-md-10 form-control-plaintext form-control-sm text-right" disabled style="font-weight:bold;"><label class="text-left" style="font-weight:bold;" for="">%</label></div></div>');
+    $('#porcentaje').val((((n4 - n3)/n4)*100).toFixed(2));
     $('#precio1ver').val(precio1ver.toFixed(2));
     $('#precio2ver').val(precio2ver.toFixed(2));
     $('#precio3ver').val(precio3ver.toFixed(2));
@@ -1400,14 +1408,8 @@ function codigoAJAX() {
     var igvCam=$('#igvCambiante').val();
     var total=$('#totalPr').val();
     // llamada AJAX
-
-
     $('#igvP').val(total*igvCam/100);
     $('#subT').val(total-(total*igvCam/100));
-
-
-
-
 }
 
 $("#igvCambiante").on("keyup", function() {
