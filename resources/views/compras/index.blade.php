@@ -200,7 +200,7 @@ $igv=0;
 
                             </div>
                             <div class="modal-footer" style="padding: 6px">
-                               
+
                                 <button type="button" id="guardarPreciosV" class="btn btn-light waves-effect waves-light btn-sm">Guardar</button>
                             </div>
                         </div><!-- /.modal-content -->
@@ -904,7 +904,7 @@ $igv=0;
                                     <div class="card-footer" style="padding: 8px">
                                         <DIV class="row">
                                         <div class="col-md-6 text-left">
-                                            <button type="button" class="btn btn-secondary waves-effect btn-sm" id="cancelarCompra" >Cancelar compra</button>
+                                            <button type="button" class="btn btn-secondary waves-effect btn-sm" id="cancelarCompra" onclick="cancelar2Compra()">Cancelar compra</button>
                                         </div>
                                         <div class="col-md-6 text-right">
                                             <button type="submit" name="guardartodo" id="guardartodo" onclick="guardarmensaje()" class="btn btn-blue waves-effect waves-light btn-sm" disabled>Save changes</button></a>
@@ -967,7 +967,7 @@ $igv=0;
 <script src="{{asset('assets/js/pages/sweet-alerts.init.js')}}"></script>
 
 <script>
-$('#cancelarCompra').click(function () {
+function cancelar2Compra() {
     Swal.fire({
         title: 'Esta seguro que desea eliminar datos de esta compra?',
         type: 'warning',
@@ -987,12 +987,9 @@ $('#cancelarCompra').click(function () {
         )
     }
  })
-});
+};
 
 function guardarmensaje(){
-
-
-
     Swal.fire({
     position: 'top',
     type: 'success',
@@ -1024,20 +1021,18 @@ $.ajax({
         }
         else{
             $('input[name=COMPRO_factura]').prop('disabled',true);
-        $('input[name=COMPRO_facturaF]').prop('disabled',true);
-        $('input[name=COMPRO_factura]').prop('required',false);
-        $('input[name=COMPRO_facturaF]').prop('required',false);
-        $('input[name=COMPRO_factura]').val('');
-        $('input[name=COMPRO_facturaF]').val('');
-        if( $('#gria').is(':checked') &&  $('table#tabA tbody tr').length >0){
-        $('button[name=guardartodo]').prop('disabled',false);}
-        else{
-            $('button[name=guardartodo]').prop('disabled',true);}
+            $('input[name=COMPRO_facturaF]').prop('disabled',true);
+            $('input[name=COMPRO_factura]').prop('required',false);
+            $('input[name=COMPRO_facturaF]').prop('required',false);
+            $('input[name=COMPRO_factura]').val('');
+            $('input[name=COMPRO_facturaF]').val('');
+            if( $('#gria').is(':checked') &&  $('table#tabA tbody tr').length >0){
+            $('button[name=guardartodo]').prop('disabled',false);}
+            else{
+                $('button[name=guardartodo]').prop('disabled',true);
+            }
         }
-
-        }
-
-
+    }
 
     function activacompraG(){
         if ($('#gria').is(':checked')) {
@@ -1060,54 +1055,13 @@ $.ajax({
         $('button[name=guardartodo]').prop('disabled',false);}
         else{
             $('button[name=guardartodo]').prop('disabled',true);}
-
-
-
         }
-
     }
-
 </script>
 
-<script>
 
-
-</script>
-<script>
-   function ajustar(precio1categorias){
-    if ($('#customCheck1').is(':checked')) {
-        alert(precio1categorias);
-
-    }
-  /*   else{
-        $('#precio1ver').val(precio1p);
-        $('#precio2ver').val(precio2p);
-        $('#precio3ver').val(precio3p);
-    } */
-
-}
-</script>
 <script>
     $(document).ready(function() {
-
-        $("#costo").blur(function(b){
-             //obtenemos el texto introducido en el campo
-             consulta = $('#costo').val();
-             costoA=$('#costoAnterior').val();
-             var n1 =parseFloat(consulta);
-             var n2=parseFloat(costoA);
-             //hace la búsqueda
-             $("#costo").delay(0).queue(function(n) {
-
-
-               if(n1>n2){
-                 alert('El costo subio');}
-
-
-             });
-
-
-      });
         if ($('table#tabA tbody tr').length == 0){
             $('button[name=guardartodo]').prop('disabled',true);
         }
@@ -1121,214 +1075,174 @@ $.ajax({
                     $('#igvCambiante').val(data[0].PROCO_igv);
                  $prov.val(data[0].PROV_id).trigger("change"); //lo selecciona
                  $("#bpro").select2({
-        minimumInputLength: 3,
-
-      });
-
+                    minimumInputLength: 3,
+                    });
                 }
            });
-
-
-
          }
 
-
-
-
         $('#guardarAr').click(function () {
+            var nombre = $('#PRO_nombre').val();
+            var cantidad = $('#cantidad').val();
+            var costo =$('#costo').val();
+            var codigo=$('#PRO_codigo').val();
+            var idprod=$('#PRO_id').val();
+            var medida=$('#UME_id').val();
+            var $example1 = $("#bprodu").select2();
+            var garantia=$('#PRO_garantia').val();
+            var proveedor=$('#bpro').val();
+            var factura=$('input[name=COMPRO_factura]').val();
+            var facturaF=$('input[name=COMPRO_facturaF]').val();
+            var gria=$('input[name=COMPRO_gria]').val();
+            var griaF=$('input[name=COMPRO_griaF]').val();
+            var costoAr=$('#costoAnterior').val();
+            var nombreProvee=$('#inputse').val();
+            var igvProd=$('#igvCambiante').val();
+            var precio1p=$('#precio1Pro').val();
+            var precio2p=$('#precio2Pro').val();
+            var precio3p=$('#precio3Pro').val();
+            var precio1cate=$('#precio1deC').val();
+            var precio2cate=$('#precio2deC').val();
+            var precio3cate=$('#precio3deC').val();
+            var igvCam=$('#igvCambiante').val();
+
+// variables convertidas
+            var n3 =parseFloat(costo);
+            var  precio1categoria =parseFloat(precio1cate);
+            var  precio2categoria =parseFloat(precio2cate);
+            var  precio3categoria =parseFloat(precio3cate);
+            var n4=parseFloat(costoAr);
+            var igvact=igvCam/100;
 
 
-var nombre = $('#PRO_nombre').val();
-var cantidad = $('#cantidad').val();
-var costo =$('#costo').val();
-var codigo=$('#PRO_codigo').val();
-var idprod=$('#PRO_id').val();
-var medida=$('#UME_id').val();
-var $example1 = $("#bprodu").select2();
-var garantia=$('#PRO_garantia').val();
-var proveedor=$('#bpro').val();
-var factura=$('input[name=COMPRO_factura]').val();
-var facturaF=$('input[name=COMPRO_facturaF]').val();
-var gria=$('input[name=COMPRO_gria]').val();
-var griaF=$('input[name=COMPRO_griaF]').val();
-var costoAr=$('#costoAnterior').val();
-var nombreProvee=$('#inputse').val();
-var igvProd=$('#igvCambiante').val();
-var precio1p=$('#precio1Pro').val();
-var precio2p=$('#precio2Pro').val();
-var precio3p=$('#precio3Pro').val();
-var precio1cate=$('#precio1deC').val();
-var precio2cate=$('#precio2deC').val();
-var precio3cate=$('#precio3deC').val();
-var igvCam=$('#igvCambiante').val();
-
-$.ajax({
-                     url:"{{route('rProductoCStore')}}",
-                     method:"POST",
-                     data:{
-                        idprod,
-                        garantia,
-                        costo,
-                        cantidad,
-                        factura,
-                        facturaF,
-                        gria,
-                        griaF,
-                        proveedor,
-                        igvProd
-                     },
-                 success:function(data){
-                    var n3 =parseFloat(costo);
-                    var  precio1categoria =parseFloat(precio1cate);
-                    var  precio2categoria =parseFloat(precio2cate);
-                    var  precio3categoria =parseFloat(precio3cate);
-                    var n4=parseFloat(costoAr);
-                    var igvact=igvCam/100;
-
-if(n4==0)
-{
+// cambios codigo reajuste de precios
 $("#ajustarprecio").modal("show");
-$('#nombreArti').val(nombre);
-$('#costoAnte').val(costoAr);
+                $('#nombreArti').val(nombre);
+                $('#costoAnte').val(costoAr);
+                $('#cantidadProd').val(cantidad);
 
-$('#cantidadProd').val(cantidad);
-$('#nombredeP').val(nombreProvee);
+                $('#nombredeP').val(nombreProvee);
 
-$('#n3').val(n3);
+                $('#n3').val(n3);
+                var precio1ver=n3/(1-precio1categoria-igvact);
+                var precio2ver=n3/(1-precio2categoria-igvact);
+                var precio3ver=n3/(1-precio3categoria-igvact);
 
-
-var precio1ver=n3/(1-precio1categoria-igvact);
-var precio2ver=n3/(1-precio2categoria-igvact);
-var precio3ver=n3/(1-precio3categoria-igvact);
-
-$('#mostrarporcentaje').html('');
-$('#iconoCosto').html('<i class="mdi mdi-48px mdi mdi-shuffle-disabled" style="color:green"></i>');
-    $('#estadocosto').html('<p style="font-size:14px; color:green">COSTO NUEVO</p>');
-    $('#precio1ver').val(precio1ver.toFixed(2));
-    $('#precio2ver').val(precio2ver.toFixed(2));
-    $('#precio3ver').val(precio3ver.toFixed(2));
-    var checkbox = document.getElementById('customCheck1');
-checkbox.addEventListener("change", validaCheckbox, false);
-
-function validaCheckbox(){
-  var checked = checkbox.checked;
-  if(checked){
-    $('#precio1ver').val(precio1ver.toFixed(2));
-    $('#precio2ver').val(precio2ver.toFixed(2));
-    $('#precio3ver').val(precio3ver.toFixed(2));
-
-  }
-  else{
-    $('#precio1ver').val(precio1p);
-        $('#precio2ver').val(precio2p);
-        $('#precio3ver').val(precio3p);
-  }
-}}
-else if(n3!=n4){
-/*  Swal.fire({
-  position: 'top',
-  type: 'warning',
-  title: 'El costo subio',
-  showConfirmButton: false,
-  timer: 1500
-}) */
-$("#ajustarprecio").modal("show");
-$('#nombreArti').val(nombre);
-$('#costoAnte').val(costoAr);
-
-$('#cantidadProd').val(cantidad);
-$('#nombredeP').val(nombreProvee);
-var igvact=igvCam/100;
-
-$('#n3').val(n3);
-var precio1ver=n3/(1-precio1categoria-igvact);
-var precio2ver=n3/(1-precio2categoria-igvact);
-var precio3ver=n3/(1-precio3categoria-igvact);
-if(n3>n4)
-
-{
-    $('#iconoCosto').html('<i class="mdi mdi-48px mdi-arrow-up-circle" style="color:#c13434"></i>');
-    $('#estadocosto').html('<p style="font-size:14px; color:red">EL COSTO SUBIO</p>');
-    $('#mostrarporcentaje').html(' <div class="row"><div class="form-inline"> <input type="number" placeholder=""  id="porcentaje" style="font-size: 14px"class="col-md-10 form-control-plaintext form-control-sm text-right" disabled style="font-weight:bold;"><label class="text-left" style="font-weight:bold;" for="">%</label></div></div>');
-    $('#porcentaje').val((((n3 - n4)/n4)*100).toFixed(2));
-    $('#precio1ver').val(precio1ver.toFixed(2));
-    $('#precio2ver').val(precio2ver.toFixed(2));
-    $('#precio3ver').val(precio3ver.toFixed(2));
-    var checkbox = document.getElementById('customCheck1');
-checkbox.addEventListener("change", validaCheckbox, false);
-
-function validaCheckbox(){
-  var checked = checkbox.checked;
-  if(checked){
-    $('#precio1ver').val(precio1ver.toFixed(2));
-    $('#precio2ver').val(precio2ver.toFixed(2));
-    $('#precio3ver').val(precio3ver.toFixed(2));
-
-  }
-  else{
-    $('#precio1ver').val(precio1p);
-        $('#precio2ver').val(precio2p);
-        $('#precio3ver').val(precio3p);
-  }
-}
-} else{
-    $('#iconoCosto').html('<i class="mdi mdi-48px mdi-arrow-down-circle" style="color:#cc5c39"></i>');
-    $('#estadocosto').html('<p style="font-size:17px; color:red">EL COSTO BAJO</p>');
-    $('#mostrarporcentaje').html(' <div class="row"><div class="form-inline"> <input type="number" placeholder=""  id="porcentaje" style="font-size: 14px"class="col-md-10 form-control-plaintext form-control-sm text-right" disabled style="font-weight:bold;"><label class="text-left" style="font-weight:bold;" for="">%</label></div></div>');
-    $('#porcentaje').val((((n4 - n3)/n4)*100).toFixed(2));
-    $('#precio1ver').val(precio1ver.toFixed(2));
-    $('#precio2ver').val(precio2ver.toFixed(2));
-    $('#precio3ver').val(precio3ver.toFixed(2));
-    var checkbox = document.getElementById('customCheck1');
-    checkbox.addEventListener("change", validaCheckbox1, false);
-
-function validaCheckbox1(){
-  var checked = checkbox.checked;
-  if(checked){
-    $('#precio1ver').val(precio1ver.toFixed(2));
-    $('#precio2ver').val(precio2ver.toFixed(2));
-    $('#precio3ver').val(precio3ver.toFixed(2));
+                if(n4==0){
+                    $('#mostrarporcentaje').html('');
+                    $('#iconoCosto').html('<i class="mdi mdi-48px mdi mdi-shuffle-disabled" style="color:green"></i>');
+                    $('#estadocosto').html('<p style="font-size:14px; color:green">COSTO NUEVO</p>');
+                    $('#precio1ver').val(precio1ver.toFixed(2));
+                    $('#precio2ver').val(precio2ver.toFixed(2));
+                    $('#precio3ver').val(precio3ver.toFixed(2));
+                    var checkbox = document.getElementById('customCheck1');
+                    checkbox.addEventListener("change", validaCheckbox, false);
+    // Funcion a validar para las 3 condicionales
+                    function validaCheckbox(){
+                    var checked = checkbox.checked;
+                        if(checked){
+                            $('#precio1ver').val(precio1ver.toFixed(2));
+                            $('#precio2ver').val(precio2ver.toFixed(2));
+                            $('#precio3ver').val(precio3ver.toFixed(2));
+                            }
+                        else{
+                            $('#precio1ver').val(precio1p);
+                            $('#precio2ver').val(precio2p);
+                            $('#precio3ver').val(precio3p);
+                        }
+                    }
+                }
+                else if(n3!=n4){
+                    if(n3>n4){
+                        $('#iconoCosto').html('<i class="mdi mdi-48px mdi-arrow-up-circle" style="color:#c13434"></i>');
+                        $('#estadocosto').html('<p style="font-size:14px; color:red">EL COSTO SUBIO</p>');
+                        $('#mostrarporcentaje').html(' <div class="row"><div class="form-inline"> <input type="number" placeholder=""  id="porcentaje" style="font-size: 14px"class="col-md-10 form-control-plaintext form-control-sm text-right" disabled style="font-weight:bold;"><label class="text-left" style="font-weight:bold;" for="">%</label></div></div>');
+                        $('#porcentaje').val((((n3 - n4)/n4)*100).toFixed(2));
+                        $('#precio1ver').val(precio1ver.toFixed(2));
+                        $('#precio2ver').val(precio2ver.toFixed(2));
+                        $('#precio3ver').val(precio3ver.toFixed(2));
+                        var checkbox = document.getElementById('customCheck1');
+                        checkbox.addEventListener("change", validaCheckbox, false);
+                        function validaCheckbox(check){
+                            var checked = checkbox.checked;
+                            if(checked){
+                                $('#precio1ver').val(precio1ver.toFixed(2));
+                                $('#precio2ver').val(precio2ver.toFixed(2));
+                                $('#precio3ver').val(precio3ver.toFixed(2));
+                            }
+                            else{
+                                $('#precio1ver').val(precio1p);
+                                $('#precio2ver').val(precio2p);
+                                $('#precio3ver').val(precio3p);
+                            }
+                        }
+                    } else{
+                        $('#iconoCosto').html('<i class="mdi mdi-48px mdi-arrow-down-circle" style="color:#cc5c39"></i>');
+                        $('#estadocosto').html('<p style="font-size:17px; color:red">EL COSTO BAJO</p>');
+                        $('#mostrarporcentaje').html(' <div class="row"><div class="form-inline"> <input type="number" placeholder=""  id="porcentaje" style="font-size: 14px"class="col-md-10 form-control-plaintext form-control-sm text-right" disabled style="font-weight:bold;"><label class="text-left" style="font-weight:bold;" for="">%</label></div></div>');
+                        $('#porcentaje').val((((n4 - n3)/n4)*100).toFixed(2));
+                        $('#precio1ver').val(precio1ver.toFixed(2));
+                        $('#precio2ver').val(precio2ver.toFixed(2));
+                        $('#precio3ver').val(precio3ver.toFixed(2));
+                        var checkbox = document.getElementById('customCheck1');
+                        checkbox.addEventListener("change", validaCheckbox1, false);
+                        function validaCheckbox1(){
+                            var checked = checkbox.checked;
+                            if(checked){
+                                $('#precio1ver').val(precio1ver.toFixed(2));
+                                $('#precio2ver').val(precio2ver.toFixed(2));
+                                $('#precio3ver').val(precio3ver.toFixed(2));
+                            }
+                            else{
+                                $('#precio1ver').val(precio1p);
+                                    $('#precio2ver').val(precio2p);
+                                    $('#precio3ver').val(precio3p);
+                            }
+                        }
+                    }
+                }
+//////////////////////////////////////////////////////////
 
 
-  }
-  else{
-       $('#precio1ver').val(precio1p);
-        $('#precio2ver').val(precio2p);
-        $('#precio3ver').val(precio3p);
-  }
-}
+        $.ajax({
+            url:"{{route('rProductoCStore')}}",
+            method:"POST",
+            data:{
+            idprod,
+            garantia,
+            costo,
+            cantidad,
+            factura,
+            facturaF,
+            gria,
+            griaF,
+            proveedor,
+            igvProd
+        },
+            success:function(data){
 
-
-}
-}
-
-
-                    // $('#tabA tbody').append('<tr><td class="align-middle" style="padding: 4px;">'+codigo+'</td><td class="align-middle" style="padding: 4px;">' + nombre + '</td><td class="align-middle" style="padding: 4px;">' + cantidad + '</td><td class="align-middle" style="padding: 4px;">' + costo + '</td><td class="align-middle" style="padding: 4px;">'+medida+'</td><td class="align-middle subtotal" style="padding: 4px;" >' + costo*cantidad +'</td><td class="align-middle" style="padding: 4px;"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a></td></tr>');
-
-$('#PRO_nombre').val('');
-
-$('#cantidad').val('');
-$('#costo').val('');
-$('#PRO_codigo').val('')
-$('#UME_id').val('');
-$('#CATPRO_id').val('');
- $('#MARCA_id').val('');
- $('#PRO_modelo').val('');
-$example1.append($('<option>', { //agrego los valores que obtengo de una base de datos
-        value: 0,
-        text: '[Busque articulo]',
-        selected: true
-        }));
-$example1.val(0).trigger("change"); //lo selecciona
-$("#bprodu").select2({
-        minimumInputLength: 3,
-        dropdownParent: $("#agregarArti")
-      });
-$('#agregarArti').modal('hide');
-$('#calculos').load(location.href+" #calculos>*");
-$('#tabA').load(location.href+" #tabA>*");
-
-
+       // $('#tabA tbody').append('<tr><td class="align-middle" style="padding: 4px;">'+codigo+'</td><td class="align-middle" style="padding: 4px;">' + nombre + '</td><td class="align-middle" style="padding: 4px;">' + cantidad + '</td><td class="align-middle" style="padding: 4px;">' + costo + '</td><td class="align-middle" style="padding: 4px;">'+medida+'</td><td class="align-middle subtotal" style="padding: 4px;" >' + costo*cantidad +'</td><td class="align-middle" style="padding: 4px;"><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a><a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a></td></tr>');
+        $('#PRO_nombre').val('');
+        $('#cantidad').val('');
+        $('#costo').val('');
+        $('#PRO_codigo').val('')
+        $('#UME_id').val('');
+        $('#CATPRO_id').val('');
+        $('#MARCA_id').val('');
+        $('#PRO_modelo').val('');
+        $example1.append($('<option>', { //agrego los valores que obtengo de una base de datos
+                value: 0,
+                text: '[Busque articulo]',
+                selected: true
+                }));
+        $example1.val(0).trigger("change"); //lo selecciona
+        $("#bprodu").select2({
+                minimumInputLength: 3,
+                dropdownParent: $("#agregarArti")
+            });
+        $('#agregarArti').modal('hide');
+        $('#calculos').load(location.href+" #calculos>*");
+        $('#tabA').load(location.href+" #tabA>*");
 
 /* $('#subT').val({{$subtotal}});
 var igvCam=$('#igvCambiante').val();
@@ -1353,16 +1267,14 @@ $('#totalPr').val(total.toFixed(2)); */
                  }
              });
 });
+
+
 $('#guardarPreciosV').click(function () {
-
-
-
-var idprod=$('#PRO_id').val();
-
-var precio1registrado=$('#precio1ver').val();
-var precio2registrado=$('#precio2ver').val();
-var precio3registrado=$('#precio3ver').val();
-$.ajax({
+            var idprod=$('#PRO_id').val();
+            var precio1registrado=$('#precio1ver').val();
+            var precio2registrado=$('#precio2ver').val();
+            var precio3registrado=$('#precio3ver').val();
+            $.ajax({
                      url:"{{route('rPrecios')}}",
                      method:"POST",
                      data:{

@@ -35,9 +35,6 @@ Route::get('/compras', function () {
 })->name('compras');
 
 //Usuarios
-Route::get('usuarios', 'personalController@index')->name('personalIndex');
-
-//Usuarios
 Route::get('personal', 'UsuariosController@index')->name('usuariosIndex');
 Route::get('personal/registrar', 'UsuariosController@create')->name('usuariosCreate');
 Route::get('personal/show/{usuario}', 'UsuariosController@show')->name('personalShow');
