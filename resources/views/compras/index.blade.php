@@ -115,7 +115,7 @@ $igv=0;
                                 </DIV> </div>
                                   </div>
                                 </div>
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
                             </div>
                             <div class="modal-body">
 
@@ -200,7 +200,7 @@ $igv=0;
 
                             </div>
                             <div class="modal-footer" style="padding: 6px">
-                                <button type="button" class="btn btn-light waves-effect btn-sm" data-dismiss="modal">Cerrar</button>
+                               
                                 <button type="button" id="guardarPreciosV" class="btn btn-light waves-effect waves-light btn-sm">Guardar</button>
                             </div>
                         </div><!-- /.modal-content -->
