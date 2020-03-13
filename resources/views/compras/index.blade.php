@@ -1207,7 +1207,7 @@ function validaCheckbox(){
         $('#precio3ver').val(precio3p);
   }
 
-}
+}}
 else if(n3!=n4){
 /*                     Swal.fire({
   position: 'top',

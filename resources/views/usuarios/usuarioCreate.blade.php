@@ -398,7 +398,6 @@
     </script>
     <script>
         function vendedor(){
-
             $('#PERSONA_venta').on('change',function(){
 
                 if ($(this).is(':checked')) {
@@ -409,7 +408,6 @@
             });
         }
     </script>
-
     <script type="text/javascript">
             $('#datepicker').datepicker({
                 weekStart: 1,
@@ -419,16 +417,15 @@
             });
             $('#datepicker').datepicker("setDate", new Date());
 
-        </script>
-        <script type="text/javascript">
-            $('#datepicker2').datepicker({
-                weekStart: 1,
-                daysOfWeekHighlighted: "6,0",
-                autoclose: true,
-                todayHighlight: true,
-            });
-            $('#datepicker2').datepicker("setDate", new Date());
-
+    </script>
+    <script type="text/javascript">
+        $('#datepicker2').datepicker({
+            weekStart: 1,
+            daysOfWeekHighlighted: "6,0",
+            autoclose: true,
+            todayHighlight: true,
+        });
+        $('#datepicker2').datepicker("setDate", new Date());
         </script>
     </body>
 </html>

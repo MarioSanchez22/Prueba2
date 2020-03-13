@@ -17,20 +17,20 @@
 
     <body>
         <div  id="preloader">
-   
+
             <div id="status" >
-             
+
                 @php
                 $usuario=Auth::user();
                 @endphp
-      
+
                 <strong style="font-size: 20px; color:#2e4965">@if ($usuario->EMPRESA_id==1)
                  MACROchips
                   @else
                   NeptComputer
                   @endif</strong>
                   <div class="spinner-grow avatar-sm text-secondary m-2" role="status"></div>
-             
+
             </div>
         </div>
         <!-- Begin page -->
@@ -470,17 +470,16 @@
 <script>
     $(document).ready(function(){
         $("#PROVE_ruc").keyup(function(){
-	var numruc = $("#PROVE_ruc").val();
-	if(numruc.length == 11){
-	consultadatosSUNAT(numruc);
-	}
-    else{
-        $("#PROVE_razon_social").val('');
-        $("#PROVE_dni").val('');
+	        var numruc = $("#PROVE_ruc").val();
+	        if(numruc.length == 11){
+	        consultadatosSUNAT(numruc);
+	    }
+        else{
+            $("#PROVE_razon_social").val('');
+            $("#PROVE_dni").val('');
 
-    }
- });
-
+        }
+    });
 
   function consultadatosSUNAT(PROVE_ruc){
     $('#cargarRuc').show();

@@ -11,7 +11,7 @@ use App\umedidas;
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <meta name="csrf-token" content="{{csrf_token()}}"/>
-        
+
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -61,7 +61,7 @@ use App\umedidas;
 
                     <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                         <div class="modal-dialog" style="max-width: 700px">
-                            <div class="modal-content">
+                            <div class="modal-content" style="width: 60%; margin: 10% auto;">
                                 <div class="modal-header" style="padding: 9px; background-color:#697582;">
                                     <h5 class="modal-title" style="color:white;">Registro de unidad de medida</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color:white;">×</button>
@@ -69,11 +69,11 @@ use App\umedidas;
                                 <div class="modal-body p-2">
                                     <div class="form-group">
                                         <label for="">Descripción:</label>
-                                        <input type="text" class="form-control form-control-sm" id="MARCA_descripcion" name="MARCA_descripcion">
+                                        <input type="text" class="form-control form-control-sm" id="UME_descripcion" name="UME_descripcion">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Abreviatura:</label>
-                                        <input type="text" class="form-control form-control-sm" id="MARCA_abreviatura" name="MARCA_abreviatura">
+                                        <input type="text" class="form-control form-control-sm" id="UME_abreviatura" name="UME_abreviatura">
                                     </div>
                                 </div>
                                 <div class="modal-footer" style="padding: 10px;">
@@ -112,10 +112,12 @@ use App\umedidas;
 
                     </div>
                     <div class="row">
-                        <div class="col-xl-8">
+                        <div class="col-xl-12">
                             <div class="card">
                                 <div class="card-body">
-
+                                <div id="listaUnidadNueva">
+                                </div>
+                                <div id="listaUnidad">
                                     <table data-toggle="table"
                                     data-show-columns="false"
                                     data-page-list="[5, 10, 20]"
@@ -141,37 +143,10 @@ use App\umedidas;
                                             @endforeach
                                         </tbody>
                                       </table>
-
-
-
-
+                                    </div>
                                 </div> <!-- end card-body-->
                             </div> <!-- end card-->
                         </div> <!-- end col -->
-
-                        <div class="col-xl-4">
-                            <div class="card-box">
-                                <h4>Registro de unida de medidas</h4>
-                                <div class="form-group">
-                                    <label for="">Descripcion:</label>
-                                    <input type="text" class="form-control form-control-sm" id="marca" name="marca">
-
-
-
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Abreviatura:</label>
-                                    <input type="text" class="form-control form-control-sm" id="marca" name="marca">
-
-                                </div>
-                                <div class="text-right">
-                                    <br>
-                                <button type="button" class="btn btn-dark waves-effect waves-light">Registrar</button>
-                                </div>
-
-
-                            </div> <!-- end card-box-->
-                        </div>
                     </div>
                     <!-- end row -->
 
@@ -306,24 +281,27 @@ use App\umedidas;
 })
 </script>
 <script>
+    function limpiarFormMarca(){
+        $('#UME_abreviatura').val('');
+        $('#UME_descripcion').val('');
+    }
     function marcaGuarda(){
-        var MARCA_abreviatura=$('#MARCA_abreviatura').val();
-        var MARCA_descripcion=$('#MARCA_descripcion').val();
+        var UME_abreviatura=$('#UME_abreviatura').val();
+        var UME_descripcion=$('#UME_descripcion').val();
             $.ajax({
                 url:"{{route('umedidaStore')}}",
                 method:"POST",
                 data:{
-                    MARCA_abreviatura:MARCA_abreviatura,
-                    MARCA_descripcion: MARCA_descripcion,
+                    UME_abreviatura:UME_abreviatura,
+                    UME_descripcion: UME_descripcion,
                 },
                 success:function(data){
-                    $('#listaCategoriasNueva').hide();
-                    $('#listaCategoriasNueva2').html(data);
+                    $('#listaUnidad').hide();
+                    $('#listaUnidadNueva').html(data);
                     $("#con-close-modal").modal("hide");
-                    $('#codigo').val(codigonuevo);
-                    limpiarFormCategoria();
+                    limpiarFormMarca();
                         Swal.fire({
-                            title: "Categoría agregada Correctamente",
+                            title: "Unidad agregada Correctamente",
                             type: "success",
                             showConfirmButton: false,
                             timer: 2000
@@ -339,8 +317,5 @@ use App\umedidas;
             });
         }
 </script>
-
-
-
     </body>
 </html>

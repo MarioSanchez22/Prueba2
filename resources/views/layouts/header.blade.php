@@ -1,6 +1,13 @@
+
           @php
+
+
+          use App\empresa;
+          use App\empleado;
+
           $usuario=Auth::user();
-          @endphp
+          $empresaUsuario=empresa::where('EMPRESA_id','=',$usuario->EMPRESA_id)->first();
+        @endphp
 
           <!-- Topbar Start -->
             <div class="navbar-custom" style="background-color:#2e4965">
@@ -169,14 +176,7 @@
                 <div class="logo-box">
                     <a href="index.html" class="logo text-center">
                         <span class="logo-lg">
-                            @if ($usuario->EMPRESA_id==1)
-                            <h3 style="margin-top: 9%; color:white;">MACROchips</h3>
-                            @else
-                            <h3 style="margin-top: 9%; color:white;">Nept Computer</h3>
-                           {{-- <img src="{{asset('nept.png')}}" alt="" class="rounded-circle"> --}}
-                            @endif
-                            <!--<img src="{{asset('assets/images/logo-light.png')}}" alt="" height="18">
-                             <span class="logo-lg-text-light">UBold</span> -->
+                            <h4 style="margin-top: 9%; color:white;">{{$empresaUsuario->EMPRESA_comercial}}</h4>
                         </span>
                         <span class="logo-sm">
                             <!-- <span class="logo-sm-text-dark">U</span> -->

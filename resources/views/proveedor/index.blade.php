@@ -183,7 +183,7 @@
                                                         <span class="badge bg-soft-danger text-danger shadow-none">Bloqueado</span>
                                                     @endif
                                                     </td>
-                                                    <td >
+                                                    <td>
                                                         <div class="dropdown float-right">
                                                             <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
                                                                 <i class=" mdi mdi-settings m-0 text-muted h3"></i>
@@ -196,9 +196,9 @@
                                                         </div>
 
                                                         @if($proveedores->PROVE_estado==1)
-                                                    <a href="#" class="action-icon" title="" onclick="bloquear({{$proveedores->PROVE_id}})"> <i class="mdi mdi-block-helper"></i></a>
+                                                            <a href="#" class="action-icon" title="" onclick="bloquear({{$proveedores->PROVE_id}})"> <i class="mdi mdi-block-helper"></i></a>
                                                         @else
-                                                        <a href="#" onclick="activar({{$proveedores->PROVE_id}})"" class="action-icon" title="Activar"> <i class="mdi mdi-transfer-up"></i></a>
+                                                            <a href="#" onclick="activar({{$proveedores->PROVE_id}})"" class="action-icon" title="Activar"> <i class="mdi mdi-transfer-up"></i></a>
                                                         @endif
                                                     </td>
                                                 </tr>

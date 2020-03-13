@@ -15,20 +15,20 @@
 
     <body>
         <div  id="preloader">
-   
+
             <div id="status" >
-             
+
                 @php
-                $usuario=Auth::user();
+                $usu1=Auth::user();
                 @endphp
-      
-                <strong style="font-size: 20px; color:#2e4965">@if ($usuario->EMPRESA_id==1)
+
+                <strong style="font-size: 20px; color:#2e4965">@if ($usu1->EMPRESA_id==1)
                  MACROchips
                   @else
                   NeptComputer
                   @endif</strong>
                   <div class="spinner-grow avatar-sm text-secondary m-2" role="status"></div>
-             
+
             </div>
         </div>
 
@@ -89,7 +89,7 @@
                                         <div class="form-inline" style="margin-left: 20px">
                                             <div class="form-group">
                                               <i class="mdi mdi-24px mdi-clipboard-account-outline"></i> <h5>Registrado por:</h5> &nbsp&nbsp
-                                            <input type="text" id="USER_id" name="USER_id" value="Vendedor-01"  style=" color:#2e4965" class="form-control form-control-sm" disabled>
+                                            <input type="text" id="USER_id" name="USER_id" value="{{$usu1->email}}"  style=" color:#2e4965" class="form-control form-control-sm" disabled>
                                             </div>
                                         </div>
                                         </div>
@@ -138,7 +138,6 @@
                                                                 @endforeach
                                                                 <!--<option selected type="" value="" disabled selected >[Seleccionar modo de pago]</option>-->
                                                               </select>
-
                                                           </div>
                                                           <div class="col-md-6">
                                                             <div class="form-group">
@@ -148,53 +147,38 @@
                                                                 <div  id="cargarRuc" style="display:none"> <button class="btn btn-info btn-sm" type="button"  >
                                                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="sr-only"></span>
                                                             </button></div>
-
-
                                                             </div>
                                                             </div>
                                                            </div>
-
                                                         <div class=" row col-md-12" id="verD"  style=" padding: 0;  margin: 0;  ">
-
                                                         </div>
-
                                                         <div class="col-md-4" style=" padding-bottom: 18px;">
                                                             <div class="row">
-
-
                                                           <div class="col-md-12">
                                                             <label for="">Región</label>
-
                                                             <select class="form-control  form-control-sm" id="region" name="CLIE_region" >
                                                             <option value="0">[Seleccionar]</option>
                                                                 @foreach ($region as $regiones)
                                                                     <option value="{{$regiones->id}}">{{$regiones->estadonombre}}</option>
                                                                     @endforeach
                                                         </select>
-
-
                                                         </div>
-
                                                         </div></div>
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                               <label class="control-label" for="CLIE_telefono">Telefono: </label>
                                                               <input type="text" class="form-control form-control-sm" required placeholder="Telefono" name="CLIE_telefono"> </div>
                                                            </div>
-
                                                            <div class="col-md-4">
                                                             <div class="form-group">
                                                               <label class="control-label" for="CLIE_email" >Email: </label>
                                                               <input type="text" class="form-control form-control-sm" required  placeholder="Email" name="CLIE_email"> </div>
                                                            </div>
-
                                                             <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label >Direccion Principal </label>
                                                                 <div id="div_1000" class="row col-md-12" >
                                                                     <input type="text" name="CLIEDIRE_descripcion[]" id="CLIEDIRE_descripcion"  class="form-control form-control-sm " style="margin-left: 2%;">
-
-
                                                                     <!--<input class="btn btn-primary bt_plus" id="100" type="button" value="+">-->
                                                                     <button class="btn btn-primary bt_plus1 btn-sm" id="1000" type="button"  style=" background-color: #446e8c; border-Color:#04233a;margin-left: 101%;margin-top: -7%;"><i class="fe-plus fe-plus-sm" ></i>direccion</button><br>
                                                                     <div class="error_form"></div>

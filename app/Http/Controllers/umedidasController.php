@@ -12,10 +12,12 @@ class umedidasController extends Controller
         return view('unidadMedidas.index',['umedidas'=>$umedidas]);
     }
 
-    public function store( Request $request){
-        $unidad=new umedidas();
-        $unidad->UME_descripcion=;
-        return view('categoria._categoriaNueva',['categoria_producto'=>$categoria_producto,'id_ultimo'=>$id_ultimo ]);
-    }
+     public function store( Request $request){
+            $unidad=new umedidas();
+            $unidad->UME_abreviatura=$request->get('UME_abreviatura');
+            $unidad->UME_descripcion=$request->get('UME_descripcion');
+            $unidad->save();
+            
+        }
 
 }

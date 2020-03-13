@@ -21,8 +21,23 @@
     </head>
 
     <body>
-        @include('layouts._preReload')
-            
+        <div  id="preloader">
+
+            <div id="status" >
+
+                @php
+                $usuario=Auth::user();
+                @endphp
+
+                <strong style="font-size: 20px; color:#2e4965">@if ($usuario->EMPRESA_id==1)
+                 MACROchips
+                  @else
+                  NeptComputer
+                  @endif</strong>
+                  <div class="spinner-grow avatar-sm text-secondary m-2" role="status"></div>
+
+            </div>
+        </div>
         <!-- Begin page -->
         <div id="wrapper">
 
@@ -44,39 +59,98 @@
             <div class="content-page">
                 <div class="content">
 
+                    <!--  Modal content for the above example -->
+                    <div class="modal fade bs-example-modal-lg" id="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content" style="width:80%">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="myLargeModalLabel">Agregar Usuario</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                </div>
+                                <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Usuario:</label>
+                                                    <input type="text" class="form-control form-control-sm" id="email" name="email">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Email:</label>
+                                                    <input type="email" class="form-control form-control-sm" id="USER_nick" name="USER_nick">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Empresa:</label>
+                                                    <select  class="form-control  form-control-sm " name="EMPRESA_id" id="EMPRESA_id">
+                                                        <option value="">Empresa</option>
+                                                        @foreach ($empresas as $empresa)
+                                                            <option value="{{$empresa->EMPRESA_id}}">{{$empresa->EMPRESA_nombre}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Rol:</label>
+                                                    <select  class="form-control  form-control-sm " name="ROL_id" id="ROL_id">
+                                                        <option value="">Rol</option>
+                                                        @foreach ($roles as $rol)
+                                                            <option value="{{$rol->ROL_id}}">{{$rol->ROL_descripcion}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Password:</label>
+                                                    <input type="password" class="form-control form-control-sm" id="password" name="password">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Confirmar password:</label>
+                                                    <input type="password" class="form-control form-control-sm" id="password_confirm" name="password_confirm">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <button type="button" class="btn btn-dark waves-effect waves-light" onclick="empresaRegistrar()">Registrar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+
                     <!-- Start Content-->
                     <div class="container-fluid">
-
                     <!-- start page title -->
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box">
                                 <div class="page-title-right">
-
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
-
                                 <div class="row icons-list-demo" style="color:#373f5f">
                                     <div class="col-sm-7 col-md-7 col-lg-4" style="font-size: 19px;font-weight: bold;padding-top: 5px; padding-left: 0px">
-                                        <i class="mdi mdi-24px mdi-home-city" style=" margin-right: -6px;color:#373f5f"></i> PERSONAL
+                                        <i class="mdi mdi-24px mdi-home-city" style=" margin-right: -6px;color:#373f5f"></i> GESTIÓN DE USUARIOS
                                     </div>
                                     <div class="col-md-8" style="padding-top: 6px">
-                                        <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" onclick="location.href='{{route('usuariosCreate')}}'"><span class=" fa fa-user-plus"> </span>  Personal</button>
+                                        <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" data-toggle="modal" data-target=".bs-example-modal-lg"><span class=" fa fa-user-plus"> </span>  Usuario</button>
                                     </div>
+                                </div>
                             </div>
                         </div>
-
-                    </div>
                             </div>
                         </div>
                     </div>
                 <div class="row" style="margin-top: 10px;">
                     <div class="col 12">
                         <div class="card-box " style="padding-bottom: 8px; padding-top: 8px; margin-bottom: 0px; background: #566675; color:#fff">
-
                             <div class="row">
-
                                 <div class="col-md-3">
                                     <form action="" class="form-inline">
                                     <div class="form-group">
@@ -88,19 +162,19 @@
                                 <div class="col-md-3">
                                     <form action="" class="form-inline">
                                     <div class="form-group">
-                                    <label class="control-label" >DNI:   </label>&nbsp&nbsp
-                                    <input type="text"  id="PERSONA_identificador" name="PERSONA_identificador" class="form-control form-control-sm">
+                                    <label class="control-label">Email:   </label>&nbsp&nbsp
+                                    <input type="text"  id="email" name="email" class="form-control form-control-sm">
                                     </div>
                                     </form>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="row ">
-                                        <div class="col-2 form-inline"><label class="control-label">Rol:</label></div>
-                                        <div class="col-10">
-                                            <select  class="form-control  form-control-sm " name="ROL_id" id="ROL_id">
-                                                <option value="">Rol</option>
-                                                @foreach ($roles as $rol)
-                                                <option value="{{$rol->ROL_id}}">{{$rol->ROL_descripcion}}</option>
+                                        <div class="col-3 form-inline"><label class="control-label">Empresa:</label></div>
+                                        <div class="col-9">
+                                            <select  class="form-control  form-control-sm " name="EMPRESA_id" id="EMPRESA_id">
+                                                <option value="">Empresa</option>
+                                                @foreach ($empresas as $empre)
+                                                    <option value="{{$empre->EMPRESA_id}}">{{$empre->EMPRESA_nombre}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -116,7 +190,7 @@
                     <div class="card-body" style="background:#fff">
                                 <!--  Modal content for the above example -->
                         <div class="row">
-                            <div class="col-md-10">
+                            <div class="col-md-12">
                                 <div id="tablageneral" class="bounceInLeft animated">
                                     <table   data-toggle="table"
                                     data-page-size="6"
@@ -125,73 +199,39 @@
                                         <thead class="thead-light">
                                         <tr>
                                             <th data-field="state" >#</th>
-                                            <th data-field="name">Usuario</th>
-                                            <th data-field="id" data-switchable="false">Nombre Usuario</th>
-                                            <th data-field="email">Documento de identidad</th>
-                                            <th data-field="rol">Rol</th>
-                                            <th data-field="perfil">Perfil</th>
+                                            <th data-field="usuario">Usuario</th>
+                                            <th data-field="email" data-switchable="false">Email</th>
+                                            <th data-field="empresa">Empresa</th>
                                             <th data-field="estado">Estado</th>
-                                            <th data-field="opciones"></th>
+                                            <th data-field="opciones">Opciones</th>
                                         </tr>
                                         </thead>
                                             <tbody>
-                                                @foreach ($personal as $personals)
-                                                @php
-                                                $usuario=User::where('PERSONA_id','=',$personals->PERSONA_id)->first();
-                                                $empleado=empleado::where('PERSONA_id','=',$personals->PERSONA_id)->first();
-                                                    if ($usuario != null) {
-                                                        $rol=rol::where('ROL_id','=',$usuario->ROL_id)->first();
-                                                    }
-                                                @endphp
+                                                @foreach ($usuarios as $usuario)
+                                                    @php
+                                                        $empresa=empresa::where('EMPRESA_id','=',$usuario->EMPRESA_id)->first();
+                                                    @endphp
                                                     <tr>
-                                                            <td>{{$loop->index+1}}</td>
-                                                            <td>
-                                                                @if ($usuario!=null)
-                                                                {{$usuario->email}}
-                                                                @endif
-                                                            </td>
-                                                            <td>{{$personals->PERSONA_nombres}}</td>
-                                                            <td>{{$personals->PERSONA_identificador}}</td>
-                                                            <td>
-                                                                @if ($usuario!=null)
-                                                                {{$rol->ROL_descripcion}}
-                                                                @endif
-                                                            </td>
-                                                            <td>
-                                                                @if ($personals->PERSONA_venta==1)
-                                                                    <i class="fe-dollar-sign" title="vendedor">
-                                                                @endif
-                                                                @if ($usuario!=null)
-                                                                    <i class=" fas fa-user" title="usuario">
-                                                                @endif
-                                                                @if ($empleado!=null)
-                                                                    <i class="fas fa-hand-holding-usd" title="empleado">
-                                                                @endif
-
-                                                            </td>
-                                                            <td>
-                                                                @if ($usuario!=null)
-                                                                    @if($usuario->USER_estado==1)
-                                                                        <span class="badge bg-soft-success text-success shadow-none">Activo</span>
-                                                                    @else
-                                                                        <span class="badge bg-soft-danger text-danger shadow-none">Bloqueado</span>
-                                                                    @endif
-                                                                @endif
-
-                                                            </td>
-                                                                <td class="text-center">
-                                                                    <div class="dropdown" >
-                                                                        <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
-                                                                            <i class=" mdi mdi-settings m-0 text-muted h3"></i>
-                                                                        </a>
-                                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                                            <a href="{{route('personalShow',[ $personals->PERSONA_id] )}}" class="dropdown-item" title="Ver"> <i class="mdi mdi-eye"></i> Ver</a>
-                                                                             <a href="#" class="dropdown-item" title="Editar"> <i class="mdi mdi-square-edit-outline"></i> Editar</a>
-
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
+                                                        <td>{{$loop->index +1}}</td>
+                                                        <td>{{$usuario->email}}</td>
+                                                        <td>{{$usuario->USER_nick}}</td>
+                                                        <td>{{$empresa->EMPRESA_nombre}}</td>
+                                                        <td>
+                                                            @if ($usuario->USER_estado==1)
+                                                                <span class="badge bg-soft-success text-success shadow-none">Activo</span>
+                                                            @else
+                                                                <span class="badge bg-soft-danger text-danger shadow-none">Bloqueado</span>
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            <a href="#" class="action-icon" title="Editar"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                            @if($usuario->USU_estado==1)
+                                                                <a href="#" class="action-icon" title="Bloquear"> <i class="mdi mdi-block-helper"></i></a>
+                                                            @else
+                                                                <a href="#" class="action-icon" title="Activar"> <i class="mdi mdi-transfer-up"></i></a>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
@@ -200,22 +240,10 @@
                                 @php
                                 $empresa=empresa::where('EMPRESA_id','=',Auth::user()->EMPRESA_id)->first();
                             @endphp
-                               <div class="col-md-2">
-                                    <div class="card" >
-                                        <div class="card-body">
-                                            <h5 class="card-title">Leyenda</h5>
-                                            <h6 class="card-subtitle text-muted" style="margin-bottom: 5px;">Soporte {{$empresa->EMPRESA_nombre}}</h6>
-                                            <div class="form-inline" style="margin-bottom: 5px;"><i class="fas fa-user" style="margin-right: 12px;"></i>Usuario</div>
-                                            <div class="form-inline"><i class="fe-dollar-sign" style="margin-right: 12px;"></i>Vendedor</div>
-                                            <div class="form-inline"><i class="fas fa-hand-holding-usd" style="margin-right: 12px;"></i>Empleado</div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
      <!-- Bootstrap Tables js -->
-                                <div id ="tabla1" class="bounceInLeft animated">
-                                </div>
+                        <div id ="tabla1" class="bounceInLeft animated">
+                        </div>
                     </div>
                        <!-- /.card-body -->
                           </div>
@@ -344,6 +372,20 @@
         <div class="rightbar-overlay"></div>
 
 @include('layouts.scripts')
+
+<script>
+
+$('#EMPRESA_id').change(function(){
+                var tipoPr= $(this).val();
+                $.ajax({
+                    url:"//datos/"+tipoPr,
+                    method:"GET",
+                    success:function(data){
+                        $('#verD').html(data);
+                        }
+                    });
+            });
+</script>
 <script>
      $('#buscar').click(function(){
         var email=$('#email').val();

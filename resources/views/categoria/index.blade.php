@@ -590,14 +590,15 @@ use App\categoria_producto;
         });
     }
 </script>
-<script>function codigoUltimo(){
-$.ajax({
-            url:"{{route('codigoUltimo')}}",
-            method:"POST",
+<script>
+function codigoUltimo(){
+    $.ajax({
+        url:"{{route('codigoUltimo')}}",
+        method:"POST",
             success:function(data){
-                $('#codigo').val(data);
-            }
-        });
+        $('#codigo').val(data);
+        }
+    });
 }
 </script>
 <script>

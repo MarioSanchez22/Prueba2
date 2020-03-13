@@ -12,19 +12,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::name('empresasIndex')->get('empresas','empresaController@index');
+Route::name('empresasStore')->post('empresas/store','empresaController@store');
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-
-
-
-
-
-
-
-
-
-
 
 Route::get('/','Auth\LoginController@showLoginForm')->middleware('guest');
 
@@ -38,13 +33,17 @@ Route::name('Dashboard')->get('dashboard','HomeController@index');
 Route::get('/compras', function () {
     return view('compras');
 })->name('compras');
-//Usuarios
-Route::get('usuarios', 'UsuariosController@index')->name('usuariosIndex');
-Route::get('usuarios/registrar', 'UsuariosController@create')->name('usuariosCreate');
-Route::get('usuarios/show/{usuario}', 'UsuariosController@show')->name('personalShow');
-Route::POST('usuarios/create', 'UsuariosController@store')->name('usuariosStore');
 
-Route::get('usuarios/buscar/{email}/{PERSONA_identificador}/{ROL_id}', 'UsuariosController@buscar')->name('usuarioBuscar');
+//Usuarios
+Route::get('usuarios', 'personalController@index')->name('personalIndex');
+
+//Usuarios
+Route::get('personal', 'UsuariosController@index')->name('usuariosIndex');
+Route::get('personal/registrar', 'UsuariosController@create')->name('usuariosCreate');
+Route::get('personal/show/{usuario}', 'UsuariosController@show')->name('personalShow');
+Route::POST('personal/create', 'UsuariosController@store')->name('usuariosStore');
+
+Route::get('personal/buscar/{email}/{PERSONA_identificador}/{ROL_id}', 'UsuariosController@buscar')->name('usuarioBuscar');
 ////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////Permisos/////////////////////////////////////////
 Route::get('privilegios', 'permisoController@index')->name('privilegiosIndex');
