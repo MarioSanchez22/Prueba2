@@ -48,9 +48,7 @@ class comprasController extends Controller
 }
 public function showart(Request $request){
     $producto=producto::find($request->get('producto'));
-
     $categoria=categoria_producto::where('CATPRO_id','=',$producto->CATPRO_id)->first();
-
     $marca=marca::where('MARCA_id','=',$producto->MARCA_id)->first();
     $medida=umedidas::where('UME_id','=',$producto->UME_id)->first();
     $ultimopre=compro_item::where('PRO_id','=',$producto->PRO_id)->get()->last();
@@ -114,7 +112,7 @@ public function rproductoCstore(Request $request){
     $productoregC->PROV_id=$request->get('proveedor');
     $productoregC->USER_id=Auth::user()->id;
     $productoregC->save();
-    
+
     return($productoregC);
 }
 /*public function rprecios(Request $request){

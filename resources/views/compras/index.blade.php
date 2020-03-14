@@ -1202,11 +1202,7 @@ $.ajax({
                     }
                 }
 //////////////////////////////////////////////////////////
-
-
-
 });
-
 
 $('#guardarPreciosV').click(function () {
     var nombre = $('#PRO_nombre').val();
@@ -1233,8 +1229,6 @@ $('#guardarPreciosV').click(function () {
             var precio3cate=$('#precio3deC').val();
             var igvCam=$('#igvCambiante').val();
 
-
-
     /////////////////////////////////////////////////////
             var idprod=$('#PRO_id').val();
             var precio1registrado=$('#precio1ver').val();
@@ -1259,10 +1253,22 @@ $('#guardarPreciosV').click(function () {
                         precio1registrado,
                         precio2registrado,
                         precio3registrado
-
                      },
                  success:function(data){
+                    $example1.append($('<option>', { //agrego los valores que obtengo de una base de datos
+                        value: 0,
+                        text: '[Busque articulo]',
+                        selected: true
+                        }));
+                    $example1.val(0).trigger("change"); //lo selecciona
+                    $("#bprodu").select2({
+                            minimumInputLength: 3,
+                            dropdownParent: $("#agregarArti")
+                    });
                     $('#ajustarprecio').modal('hide');
+                    $('#calculos').load(location.href+" #calculos>*");
+                    $('#tabA').load(location.href+" #tabA>*");
+
 
                  }
              });
@@ -1463,12 +1469,34 @@ $("#igvCambiante").on("keyup", function() {
                      },
                  success:function(data){
 
+                    $('#PRO_nombre').val('');
+                        $('#PRO_garantia').val('');
+                        $('#cantidad').val('');
+                        $('#costo').val('');
+                        $('#PRO_codigo').val('')
+                        $('#UME_id').val('');
+                        $('#CATPRO_id').val('');
+                        $('#MARCA_id').val('');
+                        $('#PRO_modelo').val('');
+
+                        $example1.append($('<option>', { //agrego los valores que obtengo de una base de datos
+                                value: 0,
+                                text: '[Busque articulo]',
+                                selected: true
+                                }));
+                        $example1.val(0).trigger("change"); //lo selecciona
+                        $("#bprodu").select2({
+                                minimumInputLength: 3,
+                                dropdownParent: $("#agregarArti")
+                            });
+
                          $("#agregarArticulo").modal("hide");
                         $('#calculos').load(location.href+" #calculos>*");
                         $('#tabA').load(location.href+" #tabA>*");
                     }
                 });
             }
+
             function limpiarFormPro(){
              $('#PRO_rcodigo').val('');
              $('#PRO_rcategoria').val('1');
