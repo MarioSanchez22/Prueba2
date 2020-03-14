@@ -1245,10 +1245,6 @@ $('#guardarPreciosV').click(function () {
                     });
                     $('#ajustarprecio').modal('hide');
                     $('#tabA').load(location.href+" #tabA>*");
-<<<<<<< HEAD
-                    $('#calculos').load(location.href+" #calculos>*");
-                 }
-=======
 
 
                  },
@@ -1256,7 +1252,6 @@ $('#guardarPreciosV').click(function () {
                     error: function(XMLHttpRequest, textStatus, errorThrown) {
                         alert("No se puede registrar");
                     }
->>>>>>> 8b6abcd9cd2d9ad2fdcd263be47ea5f89950b720
              });
 });
       $("#bprodu").select2({
