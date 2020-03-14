@@ -18,25 +18,12 @@ use App\umedidas;
         @include('layouts.estilos')
     </head>
     <body>
-        <div  id="preloader">
-            <div id="status" >
-                @php
-                $usuario=Auth::user();
-                @endphp
-                <strong style="font-size: 20px; color:#2e4965">@if ($usuario->EMPRESA_id==1)
-                 MACROchips
-                  @else
-                  NeptComputer
-                  @endif</strong>
-                  <div class="spinner-grow avatar-sm text-secondary m-2" role="status"></div>
-
-            </div>
-        </div>
+        @include('layouts._preReload')
         <style>
             .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
-        color: #fff;
-        background-color: #5e6696;
-    }
+            color: #fff;
+            background-color: #5e6696;
+            }
         </style>
         <!-- Begin page -->
         <div id="wrapper">

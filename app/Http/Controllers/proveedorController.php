@@ -79,20 +79,28 @@ class proveedorController extends Controller
         $origen=origen_proveedor::all();
        return view('proveedor.proveedorCreate',['tipo'=>$tipo,'origen'=>$origen]);
     }
+    public function store2(Request $request){
+        $proveedor=new proveedor();
+        $proveedor->fill($request->only('PROVE_ruc','PROVE_razon_social',
+        'PROVE_razon_comercial','PROVE_direccion','PROVE_email',
+        'PROVE_telefono','PROVE_etiqueta','PROVE_dni','PROVE_dias_credito',
+        'TIPPROVE_id'));
+        $proveedor->updated_at=null;
+        $proveedor->save();
+        return $proveedor;
+    }
     public function store(Request $request){    //dd($request);
     $proveedor=new proveedor();
-
       $proveedor->fill($request->only('PROVE_ruc','PROVE_razon_social',
-      'PROVE_razon_comercial','PROVE_direccion','PROVE_email',
-      'PROVE_telefono','PROVE_etiqueta','PROVE_dni','PROVE_dias_credito',
-      'PROVE_web','TIPPROVE_id','PROVEDOC_descripcion'));
+        'PROVE_razon_comercial','PROVE_direccion','PROVE_email',
+        'PROVE_telefono','PROVE_etiqueta','PROVE_dni','PROVE_dias_credito',
+        'PROVE_web','TIPPROVE_id','PROVEDOC_descripcion'));
       /*dd($proveedor->fill($request->only('PROVE_ruc','PROVE_razon_social',
       'PROVE_razon_comercial','PROVE_direccion','PROVE_email',
       'PROVE_telefono','PROVE_etiqueta','PROVE_dni','PROVE_dias_credito',
       'PROVE_web','TIPPROVE_id','PROVEDOC_descripcion')));*/
       if($request->get('PROVEDOC_descripcion')!=null){
           $documento=proveedor_documento::where('PROVEDOC_id','=',$request->get('PROVEDOC_descripcion'))->get();
-
           $proveedor->PROVEDOC_descripcion=$documento[0]->PROVEDOC_descripcion;
       }
       $pais=pais::where('id','=',$request->get('PROVE_pais'))->get();
@@ -153,7 +161,7 @@ class proveedorController extends Controller
             }
         }
 //dd($proveedor);
-$proveedor2=proveedor::all();
+        $proveedor2=proveedor::all();
            return view('proveedor.index',['proveedor'=>$proveedor2]);
         }
 

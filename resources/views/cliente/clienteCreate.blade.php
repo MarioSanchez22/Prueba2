@@ -1,3 +1,6 @@
+@php
+    $usu1=Auth::user();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -14,23 +17,7 @@
     </head>
 
     <body>
-        <div  id="preloader">
-
-            <div id="status" >
-
-                @php
-                $usu1=Auth::user();
-                @endphp
-
-                <strong style="font-size: 20px; color:#2e4965">@if ($usu1->EMPRESA_id==1)
-                 MACROchips
-                  @else
-                  NeptComputer
-                  @endif</strong>
-                  <div class="spinner-grow avatar-sm text-secondary m-2" role="status"></div>
-
-            </div>
-        </div>
+        @include('layouts._preReload')
 
         <!-- Begin page -->
         <div id="wrapper">
@@ -185,8 +172,6 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-
-
 
                                                 </div>
                                                 </div>

@@ -22,7 +22,6 @@
 
     <body>
         @include('layouts._preReload')
-            
         <!-- Begin page -->
         <div id="wrapper">
 

@@ -21,23 +21,7 @@
     </head>
 
     <body style="color: #4585bd;">
-        <div  id="preloader">
-
-            <div id="status" >
-
-                @php
-                $usu1=Auth::user();
-                @endphp
-
-                <strong style="font-size: 20px; color:#2e4965">@if ($usu1->EMPRESA_id==1)
-                 MACROchips
-                  @else
-                  NeptComputer
-                  @endif</strong>
-                  <div class="spinner-grow avatar-sm text-secondary m-2" role="status"></div>
-
-            </div>
-        </div>
+        @include('layouts._preReload')
         <!-- Begin page -->
         <div id="wrapper">
 
@@ -47,10 +31,7 @@
 
             <!-- ========== Left Sidebar Start ========== -->
             <div class="left-side-menu">
-
-
                 @include('layouts.menu')
-
             </div>
             <!-- Left Sidebar End -->
 
@@ -185,21 +166,13 @@
                                             </div>
                                          </div>
                                         </div>
-
-
-
                                 </div>
-
                                 </div> <!-- end card-box -->
-
-
-
                             </div> <!-- end col-->
 
                      <div class="col-lg-8 col-xl-8">
                      <div class="card-box ">
                       <div class="row">
-
                       {{--   <div class="col-lg-12">
                             <div class="card-box">
                                 <h4 class="header-title mb-3">Bar Chart</h4>
@@ -207,8 +180,6 @@
                                 <div id="chart" style="height: 300px;" dir="ltr"></div>
                             </div> <!-- end card-->
                         </div> <!-- end col--> --}}
-
-
                      </div>  <!-- /.end row -->
                      </div>  <!-- /.end car box -->
 
