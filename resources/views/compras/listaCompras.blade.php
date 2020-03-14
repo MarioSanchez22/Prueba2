@@ -64,13 +64,15 @@
 
                     <!-- start page title -->
                     <div class="row">
-                        <div class="col-12">
-                            <div class="row icons-list-demo" style="color:#373f5f">
+                        <div class="col-sm-10 col-md-10 col-lg-10 form-inline">
+                         {{--    <div class="row icons-list-demo" style="color:#373f5f">
                                 <div class="col-sm-7 col-md-7 col-lg-4" style="font-size: 19px;font-weight: bold;padding-top: 5px; padding-left: 0px">
                                     <i class="fas fas-24px fas fa-cart-plus" style=" margin-right: -6px;color:#373f5f"></i>Lista de Compras
                                 </div>
 
-                        </div>
+                        </div> --}}
+
+                        <i class="mdi mdi-48px mdi-cart-outline" style="font-family:'Roboto',sans-serif;color:#373f5f"></i> <h3 style="color:#373f5f;font-size: 28px">Lista de Compras</h3>
                         </div>
                     </div>
 
@@ -123,7 +125,10 @@
                                 data-page-size="4"
                                 data-buttons-class="xs btn-light"
                                 data-pagination="true" class="table-bordered ">
-                                <thead class="thead-light">
+                                <thead class="" style="color: #2e4965;
+                                background-color: #e4e4e4!important;
+                            }
+                            ">
                                 <tr>
                                 <th data-field="state" >#</th>
                                 <th data-field="id">Proveedor</th>
