@@ -375,11 +375,8 @@ $igv=0;
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
                     <div class="modal-body">
-<<<<<<< HEAD
-=======
                         <form  id="form-producto" action="">
 
->>>>>>> 8b6abcd9cd2d9ad2fdcd263be47ea5f89950b720
                                     <div class="card" style=" margin-bottom: 0px;">
                                       <!-- /.card-header -->
                                                   <div class="card-box " style=" padding-top: 0px; margin-bottom: 0px;padding-bottom: 5px; zoom:90%;border: 2px solid #e8e8e8;" >
