@@ -113,11 +113,11 @@ public function rproductoCstore(Request $request){
     }
     $productoregC->PROV_id=$request->get('proveedor');
     $productoregC->USER_id=Auth::user()->id;
-
     $productoregC->save();
+    
     return($productoregC);
 }
-public function rprecios(Request $request){
+/*public function rprecios(Request $request){
     $precios=new precios();
     $precios->PRO_id=$request->get('idprod');
     $precios->PREC_precio1=$request->get('precio1registrado');
@@ -128,7 +128,7 @@ public function rprecios(Request $request){
 
     $precios->save();
     return( $precios);
-}
+}*/
 /* public function rproductoCstore(Request $request){
 {
     Schema::create('temp_message', function (Blueprint $table) {

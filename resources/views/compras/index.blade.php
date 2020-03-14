@@ -200,7 +200,6 @@ $igv=0;
 
                             </div>
                             <div class="modal-footer" style="padding: 6px">
-
                                 <button type="button" id="guardarPreciosV" class="btn btn-light waves-effect waves-light btn-sm">Guardar</button>
                             </div>
                         </div><!-- /.modal-content -->
@@ -1210,6 +1209,33 @@ $.ajax({
 
 
 $('#guardarPreciosV').click(function () {
+    var nombre = $('#PRO_nombre').val();
+            var cantidad = $('#cantidad').val();
+            var costo =$('#costo').val();
+            var codigo=$('#PRO_codigo').val();
+            var idprod=$('#PRO_id').val();
+            var medida=$('#UME_id').val();
+            var $example1 = $("#bprodu").select2();
+            var garantia=$('#PRO_garantia').val();
+            var proveedor=$('#bpro').val();
+            var factura=$('input[name=COMPRO_factura]').val();
+            var facturaF=$('input[name=COMPRO_facturaF]').val();
+            var gria=$('input[name=COMPRO_gria]').val();
+            var griaF=$('input[name=COMPRO_griaF]').val();
+            var costoAr=$('#costoAnterior').val();
+            var nombreProvee=$('#inputse').val();
+            var igvProd=$('#igvCambiante').val();
+            var precio1p=$('#precio1Pro').val();
+            var precio2p=$('#precio2Pro').val();
+            var precio3p=$('#precio3Pro').val();
+            var precio1cate=$('#precio1deC').val();
+            var precio2cate=$('#precio2deC').val();
+            var precio3cate=$('#precio3deC').val();
+            var igvCam=$('#igvCambiante').val();
+
+
+
+    /////////////////////////////////////////////////////
             var idprod=$('#PRO_id').val();
             var precio1registrado=$('#precio1ver').val();
             var precio2registrado=$('#precio2ver').val();
@@ -1237,10 +1263,6 @@ $('#guardarPreciosV').click(function () {
                      },
                  success:function(data){
                     $('#ajustarprecio').modal('hide');
-
-
-
-
 
                  }
              });
@@ -1440,18 +1462,10 @@ $("#igvCambiante").on("keyup", function() {
                         dvender
                      },
                  success:function(data){
-                    $("#agregarArticulo").modal("hide");
-                        $example.append($('<option>', { //agrego los valores que obtengo de una base de datos
-                        value: data.PRO_id,
-                        text: data.PRO_codigo+' - '+data.PRO_nombre,
-                        selected: true
-                       }));
-                    $example.val(data.PRO_id).trigger("change"); //lo selecciona
-                    $("#bprodu").select2({
-                            minimumInputLength: 3,
-                            dropdownParent: $("#agregarArti")
-                        });
-                    limpiarFormPro();
+
+                         $("#agregarArticulo").modal("hide");
+                        $('#calculos').load(location.href+" #calculos>*");
+                        $('#tabA').load(location.href+" #tabA>*");
                     }
                 });
             }
