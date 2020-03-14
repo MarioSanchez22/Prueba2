@@ -67,6 +67,7 @@ Route::get('proveedor', 'proveedorController@index')->name('proveedorIndex');
 Route::get('proveedor/registrar','proveedorController@create')->name('proveedorCreate');
 Route::get('proveedor/editar/{proveedor}','proveedorController@editar')->name('proveedorEdit');
 Route::POST('proveedor/create', 'proveedorController@store')->name('proveedorStore');
+Route::POST('proveedor/store', 'proveedorController@store2')->name('proveedorStore2');
 Route::POST('proveedor/update/{proveedor}', 'proveedorController@update')->name('proveedorUpdate');
 
     Route::get('proveedor/datos/{id}', 'proveedorController@datos')->name('datos');

@@ -2,6 +2,7 @@
 use App\marca;
 use App\categoria_producto;
 use App\umedidas;
+    $usu1=Auth::user();
 @endphp
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +18,7 @@ use App\umedidas;
           <!-- App favicon -->
    <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
 
-  
+
    <!-- App css -->
      <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
      <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
@@ -36,19 +37,7 @@ use App\umedidas;
 
     </head>
     <body>
-        <div  id="preloader">
-            <div id="status" >
-                @php
-                    $usu1=Auth::user();
-                @endphp
-                <strong style="font-size: 20px; color:#2e4965">@if ($usu1->EMPRESA_id==1)
-                    MACROchips
-                @else
-                    NeptComputer
-                @endif</strong>
-                <div class="spinner-grow avatar-sm text-secondary m-2" role="status"></div>
-            </div>
-        </div>
+        @include('layouts._preReload')
         <style>
             .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
                 color: #fff;

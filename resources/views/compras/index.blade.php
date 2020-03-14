@@ -23,49 +23,28 @@ $igv=0;
       <!-- Sweet Alert-->
       <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
     </head>
-
     <body >
-        <div  id="preloader">
-
-            <div id="status" >
-
-                @php
-                $usuario=Auth::user();
-                @endphp
-
-                <strong style="font-size: 20px; color:#2e4965">@if ($usuario->EMPRESA_id==1)
-                 MACROchips
-                  @else
-                  NeptComputer
-                  @endif</strong>
-                  <div class="spinner-grow avatar-sm text-secondary m-2" role="status"></div>
-
-            </div>
-        </div>
- <style>
- .custom-modal-title {
-    background-color:#dbdfe2d1;
-    color:#6c757d;
- }</style>
- <style>
-     .select2-container {
-         width: 81%!important;
-     }
- </style>
- <style>
-     .swal2-modal{
-         zoom:70%;
-
-     }
- </style>
+        @include('layouts._preReload')
+        <style>
+        .custom-modal-title {
+            background-color:#dbdfe2d1;
+            color:#6c757d;
+        }</style>
+        <style>
+            .select2-container {
+                width: 81%!important;
+            }
+        </style>
+        <style>
+            .swal2-modal{
+                zoom:70%;
+            }
+        </style>
         <!-- Begin page -->
         <div id="wrapper">
-
             @include('layouts.header')
-
             <!-- ========== Left Sidebar Start ========== -->
             <div class="left-side-menu">
-
 
                 @include('layouts.menu')
 
@@ -121,12 +100,8 @@ $igv=0;
 
 
                                             <div class="card" style=" margin-bottom: 0px;">
-
                                               <!-- /.card-header -->
-
                                                           <div class="card-box " style=" padding-top: 0px; margin-bottom: 0px;padding-bottom: 5px;border: 2px solid #e8e8e8;" >
-
-
                                                          <br>
                                                                 <div class="row">
                                                                     <div class="col-md-4">
@@ -400,19 +375,10 @@ $igv=0;
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
                     <div class="modal-body">
-
-
                                     <div class="card" style=" margin-bottom: 0px;">
-
                                       <!-- /.card-header -->
-
                                                   <div class="card-box " style=" padding-top: 0px; margin-bottom: 0px;padding-bottom: 5px; zoom:90%;border: 2px solid #e8e8e8;" >
-
-
                                                   <label for="" class="header-title mb-2">  <i class="mdi mdi-database-edit"></i> Datos de Producto</label>
-
-
-
                                                                 <br>
                                                               <div class="row">
                                                                   <div class="col-md-4">
@@ -578,32 +544,25 @@ $igv=0;
                         <button type="button" class="close" onclick="Custombox.modal.close();" style="top:10px">
                             <span style="color:#6c757d">&times;</span><span class="sr-only" style="color:#6c757d" >Close</span>
                         </button>
-                        <h5 class="custom-modal-title" style="padding: 10px; font-size: 15px">Registro rapido de proveedor</h5>
+                        <h5 class="custom-modal-title" style="padding: 10px; font-size: 15px">Registro rápido de proveedor</h5>
                         <div class="custom-modal-text text-left" style="background: ##526f8c; padding-bottom: 0px; zoom:95%;   padding-top: 10px;">
                             <div class="row">
                                 <div class="card-box col-md-12" style="background: #fff; padding-top: 10px;
                                 margin-bottom: 10px; border: 2px solid #e8e8e8; ">
                                     <div class="row">
-                                        <div class=" col-md-4 ">
+                                        <div class=" col-md-5">
                                             <label for="" >Tipo de proveedor:</label>
-                                            <select class="selectpicker form-control  form-control-sm" data-style="btn-light" id="TipoP" name="TIPPROVE_id"  style="background:#f5f5f5">
+                                            <select class="selectpicker form-control  form-control-sm" data-style="btn-light" id="TIPPROVE_id" name="TIPPROVE_id"  style="background:#f5f5f5">
                                                 @foreach ($tipo as $tipos)
                                                 <option value="{{$tipos->TIPPROVE_id}}">{{$tipos->TIPPROVE_descripcion}}</option>
                                                 @endforeach
                                                 <!--<option selected type="" value="" disabled selected >[Seleccionar modo de pago]</option>-->
                                                 </select>
                                         </div>
-                                        <div class="col-md-4">
+
+                                        <div class="col-md-7">
                                             <div class="form-group">
-                                                <label class="control-label">Dias de crédito: </label>
-                                                <div class="input-group">
-                                                    <input type="number" class="form-control form-control-sm" required min="1" placeholder="Dias " name="PROVE_dias_credito">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label class="control-label">RUC: </label>
+                                                <label class="control-label">RUC:</label>
                                                 <div class="input-group">
                                                     <input type="text" class="form-control form-control-sm"   placeholder="RUC de empresa" name="PROVE_ruc" id="PROVE_ruc">
                                                     <div  id="cargarRuc" style="display:none">
@@ -618,7 +577,7 @@ $igv=0;
                                         </div>
                                         <div class="col-md-6">
                                             <label for="">Región</label>
-                                            <select class="form-control  form-control-sm" id="region" name="CLIE_region" >
+                                            <select class="form-control  form-control-sm" id="PROVE_region" name="PROVE_region" >
                                                 <option value="0">[Seleccionar]</option>
                                                 @foreach ($region as $regiones)
                                                     <option value="{{$regiones->id}}">{{$regiones->estadonombre}}</option>
@@ -637,21 +596,21 @@ $igv=0;
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label" for="PROVE_telefono">Telefono: </label>
+                                                <label class="control-label" for="PROVE_telefono">Teléfono:</label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend ">
                                                     <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-phone mr-1"></i></span>
-                                                </div> <input type="text" class="form-control form-control-sm" required placeholder="Telefono" name="PROVE_telefono"> </div>
+                                                </div> <input type="text" class="form-control form-control-sm" placeholder="teléfono" id="PROVE_telefono" name="PROVE_telefono"> </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label" for="PROVE_email" >Email: </label>
+                                                <label class="control-label" for="PROVE_email">Email:</label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend ">
                                                     <span class="input-group-text form-control-sm" id="basic-addon1" style="color:#a9a9a9"><i class="mdi mdi-email mr-1"></i></span>
                                                 </div>
-                                                <input type="text" class="form-control form-control-sm" required  placeholder="Email" name="PROVE_email"> </div>
+                                                <input type="text" class="form-control form-control-sm" required  placeholder="Email" id="PROVE_email" name="PROVE_email"> </div>
                                             </div>
                                         </div>
                                     </div>
@@ -661,17 +620,13 @@ $igv=0;
                         <div class="modal-footer" style="padding: 6px">
                             <div class="text-right">
                                 <button type="button" class="btn btn-light waves-effect waves-light btn-sm" onclick="Custombox.close();" id="cancelar">Cancelar</button>
-                                <button type="submit" class="btn btn-blue waves-effect waves-light btn-sm">Guardar</button>
-
+                                <button type="submit" class="btn btn-blue waves-effect waves-light btn-sm" onclick="guardaProveedor()">Guardar</button>
                             </div>
                         </div>
                     </div>
-
                 <div class="content">
-
                     <!-- Start Content-->
                     <div class="container-fluid">
-
                     <!-- start page title -->
                     <div class="row">
                         <div class="col-12">
@@ -679,13 +634,12 @@ $igv=0;
                                 <div class="col-sm-7 col-md-7 col-lg-4" style="font-size: 19px;font-weight: bold;padding-top: 5px; padding-left: 0px">
                                     <i class="mdi mdi-24px mdi mdi-cart-minus" style=" margin-right: -6px;color:#373f5f"></i>REGISTRO DE COMPRAS
                                 </div>
-
-                        </div>
+                            </div>
                         </div>
                     </div>
-                          <div class="card">
 
-                          <form action="{{route('comprahecha')}}" method="POST" enctype="multipart/form-data">
+                        <div class="card">
+                            <form action="{{route('comprahecha')}}" method="POST" enctype="multipart/form-data">
                                 {{ csrf_field()}}
                                 <!-- /.card-header -->
                                 <div class="card-body"  >
@@ -733,7 +687,7 @@ $igv=0;
 
                                                     <div class="col-md-9">
                                                         <div class="input-group">
-                                                        <select id="bpro" style="width: 200px!important" class=" col-md-12 form-control" data-toggle="select2" name="PROVE_id">
+                                                        <select id="bpro" style="width: 200px!important" class=" col-md-12 form-control" data-toggle="select2" id="bproveedor" name="PROVE_id">
                                                             <option value="0" >[Busque proveedor]</option>
                                                             @foreach ($proveedor as $proveedores)
                                                     <option value="{{$proveedores->PROVE_id}}">{{$proveedores->PROVE_ruc}} - {{$proveedores->PROVE_razon_social}}</option>
@@ -1275,10 +1229,8 @@ $('#guardarPreciosV').click(function () {
                             dropdownParent: $("#agregarArti")
                     });
                     $('#ajustarprecio').modal('hide');
-                    $('#calculos').load(location.href+" #calculos>*");
                     $('#tabA').load(location.href+" #tabA>*");
-
-
+                    $('#calculos').load(location.href+" #calculos>*");
                  }
              });
 });
@@ -1341,11 +1293,6 @@ $("#igvCambiante").on("keyup", function() {
     controladorTiempo = setTimeout(codigoAJAX, 800);
 });
 
-    $.ajaxSetup({
-        headers:{
-            'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
-        }
-    });
             $('#bpro').select2({
             minimumInputLength: 3,
     });
@@ -1354,6 +1301,12 @@ $("#igvCambiante").on("keyup", function() {
 
 
     $('#bpro').change(function(){
+
+        $.ajaxSetup({
+            headers:{
+                'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+            }
+        });
            var prov = $(this).val();
 
            $.ajax({
@@ -1389,10 +1342,10 @@ $("#igvCambiante").on("keyup", function() {
                     }
             });
 //Llenar div de datos al cambiar
-            $('#TipoP').change(function(){
-                var tipoPr= $(this).val();
+            $('#TIPPROVE_id').change(function(){
+                var TIPPROVE_id= $(this).val();
                 $.ajax({
-                    url:"/proveedor/datos/"+tipoPr,
+                    url:"/proveedor/datos/"+TIPPROVE_id,
                     method:"GET",
                     success:function(data){
                         $('#verD').html(data);
@@ -1440,14 +1393,60 @@ $("#igvCambiante").on("keyup", function() {
 </script>
 
 <script>
+    $(document).ready(function(){
+        $("#PROVE_ruc").keyup(function(){
+	        var numruc = $("#PROVE_ruc").val();
+	        if(numruc.length == 11){
+	        consultadatosSUNAT(numruc);
+	    }
+        else{
+            $("#PROVE_razon_social").val('');
+            $("#PROVE_dni").val('');
+        }
+    });
+
+  function consultadatosSUNAT(PROVE_ruc){
+    $('#cargarRuc').show();
+    var ruc=$('#PROVE_ruc').val();
+        $.ajax({
+            method:'GET',
+           url: "http://siempreaqui.com/json-sunat/consulta.php",
+			data:'nruc='+ruc,
+            success:function(data){
+                $('#cargarRuc').hide();
+                var dataObject = jQuery.parseJSON(data);
+
+                         if (dataObject.success == true) {
+						  $("#PROVE_razon_social").val(dataObject.result.RazonSocial);
+                           $("#PROVE_razon_comercial").val(dataObject.result.NombreComercial);
+                           $("#PROVE_direccion").val(dataObject.result.Direccion);
+                           $("#PROVE_dni").val(ruc.substr(2,8));
+
+                         // $("#rs_dni").val(dataObject.result.DNI); No devuelve DNI
+                         }
+            }
+        });
+    }
+});
+</script>
+
+
+
+<script>
   $(document).ready(function() {
          $('#guardarPr').each(function (el){
              $(this).bind("click",saveProducto);
          });
          function saveProducto(){
+
+            $.ajaxSetup({
+                headers:{
+                    'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+                }
+            });
              var codigo= $('#PRO_rcodigo').val();
              var categoria=$('#PRO_rcategoria').val();
-          var serie=$('input:radio[name=serie]:checked').val()
+             var serie=$('input:radio[name=serie]:checked').val()
              var nombre=$('#PRO_rnombre').val();
              var marca=$('#PRO_rmarca').val();
              var modelo=$('#PRO_rmodelo').val();
@@ -1521,6 +1520,72 @@ $("#igvCambiante").on("keyup", function() {
              $('#id_ultimoP').val('');
          };
      })
+ </script>
+ <script>
+    function guardaProveedor(){
+        $.ajaxSetup({
+            headers:{
+                'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var TIPPROVE_id= $('#TIPPROVE_id').val();
+        var PROVE_dias_credito=$('#PROVE_dias_credito').val();
+        var PROVE_ruc=$('#PROVE_ruc').val();
+        var PROVE_razon_social=$('#PROVE_razon_social').val();
+        var PROVE_razon_comercial=$('#PROVE_razon_comercial').val();
+        var PROVE_dias_credito=$('#PROVE_dias_credito').val();
+        var PROVE_region=$('#PROVE_region').val();
+        var PROVE_direccion=$('#PROVE_direccion').val();
+        var PROVE_telefono=$('#PROVE_telefono').val();
+        var PROVE_email=$('#PROVE_email').val();
+        ////
+        var PROVEDOC_descripcion=$('#PROVEDOC_descripcion').val();
+        var PROVE_dni=$('#PROVE_dni').val();
+
+        var $example2 = $("#bproveedor").select2();
+            $.ajax({
+                url:"{{route('proveedorStore2')}}",
+                method:"POST",
+                data:{
+                    TIPPROVE_id,
+                    PROVE_dias_credito,
+                    PROVE_ruc,
+                    PROVE_razon_social,
+                    PROVE_razon_comercial,
+                    PROVE_region,
+                    PROVE_direccion,
+                    PROVE_telefono,
+                    PROVE_email,
+                    PROVEDOC_descripcion,
+                    PROVE_dni
+                },
+                success:function(data){
+
+                    $('#TIPPROVE_id').val('');
+                    $('#PROVE_dias_credito').val('');
+                    $('#PROVE_ruc').val('');
+                    $('#PROVE_razon_social').val('');
+                    $('#PROVE_razon_comercial').val('')
+                    $('#PROVE_region').val('');
+                    $('#PROVE_direccion').val('');
+                    $('#PROVE_telefono').val('');
+                    $('#PROVE_email').val('');
+                    $('#PROVEDOC_descripcion').val('');
+                    $('#PROVE_dni').val('');
+                        $example2.append($('<option>', { //agrego los valores que obtengo de una base de datos
+                        value: data.PROVE_id,
+                        text: data.PROVE_razon_social,
+                        selected: true
+                    }));
+                    $example2.val(data.PRO_id).trigger("change"); //lo selecciona
+                    $("#bproveedor").select2({
+                        minimumInputLength: 3,
+                        dropdownParent: $("#agregarArti")
+                    });
+                    $('#modal-prov').hide();
+                }
+        });
+    }
  </script>
 </body>
 

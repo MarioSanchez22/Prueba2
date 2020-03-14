@@ -22,23 +22,7 @@
     </head>
 
     <body style="color: #649198;">
-        <div  id="preloader">
-
-            <div id="status" >
-
-                @php
-                $usuario=Auth::user();
-                @endphp
-
-                <strong style="font-size: 20px; color:#2e4965">@if ($usuario->EMPRESA_id==1)
-                 MACROchips
-                  @else
-                  NeptComputer
-                  @endif</strong>
-                  <div class="spinner-grow avatar-sm text-secondary m-2" role="status"></div>
-
-            </div>
-        </div>
+        @include('layouts._preReload')
         <!-- Begin page -->
         <div id="wrapper">
 
@@ -192,14 +176,7 @@
                             <label class="control-label">Area: </label>
                              <input type="email"  id="PROVECONT_email" class="form-control-plaintext form-control-sm " style="margin-right: 2%;" value="{{$areap->AREA_descripcion}}" disabled></div>
                              </div>
-
-
-
-
-            <br>
-
-
-
+                <br>
               </div>      <!-- /.end row -->
                      </div>  <!-- /.end car box -->
                      @endif

@@ -35,23 +35,7 @@ use App\permiso;
     </head>
 
     <body>
-        <div  id="preloader">
-
-            <div id="status" >
-
-                @php
-                $usuario1=Auth::user();
-                @endphp
-
-                <strong style="font-size: 20px; color:#2e4965">@if ($usuario1->EMPRESA_id==1)
-                 MACROchips
-                  @else
-                  NeptComputer
-                  @endif</strong>
-                  <div class="spinner-grow avatar-sm text-secondary m-2" role="status"></div>
-
-            </div>
-        </div>
+        @include('layouts._preReload')
         <!-- Begin page -->
         <div id="wrapper">
 

@@ -86,25 +86,26 @@ class empresaController extends Controller
         $empresa2=empresa::find($empresa);
         $empresa2->EMPRESA_comercial=$request->get('EMPRESA_comercial');
         $empresa2->EMPRESA_descripcion=$request->get('EMPRESA_descripcion');
-
             $f1 = explode("/", $request->get('EMPRESA_fecha_apertura'));
             $fechaI = $f1[2]."-".$f1[1]."-".$f1[0];
 
         $empresa2->EMPRESA_fecha_apertura=$fechaI;
         $empresa2->save();
-        for ($i=0; $i < sizeof($area); $i++) {
-            $area2=area::find($area[$i]);
-            $area2->AREA_descripcion=$AREA_descripcion[$i];
-            $area2->save();
+        if ($area!=null) {
+            for ($i=0; $i < sizeof($area); $i++) {
+                $area2=area::find($area[$i]);
+                $area2->AREA_descripcion=$AREA_descripcion[$i];
+                $area2->save();
+            }
         }
-        for ($j=0; $j < sizeof($sucursal); $j++) {
-            $sucursal2=sucursal::find($sucursal[$j]);
-            $sucursal2->SUCURSAL_nombre=$SUCURSAL_nombre[$j];
-            $sucursal2->SUCURSAL_descripcion=$SUCURSAL_descripcion[$j];
-            $sucursal2->save();
+        if ($sucursal!=null) {
+            for ($j=0; $j < sizeof($sucursal); $j++) {
+                $sucursal2=sucursal::find($sucursal[$j]);
+                $sucursal2->SUCURSAL_nombre=$SUCURSAL_nombre[$j];
+                $sucursal2->SUCURSAL_descripcion=$SUCURSAL_descripcion[$j];
+                $sucursal2->save();
+            }
         }
         return back();
     }
-
-
 }
