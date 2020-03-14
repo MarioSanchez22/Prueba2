@@ -1279,7 +1279,11 @@ $('#guardarPreciosV').click(function () {
                     $('#tabA').load(location.href+" #tabA>*");
 
 
-                 }
+                 },
+
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert("No se puede registrar");
+                    }
              });
 });
       $("#bprodu").select2({
@@ -1502,7 +1506,12 @@ $("#igvCambiante").on("keyup", function() {
 
                          $("#agregarArticulo").modal("hide");
 
-                    }
+                    },
+
+    error: function(XMLHttpRequest, textStatus, errorThrown) {
+        alert("Status: " + textStatus); alert("Error: " + errorThrown);
+    }
+
                 });
             }
 
