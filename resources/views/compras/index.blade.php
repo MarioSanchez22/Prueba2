@@ -1255,6 +1255,15 @@ $('#guardarPreciosV').click(function () {
                         precio3registrado
                      },
                  success:function(data){
+                       $('#PRO_nombre').val('');
+                        $('#PRO_garantia').val('');
+                        $('#cantidad').val('');
+                        $('#costo').val('');
+                        $('#PRO_codigo').val('')
+                        $('#UME_id').val('');
+                        $('#CATPRO_id').val('');
+                        $('#MARCA_id').val('');
+                        $('#PRO_modelo').val('');
                     $example1.append($('<option>', { //agrego los valores que obtengo de una base de datos
                         value: 0,
                         text: '[Busque articulo]',
