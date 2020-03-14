@@ -319,8 +319,8 @@ $igv=0;
 
                                     </div>
                                     </div> <!-- end card-box-->
-                                </div> <!-- end col -->
-                                <div class="col-md-8" style="top: -80px; bottom: 20px">
+                                </div> <br><br> <!-- end col -->
+                      {{--           <div class="col-md-8" style="top: -80px; bottom: 20px">
                                     <div class="card-box" style="border: 2px solid #e8e8e8; margin-bottom: 0px">
                                       <div class="col-md-12"><h4 class="header-title mb-2">Ubicacion de existencias</h4></div>
                                       <div class="row">
@@ -351,7 +351,7 @@ $igv=0;
                                             </div>
                                       </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                             <!-- end row -->
 
@@ -360,7 +360,7 @@ $igv=0;
 
 
                      </div>
-                    <div class="modal-footer" style="padding: 6px">
+                    <div class="modal-footer" style="padding: 6px;margin-top: 40px;">
                         <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
                         <button type="button"id="guardarAr"   class="btn btn-primary waves-effect waves-light">Save changes</button>
                     </div>
@@ -375,6 +375,11 @@ $igv=0;
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
                     <div class="modal-body">
+<<<<<<< HEAD
+=======
+                        <form  id="form-producto" action="">
+
+>>>>>>> 8b6abcd9cd2d9ad2fdcd263be47ea5f89950b720
                                     <div class="card" style=" margin-bottom: 0px;">
                                       <!-- /.card-header -->
                                                   <div class="card-box " style=" padding-top: 0px; margin-bottom: 0px;padding-bottom: 5px; zoom:90%;border: 2px solid #e8e8e8;" >
@@ -530,7 +535,7 @@ $igv=0;
 
                                   <!-- /.col -->
 
-
+                         </form>
                     </div>
                     <div class="modal-footer" style="padding: 6px">
                         <button type="button" class="btn btn-light waves-effect btn-sm" data-dismiss="modal">Cerrar</button>
@@ -920,6 +925,19 @@ $igv=0;
 <script src="{{asset('assets/js/pages/sweet-alerts.init.js')}}"></script>
 
 <script>
+    function validarFormVacio(formulario){
+    datos=$('#' + formulario).serialize();
+    d=datos.split('&');
+    vacios=0;
+    for(i=0;i< d.length;i++){
+      controles=d[i].split("=");
+      if(controles[1]=="A" || controles[1]==""){
+        vacios++;
+      }
+    }
+    return vacios;
+  };
+
 function cancelar2Compra() {
     Swal.fire({
         title: 'Esta seguro que desea eliminar datos de esta compra?',
@@ -1230,8 +1248,18 @@ $('#guardarPreciosV').click(function () {
                     });
                     $('#ajustarprecio').modal('hide');
                     $('#tabA').load(location.href+" #tabA>*");
+<<<<<<< HEAD
                     $('#calculos').load(location.href+" #calculos>*");
                  }
+=======
+
+
+                 },
+
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert("No se puede registrar");
+                    }
+>>>>>>> 8b6abcd9cd2d9ad2fdcd263be47ea5f89950b720
              });
 });
       $("#bprodu").select2({
@@ -1458,6 +1486,13 @@ $("#igvCambiante").on("keyup", function() {
              var dvender=$('#PRO_rvender').val();
              var ultimo=$('#id_ultimoP').val();
              var $example = $("#bprodu").select2();
+             if(validarFormVacio('form-producto') > 0 ){
+                swal({
+  title: "Debe llenar todos los datos",
+  type: 'warning'
+});
+        return false;
+      }
                  $.ajax({
                      url:"{{route('rProductoStore')}}",
                      method:"POST",
@@ -1501,7 +1536,13 @@ $("#igvCambiante").on("keyup", function() {
 
                          $("#agregarArticulo").modal("hide");
 
-                    }
+
+                    },
+
+    error: function(XMLHttpRequest, textStatus, errorThrown) {
+        alert("Status: " + textStatus); alert("Error: " + errorThrown);
+    }
+
                 });
             }
 
