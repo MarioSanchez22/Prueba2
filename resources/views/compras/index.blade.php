@@ -689,7 +689,7 @@ $igv=0;
 
                                                     <div class="col-md-9">
                                                         <div class="input-group">
-                                                        <select id="bpro" style="width: 200px!important" class=" col-md-12 form-control" data-toggle="select2" id="bproveedor" name="PROVE_id">
+                                                        <select id="bpro" style="width: 200px!important" class=" col-md-12 form-control" data-toggle="select2"  name="PROVE_id">
                                                             <option value="0" >[Busque proveedor]</option>
                                                             @foreach ($proveedor as $proveedores)
                                                     <option value="{{$proveedores->PROVE_id}}">{{$proveedores->PROVE_ruc}} - {{$proveedores->PROVE_razon_social}}</option>
@@ -1245,6 +1245,7 @@ $('#guardarPreciosV').click(function () {
                     });
                     $('#ajustarprecio').modal('hide');
                     $('#tabA').load(location.href+" #tabA>*");
+                    $('#calculos').load(location.href+" #calculos>*");
 
 
                  },
@@ -1575,7 +1576,7 @@ $("#igvCambiante").on("keyup", function() {
         var PROVEDOC_descripcion=$('#PROVEDOC_descripcion').val();
         var PROVE_dni=$('#PROVE_dni').val();
 
-        var $example2 = $("#bproveedor").select2();
+        var $example2 = $("#bpro").select2();
             $.ajax({
                 url:"{{route('proveedorStore2')}}",
                 method:"POST",
@@ -1607,15 +1608,17 @@ $("#igvCambiante").on("keyup", function() {
                     $('#PROVE_dni').val('');
                         $example2.append($('<option>', { //agrego los valores que obtengo de una base de datos
                         value: data.PROVE_id,
-                        text: data.PROVE_razon_social,
+                        text: data.PROVE_ruc+' - '+data.PROVE_razon_social,
                         selected: true
                     }));
-                    $example2.val(data.PRO_id).trigger("change"); //lo selecciona
-                    $("#bproveedor").select2({
-                        minimumInputLength: 3,
-                        dropdownParent: $("#agregarArti")
+                    $example2.val(data.PROVE_id).trigger("change"); //lo selecciona
+                    $("#bpro").select2({
+                        minimumInputLength: 3
+
                     });
-                    $('#modal-prov').hide();
+                    $('#PROVE_dias').val(data.PROVE_dias_credito);
+                    Custombox.modal.close();
+                   // $('#modal-prov').hide();
                 }
         });
     }
