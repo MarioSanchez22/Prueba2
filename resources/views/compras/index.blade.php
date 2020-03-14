@@ -1488,20 +1488,20 @@ $("#igvCambiante").on("keyup", function() {
                         $('#MARCA_id').val('');
                         $('#PRO_modelo').val('');
 
-                        $example1.append($('<option>', { //agrego los valores que obtengo de una base de datos
-                                value: 0,
-                                text: '[Busque articulo]',
-                                selected: true
-                                }));
-                        $example1.val(0).trigger("change"); //lo selecciona
-                        $("#bprodu").select2({
-                                minimumInputLength: 3,
-                                dropdownParent: $("#agregarArti")
-                            });
+                        $example.append($('<option>', { //agrego los valores que obtengo de una base de datos
+                        value: data.PRO_id,
+                        text: data.PRO_codigo+' - '+data.PRO_nombre,
+                        selected: true
+                       }));
+                    $example.val(data.PRO_id).trigger("change"); //lo selecciona
+                    $("#bprodu").select2({
+                            minimumInputLength: 3,
+                            dropdownParent: $("#agregarArti")
+                        });
+                    limpiarFormPro();
 
                          $("#agregarArticulo").modal("hide");
-                        $('#calculos').load(location.href+" #calculos>*");
-                        $('#tabA').load(location.href+" #tabA>*");
+
                     }
                 });
             }
