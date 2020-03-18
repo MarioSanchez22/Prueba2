@@ -8,7 +8,16 @@
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
          <!-- App favicon -->
-         @include('layouts.estilos')
+          <!-- App favicon -->
+   <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
+
+   <!-- App css -->
+     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+     <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+     <link href="{{asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
+
+  
+
          <link href="{{asset('assets/libs/c3/c3.min.css')}}" rel="stylesheet" type="text/css" />
          <style>
         .labelEstilo{
@@ -281,17 +290,22 @@
             <!-- ============================================================== -->
         </div>
         <!-- END wrapper -->
-        <!-- Right bar overlay-->
-        <div class="rightbar-overlay"></div>
+      
+      
 
         <!-- Vendor js -->
-        @include('layouts.scripts')
+         <!-- Vendor js -->
+         <script src="{{asset('assets/js/vendor.min.js')}}"></script>
+
+        
+          <!-- App js-->
+                <script src="{{asset('assets/js/app.min.js')}}"></script>
    <!--C3 Chart-->
    <script src="{{asset('assets/libs/d3/d3.min.js')}}"></script>
    <script src="{{asset('assets/libs/c3/c3.min.js')}}"></script>
 
    <!-- Init js -->
-<script>
+{{-- <script>
     !function(t){
         "use strict";
         var e=function(){};
@@ -305,7 +319,7 @@
     },t.ChartC3=new e,t.ChartC3.Constructor=e}(window.jQuery),function(t){"use strict";window.jQuery.ChartC3.init()}();
 
 
-</script>
+</script> --}}
 
     </body>
 </html>

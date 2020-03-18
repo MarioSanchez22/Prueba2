@@ -14,7 +14,15 @@
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        @include('layouts.estilos')
+        <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
+
+
+        <!-- App css -->
+          <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+          <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+          <link href="{{asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
+          <link href="{{asset('assets/libs/bootstrap-table/bootstrap-table.min.css')}}" rel="stylesheet" type="text/css" />
+          <link href="{{asset('assets/libs/datatables/buttons.bootstrap4.css')}}" rel="stylesheet" type="text/css" />
 
     </head>
     <body>
@@ -229,168 +237,20 @@
             <!-- ============================================================== -->
         </div>
         <!-- END wrapper -->
-        <!-- Right Sidebar -->
-        <div class="right-bar">
-            <div class="rightbar-title">
-                <a href="javascript:void(0);" class="right-bar-toggle float-right">
-                    <i class="dripicons-cross noti-icon"></i>
-                </a>
-                <h5 class="m-0 text-white">Settings</h5>
-            </div>
-            <div class="slimscroll-menu">
-                <!-- User box -->
-                <div class="user-box">
-                    <div class="user-img">
-                        <img src="assets/images/users/user-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
-                        <a href="javascript:void(0);" class="user-edit"><i class="mdi mdi-pencil"></i></a>
-                    </div>
-                    <h5><a href="javascript: void(0);">Geneva Kennedy</a> </h5>
-                    <p class="text-muted mb-0"><small>Admin Head</small></p>
-                </div>
-                <!-- Settings -->
-                <hr class="mt-0" />
-                <h5 class="pl-3">Basic Settings</h5>
-                <hr class="mb-0" />
+       
 
-                <div class="p-3">
-                    <div class="checkbox checkbox-primary mb-2">
-                        <input id="Rcheckbox1" type="checkbox" checked>
-                        <label for="Rcheckbox1">
-                            Notifications
-                        </label>
-                    </div>
-                    <div class="checkbox checkbox-primary mb-2">
-                        <input id="Rcheckbox2" type="checkbox" checked>
-                        <label for="Rcheckbox2">
-                            API Access
-                        </label>
-                    </div>
-                    <div class="checkbox checkbox-primary mb-2">
-                        <input id="Rcheckbox3" type="checkbox">
-                        <label for="Rcheckbox3">
-                            Auto Updates
-                        </label>
-                    </div>
-                    <div class="checkbox checkbox-primary mb-2">
-                        <input id="Rcheckbox4" type="checkbox" checked>
-                        <label for="Rcheckbox4">
-                            Online Status
-                        </label>
-                    </div>
-                    <div class="checkbox checkbox-primary mb-0">
-                        <input id="Rcheckbox5" type="checkbox" checked>
-                        <label for="Rcheckbox5">
-                            Auto Payout
-                        </label>
-                    </div>
-                </div>
-                <!-- Timeline -->
-                <hr class="mt-0" />
-                <h5 class="px-3">Messages <span class="float-right badge badge-pill badge-danger">25</span></h5>
-                <hr class="mb-0" />
-                <div class="p-3">
-                    <div class="inbox-widget">
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/user-2.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Tomaslau</a></p>
-                            <p class="inbox-item-text">I've finished it! See you so...</p>
-                        </div>
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/user-3.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Stillnotdavid</a></p>
-                            <p class="inbox-item-text">This theme is awesome!</p>
-                        </div>
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/user-4.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Kurafire</a></p>
-                            <p class="inbox-item-text">Nice to meet you</p>
-                        </div>
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/user-5.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Shahedk</a></p>
-                            <p class="inbox-item-text">Hey! there I'm available...</p>
-                        </div>
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/user-6.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Adhamdannaway</a></p>
-                            <p class="inbox-item-text">This theme is awesome!</p>
-                        </div>
-                    </div> <!-- end inbox-widget -->
-                </div> <!-- end .p-3-->
-            </div> <!-- end slimscroll-menu-->
-        </div>
-        <!-- /Right-bar -->
-        <!-- Right bar overlay-->
-        <div class="rightbar-overlay"></div>
+ <!-- Vendor js -->
 
-@include('layouts.scripts')
+ <script src="{{asset('assets/js/vendor.min.js')}}"></script>
+ <!-- App js-->
+ <script src="{{asset('assets/js/app.min.js')}}"></script>
 
+ <!-- Bootstrap Tables js -->
+     <script src="{{asset('assets/libs/bootstrap-table/bootstrap-table.min.js')}}"></script>
+     <script src="{{asset('assets/libs/datatables/jquery.dataTables.min.js')}}"></script>
+     <script src="{{asset('assets/js/pages/bootstrap-tables.init.js')}}"></script>
+      <script src="{{asset('assets/libs/datatables/dataTables.bootstrap4.js')}}"></script>
 
-
-<script>
-     $('#buscar').click(function(){
-        var ruc=$('#PROVE_ruc').val();
-        var razon=$('#PROVE_razon_social').val();
-        var etiqueta=$('#PROVE_etiqueta').val();
-        $('#tablageneral').hide();
-        if(ruc==''){
-            ruc='0';
-        }
-        if(razon==''){
-            razon='0';
-        }
-        if(etiqueta==''){
-            etiqueta='0';
-        }
-    $.ajax({
-    url:"proveedor/buscar/"+ruc+"/"+razon+"/"+etiqueta,
-    method:"GET",
-    success:function(data1){
-        $('#tabla1').html(data1);
-        }
-});
-});
-
-</script>
-
-
-<script>
-    function bloquear(proveedor){
-        $.ajaxSetup({
-            headers:{
-            'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-            url:"{{route('proveedorDarBaja')}}",
-            method:"POST",
-            data:{
-                PROVE_id:proveedor
-            },
-            success:function(data){
-                $('#'+data+'').load(location.href+" #"+data+">*");
-            }
-        });
-    }
-    function activar(proveedor){
-        $.ajaxSetup({
-            headers:{
-            'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-            url:"{{route('proveedorDarAlta')}}",
-            method:"POST",
-            data:{
-                PROVE_id:proveedor
-            },
-            success:function(data){
-                $('#'+data+'').load(location.href+" #"+data+">*");
-            }
-        });
-    }
-
-   </script>
-
+<script src="{{asset('assets/js/proveedor.js')}}"></script>
     </body>
 </html>
