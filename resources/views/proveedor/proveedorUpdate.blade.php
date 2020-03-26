@@ -9,7 +9,16 @@
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
          <!-- App favicon -->
-         @include('layouts.estilos')
+            <!-- App favicon -->
+   <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
+
+   <!-- App css -->
+     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+     <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+     <link href="{{asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
+
+   <link href="{{asset('assets/libs/bootstrap-select/bootstrap-select.min.css')}}" rel="stylesheet" type="text/css" />
+
     </head>
 
     <body>
@@ -332,7 +341,12 @@
         <!-- Right bar overlay-->
         <div class="rightbar-overlay"></div>
         <!-- Vendor js -->
-        @include('layouts.scripts')
+     
+        <script src="{{asset('assets/js/vendor.min.js')}}"></script>
+        <!-- App js-->
+        <script src="{{asset('assets/js/app.min.js')}}"></script>
+        <script src="{{asset('assets/libs/select2/select2.min.js')}}"></script>
+   <script src="{{asset('assets/libs/bootstrap-select/bootstrap-select.min.js')}}"></script>
     <script>
         $(document).ready(function() {
             $.ajaxSetup({

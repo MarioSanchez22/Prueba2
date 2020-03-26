@@ -42,7 +42,20 @@
 
             <div class="content-page">
                 <div class="content">
-
+                  <style>
+                      .table td{
+                          padding-top: 2px!important;
+                          padding-bottom: 2px!important;
+                          font-size: 12.5px;
+                          color: #5d5d5d;
+                      }
+                      .table th{
+                          padding-top: 2px!important;
+                          padding-bottom: 2px!important;
+                          font-size: 12.5px;
+                          color: #ffffff;
+                      }
+                  </style>
                     <!-- Start Content-->
                     <div class="container-fluid">
 
@@ -56,7 +69,7 @@
 
                         </div> --}}
 
-                        <i class="mdi mdi-48px mdi-cart-outline" style="font-family:'Roboto',sans-serif;color:#373f5f"></i> <h3 style="color:#373f5f;font-size: 28px">Lista de Compras</h3>
+                        <i class="mdi mdi-36px mdi-cart-outline" style="color:#373f5f"></i> <h3 style="color:#373f5f;font-size: 24px">Lista de Compras</h3>
                         </div>
                     </div>
 
@@ -106,24 +119,21 @@
 
                                 <div id="tablageneral" class="">
                                 <table   data-toggle="table"
-                                data-page-size="4"
+                                data-page-size="8"
                                 data-buttons-class="xs btn-light"
                                 data-pagination="true" class="table-bordered ">
-                                <thead class="" style="color: #2e4965;
-                                background-color: #e4e4e4!important;
-                            }
-                            ">
-                                <tr>
+                                <thead class="" style="background:#4b6a7b; color:#ffffff;">
+                                <tr >
                                 <th data-field="state" >#</th>
-                                <th data-field="id">Proveedor</th>
-                                <th data-field="iEd" >Dias credito</th>
-                                <th data-field="name">Almacen</th>
+                                <th data-field="id">PROVEEDOR</th>
+                                <th data-field="iEd" >DIAS CREDITO</th>
+                                <th data-field="name">ALMACEN</th>
 
-                                <th data-field="amRount">Total</th>
+                                <th data-field="amRount">TOTAL</th>
 
-                                <th data-field="amuuTount">Productos</th>
-                                <th data-field="user-status">Estado</th>
-                                <th data-field="amouWnt">Opciones</th>
+                                {{-- <th data-field="amuuTount">Productos</th> --}}
+                                <th data-field="user-status">ESTADO</th>
+                                <th data-field="amouWnt">OPCIONES</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -136,19 +146,19 @@
                               @endphp
 
                                         <tr>
-                                                <td>{{$loop->index+1}}</td>
-                                                <td>{{$proveedor[0]->PROVE_razon_social}}
+                                                <td class="tdn">{{$loop->index+1}}</td>
+                                                <td class="tdn">{{$proveedor[0]->PROVE_razon_social}}
 
                                                 </td>
-                                                 <td> {{$compra_ps->COMPRO_diasC}}</td>
+                                                 <td class="tdn"> {{$compra_ps->COMPRO_diasC}}</td>
 
-                                                <td>{{$compra_ps->COMPRO_almacen}}</td>
+                                                <td class="tdn">{{$compra_ps->COMPRO_almacen}}</td>
 
-                                                <td>{{$compra_ps->COMPRO_total}}</td>
+                                                <td class="tdn">{{$compra_ps->COMPRO_total}}</td>
 
 
 
-                                                <td>
+                                                {{-- <td>
                                                     @foreach ( $productoCom as $item)
                                                     @php
                                                     $producto=producto::where('PRO_id','=',$item->PRO_id)->get();
@@ -156,15 +166,15 @@
 
                                                           <li>{{$producto[0]->PRO_nombre}}</li>
                                                      @endforeach
-                                                   </td>
+                                                   </td> --}}
 
 
-                                                <td>
+                                                <td class="tdn">
 
                                                         <span class="badge bg-soft-success text-success shadow-none">Activo</span>
 
                                                     </td>
-                                                    <td class="text-center" >
+                                                    <td class="text-center tdn" >
                                                         <div class="dropdown">
                                                             <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
                                                                 <i class=" mdi mdi-settings m-0 text-muted h3"></i>

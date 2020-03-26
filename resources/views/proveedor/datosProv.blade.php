@@ -1,5 +1,3 @@
-
-
 @if($tipoPr==1)
 
 <div class="col-md-5">
@@ -57,53 +55,52 @@
       <input type="number" class="form-control form-control-sm" required min="1" placeholder="Días " name="PROVE_dias_credito"> </div>
    </div></div>
 
-   <script>
+  <script>
       $(document).ready(function(){
-        $('#cargarDni').hide();
-          $("#PROVE_dni").keyup(function(){
-     var numdni= $("#PROVE_dni").val();
-     if(numdni.length == 8){
-     consultadatosSUNAT2(numdni);
-     }
-     else{
-        $("#PROVE_razon_social").val('');
-        $("#PROVE_ruc").val('');
-    }
-   });
-    function consultadatosSUNAT2(PROVE_dni){
-        $('#cargarDni').show();
-      var dni=$('#PROVE_dni').val();
-          $.ajax({
-                method:'GET',
-                url: "http://siempreaqui.com/json-sunat/consulta.php",
-                data:'nruc='+dni,
-              success:function(data){
-                  $('#cargarDni').hide();
-                  var dataObject = jQuery.parseJSON(data);
+  $('#cargarDni').hide();
+    $("#PROVE_dni").keyup(function(){
+var numdni= $("#PROVE_dni").val();
+if(numdni.length == 8){
+consultadatosSUNAT2(numdni);
+}
+else{
+  $("#PROVE_razon_social").val('');
+  $("#PROVE_ruc").val('');
+}
+});
+function consultadatosSUNAT2(PROVE_dni){
+  $('#cargarDni').show();
+var dni=$('#PROVE_dni').val();
+    $.ajax({
+          method:'GET',
+          url: "http://siempreaqui.com/json-sunat/consulta.php",
+          data:'nruc='+dni,
+        success:function(data){
+            $('#cargarDni').hide();
+            var dataObject = jQuery.parseJSON(data);
 
-                           if (dataObject.success == true) {
-                      $("#PROVE_razon_social").val(dataObject.result.RazonSocial);
-                             $("#PROVE_ruc").val(dataObject.result.RUC);
-                             $("#PROVE_direccion").val(dataObject.result.Direccion);
+                     if (dataObject.success == true) {
+                $("#PROVE_razon_social").val(dataObject.result.RazonSocial);
+                       $("#PROVE_ruc").val(dataObject.result.RUC);
+                       $("#PROVE_direccion").val(dataObject.result.Direccion);
 
 
-                           // $("#rs_dni").val(dataObject.result.DNI); No devuelve DNI
-                           }
-                           else{
-      var token='?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFsaWNpYXJvZHJpZ3VlejEzMUBnbWFpbC5jb20ifQ.a3lvPXVhSwXBw-I8VQ9gS7WS-HZMAzMTMCcFLW3V1eE';
-          $.ajax({
-              method:'GET',
-             url: "https://dniruc.apisperu.com/api/v1/dni/"+dni +token,
-             success:function(data){
-                        var resultados=data;
-                            $('#PROVE_razon_social').val(data.apellidoPaterno+" "+data.apellidoMaterno+" "+ data.nombres);
-                    }
-          });
-                           }
+                     // $("#rs_dni").val(dataObject.result.DNI); No devuelve DNI
+                     }
+                     else{
+var token='?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFsaWNpYXJvZHJpZ3VlejEzMUBnbWFpbC5jb20ifQ.a3lvPXVhSwXBw-I8VQ9gS7WS-HZMAzMTMCcFLW3V1eE';
+    $.ajax({
+        method:'GET',
+       url: "https://dniruc.apisperu.com/api/v1/dni/"+dni +token,
+       success:function(data){
+                  var resultados=data;
+                      $('#PROVE_razon_social').val(data.apellidoPaterno+" "+data.apellidoMaterno+" "+ data.nombres);
               }
-          });
-      }
-  });
+    });
+                     }
+        }
+    });
+}
+});
   </script>
-
 
