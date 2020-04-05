@@ -27,12 +27,12 @@
             @include('layouts.header')
 
             <!-- ========== Left Sidebar Start ========== -->
-            <div class="left-side-menu">
+            
 
 
                 @include('layouts.menu')
 
-            </div>
+           
             @include('layouts._preReload')
             <!-- Left Sidebar End -->
 
@@ -44,16 +44,15 @@
                 <div class="content">
                   <style>
                       .table td{
-                          padding-top: 2px!important;
-                          padding-bottom: 2px!important;
-                          font-size: 12.5px;
-                          color: #5d5d5d;
+                          padding-top: 3px!important;
+                          padding-bottom: 3px!important;
+                          font-size: 13px;
+                         
                       }
                       .table th{
-                          padding-top: 2px!important;
-                          padding-bottom: 2px!important;
-                          font-size: 12.5px;
-                          color: #ffffff;
+                          padding-top: 3px!important;
+                          padding-bottom: 3px!important;
+                        
                       }
                   </style>
                     <!-- Start Content-->
@@ -122,7 +121,7 @@
                                 data-page-size="8"
                                 data-buttons-class="xs btn-light"
                                 data-pagination="true" class="table-bordered ">
-                                <thead class="" style="background:#4b6a7b; color:#ffffff;">
+                                <thead class="thead-light">
                                 <tr >
                                 <th data-field="state" >#</th>
                                 <th data-field="id">PROVEEDOR</th>

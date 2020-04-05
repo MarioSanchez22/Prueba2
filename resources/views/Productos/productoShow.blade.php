@@ -39,9 +39,9 @@
 
 
             <!-- ========== Left Sidebar Start ========== -->
-            <div class="left-side-menu">
+          
                 @include('layouts.menu')
-            </div>
+        
             <!-- Left Sidebar End -->
 
             <!-- ============================================================== -->

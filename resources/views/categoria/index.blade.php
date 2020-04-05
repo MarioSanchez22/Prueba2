@@ -60,12 +60,12 @@ use App\categoria_producto;
             @include('layouts.header')
 
             <!-- ========== Left Sidebar Start ========== -->
-            <div class="left-side-menu">
+            
 
 
                 @include('layouts.menu')
 
-            </div>
+            
             <!-- Left Sidebar End -->
 
             <!-- ============================================================== -->

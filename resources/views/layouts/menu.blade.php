@@ -78,15 +78,49 @@ $k=0;
 
     //dd($submenu2);
 @endphp
-<div class="left-side-menu " style="background-color:#f9f9f9" >
+<div class="left-side-menu " style="background-color:#fff" >
 <div class="slimscroll-menu" >
-
+   <!-- User box -->
+   <div class="user-box ">
+       <div class="row">
+           <div class="col-md-3 text-right" style="left:10px">
+            <img src="assets/images/users/user-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle avatar-sm">
+           </div>
+           <div class="col-md-5 text-left" style="top: -10px;">
+          
+                <a href="javascript: void(0);" class="text-dark dropdown-toggle h5 mt-2 mb-1 d-block" >Geneva Kennedy</a>
+              
+            <p class="text-muted">Admin Head</p>
+            
+           </div>
+          <div class="col-md-2 text-right" style="left: 30px;">
+            <div class="dropdown">
+                <a href="javascript: void(0);" class="text-dark dropdown-toggle h5 mt-2 mb-1 d-block" data-toggle="dropdown"><i class="fe-settings" style="font-size: 17px"></i></a>
+           
+            </div>
+          </div>
+   
+    
+ </div>
+    
+</div>
     <!--- Sidemenu -->
     <div id="sidebar-menu" >
-
+      <style>
+          #sidebar-menu>ul>li>a{
+              color:#000;
+              font-size: 14px!important;
+          }
+          
+      </style>
         <ul class="metismenu" id="side-menu">
 
-            <li class="menu-title" >Navigation</li>
+            <style>
+                .nav-second-level>li>a, .nav-thrid-level>li>a {
+            color: #3c3b3b;
+            
+          }
+            </style>
 
             <li >
                 <a href="javascript: void(0);">

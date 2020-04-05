@@ -16,8 +16,8 @@
     </head>
     <body class="authentication-bg authentication-bg-pattern">
 <style>
-    body.authentication-bg-pattern {
-    background-color: #3d5392;
+    .body {
+        background-image: url("../images/fondo.jpg");
 }
 </style>
         <div class="account-pages mt-5 mb-3">
