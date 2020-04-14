@@ -14,29 +14,33 @@
         <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css"/>
         <link href="assets/css/app.min.css" rel="stylesheet" type="text/css"/>
     </head>
-    <body class="authentication-bg authentication-bg-pattern">
-<style>
-    .body {
-        background-image: url("../images/fondo.jpg");
-}
-</style>
-        <div class="account-pages mt-5 mb-3">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-8 col-lg-6 col-xl-5">
+    <body class="authentication-bg authentication-bg-pattern" style="background:#1f3072;background-image: url({{asset('assets/images/bg-pattern.png')}})">
+    
+        <div class="account-pages mt-2 mb-0">
+            <div class="container" style="margin-left: 100px">
+                <div class="row">
+                    <div class="col-md-8">
+                       
+                        <img src="{{asset('assets/grupo.jpg')}}" alt="">
+                    </div>
+                    <div class="col-md-4 text-left">
                         <div class="card bg-pattern">
-                            <div class="card-body p-2">
+                            <div class="card-body p-2" style="background:#08136f;filter: drop-shadow(2px 4px 6px black);">
                                 <div class="text-center w-75 m-auto">
+                                    <h2 style="    margin: 10px 0;
+                                    font-weight: 500;
+                                    font-family: serif;
+                                    color: #fff;">Inicio de sesión</h2>
                                         <span><img src="{{asset('assets/usuario.png')}}" alt="" height="120"></span>
                                 </div>
-                                <form action="{{route('login')}}" method="POST" style="margin:40px">
+                                <form action="{{route('login')}}" method="POST" style="margin:21.5px">
                                     {{ csrf_field() }}
                                     <div class="form-group mb-3">
-                                        <label for="emailaddress">Email</label>
+                                        <label for="emailaddress" style="color:white">Email</label>
                                         <input class="form-control" type="text" name="email" placeholder="Ingresa  tu email" required value="{{old('email')}}">
                                     </div>
                                     <div class="form-group mb-3">
-                                        <label for="password">Password</label>
+                                        <label for="password" style="color:white">Password</label>
                                         <input class="form-control" type="password" name="password" placeholder="Ingresa  tu contraseña" required>
                                     </div>
                                     <div class="form-group mb-3">
@@ -45,8 +49,8 @@
                                                 <option class="form-control" value="{{$empresas->EMPRESA_id}}">{{$empresas->EMPRESA_nombre}}</option>
                                             @endforeach
                                         </select>
-                                    </div>
-                                    <div class="form-group mb-0 text-center">
+                                    </div>   
+                                    <div class="form-group  text-center">
                                         <button class="btn btn-primary btn-block" type="submit"> Ingresar</button>
                                     </div>
                                 </form>
@@ -61,7 +65,9 @@
             <!-- end container -->
         </div>
         <!-- end page -->
-        <footer class="footer footer-alt">
+        <footer class="footer footer-alt" style="padding-top: 0px;
+        padding-bottom: 0px;
+        top: 91%;color:#fff;font-size: 16px!important;font-weight: 700">
             <?php echo date("Y"); ?> &copy; Nept Computer
         </footer>
         <!-- Vendor js -->

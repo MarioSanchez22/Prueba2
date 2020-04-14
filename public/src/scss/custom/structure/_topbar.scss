@@ -27,7 +27,7 @@
 }
 
 .logo-box {
-    height: $topbar-height;
+    height: 50px;
     width: $leftbar-width;
     float: left;
 }
@@ -39,7 +39,7 @@
     position: fixed;
     left: 0;
     right: 0;
-    height: $topbar-height;
+    height: 50px;
     z-index: 100;
 
     .topnav-menu {

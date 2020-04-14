@@ -5,22 +5,36 @@ table.dataTable {
   max-width: none !important;
   /* border-collapse: separate !important; */
   border-spacing: 0;
+  border-bottom: #dee2e6 3px solid;
 }
-table.dataTable td,
+table.dataTable td {
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  vertical-align:middle!important;
+ 
+}
+
 table.dataTable th {
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
+  
 }
 table.dataTable td.dataTables_empty,
 table.dataTable th.dataTables_empty {
   text-align: center;
 }
-table.dataTable.nowrap th,
+table.dataTable.nowrap th {
+  white-space: nowrap;
+  vertical-align: middle!important;
+  padding-top: 8px!important;
+  padding-bottom: 8px!important;
+}
+
 table.dataTable.nowrap td {
   white-space: nowrap;
   vertical-align: middle!important;
-  padding-top: 6px!important;
-  padding-bottom: 6px!important;
+  padding-top: 3px!important;
+  padding-bottom: 3px!important;
 }
 
 div.dataTables_wrapper div.dataTables_length label {

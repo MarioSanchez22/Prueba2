@@ -10,7 +10,17 @@
         @endphp
 
           <!-- Topbar Start -->
-            <div class="navbar-custom" style="background-color:#2e4965">
+            <div class="navbar-custom" style="background-color:#689abf; height:50px!important">
+                <style>
+                    .navbar-custom .topnav-menu .nav-link{
+                        color:white;
+                    }
+                </style>
+                <style>
+                    .navbar-custom .topnav-menu .nav-link{
+                        line-height: 50px;
+                    }
+                </style>
                 <ul class="list-unstyled topnav-menu float-right mb-0">
 
                     
@@ -108,7 +118,7 @@
 
                     <li class="dropdown notification-list">
                         <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                            <img src="{{asset('assets/images/users/user-1.jpg')}}" alt="user-image" class="rounded-circle">
+                            <img src="{{asset('assets/images/users/user.png')}}" alt="user-image" class="rounded-circle">
                             <span class="pro-user-name ml-1">
                                 {{auth()->user()->email}} <i class="mdi mdi-chevron-down"></i>
                             </span>
@@ -163,7 +173,7 @@
                 <div class="logo-box">
                     <a href="index.html" class="logo text-center">
                         <span class="logo-lg">
-                            <h4 style="margin-top: 9%; color:white;">{{$empresaUsuario->EMPRESA_comercial}}</h4>
+                            <h4 style="margin-top: 7.5%; color:white;">{{$empresaUsuario->EMPRESA_comercial}}</h4>
                         </span>
                         <span class="logo-sm">
                             <!-- <span class="logo-sm-text-dark">U</span> -->
@@ -174,51 +184,12 @@
 
                 <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
                     <li>
-                        <button class="button-menu-mobile waves-effect waves-light">
+                        <button class="button-menu-mobile waves-effect waves-light" style="height: 50px; line-height: 50px">
                             <i class="fe-menu"></i>
                         </button>
                     </li>
 
-                    <li class="dropdown d-none d-lg-block">
-                        <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                            Create New
-                            <i class="mdi mdi-chevron-down"></i>
-                        </a>
-                        <div class="dropdown-menu">
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">
-                                <i class="fe-briefcase mr-1"></i>
-                                <span>New Projects</span>
-                            </a>
-
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">
-                                <i class="fe-user mr-1"></i>
-                                <span>Create Users</span>
-                            </a>
-
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">
-                                <i class="fe-bar-chart-line- mr-1"></i>
-                                <span>Revenue Report</span>
-                            </a>
-
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">
-                                <i class="fe-settings mr-1"></i>
-                                <span>Settings</span>
-                            </a>
-
-                            <div class="dropdown-divider"></div>
-
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">
-                                <i class="fe-headphones mr-1"></i>
-                                <span>Help & Support</span>
-                            </a>
-
-                        </div>
-                    </li>
+           
 
                 
                 </ul>

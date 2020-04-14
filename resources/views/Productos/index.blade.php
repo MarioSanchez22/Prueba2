@@ -69,11 +69,34 @@ use App\umedidas;
 
             <div class="content-page">
                 <div class="content">
+                    
 
                     <!-- Start Content-->
                     <div class="container-fluid">
                     <!-- start page title -->
-                   
+                    <div class="page-title-box">
+                        <div class="page-title-right">
+
+                        </div>
+                        <div class="row" style="padding-bottom: 10px">
+                            <div class="col-12">
+
+                        <div class="row icons-list-demo" style="color:#373f5f">
+                            <div class="col-sm-7 col-md-7 col-lg-4" style="font-size: 19px;font-weight: bold;padding-top: 5px; padding-left: 0px">
+                                <i class="mdi mdi-24px mdi-apps" style=" margin-right: -6px;color:#373f5f"></i> Productos
+                            </div>
+                          <input type="hidden" id="usu1_EMPRESA_id" value="{{$usu1->EMPRESA_id}}">
+                        
+                            <div class="col-md-8" style="padding-top: 6px">
+                                <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" onclick="location.href='{{route('productoCreate')}}'"><span class=" fa fa-user-plus"> </span>  Producto</button>
+                            </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+</div>
 
                     <div class="row" style="margin-top: 10px;">
 
@@ -89,7 +112,7 @@ use App\umedidas;
                                                                 .card-header{
                 background-color: #ffffff;
                 border: 1px solid #ddd;
-                padding: 8px;
+                padding: 0px;
             }
             .card-body{
                 border-bottom: 1px solid #ddd;
@@ -98,16 +121,16 @@ use App\umedidas;
             }
                                                             </style>
                                                             <div class="card-header">
-                                                               
+                                                                <div class="row icons-list-demo" style="color:#373f5f">
+                                                                    <div class="col-sm-7 col-md-7 col-lg-4" style="font-size: 19px;font-weight: bold;padding-top: 5px; padding-left: 0px">
+                                                                        <i class="mdi mdi-24px mdi-apps" style=" margin-right: -6px;color:#373f5f"></i> Productos
+                                                                    </div>
+                                                                 
+                                                                
+                                                                   
+                                                            </div>
                                                                    
                                                                        
-                                                                                <ol class="breadcrumb m-0" style="padding-top: 6px;
-                                                                                padding-bottom: 6px;
-                                                                                padding-left: 16px;">
-                                                                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Inicio</a></li>
-                                                                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Logística y Proveedores</a></li>
-                                                                                    <li class="breadcrumb-item active">Productos</li>
-                                                                                </ol>
                                                                             
                                                                    
                                                                
@@ -115,82 +138,68 @@ use App\umedidas;
                                                             <div class="card-body" style=" padding-top: 6px; ">
                                                                 <div class="row">
                                                                     <div class="col-12">
-                                                                        <div class="page-title-box">
-                                                                            <div class="page-title-right">
-                                            
-                                                                            </div>
-                                                                            <div class="row" style="padding-bottom: 10px">
-                                                                                <div class="col-12">
-                                            
-                                                                            <div class="row icons-list-demo" style="color:#373f5f">
-                                                                                <div class="col-sm-7 col-md-7 col-lg-4" style="font-size: 19px;font-weight: bold;padding-top: 5px; padding-left: 0px">
-                                                                                    <i class="mdi mdi-24px mdi-apps" style=" margin-right: -6px;color:#373f5f"></i> PRODUCTOS
-                                                                                </div>
-                                                                              <input type="hidden" id="usu1_EMPRESA_id" value="{{$usu1->EMPRESA_id}}">
-                                                                            
-                                                                                <div class="col-md-8" style="padding-top: 6px">
-                                                                                    <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" onclick="location.href='{{route('productoCreate')}}'"><span class=" fa fa-user-plus"> </span>  Producto</button>
-                                                                                </div>
-                                                                        </div>
-                                                                    </div>
-                                            
-                                                                </div>
-                                                                <div id="tablageneral" class="bounceInLeft animated">
-                                                                    <div class="table-responsive">
-                                                                    <table id="basic-datatable" class="table dt-responsive nowrap" style="font-size: 13px;color:#333333">
-                                                                <thead >
-                                                                <tr>
-                                                                    <th data-field="name">Código</th>
-                                                                    <th data-field="amount">Producto</th>
-                                                                    <th data-field="unidad">U. Med.</th>
-                                                                    <th data-field="stack">Stack [min-max]</th>
-                                                                    <th data-field="garantiac">Garantía compra</th>
-                                                                    <th data-field="garantiav">Garantía venta</th>
-                                                                    <th data-field="amouWnt">Opciones</th>
-                                                                </tr>
-                                                                </thead>
-                                                                    <tbody>
-                                                                        
-                                                                        @foreach ($productos as $producto)
-                                                                            @php
-                                                                                $unidad=umedidas::where('UME_id','=',$producto->UME_id)->first();
-                                                                                $categoria=categoria_producto::where('CATPRO_id','=',$producto->CATPRO_id)->first();
-                                                                                $marca=marca::where('MARCA_id','=',$producto->MARCA_id)->first();
-                                                                            @endphp
-                                                                            <tr id="{{$producto->PRO_id}}">
-                                                                                <td>{{$producto->PRO_codigo}}</td>
-                                                                            <td>{{$producto->PRO_nombre}}-{{$producto->PRO_modelo}}-{{$marca->MARCA_descripcion}}-{{$categoria->CATPRO_descripcion}}</td>
-                                                                                <td>{{$unidad->UME_abreviatura}}</td>
-                                                                                <td>[{{$producto->PRO_min}}-{{$producto->PRO_max}}]</td>
-                                                                                <td>{{$producto->PRO_gcomprar}} días</td>
-                                                                                <td>{{$producto->PRO_gvender}} días</td>
-                                                                            <td>
-                                                                                @if ($producto->PRO_estadoCrea==1)
-                                                                                    <span class="badge bg-soft-success text-success shadow-none">Activo</span>
-                                                                                @else
-                                                                                    <span class="badge bg-soft-danger text-danger shadow-none">Bloqueado</span>
-                                                                                @endif
-                                                                                <div class="dropdown float-right">
-                                                                                    <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
-                                                                                        <i class=" mdi mdi-18px mdi-settings m-0 text-muted h3"></i>
-                                                                                    </a>
-                                                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                                                        <a href="{{route('productoShow',[$producto->PRO_id])}}" class="dropdown-item" title="Ver"> <i class="mdi mdi-eye"></i> Ver</a>
-                                                                                        <a href="{{route('productoEdit',[$producto->PRO_id])}}" class="dropdown-item" title="Editar"><i class="mdi mdi-square-edit-outline"></i>Editar</a>
-                                                                                        @if ($producto->PRO_estadoCrea==1)
-                                                                                            <a href="#" class="dropdown-item" title="Bloquear" onclick="bloquear({{$producto->PRO_id}})"> <i class="mdi mdi-block-helper"></i> Bloquear</a>
-                                                                                        @else
-                                                                                            <a href="#" onclick="activar({{$producto->PRO_id}})" id="toastr-three" class="dropdown-item" title="Activar"> <i class="mdi mdi-transfer-up"></i> Activar</a>
-                                                                                        @endif
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                            </tr>
-                                                                        @endforeach
-                                                                    </tbody>
-                                                                    </table>
-                                                                    </div>
-                                                                  </div>
+                                                      
+                    <div id="tablageneral" class="table-responsive">
+                                    
+                        <table class="table datatable-basic dataTable no-footer" id="basic-datatable" style="color: #454545; font-size: 13px">
+                          <thead>
+                            <tr>
+                                <th >Código</th>
+                                <th >Producto</th>
+                                <th>Unidad. Med.</th>
+                                <th >Stack [min-max]</th>
+                                <th >Garantia compra</th>
+                                <th >Garantia venta</th>
+                                <th >Estado</th>
+                                <th >Acción</th>
+                            </tr>
+                          </thead>
+
+                           <tbody>
+                   
+                       
+                          @foreach ($productos as $producto)
+                          @php
+                              $unidad=umedidas::where('UME_id','=',$producto->UME_id)->first();
+                              $categoria=categoria_producto::where('CATPRO_id','=',$producto->CATPRO_id)->first();
+                              $marca=marca::where('MARCA_id','=',$producto->MARCA_id)->first();
+                          @endphp
+                          <tr id="{{$producto->PRO_id}}">
+                              <td>{{$producto->PRO_codigo}}</td>
+                          <td>{{$producto->PRO_nombre}}-{{$producto->PRO_modelo}}-{{$marca->MARCA_descripcion}}-{{$categoria->CATPRO_descripcion}}</td>
+                              <td>{{$unidad->UME_abreviatura}}</td>
+                              <td>[{{$producto->PRO_min}}-{{$producto->PRO_max}}]</td>
+                              <td>{{$producto->PRO_gcomprar}} días</td>
+                              <td>{{$producto->PRO_gvender}} días</td>
+                              <td> @if ($producto->PRO_estadoCrea==1)
+                                  <span class="badge bg-soft-success text-success shadow-none">Activo</span>
+                              @else
+                                  <span class="badge bg-soft-danger text-danger shadow-none">Bloqueado</span>
+                              @endif</td>
+                          <td>
+                             
+                              <div class="dropdown text-center">
+                                  <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
+                                      <i class=" mdi mdi-18px mdi-settings m-0 text-muted h3"></i>
+                                  </a>
+                                  <div class="dropdown-menu dropdown-menu-right">
+                                      <a href="{{route('productoShow',[$producto->PRO_id])}}" class="dropdown-item" title="Ver"> <i class="mdi mdi-eye"></i> Ver</a>
+                                      <a href="{{route('productoEdit',[$producto->PRO_id])}}" class="dropdown-item" title="Editar"><i class="mdi mdi-square-edit-outline"></i>Editar</a>
+                                      @if ($producto->PRO_estadoCrea==1)
+                                          <a href="#" class="dropdown-item" title="Bloquear" onclick="bloquear({{$producto->PRO_id}})"> <i class="mdi mdi-block-helper"></i> Bloquear</a>
+                                      @else
+                                          <a href="#" onclick="activar({{$producto->PRO_id}})" id="toastr-three" class="dropdown-item" title="Activar"> <i class="mdi mdi-transfer-up"></i> Activar</a>
+                                      @endif
+                                  </div>
+                              </div>
+                          </td>
+                          </tr>
+                      @endforeach
+                      </tbody>
+       </table>
+      </div>
+
+
                                                                         </div>
                                                                     </div>
                                                                 </div>

@@ -80,7 +80,7 @@ body {
 .content-page {
   margin-left: 240px;
   overflow: hidden;
-  padding: 0 15px 5px 15px;
+  padding: 0 10px 5px 25px;
   min-height: 80vh;
   margin-top: 70px; }
 
@@ -165,7 +165,7 @@ body {
   font-weight: 600; }
 
 .enlarged .logo-box {
-  width: 70px !important; }
+  width: 50px !important; }
 
 .enlarged .logo span.logo-lg {
   display: none; }
@@ -391,7 +391,7 @@ body.enlarged {
     text-transform: uppercase; }
 
 .logo-box {
-  height: 70px;
+  height: 50px;
   width: 240px;
   float: left; }
 
@@ -403,7 +403,7 @@ body.enlarged {
   position: fixed;
   left: 0;
   right: 0;
-  height: 70px;
+  height: 50px;
   z-index: 100;
   /* Search */ }
   .navbar-custom .topnav-menu > li {
@@ -1489,7 +1489,7 @@ body.authentication-bg {
 
 body.authentication-bg-pattern {
   background-image: url("../images/bg-pattern.png");
-  background-color: #6658dd; }
+  }
 
 .logout-icon {
   width: 140px; }

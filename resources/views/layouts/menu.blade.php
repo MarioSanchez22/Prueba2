@@ -78,17 +78,30 @@ $k=0;
 
     //dd($submenu2);
 @endphp
-<div class="left-side-menu " style="background-color:#fff" >
+<div class="left-side-menu " style="background-color:#fff;top: 50px;width: 259px" >
+    <style>
+        .footer{
+            left: 260px;
+        }
+ /*        body{
+            font-family: "Roboto", Helvetica Neue, Helvetica, Arial, sans-serif!important;
+    font-size: 13px;
+        }
+        .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+            font-family: "Roboto", Helvetica Neue, Helvetica, Arial, sans-serif!important;
+        } */
+    </style>
 <div class="slimscroll-menu" >
    <!-- User box -->
    <div class="user-box ">
        <div class="row">
            <div class="col-md-3 text-right" style="left:10px">
-            <img src="assets/images/users/user-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle avatar-sm">
+            <img src="{{asset('assets/images/users/user.png')}}" alt="user-img" title="Mat Helme" class="rounded-circle avatar-sm">
            </div>
            <div class="col-md-5 text-left" style="top: -10px;">
           
-                <a href="javascript: void(0);" class="text-dark dropdown-toggle h5 mt-2 mb-1 d-block" >Geneva Kennedy</a>
+                <a href="javascript: void(0);" class="text-dark dropdown-toggle h5 mt-2 mb-1 d-block" style="font-weight: 600;
+                font-size: 13px;" >{{auth()->user()->email}}</a>
               
             <p class="text-muted">Admin Head</p>
             
@@ -106,18 +119,52 @@ $k=0;
 </div>
     <!--- Sidemenu -->
     <div id="sidebar-menu" >
+        <style>
+            #sidebar-menu>ul>li>a.active{
+                background: #f5f5f5;
+                color: #333333!important;
+                font-family: "Roboto", Helvetica Neue, Helvetica, Arial, sans-serif!important;
+
+            }
+        </style>
+        <style>
+            .nav-second-level li.active>a {
+    color: #2d557f;
+    font-weight: 700;
+    font-family: "Roboto", Helvetica Neue, Helvetica, Arial, sans-serif!important;
+}
+        </style>
       <style>
           #sidebar-menu>ul>li>a{
-              color:#000;
-              font-size: 14px!important;
+              color:#333333;
+              font-size: 13px!important;
+              font-weight: 550;
+              font-family: "Roboto", Helvetica Neue, Helvetica, Arial, sans-serif!important;
           }
-          
+          #sidebar-menu>ul>li>a i{
+              font-weight: 600;
+          }
+          #sidebar-menu>ul>li>ul{
+              padding-left: 30px;
+          }
+      </style>
+      <style>
+          .content-page{
+              margin-top: 50px;
+              padding: 0 10px 5px 25px;
+          }
+      </style>
+      <style>
+          .logo-box{
+              height: 50px!important;
+          }
       </style>
         <ul class="metismenu" id="side-menu">
 
             <style>
                 .nav-second-level>li>a, .nav-thrid-level>li>a {
             color: #3c3b3b;
+            font-size: 13px;
             
           }
             </style>
@@ -153,8 +200,8 @@ $k=0;
                 <ul class="nav-second-level" aria-expanded="false">
                     @foreach ($submenu as $submenus)
                         @if ($submenus->MENU_id == $menus->MENU_id)
-                        <li >
-                            <a href="{{route($submenus->SUBMENU_ruta)}}" class="nav-link">{{$submenus->SUBMENU_descripcion}}</a>
+                        <li > 
+                            <a href="{{route($submenus->SUBMENU_ruta)}}" class="nav-link"><i class="fe-chevrons-right" style="padding-right: 8px;"></i>{{$submenus->SUBMENU_descripcion}}</a>
                         </li>
                         @endif
                     @endforeach

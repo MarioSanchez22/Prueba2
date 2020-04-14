@@ -7,7 +7,7 @@
 }
 
 .bg-pattern {
-    background-image: url("../images/fondo.jpg");
+   
     background-size: cover;
 }
 
@@ -19,8 +19,8 @@ body.authentication-bg {
 }
 
 body.authentication-bg-pattern {
-    background-image: url("../images/fondo.jpg");
-    background-color: $primary;
+    background:#6658dd;
+    
 }
 
 // Logout page
