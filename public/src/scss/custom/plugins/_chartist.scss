@@ -16,6 +16,14 @@
     }
 }
 
+.ct-line {
+    stroke-width: 3px;
+}
+
+.ct-point {
+    stroke-width: 7px;
+}
+
 .ct-chart.simple-pie-chart-chartist {
     .ct-label {
         color: $white;

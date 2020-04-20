@@ -5,6 +5,8 @@
 div.hopscotch-bubble {
     border: 3px solid $primary;
     border-radius: 5px;
+    box-shadow: $shadow;
+    
     .hopscotch-next,
     .hopscotch-prev {
         background-color: $primary !important;

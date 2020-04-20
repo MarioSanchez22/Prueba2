@@ -1,13 +1,13 @@
 // Variables
 
 //
-// custom-variables
+// custom-variables.scss
 //
 
 // Shadow
-$shadow-sm:             0 0.75rem 6rem rgba(56, 65, 74,.03);
-$shadow:                0 0 35px 0 rgba(154, 161, 171, 0.15);
-$shadow-lg:             0 0 45px 0 rgba(0, 0, 0, 0.12);
+$shadow-sm:             0 1px 4px 0 rgba(0, 0, 0, 0.1);
+$shadow:                0 2px 6px -2px rgba(0,0,0,.16), 0 2px 6px 0 rgba(0,0,0,.12);;
+$shadow-lg:             0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 
 //Background left-sidebar
 $bg-leftbar:            #ffffff;
@@ -30,23 +30,23 @@ $menu-item-active-color-dark: #ffffff;
 
 //Menu item colors
 $menu-item:              #6e768e;
-$menu-item-hover:        #00acc1;
-$menu-item-active:       #00acc1;
-$menu-sub-item-active:   #00acc1;
+$menu-item-hover:        #6658dd;
+$menu-item-active:       #6658dd;
+$menu-sub-item-active:   #6658dd;
 
 //Rightbar Width
 $rightbar-width:           260px;
 
 //Topbar Background
 $bg-topbar-light:         #ffffff;
-$bg-topbar-dark:          #38414a;
+$bg-topbar-dark:          #566676;
 
 // Topbar Height
 $topbar-height: 70px;
 
 
 // Secondary font
-$font-family-secondary: "Cerebri Sans,sans-serif";
+$font-family-secondary: 'Roboto', sans-serif;
 
 // Font weight
 $font-weight-medium: 500;
@@ -60,8 +60,8 @@ $dropdown-lg-width:    320px;
 //
 
 // stylelint-disable
-$gray-100: #f1f5f7;
-$gray-200: #f7f7f7;
+$gray-100: #f7f8f9;
+$gray-200: #eceff1;
 $gray-300: #dee2e6;
 $gray-400: #ced4da;
 $gray-500: #adb5bd;
@@ -184,7 +184,7 @@ $sizes: map-merge((
 //
 // Settings for the `<body>` element.
 
-$body-bg:                   #f5f6f8;
+$body-bg:                   #f5f5f5;
 $body-color:                $gray-700;
 
 
@@ -203,6 +203,10 @@ $component-active-bg:         $primary;
 
 $caret-width:                 .25em;
 
+$box-shadow-sm:               0 0.75rem 6rem rgba(56, 65, 74,.03);
+$box-shadow:                  0 1px 4px 0 rgba(0, 0, 0, 0.1);
+$box-shadow-lg:               0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+
 
 // Grid columns
 //
@@ -217,7 +221,7 @@ $grid-gutter-width:           24px;
 // Font, line-height, and color for body text, headings, and more.
 
 // stylelint-disable value-keyword-case
-$font-family-sans-serif:      'Nunito', sans-serif;
+$font-family-sans-serif:      'Roboto', sans-serif;
 $font-family-monospace:       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 $font-family-base:            $font-family-sans-serif;
 
@@ -347,14 +351,16 @@ $input-border-width:                    1px;
 $input-border-color:                    $gray-400;
 $input-border-radius:                   0.2rem;
 
+$input-box-shadow:                      0 1px 4px 0 rgba(0, 0, 0, 0.1);
 $input-focus-box-shadow:                none;
 $input-focus-border-color:              darken($input-border-color,10%);
 
 $input-placeholder-color:               $gray-500;
 
 $input-height:                          calc(#{$input-line-height * 1em} + #{$input-padding-y * 2} + #{$input-height-border});
-
+ 
 $input-height-inner:                    calc(#{$input-line-height * 1em} + #{$input-padding-y * 2});
+
 $input-group-addon-border-color:        $input-border-color;
 
 $custom-select-padding-y:           .45rem;
@@ -413,18 +419,19 @@ $custom-file-text: (
 ) !default;
 
 
-// Form validation
 
+// Form validation
+ 
 $form-feedback-margin-top:          $form-text-margin-top;
 $form-feedback-font-size:           $small-font-size;
 $form-feedback-valid-color:         theme-color("success");
 $form-feedback-invalid-color:       theme-color("danger");
-
+ 
 $form-feedback-icon-valid-color:    $form-feedback-valid-color;
 $form-feedback-icon-valid:          str-replace(url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='#{$form-feedback-icon-valid-color}' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e"), "#", "%23");
 $form-feedback-icon-invalid-color:  $form-feedback-invalid-color;
 $form-feedback-icon-invalid:        str-replace(url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='#{$form-feedback-icon-invalid-color}' viewBox='-2 -2 7 7'%3e%3cpath stroke='#{$form-feedback-icon-invalid-color}' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E"), "#", "%23");
-
+ 
 $form-validation-states: ();
 // stylelint-disable-next-line scss/dollar-variable-default
 $form-validation-states: map-merge(
@@ -440,6 +447,7 @@ $form-validation-states: map-merge(
   ),
   $form-validation-states
 );
+ 
 
 
 // Dropdowns
@@ -517,6 +525,7 @@ $modal-content-border-width:        0;
 $modal-content-border-color:        transparent;
 $modal-content-border-radius:       0.2rem;
 $modal-backdrop-bg:                 $gray-900;
+$modal-content-border-radius:       0;
 
 
 // Progress bars

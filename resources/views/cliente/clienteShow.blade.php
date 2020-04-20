@@ -15,7 +15,7 @@
         .labelEstilo{
         color: #2e667b;
         font-weight: 705;
-        font-family:Arial, Helvetica, sans-serif;
+      
         }
          </style>
 

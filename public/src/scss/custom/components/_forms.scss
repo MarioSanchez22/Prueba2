@@ -2,12 +2,20 @@
 // forms.scss
 //
 
+// Form shadow
+.form-control,
+.valid-tooltip,
+.invalid-tooltip,
+.input-group-text,
+.custom-select {
+    box-shadow: $input-box-shadow;
+}
+
 // Form-control light
 .form-control-light {
     background-color: $gray-100;
     border-color: $gray-100;
 }
-
 
 // Form elements (Color and Range)
 input.form-control[type="color"],

@@ -123,26 +123,25 @@ $k=0;
             #sidebar-menu>ul>li>a.active{
                 background: #f5f5f5;
                 color: #333333!important;
-                font-family: "Roboto", Helvetica Neue, Helvetica, Arial, sans-serif!important;
-
+              
             }
         </style>
         <style>
             .nav-second-level li.active>a {
     color: #2d557f;
-    font-weight: 700;
-    font-family: "Roboto", Helvetica Neue, Helvetica, Arial, sans-serif!important;
+    font-weight: 600;
+   
 }
         </style>
       <style>
           #sidebar-menu>ul>li>a{
               color:#333333;
               font-size: 13px!important;
-              font-weight: 550;
-              font-family: "Roboto", Helvetica Neue, Helvetica, Arial, sans-serif!important;
+              font-weight: 500;
+             
           }
           #sidebar-menu>ul>li>a i{
-              font-weight: 600;
+              font-weight: 500;
           }
           #sidebar-menu>ul>li>ul{
               padding-left: 30px;

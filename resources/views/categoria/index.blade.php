@@ -89,11 +89,11 @@ use App\categoria_producto;
                                     <div class="col-12">
 
                                 <div class="row icons-list-demo" style="color:#373f5f">
-                                    <div class="col-sm-7 col-md-7 col-lg-4" style="font-size: 19px;font-weight: bold;padding-top: 5px; padding-left: 0px">
-                                        <i class="mdi mdi-24px mdi-apps" style=" margin-right: -6px;color:#373f5f"></i> CATEGORIAS
+                                    <div class="col-sm6 col-md-6 col-lg-6" style="font-size: 19px;font-weight: bold;padding-top: 5px; padding-left: 0px">
+                                        <i class="mdi mdi-24px mdi-apps" style=" margin-right: -6px;color:#373f5f"></i> Categorias
                                     </div>
-                                    <div class="col-md-8" style="padding-top: 6px">
-                                        <button type="button" class="btn  btn-primary btn-sm" style="margin-left:84%" data-toggle="modal" data-target="#con-close-modal"><span class=" fa fa-user-plus"> </span> Categoría</button>
+                                    <div class="col-md-6 text-right" style="padding-top: 6px">
+                                        <button type="button" class="btn  btn-primary btn-sm"  data-toggle="modal" data-target="#con-close-modal"><span class=" fa fa-user-plus"> </span> Categoría</button>
                                     </div>
                             </div>
                         </div>
@@ -102,7 +102,7 @@ use App\categoria_producto;
                         </div>
                     </div>
 
-                    <div class="row" style="margin-top: 0px;">
+                    <div class="row" >
                         <div class="col 12 ">
                             <div class="card-box">
                                 <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">

@@ -10,7 +10,7 @@
         @endphp
 
           <!-- Topbar Start -->
-            <div class="navbar-custom" style="background-color:#689abf; height:50px!important">
+            <div class="navbar-custom" style="background: linear-gradient(to right,#004d77,#034a56); height:50px!important">
                 <style>
                     .navbar-custom .topnav-menu .nav-link{
                         color:white;

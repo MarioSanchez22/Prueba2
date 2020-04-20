@@ -37,7 +37,7 @@
 
 .jsgrid-filter-row {
     > .jsgrid-cell {
-        background: lighten($table-head-bg, 2%);
+        background: $table-head-bg;
     }
 }
 
@@ -49,7 +49,8 @@
 .jsgrid input,
 .jsgrid select,
 .jsgrid textarea {
-    border: 1px solid $gray-100;
+    border: 1px solid $input-border-color;
+    border-radius: $input-border-radius;
     padding: .4em .6em;
     outline: none !important;
 }

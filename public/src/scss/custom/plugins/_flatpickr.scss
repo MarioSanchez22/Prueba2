@@ -2,6 +2,10 @@
 // flatpickr.scss
 //
 
+.flatpickr-calendar {
+    box-shadow: $shadow;
+}
+
 .flatpickr-day {
     &.selected,
     &.startRange,

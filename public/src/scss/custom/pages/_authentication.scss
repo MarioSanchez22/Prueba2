@@ -7,20 +7,14 @@
 }
 
 .bg-pattern {
-   
+    background-image: url("../images/bg-pattern-2.png");
     background-size: cover;
 }
 
 // authentication pages background
 body.authentication-bg {
-    background-color: $gray-200;
+    background-image: url("../images/bg.png");
     background-size: cover;
-    background-position: center;
-}
-
-body.authentication-bg-pattern {
-    background:#6658dd;
-    
 }
 
 // Logout page

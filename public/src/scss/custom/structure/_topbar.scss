@@ -27,19 +27,19 @@
 }
 
 .logo-box {
-    height: 50px;
+    height: $topbar-height;
     width: $leftbar-width;
     float: left;
 }
 
 .navbar-custom {
     background-color: $bg-topbar-dark;
-    box-shadow: $shadow;
+    box-shadow: $shadow-lg;
     padding: 0 10px 0 0;
     position: fixed;
     left: 0;
     right: 0;
-    height: 50px;
+    height: $topbar-height;
     z-index: 100;
 
     .topnav-menu {
@@ -216,6 +216,7 @@
 // Topbar light
 .navbar-custom-light {
     background-color: $bg-topbar-light !important;
+    box-shadow: $shadow-sm;
     
     .topnav-menu {
         .nav-link {

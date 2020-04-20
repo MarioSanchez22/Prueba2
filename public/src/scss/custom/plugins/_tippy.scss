@@ -3,6 +3,7 @@
 //
 
 .tippy-tooltip {
+    box-shadow: $shadow;
     .light-theme[data-animatefill] {
         background-color: transparent;
     }
